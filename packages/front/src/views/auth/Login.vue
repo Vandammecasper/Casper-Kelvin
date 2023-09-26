@@ -67,6 +67,7 @@ import { ref } from 'vue'
 import { type AuthError } from 'firebase/auth'
 
 import useFirebase from '@/composables/useFirebase'
+import router from '@/router'
 
 export default {
   setup() {
@@ -84,6 +85,7 @@ export default {
       login(loginCredentials.value.email, loginCredentials.value.password)
         .then(() => {
           console.log('logged in')
+          router.push('/')
         })
         .catch((err: AuthError) => {
           error.value = err

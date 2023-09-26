@@ -1,5 +1,5 @@
 <template>
-  <form @submit="" class="w-full">
+  <form @submit.prevent="handleRegister" class="w-full">
     <h1 class="text-4xl font-bold tracking-wider">Register</h1>
     <p class="text-neutral-500 mb-4">
       Create an account and keep track of your birds.
@@ -79,6 +79,7 @@ import { ref } from 'vue'
 import { type AuthError } from 'firebase/auth'
 
 import useFirebase from '@/composables/useFirebase'
+import router from '@/router'
 
 export default {
   setup() { // <-- was script
@@ -93,7 +94,12 @@ export default {
     const error = ref<AuthError | null>(null)
 
     const handleRegister = () => {
-      register(newUser.value.name, newUser.value.email, newUser.value.password).catch((err) => {
+      register(newUser.value.name, newUser.value.email, newUser.value.password)
+      .then(() => { 
+        console.log('Registered!')
+        router.push('/')
+      })
+      .catch((err) => {
         error.value = err
       })
     }
