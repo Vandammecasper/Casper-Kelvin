@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev" : "todo"
+    "dev": "todo"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "url": "https://github.com/Vandammecasper/Casper-Kelvin/issues"
   },
   "homepage": "https://github.com/Vandammecasper/Casper-Kelvin#readme",
-  "workspaces":[
+  "workspaces": [
     "packages/*"
   ],
   "prettier": {
@@ -29,5 +29,8 @@
     "proseWrap": "preserve",
     "htmlWhitespaceSensitivity": "css",
     "endOfLine": "lf"
+  },
+  "dependencies": {
+    "firebase": "^10.4.0"
   }
 }
