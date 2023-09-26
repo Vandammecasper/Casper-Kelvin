@@ -60,6 +60,7 @@ const register = async (
       .then(userCredential => {
         firebaseUser.value = userCredential.user
         updateProfile(firebaseUser.value, { displayName: name })
+        await sendEmailVerification(firebaseUser.value)
         resolve(userCredential.user)
       })
       .catch(error => {
