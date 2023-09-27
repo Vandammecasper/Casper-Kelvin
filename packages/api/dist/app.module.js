@@ -10,11 +10,29 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+const apollo_1 = require("@nestjs/apollo");
+const graphql_1 = require("@nestjs/graphql");
+const hairdressers_module_1 = require("./hairdressers/hairdressers.module");
+const typeorm_1 = require("@nestjs/typeorm");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [],
+        imports: [
+            graphql_1.GraphQLModule.forRoot({
+                driver: apollo_1.ApolloDriver,
+                autoSchemaFile: true,
+            }),
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'mongodb',
+                url: 'mongodb://localhost:27031/api-thebarber',
+                entities: [__dirname + '/**/*.entity.{js,ts}'],
+                synchronize: true,
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            }),
+            hairdressers_module_1.HairdressersModule,
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
