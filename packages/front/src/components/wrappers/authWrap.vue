@@ -1,6 +1,7 @@
 <template>
-    <div class="flex items-center flex-col w-full max-w-xl mx-auto pb-48 px-6">
-      <RouterView />
+  <img src="../../../assets/andrea-donato-MNu0n-3BIKs-unsplash.jpg" alt="" class="absolute w-screen h-screen place-self-center z-0">
+    <div class="flex items-center flex-col w-screen h-screen max-w-xl mx-auto">
+      <RouterView class="z-10"/>
     </div>
   </template>
   
