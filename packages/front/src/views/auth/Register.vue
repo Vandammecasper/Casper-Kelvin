@@ -61,11 +61,11 @@
       <button
         class="mt-6 w-full  border-2 border-yellow-600 bg-yellow-600 py-2 px-4 font-semibold text-white hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300"
       >
-        Register
+        REGISTER
       </button>
       <div class="flex justify-center">
         <RouterLink
-          class="mt-3 inline-block rounded text-center text-sm text-yellow-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-200"
+          class="mt-1 inline-block rounded text-sm text-yellow-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-200 dark:text-blue-200"
           to="/auth/login"
         >
           Already have an account?
