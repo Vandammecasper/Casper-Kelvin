@@ -3,5 +3,5 @@
     <div class="flex items-center flex-col w-screen h-screen max-w-xl mx-auto">
       <RouterView class="z-10"/>
     </div>
-  </template>
+</template>
   

@@ -1,7 +1,7 @@
 <template>
     <div>
       Hello 👋🏼
-      <p v-if="firebaseUser">Logged in user: {{ firebaseUser.email }}</p>
+      <p v-if="firebaseUser">Logged in user: {{ firebaseUser.displayName }}</p>
         <button v-if="firebaseUser" @click="logout">Logout</button>
       <RouterLink
         v-else
