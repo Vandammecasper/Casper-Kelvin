@@ -14,7 +14,7 @@
         <div class="mt-6">
           <label
             for="nickname"
-            class="text-md block font-semibold tracking-wider text-white dark:text-gray-200"
+            class="text-md block font-semibold tracking-wider  dark:text-gray-200"
           >
             Name
           </label>
@@ -23,7 +23,7 @@
             name="nickname"
             id="nickname"
             placeholder="Your name"
-            class="mt-1 block border-3 text-white bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
+            class="mt-1 block border-3 bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
             v-model="newUser.name"
             />
         </div>
@@ -31,7 +31,7 @@
         <div class="mt-6">
           <label
             for="email"
-            class="text-md block font-semibold tracking-wider text-white dark:text-gray-200"
+            class="text-md block font-semibold tracking-wider  dark:text-gray-200"
           >
             Email address
           </label>
@@ -40,7 +40,7 @@
             name="email"
             id="email"
             placeholder="youremail@example.com"
-            class="mt-1 block border-3 text-white bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
+            class="mt-1 block border-3 bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
             v-model="newUser.email"
           />
         </div>
@@ -48,7 +48,7 @@
         <div class="mt-6">
           <label
             for="password"
-            class="text-md block font-semibold tracking-wider text-white dark:text-gray-200"
+            class="text-md block font-semibold tracking-wider  dark:text-gray-200"
           >
             Password
           </label>
@@ -57,13 +57,13 @@
             name="password"
             id="password"
             placeholder="Your password"
-            class="mt-1 block border-3 text-white bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
+            class="mt-1 block border-3 bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
             v-model="newUser.password"
             />
         </div>
 
         <button
-          class="mt-6 w-full  border-2 border-yellow-600 bg-yellow-600 py-2 px-4 font-semibold text-white hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300"
+          class="mt-6 w-full  border-2 border-yellow-600 bg-yellow-600 py-2 px-4 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300"
         >
           REGISTER
         </button>
