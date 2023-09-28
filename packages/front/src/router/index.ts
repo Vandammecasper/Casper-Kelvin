@@ -15,6 +15,10 @@ const router = createRouter({
         {
           path:'account',
           component: () => import('../views/account.vue'),
+        },
+        {
+          path:'appointment',
+          component: () => import('../views/appointment.vue'),
         }
       ]
     },
