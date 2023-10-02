@@ -18,9 +18,11 @@ const hairdressers_service_1 = require("./hairdressers.service");
 const hairdresser_entity_1 = require("./entities/hairdresser.entity");
 const create_hairdresser_input_1 = require("./dto/create-hairdresser.input");
 const update_hairdresser_input_1 = require("./dto/update-hairdresser.input");
+const services_service_1 = require("../services/services.service");
 let HairdressersResolver = exports.HairdressersResolver = class HairdressersResolver {
-    constructor(hairdressersService) {
+    constructor(hairdressersService, servicesService) {
         this.hairdressersService = hairdressersService;
+        this.servicesService = servicesService;
     }
     findAll() {
         return this.hairdressersService.findAll();
@@ -36,6 +38,9 @@ let HairdressersResolver = exports.HairdressersResolver = class HairdressersReso
     }
     removeHairdresser(id) {
         return this.hairdressersService.remove(id);
+    }
+    services(hairdresser) {
+        return this.servicesService.findByIds(hairdresser.servicesId);
     }
 };
 __decorate([
@@ -72,8 +77,16 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], HairdressersResolver.prototype, "removeHairdresser", null);
+__decorate([
+    (0, graphql_1.ResolveField)(),
+    __param(0, (0, graphql_1.Parent)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [hairdresser_entity_1.Hairdresser]),
+    __metadata("design:returntype", Promise)
+], HairdressersResolver.prototype, "services", null);
 exports.HairdressersResolver = HairdressersResolver = __decorate([
     (0, graphql_1.Resolver)(() => hairdresser_entity_1.Hairdresser),
-    __metadata("design:paramtypes", [hairdressers_service_1.HairdressersService])
+    __metadata("design:paramtypes", [hairdressers_service_1.HairdressersService,
+        services_service_1.ServicesService])
 ], HairdressersResolver);
 //# sourceMappingURL=hairdressers.resolver.js.map

@@ -4,8 +4,6 @@ import { Column, Entity, ObjectIdColumn } from 'typeorm';
 @Entity() // Database link - Typeorm
 @ObjectType()
 export class Service {
-  // @Field(() => Int, { description: 'Example field (placeholder)' })
-  // exampleField: number;
   @ObjectIdColumn()
   @Field(() => ID, { description: 'id' })
   id: string;

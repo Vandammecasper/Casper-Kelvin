@@ -46,10 +46,10 @@ __decorate([
 ], ServicesResolver.prototype, "findAll", null);
 __decorate([
     (0, graphql_1.Query)(() => service_entity_1.Service, { name: 'service' }),
-    __param(0, (0, graphql_1.Args)('id', { type: () => String })),
+    __param(0, (0, graphql_1.Args)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ServicesResolver.prototype, "findOne", null);
 __decorate([
     (0, graphql_1.Mutation)(() => service_entity_1.Service),

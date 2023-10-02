@@ -4,6 +4,7 @@ import { UpdateServiceInput } from './dto/update-service.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Service } from './entities/service.entity';
 import { Repository } from 'typeorm';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class ServicesService {
@@ -18,7 +19,17 @@ export class ServicesService {
   }
 
   findOne(id: string) {
-    return this.serviceRepository.findOne({ where: { id } });
+    // @ts-ignore
+    return this.serviceRepository.findOne({ _id: new ObjectId(id) });
+  }
+
+  findByIds(ids: ObjectId[]): Promise<Service[]> {
+    const services = ids.map((id) => {
+      // @ts-ignore
+      return this.serviceRepository.findOne({ _id: id });
+    });
+
+    return Promise.all(services);
   }
 
   create(createServiceInput: CreateServiceInput) {

@@ -1,4 +1,5 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
+import { ObjectId } from 'typeorm';
 
 @InputType()
 export class CreateHairdresserInput {
@@ -10,4 +11,7 @@ export class CreateHairdresserInput {
 
   @Field(() => String)
   name: string;
+
+  @Field(() => [String])
+  servicesId: string[];
 }

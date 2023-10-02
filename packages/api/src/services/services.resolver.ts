@@ -14,7 +14,7 @@ export class ServicesResolver {
   }
 
   @Query(() => Service, { name: 'service' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  findOne(@Args('id') id: string): Promise<Service> {
     return this.servicesService.findOne(id);
   }
 

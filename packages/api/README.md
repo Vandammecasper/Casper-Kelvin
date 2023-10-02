@@ -58,16 +58,115 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Services
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Find All
 
-## Stay in touch
+```js
+query {
+  services {
+    id
+    name
+    description
+    price
+    duration
+    utilities
+  }
+}
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Find One
 
-## License
+```js
+query {
+  service(id: "651ade81c0c9672741b5dcf6") {
+    id
+    name
+    description
+    price
+    duration
+    utilities
+  }
+}
+```
 
-Nest is [MIT licensed](LICENSE).
+### Create
+
+```js
+mutation {
+  createService(createServiceInput: { name: "Clean Shave", description: "a full clean cut and shave", price:30, duration:30, utilities:["schaar", "borstel", "scheermems"] }) {
+    id
+    name
+    description
+    duration
+    price
+    utilities
+  }
+}
+```
+
+## Hairdressers
+
+### Find All
+
+```js
+query {
+  hairdressers {
+    id
+    uid
+    name
+    services {
+      id
+      name
+      description
+      price
+      duration
+      utilities
+    }
+  }
+}
+
+```
+
+### Find One (by uid)
+
+```js
+query {
+  hairdresser(uid: "pVbEmkBDAFUU4ChPbVYQeGMMITl2") {
+    id
+    uid
+    name
+    services {
+      id
+      name
+      description
+      price
+      duration
+      utilities
+    }
+  }
+}
+
+```
+
+### Create
+
+```js
+mutation {
+  createHairdresser(
+    createHairdresserInput: {
+      uid: "s2VrPmmg5EUr9cVf04TNgGLNMPH3"
+      name: "Kapper2"
+      servicesId: ["651abda7478cc36470532172"]
+    }
+  ) {
+    uid
+    name
+    services {
+      id
+      name
+    }
+  }
+}
+
+```

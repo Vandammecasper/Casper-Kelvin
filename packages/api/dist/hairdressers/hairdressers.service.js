@@ -17,9 +17,12 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const hairdresser_entity_1 = require("./entities/hairdresser.entity");
 const typeorm_2 = require("typeorm");
+const mongodb_1 = require("mongodb");
+const services_service_1 = require("../services/services.service");
 let HairdressersService = exports.HairdressersService = class HairdressersService {
-    constructor(birdRepository) {
+    constructor(birdRepository, serviceService) {
         this.birdRepository = birdRepository;
+        this.serviceService = serviceService;
     }
     findAll() {
         return this.birdRepository.find();
@@ -27,11 +30,25 @@ let HairdressersService = exports.HairdressersService = class HairdressersServic
     findOne(uid) {
         return this.birdRepository.findOne({ where: { uid } });
     }
-    create(createHairdresserInput) {
-        const newHairdresser = new hairdresser_entity_1.Hairdresser();
-        newHairdresser.uid = createHairdresserInput.uid;
-        newHairdresser.name = createHairdresserInput.name;
-        return this.birdRepository.save(newHairdresser);
+    async create(createHairdresserInput) {
+        try {
+            var servicesObjectId = [];
+            await createHairdresserInput.servicesId.forEach(element => {
+                const service = this.serviceService.findOne(element);
+                if (!service) {
+                    throw new Error('Service not found');
+                }
+                servicesObjectId.push(new mongodb_1.ObjectId(element));
+            });
+            const newHairdresser = new hairdresser_entity_1.Hairdresser();
+            newHairdresser.uid = createHairdresserInput.uid;
+            newHairdresser.name = createHairdresserInput.name;
+            newHairdresser.servicesId = servicesObjectId;
+            return this.birdRepository.save(newHairdresser);
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
     update(id, updateHairdresserInput) {
         return `This action updates a #${id} hairdresser`;
@@ -43,6 +60,7 @@ let HairdressersService = exports.HairdressersService = class HairdressersServic
 exports.HairdressersService = HairdressersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(hairdresser_entity_1.Hairdresser)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        services_service_1.ServicesService])
 ], HairdressersService);
 //# sourceMappingURL=hairdressers.service.js.map

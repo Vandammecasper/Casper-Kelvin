@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Hairdresser = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const service_entity_1 = require("../../services/entities/service.entity");
 const typeorm_1 = require("typeorm");
 let Hairdresser = exports.Hairdresser = class Hairdresser {
 };
@@ -21,7 +22,7 @@ __decorate([
 ], Hairdresser.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    (0, graphql_1.Field)(() => graphql_1.ID, { description: 'UId from firebase' }),
+    (0, graphql_1.Field)(() => String, { description: 'UId from firebase' }),
     __metadata("design:type", String)
 ], Hairdresser.prototype, "uid", void 0);
 __decorate([
@@ -29,6 +30,14 @@ __decorate([
     (0, graphql_1.Field)(() => String, { description: 'Fullname' }),
     __metadata("design:type", String)
 ], Hairdresser.prototype, "name", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [service_entity_1.Service]),
+    __metadata("design:type", Array)
+], Hairdresser.prototype, "services", void 0);
+__decorate([
+    (0, typeorm_1.Column)('simple-array', { default: [] }),
+    __metadata("design:type", Array)
+], Hairdresser.prototype, "servicesId", void 0);
 exports.Hairdresser = Hairdresser = __decorate([
     (0, typeorm_1.Entity)(),
     (0, graphql_1.ObjectType)()
