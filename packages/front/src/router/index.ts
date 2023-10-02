@@ -1,3 +1,4 @@
+import path from 'path'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -5,7 +6,21 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('../views/home.vue'),
+      component: () => import('../components/header.vue'),
+      children:[
+        {
+        path: '',
+        component: () => import('../views/home.vue'),
+        },
+        {
+          path:'account',
+          component: () => import('../views/account.vue'),
+        },
+        {
+          path:'appointment',
+          component: () => import('../views/appointment.vue'),
+        }
+      ]
     },
     {
       path: '/auth',
@@ -39,10 +54,6 @@ const router = createRouter({
     //     },
     //   ],
     // },
-    {
-      path: '/account',
-      component: () => import('../views/account.vue'),
-    },
     {
       path: '/:pathMatch(.*)*',
       component: () => import('../views/notfound.vue'), 
