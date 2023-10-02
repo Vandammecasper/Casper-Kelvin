@@ -16,7 +16,7 @@ let CreateHairdresserInput = exports.CreateHairdresserInput = class CreateHairdr
 __decorate([
     (0, graphql_1.Field)(() => String),
     __metadata("design:type", String)
-], CreateHairdresserInput.prototype, "id", void 0);
+], CreateHairdresserInput.prototype, "uid", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String),
     __metadata("design:type", String)

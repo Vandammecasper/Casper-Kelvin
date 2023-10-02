@@ -22,14 +22,14 @@ let HairdressersService = exports.HairdressersService = class HairdressersServic
         this.birdRepository = birdRepository;
     }
     findAll() {
-        return `This action returns all hairdressers`;
+        return this.birdRepository.find();
     }
-    findOne(id) {
-        return `This action returns a #${id} hairdresser`;
+    findOne(uid) {
+        return this.birdRepository.findOne({ where: { uid } });
     }
     create(createHairdresserInput) {
         const newHairdresser = new hairdresser_entity_1.Hairdresser();
-        newHairdresser.id = createHairdresserInput.id;
+        newHairdresser.uid = createHairdresserInput.uid;
         newHairdresser.name = createHairdresserInput.name;
         return this.birdRepository.save(newHairdresser);
     }

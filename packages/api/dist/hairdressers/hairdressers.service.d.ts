@@ -5,8 +5,8 @@ import { Repository } from 'typeorm';
 export declare class HairdressersService {
     private readonly birdRepository;
     constructor(birdRepository: Repository<Hairdresser>);
-    findAll(): string;
-    findOne(id: string): string;
+    findAll(): Promise<Hairdresser[]>;
+    findOne(uid: string): Promise<Hairdresser>;
     create(createHairdresserInput: CreateHairdresserInput): Promise<Hairdresser>;
     update(id: string, updateHairdresserInput: UpdateHairdresserInput): string;
     remove(id: string): string;

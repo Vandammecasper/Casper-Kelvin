@@ -6,8 +6,12 @@ import { Column, Entity, ObjectIdColumn } from 'typeorm';
 export class Hairdresser {
 
   @ObjectIdColumn()
-  @Field(() => ID, { description: 'Id' })
+  @Field(() => ID)
   id: string;
+
+  @Column()
+  @Field(() => ID, { description: 'UId from firebase' })
+  uid: string;
 
   @Column()
   @Field(() => String, { description: 'Fullname' })

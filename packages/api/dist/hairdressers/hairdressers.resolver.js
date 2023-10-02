@@ -25,8 +25,8 @@ let HairdressersResolver = exports.HairdressersResolver = class HairdressersReso
     findAll() {
         return this.hairdressersService.findAll();
     }
-    findOne(id) {
-        return this.hairdressersService.findOne(id);
+    findOne(uid) {
+        return this.hairdressersService.findOne(uid);
     }
     createHairdresser(createHairdresserInput) {
         return this.hairdressersService.create(createHairdresserInput);
@@ -46,7 +46,7 @@ __decorate([
 ], HairdressersResolver.prototype, "findAll", null);
 __decorate([
     (0, graphql_1.Query)(() => hairdresser_entity_1.Hairdresser, { name: 'hairdresser' }),
-    __param(0, (0, graphql_1.Args)('id', { type: () => graphql_1.Int })),
+    __param(0, (0, graphql_1.Args)('uid', { type: () => String })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)

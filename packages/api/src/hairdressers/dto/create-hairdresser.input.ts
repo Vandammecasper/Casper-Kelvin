@@ -6,7 +6,7 @@ export class CreateHairdresserInput {
   // exampleField: number;
 
   @Field(() => String)
-  id: string;
+  uid: string;
 
   @Field(() => String)
   name: string;

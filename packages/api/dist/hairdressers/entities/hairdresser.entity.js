@@ -16,9 +16,14 @@ let Hairdresser = exports.Hairdresser = class Hairdresser {
 };
 __decorate([
     (0, typeorm_1.ObjectIdColumn)(),
-    (0, graphql_1.Field)(() => graphql_1.ID, { description: 'Id' }),
+    (0, graphql_1.Field)(() => graphql_1.ID),
     __metadata("design:type", String)
 ], Hairdresser.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(() => graphql_1.ID, { description: 'UId from firebase' }),
+    __metadata("design:type", String)
+], Hairdresser.prototype, "uid", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, graphql_1.Field)(() => String, { description: 'Fullname' }),

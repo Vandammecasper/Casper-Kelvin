@@ -1,4 +1,4 @@
 export declare class CreateHairdresserInput {
-    id: string;
+    uid: string;
     name: string;
 }

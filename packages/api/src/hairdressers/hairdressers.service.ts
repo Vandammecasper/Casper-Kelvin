@@ -14,16 +14,17 @@ export class HairdressersService {
   ) {}
 
   findAll() {
-    return `This action returns all hairdressers`;
+    // return `This action returns all hairdressers`;
+    return this.birdRepository.find();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} hairdresser`;
+  findOne(uid: string) {
+    return this.birdRepository.findOne({ where: { uid } });
   }
 
   create(createHairdresserInput: CreateHairdresserInput): Promise<Hairdresser> {
     const newHairdresser = new Hairdresser();
-    newHairdresser.id = createHairdresserInput.id;
+    newHairdresser.uid = createHairdresserInput.uid;
     newHairdresser.name = createHairdresserInput.name;
     return this.birdRepository.save(newHairdresser);
   }

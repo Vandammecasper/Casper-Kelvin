@@ -8,22 +8,14 @@ import { UpdateHairdresserInput } from './dto/update-hairdresser.input';
 export class HairdressersResolver {
   constructor(private readonly hairdressersService: HairdressersService) {}
 
-  
-
   @Query(() => [Hairdresser], { name: 'hairdressers' })
   findAll() {
-    // return [
-    //   {
-    //     id: '1',
-    //     name: 'Pieter',
-    //   },
-    // ];
     return this.hairdressersService.findAll();
   }
 
   @Query(() => Hairdresser, { name: 'hairdresser' })
-  findOne(@Args('id', { type: () => Int }) id: string) {
-    return this.hairdressersService.findOne(id);
+  findOne(@Args('uid', { type: () => String }) uid: string) {
+    return this.hairdressersService.findOne(uid);
   }
 
   @Mutation(() => Hairdresser)
