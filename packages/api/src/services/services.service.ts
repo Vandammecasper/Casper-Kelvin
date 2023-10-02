@@ -32,6 +32,10 @@ export class ServicesService {
     return Promise.all(services);
   }
 
+  findOneByName(name: string) {
+    return this.serviceRepository.findOne({ where: { name } });
+  }
+
   create(createServiceInput: CreateServiceInput) {
     const newService = new Service();
     newService.name = createServiceInput.name;
@@ -48,5 +52,14 @@ export class ServicesService {
 
   remove(id: string) {
     return this.serviceRepository.delete(id);
+  }
+
+  // functions for seeding
+  saveAll(services: Service[]): Promise<Service[]> {
+    return this.serviceRepository.save(services);
+  }
+
+  truncate(): Promise<void> {
+    return this.serviceRepository.clear();
   }
 }

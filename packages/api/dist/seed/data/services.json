@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Clean Shave",
+        "description": "a full clean cut and shave",
+        "price": 25,
+        "duration": 30,
+        "utilities": [
+            "schaar",
+            "borstel",
+            "scheermems"
+        ]
+    },
+    {
+        "name": "Buzz cut",
+        "description": "a full cbuzz cut",
+        "price": 20,
+        "duration": 15,
+        "utilities": [
+            "schaar",
+            "borstel"
+        ]
+    }
+]

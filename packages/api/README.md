@@ -45,17 +45,30 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Seeding
 
-```bash
-# unit tests
-$ npm run test
+### 1. Delete Services
 
-# e2e tests
-$ npm run test:e2e
+```console
+seed:database:services:reset
+```
 
-# test coverage
-$ npm run test:cov
+### 2. Add Services
+
+```console
+seed:database:services
+```
+
+### 3. Delete Services
+
+```console
+seed:database:hairdressers:reset
+```
+
+### 4. Add Services
+
+```console
+seed:database:hairdressers
 ```
 
 ## Services

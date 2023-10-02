@@ -56,4 +56,13 @@ export class HairdressersService {
   remove(id: string) {
     return `This action removes a #${id} hairdresser`;
   }
+
+  // functions for seeding
+  saveAll(hairdressers: Hairdresser[]): Promise<Hairdresser[]> {
+    return this.birdRepository.save(hairdressers);
+  }
+
+  truncate(): Promise<void> {
+    return this.birdRepository.clear();
+  }
 }

@@ -15,6 +15,7 @@ const graphql_1 = require("@nestjs/graphql");
 const hairdressers_module_1 = require("./hairdressers/hairdressers.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const services_module_1 = require("./services/services.module");
+const seed_module_1 = require("./seed/seed.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -34,6 +35,7 @@ exports.AppModule = AppModule = __decorate([
             }),
             hairdressers_module_1.HairdressersModule,
             services_module_1.ServicesModule,
+            seed_module_1.SeedModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -12,4 +12,6 @@ export declare class HairdressersService {
     create(createHairdresserInput: CreateHairdresserInput): Promise<Hairdresser>;
     update(id: string, updateHairdresserInput: UpdateHairdresserInput): string;
     remove(id: string): string;
+    saveAll(hairdressers: Hairdresser[]): Promise<Hairdresser[]>;
+    truncate(): Promise<void>;
 }

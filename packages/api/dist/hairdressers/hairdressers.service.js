@@ -56,6 +56,12 @@ let HairdressersService = exports.HairdressersService = class HairdressersServic
     remove(id) {
         return `This action removes a #${id} hairdresser`;
     }
+    saveAll(hairdressers) {
+        return this.birdRepository.save(hairdressers);
+    }
+    truncate() {
+        return this.birdRepository.clear();
+    }
 };
 exports.HairdressersService = HairdressersService = __decorate([
     (0, common_1.Injectable)(),

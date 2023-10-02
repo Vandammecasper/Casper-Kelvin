@@ -19,4 +19,6 @@ export declare class ServicesService {
         utilities: string[];
     } & Service>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
+    saveAll(services: Service[]): Promise<Service[]>;
+    truncate(): Promise<void>;
 }

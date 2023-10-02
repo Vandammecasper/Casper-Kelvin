@@ -49,6 +49,12 @@ let ServicesService = exports.ServicesService = class ServicesService {
     remove(id) {
         return this.serviceRepository.delete(id);
     }
+    saveAll(services) {
+        return this.serviceRepository.save(services);
+    }
+    truncate() {
+        return this.serviceRepository.clear();
+    }
 };
 exports.ServicesService = ServicesService = __decorate([
     (0, common_1.Injectable)(),
