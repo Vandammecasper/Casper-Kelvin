@@ -14,6 +14,7 @@ const apollo_1 = require("@nestjs/apollo");
 const graphql_1 = require("@nestjs/graphql");
 const hairdressers_module_1 = require("./hairdressers/hairdressers.module");
 const typeorm_1 = require("@nestjs/typeorm");
+const services_module_1 = require("./services/services.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -32,6 +33,7 @@ exports.AppModule = AppModule = __decorate([
                 useUnifiedTopology: true,
             }),
             hairdressers_module_1.HairdressersModule,
+            services_module_1.ServicesModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

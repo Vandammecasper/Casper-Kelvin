@@ -5,6 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
 import { HairdressersModule } from './hairdressers/hairdressers.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ServicesModule } from './services/services.module';
 
 @Module({
   imports: [
@@ -22,6 +23,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
 
     HairdressersModule,
+
+    ServicesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
