@@ -1,5 +1,5 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { ArrayMaxSize, ArrayNotEmpty, IsInt, IsOptional, IsString } from 'class-validator';
+import { InputType, Int, Field, Float } from '@nestjs/graphql';
+import { ArrayMaxSize, ArrayNotEmpty, IsInt, IsNumber, IsOptional, IsString } from 'class-validator';
 
 @InputType()
 export class CreateServiceInput {
@@ -12,8 +12,8 @@ export class CreateServiceInput {
   @Field(() => String)
   description: string;
 
-  @IsInt()
-  @Field(() => Int)
+  @IsNumber()
+  @Field(() => Float)
   price: number;
 
   @Field(() => Int)
