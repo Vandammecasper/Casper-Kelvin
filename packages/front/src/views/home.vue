@@ -145,6 +145,75 @@
             </div>
         </div>
       </div>
+      <div class="grid justify-items-center w-screen mt-40">
+          <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">HALL OF FAME</h1>
+          <div class="relative z-10 w-1/2 text-center">
+            <h2 class="text-3xl mt-20 mb-4 Raleway-bold">BECOME ONE OF OUR HONORED CUSTOMERS</h2>
+            <p class="text-2xl text-neutral-700 relative Raleway">Join our ranks as an honored customer. Discover the exceptional service and grooming expertise that keeps our clients coming back.</p>
+          </div>
+          <div class="grid grid-cols-3 w-screen mt-16 px-32">
+            <div class="mt-24 grid">
+              <h3 class="Raleway-bold justify-self-center text-4xl">BRUCE</h3>
+              <div class="bg-gradient-to-t from-transparent to-gray-300 h-64 grid mt-4">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">48</h4>
+              </div>
+            </div>
+            <div class="grid">
+              <h3 class="justify-self-center Raleway-bold text-4xl">MATHEW</h3>
+              <div class="bg-gradient-to-t from-transparent to-yellow-600 h-80 grid">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">52</h4>
+              </div>
+            </div>
+            <div class="mt-40 grid">
+              <h3 class="justify-self-center Raleway-bold text-4xl">STEVE</h3>
+              <div class="bg-gradient-to-t from-transparent to-amber-800 h-48 grid">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">45</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-screen bg-black h-56 border-t-1 border-yellow-700 mt-40 grid grid-cols-3 p-8 justify-items-center">
+          <div class="grid justify-items-center">
+            <h2 class="Raleway-bold text-3xl">Information</h2>
+            <div class="flex gap-2">
+              <img src="../../assets/icons/Places.svg" alt="" class="h-4">
+              <p class="Raleway text-xs">946 Smoky Hollow Dr. Windermere, FL 34786</p>
+            </div>
+            <div class="flex gap-2">
+              <img src="../../assets/icons/Places.svg" alt="" class="h-4">
+              <p class="Raleway text-xs">539 School Ave. Laurel, MD 20707</p>
+            </div>
+            <div class="flex gap-2">
+              <img src="../../assets/icons/Phone.svg" alt="" class="h-4">
+              <p class="Raleway text-xs">(212) 658-3916</p>
+            </div>
+          </div>
+          <img src="../../assets/logo-PhotoRoom.png" alt="" class="h-40">
+          <div class="grid justify-items-center">
+            <h2 class="Raleway-bold text-3xl">Opening Hours</h2>
+            <div class="flex gap-8">
+              <p class="Raleway text-xs">Mon - Fri:</p>
+              <div class="flex gap-1">
+                <img src="../../assets/icons/time.svg" alt="" class="h-4">
+                <p class="Raleway text-xs">9.00 AM - 5.00 PM</p>
+              </div>
+            </div>
+            <div class="flex gap-8">
+              <p class="Raleway text-xs">Sat - Sun:</p>
+              <div class="flex gap-1">
+                <img src="../../assets/icons/time.svg" alt="" class="h-4">
+                <p class="Raleway text-xs">9.00 AM - 1.00 PM</p>
+              </div>
+            </div>
+            <div class="flex gap-8">
+              <p class="Raleway text-xs ml-2">Holiday:</p>
+              <div class="flex gap-1">
+                <img src="../../assets/icons/time.svg" alt="" class="h-4 ml-2">
+                <p class="Raleway text-xs">9.00 AM - 12.00 AM</p>
+              </div>
+            </div>
+          </div>
+        </div>
   </template>
 
 <style>
