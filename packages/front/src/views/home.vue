@@ -45,59 +45,66 @@
       <img src="../../assets/dryer.jpg" alt="">
     </div>
     <div class="grid justify-items-center w-screen mt-40">
-      <h1 class="text-gray-900 text-9xl absolute">SERVICES</h1>
+      <h1 class="text-neutral-800 text-9xl absolute">SERVICES</h1>
       <div class="relative z-10 w-1/2 text-center">
         <h2 class="text-4xl mt-20 mb-4">GET A GREAT HAIRCUT AT THE BARBER</h2>
-        <p class="text-2xl text-gray-800 relative">Visit us at The Barber for a haircut that defines your style. Our skilled barbers ensure every visit leaves you looking your absolute best.</p>
+        <p class="text-2xl text-neutral-700 relative">Visit us at The Barber for a haircut that defines your style. Our skilled barbers ensure every visit leaves you looking your absolute best.</p>
       </div>
-      <div class="grid grid-cols-2">
-        <div class="w-3/4 p-16 px-24">
+      <div class="grid grid-cols-2 justify-self-center">
+        <div class="p-16 px-24">
           <div>
             <div class="flex justify-between">
               <h3 class="text-2xl">Simple Haircut</h3>
               <h3 class="text-2xl">€ 19.99</h3>
             </div>
-            <p class="mt-2 text-lg text-gray-700">we believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.</p>
+            <p class="mt-2 text-lg text-neutral-700">we believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.</p>
           </div>
           <div class="mt-8">
             <div class="flex justify-between">
               <h3 class="text-2xl">Razor Shave</h3>
               <h3 class="text-2xl">€ 24.95</h3>
             </div>
-            <p class="mt-2 text-lg text-gray-700">Indulge in the luxury of a razor shave. Our expert barbers deliver precision and perfection, leaving your skin irresistibly smooth.</p>
+            <p class="mt-2 text-lg text-neutral-700">Indulge in the luxury of a razor shave. Our expert barbers deliver precision and perfection, leaving your skin irresistibly smooth.</p>
           </div>
           <div class="mt-8">
             <div class="flex justify-between">
               <h3 class="text-2xl">Hair Coloring</h3>
               <h3 class="text-2xl">€ 35.99</h3>
             </div>
-            <p class="mt-2 text-lg text-gray-700">Revitalize your look with our expert hair coloring services. From subtle enhancements to bold transformations, we bring your desired shades to life.</p>
+            <p class="mt-2 text-lg text-neutral-700">Revitalize your look with our expert hair coloring services. From subtle enhancements to bold transformations, we bring your desired shades to life.</p>
           </div>
         </div>
-        <div class="w-3/4 p-16">
+        <div class="p-16">
             <div>
               <div class="flex justify-between">
                 <h3 class="text-2xl">Simple Haircut</h3>
                 <h3 class="text-2xl">€ 19.99</h3>
               </div>
-              <p class="mt-2 text-lg text-gray-700">we believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.</p>
+              <p class="mt-2 text-lg text-neutral-700">we believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.</p>
             </div>
             <div class="mt-8">
               <div class="flex justify-between">
                 <h3 class="text-2xl">Razor Shave</h3>
                 <h3 class="text-2xl">€ 24.95</h3>
               </div>
-              <p class="mt-2 text-lg text-gray-700">Indulge in the luxury of a razor shave. Our expert barbers deliver precision and perfection, leaving your skin irresistibly smooth.</p>
+              <p class="mt-2 text-lg text-neutral-700">Indulge in the luxury of a razor shave. Our expert barbers deliver precision and perfection, leaving your skin irresistibly smooth.</p>
             </div>
             <div class="mt-8">
               <div class="flex justify-between">
                 <h3 class="text-2xl">Hair Coloring</h3>
                 <h3 class="text-2xl">€ 35.99</h3>
               </div>
-              <p class="mt-2 text-lg text-gray-700">Revitalize your look with our expert hair coloring services. From subtle enhancements to bold transformations, we bring your desired shades to life.</p>
+              <p class="mt-2 text-lg text-neutral-700">Revitalize your look with our expert hair coloring services. From subtle enhancements to bold transformations, we bring your desired shades to life.</p>
             </div>
           </div>
       </div>
+      <RouterLink to="/appointment" class="">
+        <div class="border-4 border-yellow-500 p-2">
+          <div class="border-4 border-yellow-500 p-4">
+            <div class="text-xl px-8 z-30">MAKE AN APPOINTMENT</div>
+          </div>
+        </div>
+      </RouterLink>
     </div>
   </template>
 
