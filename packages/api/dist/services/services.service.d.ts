@@ -9,6 +9,7 @@ export declare class ServicesService {
     findAll(): Promise<Service[]>;
     findOne(id: string): Promise<Service>;
     findByIds(ids: ObjectId[]): Promise<Service[]>;
+    findOneByName(name: string): Promise<Service>;
     create(createServiceInput: CreateServiceInput): Promise<Service>;
     update(id: string, updateServiceInput: UpdateServiceInput): Promise<{
         id: string;

@@ -5,4 +5,5 @@ export declare class DatabaseSeedCommand {
     seedServices(): Promise<void>;
     deleteAllServices(): Promise<void>;
     deleteAllHairdressers(): Promise<void>;
+    seedHairdressers(): Promise<void>;
 }

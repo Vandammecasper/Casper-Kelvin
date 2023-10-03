@@ -13,7 +13,9 @@ exports.SeedService = void 0;
 const common_1 = require("@nestjs/common");
 const services_service_1 = require("../services/services.service");
 const services = require("./data/services.json");
+const hairdressers = require("./data/hairdressers.json");
 const service_entity_1 = require("../services/entities/service.entity");
+const hairdresser_entity_1 = require("../hairdressers/entities/hairdresser.entity");
 const hairdressers_service_1 = require("../hairdressers/hairdressers.service");
 let SeedService = exports.SeedService = class SeedService {
     constructor(servicesService, hairdressersService) {
@@ -35,6 +37,22 @@ let SeedService = exports.SeedService = class SeedService {
     }
     async deleteAllServices() {
         return this.servicesService.truncate();
+    }
+    async addHairdressersFromJson() {
+        const hairdressersArray = [];
+        for (const hairdresser of hairdressers) {
+            const h = new hairdresser_entity_1.Hairdresser();
+            let newServicesId = [];
+            for (const service of hairdresser.services) {
+                const s = await this.servicesService.findOneByName(service.name);
+                newServicesId.push(s.id);
+            }
+            h.uid = hairdresser.uid;
+            h.name = hairdresser.name;
+            h.servicesId = newServicesId;
+            hairdressersArray.push(h);
+        }
+        return this.hairdressersService.saveAll(hairdressersArray);
     }
     async deleteAllHairdressers() {
         return this.hairdressersService.truncate();

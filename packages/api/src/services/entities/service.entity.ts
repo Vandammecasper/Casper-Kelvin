@@ -13,7 +13,7 @@ export class Service {
   name: string;
 
   @Column()
-  @Field(() => String, { description: 'service description' })
+  @Field(() => String, { description: 'service description', nullable: true })
   description: string;
 
   @Column()
@@ -25,6 +25,6 @@ export class Service {
   duration: number;
 
   @Column()
-  @Field(() => [String], { description: 'service utilities' })
+  @Field(() => [String], { description: 'service utilities give in string[]' })
   utilities: string[];
 }

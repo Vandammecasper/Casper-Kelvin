@@ -1,5 +1,6 @@
 import { ServicesService } from 'src/services/services.service';
 import { Service } from 'src/services/entities/service.entity';
+import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
 import { HairdressersService } from 'src/hairdressers/hairdressers.service';
 export declare class SeedService {
     private servicesService;
@@ -7,5 +8,6 @@ export declare class SeedService {
     constructor(servicesService: ServicesService, hairdressersService: HairdressersService);
     addServicesFromJson(): Promise<Service[]>;
     deleteAllServices(): Promise<void>;
+    addHairdressersFromJson(): Promise<Hairdresser[]>;
     deleteAllHairdressers(): Promise<void>;
 }

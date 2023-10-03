@@ -34,6 +34,9 @@ let ServicesService = exports.ServicesService = class ServicesService {
         });
         return Promise.all(services);
     }
+    findOneByName(name) {
+        return this.serviceRepository.findOne({ where: { name } });
+    }
     create(createServiceInput) {
         const newService = new service_entity_1.Service();
         newService.name = createServiceInput.name;

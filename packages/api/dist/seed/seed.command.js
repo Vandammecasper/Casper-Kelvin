@@ -32,6 +32,11 @@ let DatabaseSeedCommand = exports.DatabaseSeedCommand = class DatabaseSeedComman
         await this.seedService.deleteAllHairdressers();
         console.log('...done');
     }
+    async seedHairdressers() {
+        console.info('seeding database with hairdressers...');
+        const hairdressers = await this.seedService.addHairdressersFromJson();
+        console.log('...done with length: ', hairdressers.length);
+    }
 };
 __decorate([
     (0, nestjs_command_1.Command)({
@@ -60,6 +65,15 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], DatabaseSeedCommand.prototype, "deleteAllHairdressers", null);
+__decorate([
+    (0, nestjs_command_1.Command)({
+        command: 'seed:database:hairdressers',
+        describe: 'seed database with hairdressers from json file',
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], DatabaseSeedCommand.prototype, "seedHairdressers", null);
 exports.DatabaseSeedCommand = DatabaseSeedCommand = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [seed_service_1.SeedService])
