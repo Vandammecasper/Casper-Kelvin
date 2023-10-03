@@ -50,62 +50,101 @@
         <h2 class="text-4xl mt-20 mb-4">GET A GREAT HAIRCUT AT THE BARBER</h2>
         <p class="text-2xl text-neutral-700 relative">Visit us at The Barber for a haircut that defines your style. Our skilled barbers ensure every visit leaves you looking your absolute best.</p>
       </div>
-      <div class="grid grid-cols-2 justify-self-center">
-        <div class="p-16 px-24">
-          <div>
-            <div class="flex justify-between">
-              <h3 class="text-2xl">Simple Haircut</h3>
-              <h3 class="text-2xl">€ 19.99</h3>
-            </div>
-            <p class="mt-2 text-lg text-neutral-700">we believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.</p>
+      <div class="grid grid-cols-2 justify-self-center px-24 gap-24 mt-16">
+        <div>
+          <div class="flex justify-between">
+            <h3 class="text-2xl">Simple Haircut</h3>
+            <h3 class="text-2xl">€ 19.99</h3>
           </div>
-          <div class="mt-8">
-            <div class="flex justify-between">
-              <h3 class="text-2xl">Razor Shave</h3>
-              <h3 class="text-2xl">€ 24.95</h3>
-            </div>
-            <p class="mt-2 text-lg text-neutral-700">Indulge in the luxury of a razor shave. Our expert barbers deliver precision and perfection, leaving your skin irresistibly smooth.</p>
-          </div>
-          <div class="mt-8">
-            <div class="flex justify-between">
-              <h3 class="text-2xl">Hair Coloring</h3>
-              <h3 class="text-2xl">€ 35.99</h3>
-            </div>
-            <p class="mt-2 text-lg text-neutral-700">Revitalize your look with our expert hair coloring services. From subtle enhancements to bold transformations, we bring your desired shades to life.</p>
-          </div>
+          <p class="mt-2 text-lg text-neutral-700">we believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.</p>
         </div>
-        <div class="p-16">
-            <div>
-              <div class="flex justify-between">
-                <h3 class="text-2xl">Simple Haircut</h3>
-                <h3 class="text-2xl">€ 19.99</h3>
-              </div>
-              <p class="mt-2 text-lg text-neutral-700">we believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.</p>
-            </div>
-            <div class="mt-8">
-              <div class="flex justify-between">
-                <h3 class="text-2xl">Razor Shave</h3>
-                <h3 class="text-2xl">€ 24.95</h3>
-              </div>
-              <p class="mt-2 text-lg text-neutral-700">Indulge in the luxury of a razor shave. Our expert barbers deliver precision and perfection, leaving your skin irresistibly smooth.</p>
-            </div>
-            <div class="mt-8">
-              <div class="flex justify-between">
-                <h3 class="text-2xl">Hair Coloring</h3>
-                <h3 class="text-2xl">€ 35.99</h3>
-              </div>
-              <p class="mt-2 text-lg text-neutral-700">Revitalize your look with our expert hair coloring services. From subtle enhancements to bold transformations, we bring your desired shades to life.</p>
-            </div>
+        <div>
+          <div class="flex justify-between">
+            <h3 class="text-2xl">Beard Trim</h3>
+            <h3 class="text-2xl">€ 17.95</h3>
           </div>
+          <p class="mt-2 text-lg text-neutral-700">Enhance your appearance with a precise beard trim. Our skilled barbers sculpt and refine, giving you the confidence to conquer the day.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 justify-self-center mt-16 px-24 gap-24">
+        <div>
+          <div class="flex justify-between">
+            <h3 class="text-2xl">Razor Shave</h3>
+            <h3 class="text-2xl">€ 15.95</h3>
+          </div>
+          <p class="mt-2 text-lg text-neutral-700">Indulge in the luxury of a razor shave. Our expert barbers deliver precision and perfection, leaving your skin irresistibly smooth.</p>
+        </div>
+        <div>
+          <div class="flex justify-between">
+            <h3 class="text-2xl">Beard Sculpt</h3>
+            <h3 class="text-2xl">€ 24.95</h3>
+          </div>
+          <p class="mt-2 text-lg text-neutral-700">With our expert 'Beard Sculpt' service, we artfully shape and style your beard, giving you a distinguished and personalized look that leaves a lasting impression.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 justify-self-center p-16 px-24 gap-24">
+        <div>
+          <div class="flex justify-between">
+            <h3 class="text-2xl">Hair Coloring</h3>
+            <h3 class="text-2xl">€ 35.99</h3>
+          </div>
+          <p class="mt-2 text-lg text-neutral-700">Revitalize your look with our expert hair coloring services. From subtle enhancements to bold transformations, we bring your desired shades to life.</p>
+        </div>
+        <div>
+          <div class="flex justify-between">
+            <h3 class="text-2xl">Neck Clean Up</h3>
+            <h3 class="text-2xl">€ 12.95</h3>
+          </div>
+          <p class="mt-2 text-lg text-neutral-700">Elevate your look with a crisp neck clean-up. Our attention to detail ensures your style is sharp and refined.</p>
+        </div>
       </div>
       <RouterLink to="/appointment" class="">
-        <div class="border-4 border-yellow-500 p-2">
-          <div class="border-4 border-yellow-500 p-4">
+        <div class="border-4 border-yellow-600 p-2">
+          <div class="border-4 border-yellow-600 p-4">
             <div class="text-xl px-8 z-30">MAKE AN APPOINTMENT</div>
           </div>
         </div>
       </RouterLink>
     </div>
+    <div class="grid justify-items-center w-screen mt-40">
+        <h1 class="text-neutral-800 text-9xl absolute">THE CREW</h1>
+        <div class="relative z-10 w-1/2 text-center">
+          <h2 class="text-4xl mt-20 mb-4">MEET OUR AMAZING TEAM</h2>
+          <p class="text-2xl text-neutral-700 relative">Discover the talent behind the magic. Our dedicated barber crew is here to turn your grooming vision into reality.</p>
+        </div>
+        <div class="grid grid-cols-3 mt-16 justify-self-center">
+          <div class="grid justify-items-center">
+            <div class="relative w-5/6 border-4 border-b-0 border-yellow-600">
+              <img src="../../assets/barbers/Samue.jpg" alt="Image" class="w-full h-auto" />
+              <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"></div>
+            </div>
+            <div class="w-5/6 bg-black h-32 border-4 border-t-0 border-yellow-600 justify-items-center grid p-4">
+              <h4 class="text-5xl">Samuel</h4>
+              <p class="text-2xl text-neutral-600">BARBER</p>
+            </div>
+          </div>
+          <div class="grid justify-items-center">
+              <div class="relative w-5/6 border-4 border-b-0 border-yellow-600">
+                <img src="../../assets/barbers/Sofie.jpg" alt="Image" class="w-full h-auto" />
+                <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"></div>
+              </div>
+              <div class="w-5/6 bg-black h-32 border-4 border-t-0 border-yellow-600 justify-items-center grid p-4">
+                <h4 class="text-5xl">Sofie</h4>
+                <p class="text-2xl text-neutral-600">BARBER</p>
+              </div>
+            </div>
+          <div class="grid justify-items-center">
+              <div class="relative w-5/6 border-4 border-b-0 border-yellow-600">
+                <img src="../../assets/barbers/Jeff.jpg" alt="Image" class="w-full h-auto" />
+                <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"></div>
+              </div>
+              <div class="w-5/6 bg-black h-32 border-4 border-t-0 border-yellow-600 justify-items-center grid p-4">
+                <h4 class="text-5xl">Jeff</h4>
+                <p class="text-2xl text-neutral-600">BEARD DETAILER</p>
+              </div>
+            </div>
+        </div>
+      </div>
   </template>
 
 <script lang="ts">
