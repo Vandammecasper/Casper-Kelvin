@@ -21,6 +21,10 @@ __decorate([
     (0, graphql_1.Field)(() => String),
     __metadata("design:type", String)
 ], CreateHairdresserInput.prototype, "name", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [String]),
+    __metadata("design:type", Array)
+], CreateHairdresserInput.prototype, "servicesId", void 0);
 exports.CreateHairdresserInput = CreateHairdresserInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateHairdresserInput);

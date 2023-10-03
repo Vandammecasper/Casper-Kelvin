@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { HairdressersModule } from './hairdressers/hairdressers.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServicesModule } from './services/services.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -25,6 +26,8 @@ import { ServicesModule } from './services/services.module';
     HairdressersModule,
 
     ServicesModule,
+
+    SeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

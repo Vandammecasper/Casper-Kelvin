@@ -12,11 +12,15 @@ const hairdressers_service_1 = require("./hairdressers.service");
 const hairdressers_resolver_1 = require("./hairdressers.resolver");
 const typeorm_1 = require("@nestjs/typeorm");
 const hairdresser_entity_1 = require("./entities/hairdresser.entity");
+const services_module_1 = require("../services/services.module");
 let HairdressersModule = exports.HairdressersModule = class HairdressersModule {
 };
 exports.HairdressersModule = HairdressersModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([hairdresser_entity_1.Hairdresser])],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([hairdresser_entity_1.Hairdresser]),
+            services_module_1.ServicesModule
+        ],
         providers: [hairdressers_resolver_1.HairdressersResolver, hairdressers_service_1.HairdressersService],
         exports: [hairdressers_service_1.HairdressersService],
     })

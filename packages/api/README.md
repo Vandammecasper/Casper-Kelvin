@@ -45,29 +45,141 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Seeding
 
-```bash
-# unit tests
-$ npm run test
+### 1. Delete Services
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```console
+seed:database:services:reset
 ```
 
-## Support
+### 2. Add Services
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```console
+seed:database:services
+```
 
-## Stay in touch
+### 3. Delete Services
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```console
+seed:database:hairdressers:reset
+```
 
-## License
+### 4. Add Services
 
-Nest is [MIT licensed](LICENSE).
+```console
+seed:database:hairdressers
+```
+
+## Services
+
+### Find All
+
+```js
+query {
+  services {
+    id
+    name
+    description
+    price
+    duration
+    utilities
+  }
+}
+```
+
+### Find One
+
+```js
+query {
+  service(id: "651ade81c0c9672741b5dcf6") {
+    id
+    name
+    description
+    price
+    duration
+    utilities
+  }
+}
+```
+
+### Create
+
+```js
+mutation {
+  createService(createServiceInput: { name: "Clean Shave", description: "a full clean cut and shave", price:30, duration:30, utilities:["schaar", "borstel", "scheermems"] }) {
+    id
+    name
+    description
+    duration
+    price
+    utilities
+  }
+}
+```
+
+## Hairdressers
+
+### Find All
+
+```js
+query {
+  hairdressers {
+    id
+    uid
+    name
+    services {
+      id
+      name
+      description
+      price
+      duration
+      utilities
+    }
+  }
+}
+
+```
+
+### Find One (by uid)
+
+```js
+query {
+  hairdresser(uid: "pVbEmkBDAFUU4ChPbVYQeGMMITl2") {
+    id
+    uid
+    name
+    services {
+      id
+      name
+      description
+      price
+      duration
+      utilities
+    }
+  }
+}
+
+```
+
+### Create
+
+```js
+mutation {
+  createHairdresser(
+    createHairdresserInput: {
+      uid: "s2VrPmmg5EUr9cVf04TNgGLNMPH3"
+      name: "Kapper2"
+      servicesId: ["651abda7478cc36470532172"]
+    }
+  ) {
+    uid
+    name
+    services {
+      id
+      name
+    }
+  }
+}
+
+```

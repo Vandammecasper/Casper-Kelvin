@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const service_entity_1 = require("./entities/service.entity");
 const typeorm_2 = require("typeorm");
+const mongodb_1 = require("mongodb");
 let ServicesService = exports.ServicesService = class ServicesService {
     constructor(serviceRepository) {
         this.serviceRepository = serviceRepository;
@@ -25,7 +26,16 @@ let ServicesService = exports.ServicesService = class ServicesService {
         return this.serviceRepository.find();
     }
     findOne(id) {
-        return this.serviceRepository.findOne({ where: { id } });
+        return this.serviceRepository.findOne({ _id: new mongodb_1.ObjectId(id) });
+    }
+    findByIds(ids) {
+        const services = ids.map((id) => {
+            return this.serviceRepository.findOne({ _id: id });
+        });
+        return Promise.all(services);
+    }
+    findOneByName(name) {
+        return this.serviceRepository.findOne({ where: { name } });
     }
     create(createServiceInput) {
         const newService = new service_entity_1.Service();
@@ -41,6 +51,12 @@ let ServicesService = exports.ServicesService = class ServicesService {
     }
     remove(id) {
         return this.serviceRepository.delete(id);
+    }
+    saveAll(services) {
+        return this.serviceRepository.save(services);
+    }
+    truncate() {
+        return this.serviceRepository.clear();
     }
 };
 exports.ServicesService = ServicesService = __decorate([
