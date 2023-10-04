@@ -21,8 +21,8 @@ export class HairdressersResolver {
 
   // @UseGuards(FirebaseGuard)
   @Query(() => Hairdresser, { name: 'hairdresser' })
-  findOne(@Args('uid', { type: () => String }) uid: string) {
-    return this.hairdressersService.findOne(uid);
+  findOne(@Args('id', { type: () => String }) id: string) {
+    return this.hairdressersService.findOne(id);
   }
 
   // @UseGuards(FirebaseGuard)

@@ -1,6 +1,7 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { Service } from 'src/services/entities/service.entity';
-import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import {ObjectId} from 'mongodb';
 
 @Entity() // Database link - Typeorm
 @ObjectType() //graphql

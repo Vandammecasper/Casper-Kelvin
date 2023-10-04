@@ -9,6 +9,7 @@ import { ServicesModule } from './services/services.module';
 import { SeedModule } from './seed/seed.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { ConfigModule } from '@nestjs/config';
+import { VacationsModule } from './vacations/vacations.module';
 
 @Module({
   imports: [
@@ -30,9 +31,12 @@ import { ConfigModule } from '@nestjs/config';
 
     ServicesModule,
 
+    AuthenticationModule,
+
+    VacationsModule,
+    
     SeedModule,
 
-    AuthenticationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
