@@ -10,7 +10,9 @@
         </div>
       </RouterLink>
     </div>
-    <div class="flex justify-between p-16 mt-40">
+    <div class="h-2"></div>
+    <div id="about" class="h-18"></div>
+    <div class="flex justify-between p-16">
       <div class="w-1/2">
         <img src="../../assets/about.jpg" alt="" class="w-3/5">
       </div>
@@ -40,6 +42,8 @@
       </div>
       <img src="../../assets/dryer.jpg" alt="" class="">
     </div>
+    <div class="h-20"></div>
+    <div id="service" class=""></div>
     <div class="grid justify-items-center w-full mt-40">
       <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">SERVICES</h1>
       <div class="relative z-10 w-1/2 text-center">
@@ -102,7 +106,9 @@
         </div>
       </RouterLink>
     </div>
-    <div class="grid justify-items-center w-full mt-40">
+    <div class=""></div>
+    <div id="crew" class="h-32"></div>
+    <div class="grid justify-items-center w-full">
         <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">THE CREW</h1>
         <div class="relative z-10 w-1/2 text-center">
           <h2 class="text-4xl mt-19 mb-4 Raleway-bold">MEET OUR AMAZING TEAM</h2>
@@ -141,6 +147,8 @@
             </div>
         </div>
       </div> 
+      <div class="h-18"></div>
+      <div id="halloffame" class="h-2"></div>
       <div class="grid justify-items-center w-full mt-40">
           <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">HALL OF FAME</h1>
           <div class="relative z-10 w-1/2 text-center">
