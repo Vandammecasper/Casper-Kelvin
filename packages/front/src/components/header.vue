@@ -1,7 +1,7 @@
 <template>
-    <div class="h-32 w-screen bg-black p-4 px-16 flex justify-between fixed z-50">
+    <div class="h-24 w-screen bg-black p-4 px-16 flex justify-between fixed z-50">
         <RouterLink to="/">
-            <img src="../../assets/logo-PhotoRoom.png" alt="logo" class="h-24">
+            <img src="../../assets/logo-PhotoRoom.png" alt="logo" class="h-16">
         </RouterLink>
         <div class="flex items-center gap-16">
             <RouterLink to="/appointment">
@@ -20,7 +20,7 @@
                 <h3 class="Raleway-bold">HALL OF FAME</h3>
             </a>
             
-            <RouterLink v-if="firebaseUser" to="/account">
+            <RouterLink v-if="firebaseUser" to="/account/myaccount">
                 <div class="h-16 w-16 bg-yellow-600 rounded-full flex items-center justify-center">
                     <img src="../../assets/Profile.svg" alt="profile icon" class="h-10 w-10 mb-1">
                 </div>
@@ -48,8 +48,6 @@
 <script lang="ts">
 
 import useFirebase from '@/composables/useFirebase'
-import Vue from 'vue'
-import VueScrollTo from 'vue-scrollto';
 
 
 export default {
