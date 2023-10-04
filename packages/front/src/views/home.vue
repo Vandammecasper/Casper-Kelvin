@@ -1,11 +1,7 @@
 <template>
-    <div>
-        <button v-if="firebaseUser" @click="logout">Logout</button>
-    </div>
-    <div class="h-screen w-screen grid">
-      <img src="../../assets/barbers/Samuel.jpg" alt="" class="absolute object-cover w-screen h-screen z-0">
-      <div class="object-cover w-screen h-screen z-20 absolute bg-black opacity-50"></div>
-      <img src="../../assets/logo-PhotoRoom.png" alt="" class="h-96 w-96 mt-20 z-30 place-self-center relative">
+    <div class="h-screen grid">
+      <img src="../../assets/barbers/Samuel.jpg" alt="" class="absolute object-cover w-full h-screen z-0 opacity-50">
+      <img src="../../assets/logo-PhotoRoom.png" alt="" class="h-96 w-96 mt-32 z-30 place-self-center relative">
       <RouterLink to="/appointment" class="place-self-center">
         <div class="border-4 border-yellow-500 p-2 relative">
           <div class="border-4 border-yellow-500 p-4 relative">
@@ -42,9 +38,9 @@
           <img src="../../assets/barbershop.jpg" alt="">
         </div>
       </div>
-      <img src="../../assets/dryer.jpg" alt="">
+      <img src="../../assets/dryer.jpg" alt="" class="">
     </div>
-    <div class="grid justify-items-center w-screen mt-40">
+    <div class="grid justify-items-center w-full mt-40">
       <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">SERVICES</h1>
       <div class="relative z-10 w-1/2 text-center">
         <h2 class="text-4xl mt-19 mb-4 Raleway-bold">GET A GREAT HAIRCUT AT THE BARBER</h2>
@@ -106,7 +102,7 @@
         </div>
       </RouterLink>
     </div>
-    <div class="grid justify-items-center w-screen mt-40">
+    <div class="grid justify-items-center w-full mt-40">
         <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">THE CREW</h1>
         <div class="relative z-10 w-1/2 text-center">
           <h2 class="text-4xl mt-19 mb-4 Raleway-bold">MEET OUR AMAZING TEAM</h2>
@@ -144,14 +140,14 @@
               </div>
             </div>
         </div>
-      </div>
-      <div class="grid justify-items-center w-screen mt-40">
+      </div> 
+      <div class="grid justify-items-center w-full mt-40">
           <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">HALL OF FAME</h1>
           <div class="relative z-10 w-1/2 text-center">
             <h2 class="text-3xl mt-20 mb-4 Raleway-bold">BECOME ONE OF OUR HONORED CUSTOMERS</h2>
             <p class="text-2xl text-neutral-700 relative Raleway">Join our ranks as an honored customer. Discover the exceptional service and grooming expertise that keeps our clients coming back.</p>
           </div>
-          <div class="grid grid-cols-3 w-screen mt-16 px-32">
+          <div class="grid grid-cols-3 w-full mt-16 px-32">
             <div class="mt-24 grid">
               <h3 class="Raleway-bold justify-self-center text-4xl">BRUCE</h3>
               <div class="bg-gradient-to-t from-transparent to-gray-300 h-64 grid mt-4">
@@ -172,7 +168,7 @@
             </div>
           </div>
         </div>
-        <div class="w-screen bg-black h-56 border-t-1 border-yellow-700 mt-40 grid grid-cols-3 p-8 justify-items-center">
+        <div class="w-full bg-black h-56 mt-40 grid grid-cols-3 p-8 justify-items-center">
           <div class="grid justify-items-center">
             <h2 class="Raleway-bold text-3xl">Information</h2>
             <div class="flex gap-2">
