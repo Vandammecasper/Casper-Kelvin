@@ -3,15 +3,21 @@ import { ServicesService } from 'src/services/services.service';
 
 import * as services from './data/services.json';
 import * as hairdressers from './data/hairdressers.json';
+import * as vacations from './data/vacations.json';
+
 import { Service } from 'src/services/entities/service.entity';
 import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
 import { HairdressersService } from 'src/hairdressers/hairdressers.service';
+import { VacationsService } from 'src/vacations/vacations.service';
+import { Vacation } from 'src/vacations/entities/vacation.entity';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class SeedService {
     constructor(
         private servicesService: ServicesService,
         private hairdressersService: HairdressersService,
+        private vacationsService: VacationsService,
     ) {}
     
     //services
@@ -51,8 +57,6 @@ export class SeedService {
                 newServicesId.push(s.id);
             }
 
-
-
             //set data
             h.uid = hairdresser.uid;
             h.name = hairdresser.name;
@@ -68,4 +72,25 @@ export class SeedService {
         return this.hairdressersService.truncate();
     }
 
+    // vacations
+
+    async addVacationsFromJson(): Promise<Vacation[]> {
+        const vacationsArray:Vacation[] = [];
+        const h:Hairdresser[] = await this.hairdressersService.findAll();
+
+        for(const vacation of vacations) {
+            const v = new Vacation();
+
+            v.hairdresserId = new ObjectId(h[0].id);
+            v.startDate = new Date(vacation.startDate);
+            v.endDate = new Date(vacation.endDate);
+
+            vacationsArray.push(v);
+        }
+        return this.vacationsService.saveAll(vacationsArray);
+    }
+
+    async deleteAllVacations(): Promise<void> {
+        return this.vacationsService.truncate();
+    }
 }

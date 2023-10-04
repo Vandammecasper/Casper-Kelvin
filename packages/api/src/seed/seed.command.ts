@@ -49,4 +49,26 @@ export class DatabaseSeedCommand {
         const hairdressers = await this.seedService.addHairdressersFromJson();
         console.log('...done with length: ', hairdressers.length);
     }
+
+    // vacations commands
+
+    @Command({
+        command: 'seed:database:vacations:reset',
+        describe: 'delete all vacations from database',
+    })
+    async deleteAllVacations() {
+        console.info('deleting all vacations...');
+        await this.seedService.deleteAllVacations();
+        console.log('...done');
+    }
+
+    @Command({
+        command: 'seed:database:vacations',
+        describe: 'seed database with vacations from json file',
+    })
+    async seedVacations() {
+        console.info('seeding database with vacations...');
+        const vacations = await this.seedService.addVacationsFromJson();
+        console.log('...done with length: ', vacations.length);
+    }
 }

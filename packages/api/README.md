@@ -59,16 +59,28 @@ seed:database:services:reset
 seed:database:services
 ```
 
-### 3. Delete Services
+### 3. Delete Hairdressers
 
 ```console
 seed:database:hairdressers:reset
 ```
 
-### 4. Add Services
+### 4. Add Hairdressers
 
 ```console
 seed:database:hairdressers
+```
+
+### 5. Delete Vacations
+
+```console
+seed:database:vacations:reset
+```
+
+### 6. Add Vacations
+
+```console
+seed:database:vacations
 ```
 
 ## Services
