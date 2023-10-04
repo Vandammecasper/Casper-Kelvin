@@ -7,6 +7,8 @@ import { HairdressersModule } from './hairdressers/hairdressers.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServicesModule } from './services/services.module';
 import { SeedModule } from './seed/seed.module';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -22,12 +24,15 @@ import { SeedModule } from './seed/seed.module';
       useNewUrlParser: true,
       useUnifiedTopology: true, // Disable deprecated warnings
     }),
+    ConfigModule.forRoot(),
 
     HairdressersModule,
 
     ServicesModule,
 
     SeedModule,
+
+    AuthenticationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
