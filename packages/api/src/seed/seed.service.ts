@@ -4,6 +4,7 @@ import { ServicesService } from 'src/services/services.service';
 import * as services from './data/services.json';
 import * as hairdressers from './data/hairdressers.json';
 import * as vacations from './data/vacations.json';
+import * as points from './data/points.json';
 
 import { Service } from 'src/services/entities/service.entity';
 import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
@@ -11,6 +12,8 @@ import { HairdressersService } from 'src/hairdressers/hairdressers.service';
 import { VacationsService } from 'src/vacations/vacations.service';
 import { Vacation } from 'src/vacations/entities/vacation.entity';
 import { ObjectId } from 'mongodb';
+import { PointsService } from 'src/points/points.service';
+import { Point } from 'src/points/entities/point.entity';
 
 @Injectable()
 export class SeedService {
@@ -18,6 +21,7 @@ export class SeedService {
         private servicesService: ServicesService,
         private hairdressersService: HairdressersService,
         private vacationsService: VacationsService,
+        private pointsService: PointsService,
     ) {}
     
     //services
@@ -92,5 +96,26 @@ export class SeedService {
 
     async deleteAllVacations(): Promise<void> {
         return this.vacationsService.truncate();
+    }
+
+    // points
+
+    async addPointsFromJson(): Promise<Point[]> {
+        const pointsArray:Point[] = [];
+        for(const point of points) {
+            const p = new Point();
+            p.uid = point.uid;
+            p.userName = point.userName;
+            p.totalPoints = point.totalPoints;
+            p.usablePoints = point.usablePoints;
+            p.isPublic = point.isPublic;
+
+            pointsArray.push(p);
+        }
+        return this.pointsService.saveAll(pointsArray);
+    }
+
+    async deleteAllPoints(): Promise<void> {
+        return this.pointsService.truncate();
     }
 }

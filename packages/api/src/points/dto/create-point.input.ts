@@ -9,18 +9,18 @@ export class CreatePointInput {
 
   @IsNotEmpty()
   @IsString()
-  @Field(() => String)
+  @Field(() => String, { description: 'The name of the user, get from  firebaseUser'})
   userName: string;
 
   @IsInt()
-  @Field(() => Int)
+  @Field(() => Int, { defaultValue: 0 })
   usablePoints: number;
 
   @IsInt()
-  @Field(() => Int)
+  @Field(() => Int, { defaultValue: 0 })
   totalPoints: number;
 
   @IsNotEmpty()
-  @Field(() => Boolean)
-  public: Boolean;
+  @Field(() => Boolean, { defaultValue: false })
+  isPublic: Boolean;
 }

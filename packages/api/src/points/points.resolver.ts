@@ -8,19 +8,20 @@ import { UpdatePointInput } from './dto/update-point.input';
 export class PointsResolver {
   constructor(private readonly pointsService: PointsService) {}
 
-  @Mutation(() => Point)
-  createPoint(@Args('createPointInput') createPointInput: CreatePointInput) {
-    return this.pointsService.create(createPointInput);
-  }
-
   @Query(() => [Point], { name: 'points' })
   findAll() {
     return this.pointsService.findAll();
   }
 
   @Query(() => Point, { name: 'point' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.pointsService.findOne(id);
+  }
+
+  @Mutation(() => Point)
+  createPoint(@Args('createPointInput') createPointInput: CreatePointInput
+  ): Promise<Point> {
+    return this.pointsService.create(createPointInput);
   }
 
   @Mutation(() => Point)

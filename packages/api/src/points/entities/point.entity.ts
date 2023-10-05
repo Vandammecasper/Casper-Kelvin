@@ -27,5 +27,5 @@ export class Point {
 
   @Column()
   @Field(() => Boolean)
-  public: Boolean
+  isPublic: Boolean
 }

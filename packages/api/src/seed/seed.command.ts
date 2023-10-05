@@ -71,4 +71,26 @@ export class DatabaseSeedCommand {
         const vacations = await this.seedService.addVacationsFromJson();
         console.log('...done with length: ', vacations.length);
     }
+
+    // points commands
+
+    @Command({
+        command: 'seed:database:points:reset',
+        describe: 'delete all points from database',
+    })
+    async deleteAllPoints() {
+        console.info('deleting all points...');
+        await this.seedService.deleteAllPoints();
+        console.log('...done');
+    }
+
+    @Command({
+        command: 'seed:database:points',
+        describe: 'seed database with points from json file',
+    })
+    async seedPoints() {
+        console.info('seeding database with points...');
+        const points = await this.seedService.addPointsFromJson();
+        console.log('...done with length: ', points.length);
+    }
 }
