@@ -83,6 +83,18 @@ seed:database:vacations:reset
 seed:database:vacations
 ```
 
+### 7. Delete Points
+
+```console
+seed:database:points:reset
+```
+
+### 8. Add Points
+
+```console
+seed:database:points
+```
+
 ## Services
 
 ### Find All

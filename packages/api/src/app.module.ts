@@ -10,6 +10,7 @@ import { SeedModule } from './seed/seed.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { ConfigModule } from '@nestjs/config';
 import { VacationsModule } from './vacations/vacations.module';
+import { PointsModule } from './points/points.module';
 
 @Module({
   imports: [
@@ -36,6 +37,8 @@ import { VacationsModule } from './vacations/vacations.module';
     VacationsModule,
     
     SeedModule,
+    
+    PointsModule,
 
   ],
   controllers: [AppController],
