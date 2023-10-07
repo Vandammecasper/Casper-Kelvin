@@ -7,16 +7,16 @@
             <RouterLink to="/appointment">
                 <h3 class="Raleway-bold">MAKE AN APPOINTMENT</h3>
             </RouterLink>
-            <a href="#about">
+            <a href="/#about">
                 <h3 class="Raleway-bold">ABOUT US</h3>
             </a>
-            <a href="#service">
+            <a href="/#service">
                 <h3 class="Raleway-bold">OUR SERVICE</h3>
             </a>
-            <a href="#crew">
+            <a href="/#crew">
                 <h3 class="Raleway-bold">THE CREW</h3>
             </a>
-            <a href="#halloffame">
+            <a href="/#halloffame">
                 <h3 class="Raleway-bold">HALL OF FAME</h3>
             </a>
             

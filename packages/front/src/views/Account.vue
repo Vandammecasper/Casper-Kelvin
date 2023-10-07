@@ -8,10 +8,10 @@
                 <h2 class="text-2xl mt-6 text-neutral-700 Raleway-bold"> MY APPOINTMENTS</h2>
             </RouterLink>
         </div>
-        <div class="w-full grid justify-items-center h-72 mt-16">
+        <div class="w-full grid justify-items-center h-80 mt-8">
             <h1 class="text-5xl Raleway-bold">HELLO {{firebaseUser?.displayName}}</h1>
-            <p class=" Raleway">0 points</p>
-            <p class=" Raleway">#30 place</p>
+            <p class=" Raleway text-yellow-600">3 points</p>
+            <p class=" Raleway text-yellow-600">#30 place</p>
             <div class="w-full grid grid-cols-2 gap-8 px-48">
                 <div>
                     <div class="mt-6">
