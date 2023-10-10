@@ -37,7 +37,7 @@ export class AppointmentsResolver {
   }
 
   @Mutation(() => Appointment)
-  removeAppointment(@Args('id', { type: () => Int }) id: number) {
+  removeAppointment(@Args('id', { type: () => String }) id: string) {
     return this.appointmentsService.remove(id);
   }
 

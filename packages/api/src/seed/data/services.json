@@ -3,7 +3,7 @@
         "name": "Simple Haircut",
         "description": "We believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.",
         "price": 19.99,
-        "duration": 15,
+        "duration": 20,
         "utilities": [
           "schaar",
           "borstel",
@@ -24,7 +24,7 @@
         "name": "Razor Shave",
         "description": "Indulge in the luxury of a razor shave. Our expert barbers deliver precision and perfection, leaving your skin irresistibly smooth.",
         "price": 24.95,
-        "duration": 15,
+        "duration": 10,
         "utilities": [
           "scheermes",
           "scheerschuim"
@@ -34,7 +34,7 @@
         "name": "Beard Sculpt",
         "description": "Experience the art of a clean shave. Our barbers provide a classic, smooth finish that never goes out of style.",
         "price": 15.95,
-        "duration": 15,
+        "duration": 20,
         "utilities": [
           "scheermes",
           "scheerschuim"

@@ -17,6 +17,10 @@ export class Appointment {
   date: Date;
 
   @Column()
+  @Field(() => Int, { description: 'total time', nullable: true })
+  totalTime: number;
+
+  @Column()
   @Field(() => String, { description: 'UId from firebase', nullable: true })
   uid: string;
 
