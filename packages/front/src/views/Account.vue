@@ -16,7 +16,7 @@
                 <div>
                     <div class="mt-6">
                         <label
-                            for="email"
+                            for="username"
                             class="text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
                         >
                             Name
@@ -25,7 +25,7 @@
                             type="text"
                             name="nickname"
                             id="nickname"
-                            autocomplete="off"
+                            autocomplete="false"
                             :placeholder= "firebaseUser?.displayName ? firebaseUser?.displayName : 'Your name'"
                             class="Raleway mt-1 block border-3 w-full  bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
                         />
@@ -41,7 +41,6 @@
                             type="password"
                             name="password"
                             id="password"
-                            autocomplete="off"
                             placeholder=""
                             class="Raleway mt-1 block border-3 w-full  bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
                         />
@@ -64,22 +63,22 @@
                             type="email"
                             name="email"
                             id="email"
-                            autocomplete="off"
+                            autocomplete="email"
                             :placeholder= "firebaseUser?.email ? firebaseUser?.email : 'Your email'"
                             class="Raleway mt-1 block border-3 w-full  bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
                         />
                     </div>
                     <div class="mt-6">
                         <label
-                            for="password"
+                            for="confirmpassword"
                             class="text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
                         >
                             Confirm password
                         </label>
                         <input
                             type="password"
-                            name="password"
-                            id="password"
+                            name="confirmpassword"
+                            id="confirmpassword"
                             placeholder=""
                             class="Raleway mt-1 block border-3 w-full  bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
                         />
