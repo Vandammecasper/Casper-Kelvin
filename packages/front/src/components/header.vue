@@ -4,7 +4,7 @@
             <img src="../../assets/logo-PhotoRoom.png" alt="logo" class="h-16">
         </RouterLink>
         <div class="flex items-center gap-16">
-            <RouterLink to="/appointment">
+            <RouterLink to="/appointment/services">
                 <h3 class="Raleway-bold">MAKE AN APPOINTMENT</h3>
             </RouterLink>
             <a href="/#about">
