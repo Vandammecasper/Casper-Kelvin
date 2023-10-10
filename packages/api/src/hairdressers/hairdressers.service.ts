@@ -20,8 +20,9 @@ export class HairdressersService {
     return this.birdRepository.find();
   }
 
-  findOne(uid: string) {
-    return this.birdRepository.findOne({ where: { uid } });
+  findOne(id: string) {
+    //@ts-ignore
+    return this.birdRepository.findOne({ _id: new ObjectId(id) });
   }
 
   async create(
