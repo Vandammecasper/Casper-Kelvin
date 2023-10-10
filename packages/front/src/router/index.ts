@@ -13,12 +13,22 @@ const router = createRouter({
         component: () => import('../views/home.vue'),
         },
         {
-          path:'account',
+          path:'appointment',
+          component: () => import('../views/appointment.vue'),
+        }
+      ]
+    },
+    {
+      path: '/account',
+      component: () => import('../../src/components/headerAccount.vue'),
+      children: [
+        {
+          path: 'myaccount',
           component: () => import('../views/account.vue'),
         },
         {
-          path:'appointment',
-          component: () => import('../views/appointment.vue'),
+          path: 'myappointments',
+          component: () => import('../views/MyAppointments.vue'),
         }
       ]
     },
