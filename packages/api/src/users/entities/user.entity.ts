@@ -20,7 +20,7 @@ export class User {
   uid: string;
 
   @Column()
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   name: string;
 
   @Column()
