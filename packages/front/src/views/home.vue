@@ -234,12 +234,21 @@ import { ref } from 'vue'
 import { type AuthError } from 'firebase/auth'
 
 import useFirebase from '@/composables/useFirebase'
+import useCustomUser from '@/composables/useCustomUser'
 
 export default {
   setup() {
     // Composables
     const { logout, firebaseUser } = useFirebase()
+    const { customUser } = useCustomUser()
 
+    
+    async function getToken() {
+      const token = await firebaseUser.value?.getIdToken()
+      console.log(token)
+      console.log(customUser.value?.role)
+    }
+    getToken()
     
 
     return {

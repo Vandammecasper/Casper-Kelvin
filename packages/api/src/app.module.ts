@@ -12,6 +12,7 @@ import { ConfigModule } from '@nestjs/config';
 import { VacationsModule } from './vacations/vacations.module';
 import { PointsModule } from './points/points.module';
 import { AppointmentsModule } from './appointments/appointments.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -42,6 +43,8 @@ import { AppointmentsModule } from './appointments/appointments.module';
     PointsModule,
     
     AppointmentsModule,
+    
+    UsersModule,
 
   ],
   controllers: [AppController],
