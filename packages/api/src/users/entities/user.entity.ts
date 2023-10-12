@@ -20,10 +20,6 @@ export class User {
   uid: string;
 
   @Column()
-  @Field(() => String, { nullable: true })
-  name: string;
-
-  @Column()
   @Field(() => String)
   locale?: string;
 

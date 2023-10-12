@@ -5,6 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Point } from './entities/point.entity';
 import { Repository } from 'typeorm';
 import { ObjectId } from 'mongodb';
+import { FirebaseUser } from 'src/authentication/user.decorator';
+import { UserRecord } from 'firebase-admin/auth';
 
 @Injectable()
 export class PointsService {
@@ -23,14 +25,17 @@ export class PointsService {
     return this.pointsRepository.findOne({ _id: new ObjectId(id) });
   }
 
-  create(createPointInput: CreatePointInput
+  create(
+    uid: string,
+    userName: string,
+    createPointInput: CreatePointInput,
     ): Promise<Point> {
     try{
       const newPoint = new Point();
-      newPoint.uid = createPointInput.uid;
-      newPoint.userName = createPointInput.userName;
-      newPoint.usablePoints = createPointInput.usablePoints;
-      newPoint.totalPoints = createPointInput.totalPoints;
+      newPoint.uid = uid;
+      newPoint.userName = userName ?? "";
+      newPoint.usablePoints = 0;
+      newPoint.totalPoints = 0;
       newPoint.isPublic = createPointInput.isPublic;
       return this.pointsRepository.save(newPoint);
     }catch(error) {

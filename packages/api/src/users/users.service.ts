@@ -4,6 +4,7 @@ import { UpdateUserInput } from './dto/update-user.input';
 import { Repository } from 'typeorm';
 import { Role, User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PointsService } from 'src/points/points.service';
 
 @Injectable()
 export class UsersService {
@@ -11,6 +12,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+    private readonly pointsService: PointsService,
   ) {}
   
   findAll() {
@@ -26,20 +28,26 @@ export class UsersService {
     return this.usersRepository.findOneByOrFail({uid});
   }
   
-  async create(uid: string, userName: string, createUserInput: CreateUserInput) {
+  async create(uid: string, userName: string,  createUserInput: CreateUserInput) {
 
     // TODO: Check if user already exists
 
     const user = new User();
     user.uid = uid;
-    user.name = userName;
     user.locale = createUserInput.locale ?? 'nl';
     user.role = Role.USER;
 
     const createdUser = await this.usersRepository.save(user);
 
-    // TODO: Create points for user with id createdUser.id
-    // const createdPoints = await this.pointsRepository
+    // Create points for user with uid
+    if(!createdUser)
+      throw new Error('User not created');
+    
+    const createdPoints = await this.pointsService.create(uid, userName, createUserInput);
+    
+    if(!createdPoints)
+      throw new Error('Points not created');
+
     return createdUser;
   }
 

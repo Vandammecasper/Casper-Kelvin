@@ -131,6 +131,7 @@ export default {
         addUser({
             createUserInput: {
               locale: 'nl',
+              isPublic: false,
             },
         }).then(result => {
             if (!result?.data) throw new Error('Custom user creation failed.')
