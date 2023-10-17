@@ -28,7 +28,10 @@ export class AppointmentsService {
     return this.appointmentRepository.findOne({ _id: new ObjectId(id) });
   }
   
-  async create(createAppointmentInput: CreateAppointmentInput
+  async create(
+    uid: string,
+    userName: string,
+    createAppointmentInput: CreateAppointmentInput
     ): Promise<Appointment> {
     try{
       let servicesObjectId = [];
@@ -37,7 +40,7 @@ export class AppointmentsService {
       let totalTime = 0;
 
       // if the UID is found and isComplete is false, throw an error
-      const testAppointment = await this.appointmentRepository.findOne({where: {uid: createAppointmentInput.uid}})
+      const testAppointment = await this.appointmentRepository.findOne({where: {uid: uid}})
       if(testAppointment)
         if(testAppointment.isCompleted == false)
           throw new Error('UID already exists');
@@ -81,8 +84,8 @@ export class AppointmentsService {
       const newAppointment = new Appointment();
       newAppointment.date = new Date(createAppointmentInput.date);
       newAppointment.totalTime = totalTime;
-      newAppointment.uid = createAppointmentInput.uid;
-      newAppointment.userName = createAppointmentInput.userName;
+      newAppointment.uid = uid;
+      newAppointment.userName = userName;
       newAppointment.hairdresserId = new ObjectId(createAppointmentInput.hairdresserId);
       newAppointment.servicesId = servicesObjectId;
       newAppointment.extras = createAppointmentInput.extras;

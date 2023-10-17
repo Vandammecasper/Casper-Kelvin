@@ -7,6 +7,10 @@ import { Service } from 'src/services/entities/service.entity';
 import { ServicesService } from 'src/services/services.service';
 import { HairdressersService } from 'src/hairdressers/hairdressers.service';
 import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
+import { FirebaseUser } from 'src/authentication/user.decorator';
+import { UserRecord } from 'firebase-admin/auth';
+import { UseGuards } from '@nestjs/common';
+import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
 
 @Resolver(() => Appointment)
 export class AppointmentsResolver {
@@ -25,10 +29,14 @@ export class AppointmentsResolver {
     return this.appointmentsService.findOne(id);
   }
   
+  @UseGuards(FirebaseGuard)
   @Mutation(() => Appointment)
-  createAppointment(@Args('createAppointmentInput') createAppointmentInput: CreateAppointmentInput
+  createAppointment(
+    @Args('createAppointmentInput') createAppointmentInput: CreateAppointmentInput,
+    @FirebaseUser() user: UserRecord
   ): Promise<Appointment> {
-    return this.appointmentsService.create(createAppointmentInput);
+    console.log(user.uid);
+    return this.appointmentsService.create(user.uid, user.displayName, createAppointmentInput);
   }
 
   @Mutation(() => Appointment)
