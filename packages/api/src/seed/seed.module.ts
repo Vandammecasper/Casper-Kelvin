@@ -6,9 +6,11 @@ import { DatabaseSeedCommand } from './seed.command';
 import { HairdressersModule } from 'src/hairdressers/hairdressers.module';
 import { VacationsModule } from 'src/vacations/vacations.module';
 import { PointsModule } from 'src/points/points.module';
+import { AppointmentsModule } from 'src/appointments/appointments.module';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
-    imports: [ServicesModule, HairdressersModule, VacationsModule, PointsModule, CommandModule],
+    imports: [ServicesModule, HairdressersModule, VacationsModule, PointsModule, AppointmentsModule, UsersModule, CommandModule],
     providers: [DatabaseSeedCommand, SeedService],
 
 })

@@ -3,6 +3,10 @@ import { PointsService } from './points.service';
 import { Point } from './entities/point.entity';
 import { CreatePointInput } from './dto/create-point.input';
 import { UpdatePointInput } from './dto/update-point.input';
+import { UseGuards } from '@nestjs/common';
+import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
+import { FirebaseUser } from 'src/authentication/user.decorator';
+import { UserRecord } from 'firebase-admin/auth';
 
 @Resolver(() => Point)
 export class PointsResolver {
@@ -18,10 +22,12 @@ export class PointsResolver {
     return this.pointsService.findOne(id);
   }
 
+  @UseGuards(FirebaseGuard)
   @Mutation(() => Point)
-  createPoint(@Args('createPointInput') createPointInput: CreatePointInput
+  createPoint(@Args('createPointInput') createPointInput: CreatePointInput,
+    @FirebaseUser() user: UserRecord
   ): Promise<Point> {
-    return this.pointsService.create(createPointInput);
+    return this.pointsService.create(user.uid, user.displayName, createPointInput);
   }
 
   @Mutation(() => Point)

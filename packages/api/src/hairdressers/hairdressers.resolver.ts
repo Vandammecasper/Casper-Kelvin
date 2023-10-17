@@ -27,11 +27,11 @@ export class HairdressersResolver {
 
   // @UseGuards(FirebaseGuard)
   @Mutation(() => Hairdresser)
-    createHairdresser(
-      @Args('createHairdresserInput') createHairdresserInput: CreateHairdresserInput
-    ): Promise<Hairdresser> {
-      return this.hairdressersService.create(createHairdresserInput);
-    }
+  createHairdresser(
+    @Args('createHairdresserInput') createHairdresserInput: CreateHairdresserInput
+  ): Promise<Hairdresser> {
+    return this.hairdressersService.create(createHairdresserInput);
+  }
 
   // @UseGuards(FirebaseGuard)
   @Mutation(() => Hairdresser)

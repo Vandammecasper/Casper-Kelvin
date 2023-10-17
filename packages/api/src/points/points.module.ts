@@ -12,7 +12,3 @@ import { Point } from './entities/point.entity';
   exports: [PointsService],
 })
 export class PointsModule {}
-
-
-// TODO: points.module, points.resolver, points.service
-// TODO: seeding of the points
