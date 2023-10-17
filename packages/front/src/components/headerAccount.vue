@@ -21,8 +21,6 @@
 <script lang="ts">
 
 import useFirebase from '@/composables/useFirebase'
-import Vue from 'vue'
-import VueScrollTo from 'vue-scrollto';
 
 
 export default {

@@ -8,9 +8,12 @@ import router from './router'
 
 import useFirebase from './composables/useFirebase'
 
+import { setupCalendar } from 'v-calendar';
+
 const app = createApp(App)
 const { restoreUser } = useFirebase()
 
+app.use(setupCalendar, {})
 // app.use(router)
 
 // app.mount('#app')

@@ -91,11 +91,53 @@
                 <p class="mt-2  text-neutral-700 Raleway text-left">Elevate your look with a crisp neck clean-up. Our attention to detail ensures your style is sharp and refined.</p>
             </button>
         </div>
-        <RouterLink v-if="cont" to="/appointment/barber&time">
-            <button class="Raleway-bold mt-6  border-2 border-yellow-600 bg-yellow-600 py-4 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">CONTINUE</button>
-        </RouterLink>
-        <div v-else class="Raleway-bold mt-6 bg-neutral-500 py-4 px-8 font-semibold  ">CONTINUE</div>
+        <button v-if="cont" @click="handleContinue()" class="Raleway-bold mt-6  border-2 border-yellow-600 bg-yellow-600 py-4 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">CONTINUE</button>
+        <div v-else class="Raleway-bold mt-6 bg-neutral-500 py-4 px-8 font-semibold">CONTINUE</div>
     </div>
+    <div v-if="next" class="grid">
+        <div class="absolute w-screen h-screen z-50 top-0 left-0 bg-black opacity-60 "></div>
+        <div class="bg-neutral-800 justify-self-center top-16 h-3/4 w-2/5  absolute z-50 grid justify-items-center px-16 py-16">
+            <div class="text-center px-16">
+                <h3 class="text-4xl Raleway-bold">SELECT EXTRA'S</h3>
+                <p class="text-neutral-600 mt-2 Raleway">Choose from our selection of premium extras to take your grooming experience to the next level.</p>
+            </div>
+            <button v-if="shampoo" @click="handleShampoo()" class="mx-10 p-1 text-left border-2 border-yellow-600">
+                <div class="flex justify-between">
+                    <h4 class="text-xl Raleway-bold">SHAMPOO</h4>
+                    <h4 class="text-xl Raleway-bold">+€ 4.00</h4>
+                </div>
+                <p class="text-neutral-600 text-sm pr-20 Raleway">Add an extra layer of pampering to your grooming experience with our optional shampoo wash. Indulge in ultimate relaxation and leave with a clean, revitalized feel.</p>
+            </button>
+            <button v-else @click="handleShampoo()" class="mx-10 p-1 text-left">
+                <div class="flex justify-between">
+                    <h4 class="text-xl Raleway-bold">SHAMPOO</h4>
+                    <h4 class="text-xl Raleway-bold">+€ 4.00</h4>
+                </div>
+                <p class="text-neutral-600 text-sm pr-20 Raleway">Add an extra layer of pampering to your grooming experience with our optional shampoo wash. Indulge in ultimate relaxation and leave with a clean, revitalized feel.</p>
+            </button>
+            <button v-if="massage" @click="handleMassage()" class="mx-10 p-1 mt-8 text-left border-2 border-yellow-600">
+                <div class="flex justify-between">
+                    <h4 class="text-xl Raleway-bold">SHAMPOO & MASSAGE</h4>
+                    <h4 class="text-xl Raleway-bold">+€ 6.00</h4>
+                </div>
+                <p class="text-neutral-600 text-sm pr-20 Raleway">Experience the ultimate relaxation with our optional shampoo wash and massage. Elevate your grooming session to a spa-like indulgence.</p>
+            </button>
+            <button v-else @click="handleMassage()" class="mx-10 p-1 mt-8 text-left">
+                <div class="flex justify-between">
+                    <h4 class="text-xl Raleway-bold">SHAMPOO & MASSAGE</h4>
+                    <h4 class="text-xl Raleway-bold">+€ 6.00</h4>
+                </div>
+                <p class="text-neutral-600 text-sm pr-20 raleway">Experience the ultimate relaxation with our optional shampoo wash and massage. Elevate your grooming session to a spa-like indulgence.</p>
+            </button>
+            <RouterLink v-if="extra" to="/appointment/barber&time">
+                <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">NEXT</button>
+            </RouterLink>
+            <RouterLink v-else to="/appointment/barber&time">
+                <button class="mt-8 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8 font-semibold  hover:bg-neutral-700 focus:outline-none focus-visible:border-neutral-600 focus-visible:bg-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-300">SKIP</button>
+            </RouterLink>
+        </div>
+    </div>
+    
 </template>
 
 <style>
@@ -118,7 +160,11 @@ export default {
             sculpt: false,
             color: false,
             neck: false,
-            cont: false
+            cont: false,
+            next: false,
+            shampoo: false,
+            massage: false,
+            extra: false
         };
     },
     methods: {
@@ -169,6 +215,35 @@ export default {
                 this.cont = true;
             } else {
                 this.cont = false;
+            }
+        },
+        handleContinue() {
+            this.next = true;
+        },
+        handleShampoo() {
+            if(this.shampoo == true){
+                this.shampoo = false;
+                this.extra = false;
+            }
+            else{
+                this.shampoo = true;
+                this.extra = true;
+            }
+            if (this.massage == true) {
+                this.massage = false;
+            }
+        },
+        handleMassage() {
+            if(this.massage == true){
+                this.massage = false;
+                this.extra = false;
+            }
+            else{
+                this.massage = true;
+                this.extra = true;
+            }
+            if (this.shampoo == true) {
+                this.shampoo = false;
             }
         }
     }
