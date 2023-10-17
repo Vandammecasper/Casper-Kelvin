@@ -50,52 +50,14 @@
         <h2 class="text-4xl mt-19 mb-4 Raleway-bold">GET A GREAT HAIRCUT AT THE BARBER</h2>
         <p class="text-2xl text-neutral-700 relative Raleway">Visit us at The Barber for a haircut that defines your style. Our skilled barbers ensure every visit leaves you looking your absolute best.</p>
       </div>
+      <!-- services -->
       <div class="grid grid-cols-2 justify-self-center px-24 gap-24 mt-16">
-        <div>
+        <div v-for="service of result.services" :key="service.id">
           <div class="flex justify-between">
-            <h3 class="text-2xl Raleway-bold">Simple Haircut</h3>
-            <h3 class="text-2xl Raleway-bold">€ 19.99</h3>
+            <h3 class="text-2xl Raleway-bold">{{ service.name }}</h3>
+            <h3 class="text-2xl Raleway-bold">€ {{ service.price }}</h3>
           </div>
-          <p class="mt-2 text-lg text-neutral-700 Raleway">We believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.</p>
-        </div>
-        <div>
-          <div class="flex justify-between">
-            <h3 class="text-2xl Raleway-bold">Beard Trim</h3>
-            <h3 class="text-2xl Raleway-bold">€ 17.95</h3>
-          </div>
-          <p class="mt-2 text-lg text-neutral-700 Raleway">Enhance your appearance with a precise beard trim. Our skilled barbers sculpt and refine, giving you the confidence to conquer the day.</p>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 justify-self-center mt-16 px-24 gap-24">
-        <div>
-          <div class="flex justify-between">
-            <h3 class="text-2xl Raleway-bold">Razor Shave</h3>
-            <h3 class="text-2xl Raleway-bold">€ 15.95</h3>
-          </div>
-          <p class="mt-2 text-lg text-neutral-700 Raleway">Indulge in the luxury of a razor shave. Our expert barbers deliver precision and perfection, leaving your skin irresistibly smooth.</p>
-        </div>
-        <div>
-          <div class="flex justify-between">
-            <h3 class="text-2xl Raleway-bold">Beard Sculpt</h3>
-            <h3 class="text-2xl Raleway-bold">€ 24.95</h3>
-          </div>
-          <p class="mt-2 text-lg text-neutral-700 Raleway">With our expert 'Beard Sculpt' service, we artfully shape and style your beard, giving you a distinguished and personalized look that leaves a lasting impression.</p>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 justify-self-center p-16 px-24 gap-24">
-        <div>
-          <div class="flex justify-between">
-            <h3 class="text-2xl Raleway-bold">Hair Coloring</h3>
-            <h3 class="text-2xl Raleway-bold">€ 35.99</h3>
-          </div>
-          <p class="mt-2 text-lg text-neutral-700 Raleway">Revitalize your look with our expert hair coloring services. From subtle enhancements to bold transformations, we bring your desired shades to life.</p>
-        </div>
-        <div>
-          <div class="flex justify-between">
-            <h3 class="text-2xl Raleway-bold">Neck Clean Up</h3>
-            <h3 class="text-2xl Raleway-bold">€ 12.95</h3>
-          </div>
-          <p class="mt-2 text-lg text-neutral-700 Raleway">Elevate your look with a crisp neck clean-up. Our attention to detail ensures your style is sharp and refined.</p>
+          <p class="mt-2 text-lg text-neutral-700 Raleway">{{ service.description }}</p>
         </div>
       </div>
       <RouterLink to="/appointment" class="">
@@ -235,6 +197,9 @@ import { type AuthError } from 'firebase/auth'
 
 import useFirebase from '@/composables/useFirebase'
 import useCustomUser from '@/composables/useCustomUser'
+import { useQuery } from '@vue/apollo-composable'
+import { GET_ALL_SERVICES } from '@/graphql/services.query'
+import type { CustomService } from '@/interfaces/custom.service.interface'  
 
 export default {
   setup() {
@@ -249,9 +214,15 @@ export default {
       console.log(customUser.value?.role)
     }
     getToken()
-    
+
+    const {
+      result: getServicesResult,
+      loading: getServicesLoading,
+    } = useQuery(GET_ALL_SERVICES)
+
 
     return {
+      result: getServicesResult,
       firebaseUser,
       logout,
 
