@@ -2,7 +2,7 @@
     <div class="h-screen grid">
       <img src="../../assets/barbers/Samuel.jpg" alt="" class="absolute object-cover w-full h-screen z-0 opacity-50">
       <img src="../../assets/logo-PhotoRoom.png" alt="" class="h-96 w-96 mt-32 z-30 place-self-center relative">
-      <RouterLink to="/appointment" class="place-self-center">
+      <RouterLink to="/appointment/services" class="place-self-center">
         <div class="border-4 border-yellow-500 p-2 relative">
           <div class="border-4 border-yellow-500 p-4 relative">
             <div class="text-xl px-8 z-30 relative Raleway-bold">MAKE AN APPOINTMENT</div>
@@ -98,7 +98,7 @@
           <p class="mt-2 text-lg text-neutral-700 Raleway">Elevate your look with a crisp neck clean-up. Our attention to detail ensures your style is sharp and refined.</p>
         </div>
       </div>
-      <RouterLink to="/appointment" class="">
+      <RouterLink to="/appointment/services" class="">
         <div class="border-4 border-yellow-600 p-2">
           <div class="border-4 border-yellow-600 p-4">
             <div class="text-xl px-8 z-30 Raleway-bold">MAKE AN APPOINTMENT</div>

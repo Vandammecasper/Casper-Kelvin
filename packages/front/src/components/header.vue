@@ -1,10 +1,10 @@
 <template>
-    <div class="h-24 w-screen bg-black p-4 px-16 flex justify-between fixed z-50">
+    <div class="h-24 w-full bg-black p-4 px-16 flex justify-between fixed z-50">
         <RouterLink to="/">
             <img src="../../assets/logo-PhotoRoom.png" alt="logo" class="h-16">
         </RouterLink>
         <div class="flex items-center gap-16">
-            <RouterLink to="/appointment">
+            <RouterLink to="/appointment/services">
                 <h3 class="Raleway-bold">MAKE AN APPOINTMENT</h3>
             </RouterLink>
             <a href="/#about">

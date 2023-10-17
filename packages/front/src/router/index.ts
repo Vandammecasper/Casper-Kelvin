@@ -13,8 +13,16 @@ const router = createRouter({
         component: () => import('../views/home.vue'),
         },
         {
-          path:'appointment',
-          component: () => import('../views/appointment.vue'),
+          path:'appointment/services',
+          component: () => import('../views/appointment/service.vue'),
+        },
+        {
+          path:'appointment/barber&time',
+          component: () => import('../views/appointment/barber&time.vue'),
+        },
+        {
+          path:'appointment/summary',
+          component: () => import('../views/appointment/summary.vue'),
         }
       ]
     },
