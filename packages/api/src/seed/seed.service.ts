@@ -14,6 +14,10 @@ import { Vacation } from 'src/vacations/entities/vacation.entity';
 import { ObjectId } from 'mongodb';
 import { PointsService } from 'src/points/points.service';
 import { Point } from 'src/points/entities/point.entity';
+import { AppointmentsService } from 'src/appointments/appointments.service';
+import { UsersService } from 'src/users/users.service';
+import { Appointment } from 'src/appointments/entities/appointment.entity';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class SeedService {
@@ -22,6 +26,8 @@ export class SeedService {
         private hairdressersService: HairdressersService,
         private vacationsService: VacationsService,
         private pointsService: PointsService,
+        private appointmentsService: AppointmentsService,
+        private usersService: UsersService
     ) {}
     
     //services
@@ -117,5 +123,31 @@ export class SeedService {
 
     async deleteAllPoints(): Promise<void> {
         return this.pointsService.truncate();
+    }
+
+    // appointments
+
+    //TODO: add appointments from json
+    async addAppointmentsFromJson(): Promise<Appointment[]> {
+        const appointmentsArray:Appointment[] = [];
+
+        return this.appointmentsService.saveAll(appointmentsArray);
+    }
+
+    async deleteAllAppointments(): Promise<void> {
+        return this.appointmentsService.truncate();
+    }
+
+    // users
+
+    //TODO: add users from json
+    async addUsersFromJson(): Promise<User[]> {
+        const appointmentsArray:User[] = [];
+
+        return this.usersService.saveAll(appointmentsArray);
+    }
+
+    async deleteAllUsers(): Promise<void> {
+        return this.usersService.truncate();
     }
 }

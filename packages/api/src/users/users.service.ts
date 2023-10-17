@@ -58,4 +58,14 @@ export class UsersService {
   remove(id: number) {
     return `This action removes a #${id} user`;
   }
+
+  // functions for seeding
+
+  async saveAll(users: User[]): Promise<User[]> {
+    return this.usersRepository.save(users);
+  }
+
+  async truncate(): Promise<void> {
+    return this.usersRepository.clear();
+  }
 }
