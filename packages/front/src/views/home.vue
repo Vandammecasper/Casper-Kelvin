@@ -107,22 +107,40 @@
             <p class="text-2xl text-neutral-700 relative Raleway">Join our ranks as an honored customer. Discover the exceptional service and grooming expertise that keeps our clients coming back.</p>
           </div>
           <div class="grid grid-cols-3 w-full mt-16 px-32">
-            <div class="mt-24 grid">
-              <h3 class="Raleway-bold justify-self-center text-4xl">BRUCE</h3>
+            <div v-if="scoreBoardResult?.pointsPublic[1]" class="mt-24 grid">
+              <h3 class="Raleway-bold justify-self-center text-4xl">{{ scoreBoardResult?.pointsPublic[1].userName }}</h3>
               <div class="bg-gradient-to-t from-transparent to-gray-300 h-64 grid mt-4">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">48</h4>
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">{{ scoreBoardResult?.pointsPublic[1].totalPoints }}</h4>
               </div>
             </div>
-            <div class="grid">
-              <h3 class="justify-self-center Raleway-bold text-4xl">MATHEW</h3>
+            <div v-else class="mt-24 grid">
+              <h3 class="Raleway-bold justify-self-center text-4xl">/</h3>
+              <div class="bg-gradient-to-t from-transparent to-gray-300 h-64 grid mt-4">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">/</h4>
+              </div>
+            </div>
+            <div v-if="scoreBoardResult?.pointsPublic[0]" class="grid">
+              <h3 class="justify-self-center Raleway-bold text-4xl">{{ scoreBoardResult?.pointsPublic[0].userName }}</h3>
               <div class="bg-gradient-to-t from-transparent to-yellow-600 h-80 grid">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">52</h4>
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">{{ scoreBoardResult?.pointsPublic[0].totalPoints }}</h4>
               </div>
             </div>
-            <div class="mt-40 grid">
-              <h3 class="justify-self-center Raleway-bold text-4xl">STEVE</h3>
+            <div v-else class="mt-24 grid">
+              <h3 class="justify-self-center Raleway-bold text-4xl">/</h3>
+              <div class="bg-gradient-to-t from-transparent to-yellow-600 h-80 grid">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">/</h4>
+              </div>
+            </div>
+            <div v-if="scoreBoardResult?.pointsPublic[2]" class="mt-40 grid">
+              <h3 class="justify-self-center Raleway-bold text-4xl">{{ scoreBoardResult?.pointsPublic[2].userName }}</h3>
               <div class="bg-gradient-to-t from-transparent to-amber-800 h-48 grid">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">45</h4>
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">{{ scoreBoardResult?.pointsPublic[2].totalPoints }}</h4>
+              </div>
+            </div>
+            <div v-else class="mt-24 grid">
+              <h3 class="justify-self-center Raleway-bold text-4xl">/</h3>
+              <div class="bg-gradient-to-t from-transparent to-amber-800 h-48 grid">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">/</h4>
               </div>
             </div>
           </div>
@@ -190,6 +208,7 @@ import { useQuery } from '@vue/apollo-composable'
 import { GET_ALL_SERVICES } from '@/graphql/services.query'
 import type { CustomService } from '@/interfaces/custom.service.interface'  
 import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
+import { GET_PUBLIC_POINTS } from '@/graphql/points.public.query'
 
 export default {
   setup() {
@@ -215,10 +234,17 @@ export default {
       loading: getHairdressersLoading,
     } = useQuery(GET_ALL_HAIRDRESSERS)
 
+    const {
+      result: getScoreBoardResult,
+      loading: getScoreBoardLoading,
+    } = useQuery(GET_PUBLIC_POINTS, {
+        sort: true, // Pass your "sort" parameter here
+    });
 
     return {
       servicesResult: getServicesResult,
       hairdressersResult: getHairdressersResult,
+      scoreBoardResult: getScoreBoardResult,
       firebaseUser,
       logout,
 

@@ -7,14 +7,24 @@ import { UseGuards } from '@nestjs/common';
 import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
 import { FirebaseUser } from 'src/authentication/user.decorator';
 import { UserRecord } from 'firebase-admin/auth';
+import { RolesGuard } from 'src/users/guards/roles.guard';
+import { AllowedRoles } from 'src/users/decorators/role.decorator';
+import { Role } from 'src/users/entities/user.entity';
 
 @Resolver(() => Point)
 export class PointsResolver {
   constructor(private readonly pointsService: PointsService) {}
 
+  // @AllowedRoles(Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard) // , RolesGuard)  
   @Query(() => [Point], { name: 'points' })
-  findAll() {
-    return this.pointsService.findAll();
+  findAll(@Args('sort', { type: () => Boolean }) isSort: boolean) {
+    return this.pointsService.findAll(isSort);
+  }
+
+  @Query(() => [Point], { name: 'pointsPublic' })
+  findAllPublic(@Args('sort', { type: () => Boolean }) isSort: boolean) {
+    return this.pointsService.findAllPublic(isSort);
   }
 
   @Query(() => Point, { name: 'point' })
