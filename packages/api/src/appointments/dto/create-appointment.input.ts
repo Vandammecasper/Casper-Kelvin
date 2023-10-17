@@ -6,12 +6,7 @@ export class CreateAppointmentInput {
   date: Date;
 
   // TODO: should be gone when login is implemented
-  @Field(() => String, { description: 'UId from firebase' })
-  uid: string;
-
-  @Field(() => String, { description: 'UserName' })
-  userName: string;
-
+  
   @Field(() => String, { description: 'HairdresserID' })
   hairdresserId: string;
 

@@ -99,11 +99,16 @@ import { type AuthError } from 'firebase/auth'
 
 import useFirebase from '@/composables/useFirebase'
 import router from '@/router'
+import useCustomUser from '@/composables/useCustomUser'
+import type { CustomUser } from '@/interfaces/custom.user.interface'
+import { useMutation } from '@vue/apollo-composable'
+import { ADD_USER } from '@/graphql/user.mutation'
 
 export default {
   setup() { // <-- was script
     // Composables
     const { register } = useFirebase()
+    const { customUser } = useCustomUser()
 
     const newUser = ref({
       name: '',
@@ -112,11 +117,28 @@ export default {
     })
     const error = ref<AuthError | null>(null)
 
+    const {
+      mutate: addUser,
+      loading: addUserLoading,
+      onDone: userCreated,
+    } = useMutation<CustomUser>(ADD_USER)
+
     const handleRegister = () => {
       register(newUser.value.name, newUser.value.email, newUser.value.password)
       .then(() => { 
-        console.log('Registered!')
-        router.push('/')
+        // console.log('Registered!')
+        // router.push('/')
+        addUser({
+            createUserInput: {
+              locale: 'nl',
+              isPublic: false,
+            },
+        }).then(result => {
+            if (!result?.data) throw new Error('Custom user creation failed.')
+
+            customUser.value = result.data
+            router.push('/')
+          })
       })
       .catch((err) => {
         error.value = err

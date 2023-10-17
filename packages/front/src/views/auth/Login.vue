@@ -83,11 +83,13 @@ import { type AuthError } from 'firebase/auth'
 
 import useFirebase from '@/composables/useFirebase'
 import router from '@/router'
+import useCustomUser from '@/composables/useCustomUser'
 
 export default {
   setup() {
     // Composables
     const { login, firebaseUser } = useFirebase()
+    const { restoreCustomUser }= useCustomUser()
 
     // Logic
     const loginCredentials = ref({
@@ -100,7 +102,9 @@ export default {
       login(loginCredentials.value.email, loginCredentials.value.password)
         .then(() => {
           console.log('logged in')
-          router.push('/')
+          restoreCustomUser().then(() => {
+            router.push('/')
+          })
         })
         .catch((err: AuthError) => {
           error.value = err
