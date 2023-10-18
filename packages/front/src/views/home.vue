@@ -62,7 +62,7 @@
           <p class="mt-2 text-lg text-neutral-700 Raleway">{{ service.description }}</p>
         </div>
       </div>
-      <RouterLink to="/appointment/services" class="">
+      <RouterLink to="/appointment/services" class="mt-16">
         <div class="border-4 border-yellow-600 p-2">
           <div class="border-4 border-yellow-600 p-4">
             <div class="text-xl px-8 z-30 Raleway-bold">MAKE AN APPOINTMENT</div>
