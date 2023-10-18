@@ -16,8 +16,12 @@ export class PointsService {
     private readonly pointsRepository: Repository<Point>,
   ) {}
 
-  findAll() {
-    return this.pointsRepository.find();
+  findAll(isSort: boolean) {
+    return this.pointsRepository.find({ order: isSort ? { totalPoints: "DESC" } : {}});
+  }
+
+  findAllPublic(isSort: boolean) {
+    return this.pointsRepository.find({ order: isSort ? { totalPoints: "DESC" } : {}, where: { isPublic: true }});
   }
 
   findOne(id: string) {

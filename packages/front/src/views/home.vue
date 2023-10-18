@@ -50,9 +50,11 @@
         <h2 class="text-4xl mt-19 mb-4 Raleway-bold">GET A GREAT HAIRCUT AT THE BARBER</h2>
         <p class="text-2xl text-neutral-700 relative Raleway">Visit us at The Barber for a haircut that defines your style. Our skilled barbers ensure every visit leaves you looking your absolute best.</p>
       </div>
-      <!-- services -->
-      <div class="grid grid-cols-2 justify-self-center px-24 gap-16 mt-8">
-        <div v-for="service of result.services" :key="service.id">
+      <!--
+         services
+       -->
+      <div class="grid grid-cols-2 justify-self-center px-24 gap-24 mt-16">
+        <div v-for="service of servicesResult?.services" :key="service.id">
           <div class="flex justify-between">
             <h3 class="text-2xl Raleway-bold">{{ service.name }}</h3>
             <h3 class="text-2xl Raleway-bold">€ {{ service.price }}</h3>
@@ -77,36 +79,23 @@
           <p class="text-2xl text-neutral-700 relative Raleway">Discover the talent behind the magic. Our dedicated barber crew is here to turn your grooming vision into reality.</p>
         </div>
         <div class="grid grid-cols-3 mt-16 justify-self-center">
-          <div class="grid justify-items-center">
-            <div class="relative w-5/6 border-4 border-b-0 border-yellow-600">
-              <img src="../../assets/barbers/Samue.jpg" alt="Image" class="w-full h-auto" />
-              <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"></div>
-            </div>
-            <div class="w-5/6 bg-black h-40 border-4 border-t-0 border-yellow-600 justify-items-center grid p-8">
-              <h4 class="text-5xl Raleway-bold">Samuel</h4>
-              <p class="text-2xl text-neutral-600 Raleway">BARBER</p>
+          <!-- 
+            hairdressers
+          -->
+          <div v-for="hairdresser of hairdressersResult?.hairdressers" :key="hairdresser.id">
+            <div class="grid justify-items-center">
+              <div class="relative w-5/6 border-4 border-b-0 border-yellow-600">
+                <img src="../../assets/barbers/Samue.jpg" alt="Image" class="w-full h-auto" />
+                <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"></div>
+              </div>
+              <div class="w-5/6 bg-black h-40 border-4 border-t-0 border-yellow-600 justify-items-center grid p-8">
+                <h4 class="text-5xl Raleway-bold">{{ hairdresser.name }}</h4>
+                <div v-for="service of hairdresser?.services" :key="service.id">
+                  <p class="text-2xl text-neutral-600 Raleway">{{ service.name }}</p>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="grid justify-items-center">
-              <div class="relative w-5/6 border-4 border-b-0 border-yellow-600">
-                <img src="../../assets/barbers/Sofie.jpg" alt="Image" class="w-full h-auto" />
-                <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"></div>
-              </div>
-              <div class="w-5/6 bg-black h-40 border-4 border-t-0 border-yellow-600 justify-items-center grid p-8">
-                <h4 class="text-5xl Raleway-bold">Sofie</h4>
-                <p class="text-2xl text-neutral-600 Raleway">HAIR COLORIST</p>
-              </div>
-            </div>
-          <div class="grid justify-items-center">
-              <div class="relative w-5/6 border-4 border-b-0 border-yellow-600">
-                <img src="../../assets/barbers/Jeff.jpg" alt="Image" class="w-full h-auto" />
-                <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"></div>
-              </div>
-              <div class="w-5/6 bg-black h-40 border-4 border-t-0 border-yellow-600 justify-items-center grid p-8">
-                <h4 class="text-5xl Raleway-bold">Jeff</h4>
-                <p class="text-2xl text-neutral-600 Raleway">BEARD DETAILER</p>
-              </div>
-            </div>
         </div>
       </div> 
       <div class="h-18"></div>
@@ -118,22 +107,40 @@
             <p class="text-2xl text-neutral-700 relative Raleway">Join our ranks as an honored customer. Discover the exceptional service and grooming expertise that keeps our clients coming back.</p>
           </div>
           <div class="grid grid-cols-3 w-full mt-16 px-32">
-            <div class="mt-24 grid">
-              <h3 class="Raleway-bold justify-self-center text-4xl">BRUCE</h3>
+            <div v-if="scoreBoardResult?.pointsPublic[1]" class="mt-24 grid">
+              <h3 class="Raleway-bold justify-self-center text-4xl">{{ scoreBoardResult?.pointsPublic[1].userName }}</h3>
               <div class="bg-gradient-to-t from-transparent to-gray-300 h-64 grid mt-4">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">48</h4>
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">{{ scoreBoardResult?.pointsPublic[1].totalPoints }}</h4>
               </div>
             </div>
-            <div class="grid">
-              <h3 class="justify-self-center Raleway-bold text-4xl">MATHEW</h3>
+            <div v-else class="mt-24 grid">
+              <h3 class="Raleway-bold justify-self-center text-4xl">/</h3>
+              <div class="bg-gradient-to-t from-transparent to-gray-300 h-64 grid mt-4">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">/</h4>
+              </div>
+            </div>
+            <div v-if="scoreBoardResult?.pointsPublic[0]" class="grid">
+              <h3 class="justify-self-center Raleway-bold text-4xl">{{ scoreBoardResult?.pointsPublic[0].userName }}</h3>
               <div class="bg-gradient-to-t from-transparent to-yellow-600 h-80 grid">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">52</h4>
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">{{ scoreBoardResult?.pointsPublic[0].totalPoints }}</h4>
               </div>
             </div>
-            <div class="mt-40 grid">
-              <h3 class="justify-self-center Raleway-bold text-4xl">STEVE</h3>
+            <div v-else class="mt-24 grid">
+              <h3 class="justify-self-center Raleway-bold text-4xl">/</h3>
+              <div class="bg-gradient-to-t from-transparent to-yellow-600 h-80 grid">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">/</h4>
+              </div>
+            </div>
+            <div v-if="scoreBoardResult?.pointsPublic[2]" class="mt-40 grid">
+              <h3 class="justify-self-center Raleway-bold text-4xl">{{ scoreBoardResult?.pointsPublic[2].userName }}</h3>
               <div class="bg-gradient-to-t from-transparent to-amber-800 h-48 grid">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">45</h4>
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">{{ scoreBoardResult?.pointsPublic[2].totalPoints }}</h4>
+              </div>
+            </div>
+            <div v-else class="mt-24 grid">
+              <h3 class="justify-self-center Raleway-bold text-4xl">/</h3>
+              <div class="bg-gradient-to-t from-transparent to-amber-800 h-48 grid">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">/</h4>
               </div>
             </div>
           </div>
@@ -200,6 +207,8 @@ import useCustomUser from '@/composables/useCustomUser'
 import { useQuery } from '@vue/apollo-composable'
 import { GET_ALL_SERVICES } from '@/graphql/services.query'
 import type { CustomService } from '@/interfaces/custom.service.interface'  
+import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
+import { GET_PUBLIC_POINTS } from '@/graphql/points.public.query'
 
 export default {
   setup() {
@@ -220,9 +229,22 @@ export default {
       loading: getServicesLoading,
     } = useQuery(GET_ALL_SERVICES)
 
+    const {
+      result: getHairdressersResult,
+      loading: getHairdressersLoading,
+    } = useQuery(GET_ALL_HAIRDRESSERS)
+
+    const {
+      result: getScoreBoardResult,
+      loading: getScoreBoardLoading,
+    } = useQuery(GET_PUBLIC_POINTS, {
+        sort: true, // Pass your "sort" parameter here
+    });
 
     return {
-      result: getServicesResult,
+      servicesResult: getServicesResult,
+      hairdressersResult: getHairdressersResult,
+      scoreBoardResult: getScoreBoardResult,
       firebaseUser,
       logout,
 
