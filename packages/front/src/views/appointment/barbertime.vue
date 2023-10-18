@@ -5,48 +5,53 @@
             <div class="w-1/2">
                 <h2 class="text-4xl">SELECT A BARBER</h2>
                 <div class="mt-6">
-                    <div>
-                        <div class="h-24 relative grid content-center hover:border-2 hover:border-neutral-500">
+                    <div v-for="hairdresser of hairdressersResult?.hairdressers" :key="hairdresser.id" 
+                    @click="toggleSelection(hairdresser.id)"
+                    :class="{
+                        'border-2 border-yellow-600 hover:border-yellow-600': isSelected(hairdresser.id),
+                        'p-1 hover:border-2 hover:border-neutral-600': true // Add other classes as needed
+                    }">
+                        <div class="h-24 relative grid content-center">
                             <img src="../../../assets/barbers/Samuel.jpg" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
-                            <h3 class="text-3xl z-20 bg-black justify-self-end text-center w-40 py-5">Samuel</h3>
-                        </div>
-                        <div class="h-24 relative grid content-center mt-2 hover:border-2 hover:border-neutral-500">
-                            <img src="../../../assets/barbers/Sofie.jpg" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 29%;">
-                            <h3 class="text-3xl z-20 bg-black justify-self-end  text-center w-40 py-5">Sofie</h3>
-                        </div>
-                        <div class="h-24 relative grid content-center mt-2 hover:border-2 hover:border-neutral-500">
-                            <img src="../../../assets/barbers/Jeff.jpg" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
-                            <h3 class="text-3xl z-20 bg-black justify-self-end  text-center w-40 py-5">Jeff</h3>
+                            <h3 class="text-3xl z-20 bg-black justify-self-end text-center w-40 py-5">{{hairdresser.name}}</h3>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="w-1/2">
                 <h2 class="text-4xl">AGENDA</h2>
-                <DatePicker class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="date" mode="dateTime" is24hr hide-time-header :min-date="new Date()" time-accuracy="1" :rules="rules"/>
+                <DatePicker class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" time-accuracy={{1}} :rules="rules"/>
             </div>
         </div>
-        <RouterLink to="/appointment/summary">
+        <RouterLink v-if="cont" :to="{ name: 'summary', params: { services: selectedServices.join(','), barber: selectedBarber, date: selectedDate } }">
             <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">NEXT</button>
         </RouterLink>
+        <button v-else class="mt-8 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8 font-semibold  ">NEXT</button>
     </div>
     
 </template>
 
-<script>
+<script lang="ts">
 import { ref } from 'vue';
 import { Calendar, DatePicker } from 'v-calendar';
 import 'v-calendar/style.css';
+import { useQuery } from '@vue/apollo-composable'
+import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
 
 
 export default {
+    watch:{
+        selectedDate(newValue){
+            this.selectedDate = newValue;
+            console.log('nieuwe datum: ', this.selectedDate )
+        }
+    },
     components: {
         Calendar,
         DatePicker,
     },
     data() {
         return {
-            date: new Date(),
             rules: ref({
                 hours: (hour, { weekday }) => {
                     // 8AM - 12PM on the weekends
@@ -55,7 +60,55 @@ export default {
                     return hour >= 9 && hour < 18;
                 },
             }),
-        };
+            savedItems: [],
+            selectedBarber: '',
+            selectedDate: '',
+            cont: false,
+        }
+    },
+    methods: {
+        isSelected(barberId) {
+            if(this.selectedBarber == barberId){
+                return true;
+            }
+            else{
+                return false;
+            }
+        },
+        toggleSelection(barberId) {
+            if (this.isSelected(barberId)) {
+                // barber is already selected, so remove it
+                this.selectedBarber = '';
+                this.checkContinue();
+            } else {
+                // Barber is not selected, so add it
+                this.selectedBarber = barberId;
+                this.checkContinue();
+            }
+        },
+        checkContinue() {
+            if (this.selectedBarber != '' && this.selectedDate != '') {
+                this.cont = true;
+            }
+            else {
+                this.cont = false;
+            }
+        },
+    },
+    setup(){
+        const {
+            result: getHairdressersResult,
+            loading: getHairdressersLoading,
+        } = useQuery(GET_ALL_HAIRDRESSERS)
+        
+        return {
+            hairdressersResult: getHairdressersResult,
+        }
+    },
+    computed: {
+        selectedServices() {
+            return this.$route.params.service.split(',').map(service => decodeURIComponent(service));
+        },
     },
 }
 </script>

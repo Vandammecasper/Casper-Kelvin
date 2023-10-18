@@ -22,7 +22,8 @@ const router = createRouter({
           component: () => import('../views/appointment/barbertime.vue'),
         },
         {
-          path:'appointment/summary',
+          path:'appointment/summary/:service/:barber/:date',
+          name: 'summary',
           component: () => import('../views/appointment/summary.vue'),
         }
       ]
