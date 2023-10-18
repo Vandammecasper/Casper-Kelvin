@@ -1,10 +1,37 @@
 [
     {
-        "id": "651ebc9da825a743a3991151",
-        "uid": "pVbEmkBDAFUU4ChPbVYQeGMMITl2",
-        "userName": "test",
+        "uid": "Zd0t7ecAlZWTVGIcFx3xBI5r33x2",
+        "userName": "Jef",
         "totalPoints": 0,
         "usablePoints": 0,
         "isPublic": false
+      },
+      {
+        "uid": "DcrXhY203jaSdAHiXxLuZWCqloJ3",
+        "userName": "Sofie",
+        "totalPoints": 0,
+        "usablePoints": 0,
+        "isPublic": false
+      },
+      {
+        "uid": "cQCC4OIADbOsDfn47ihVhD1B7nT2",
+        "userName": "Samuel",
+        "totalPoints": 0,
+        "usablePoints": 0,
+        "isPublic": false
+      },
+      {
+        "uid": "0g51xgqpOCOaA5KLPe0tIQqJcKD3",
+        "userName": "Casper",
+        "totalPoints": 20,
+        "usablePoints": 5,
+        "isPublic": true
+      }
+      ,{
+        "uid": "dKAvmADcN2Q2UInpy10jpl9wAjD2",
+        "userName": "Kelvin",
+        "totalPoints": 10,
+        "usablePoints": 10,
+        "isPublic": true
       }
 ]

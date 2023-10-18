@@ -5,6 +5,7 @@ import * as services from './data/services.json';
 import * as hairdressers from './data/hairdressers.json';
 import * as vacations from './data/vacations.json';
 import * as points from './data/points.json';
+import * as users from './data/users.json';
 
 import { Service } from 'src/services/entities/service.entity';
 import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
@@ -17,7 +18,7 @@ import { Point } from 'src/points/entities/point.entity';
 import { AppointmentsService } from 'src/appointments/appointments.service';
 import { UsersService } from 'src/users/users.service';
 import { Appointment } from 'src/appointments/entities/appointment.entity';
-import { User } from 'src/users/entities/user.entity';
+import { Role, User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class SeedService {
@@ -142,9 +143,18 @@ export class SeedService {
 
     //TODO: add users from json
     async addUsersFromJson(): Promise<User[]> {
-        const appointmentsArray:User[] = [];
+        const usersArray:User[] = [];
+        
+        for(const user of users){
+            const u = new User();
+            u.uid = user.uid;
+            u.locale = user.locale;
+            u.role = user.role as Role;
 
-        return this.usersService.saveAll(appointmentsArray);
+            usersArray.push(u);
+        }
+
+        return this.usersService.saveAll(usersArray);
     }
 
     async deleteAllUsers(): Promise<void> {
