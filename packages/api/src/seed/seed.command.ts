@@ -84,7 +84,7 @@ export class DatabaseSeedCommand {
         console.log('...done');
     }
 
-    /* @Command({
+    @Command({
         command: 'seed:database:points',
         describe: 'seed database with points from json file',
     })
@@ -92,7 +92,7 @@ export class DatabaseSeedCommand {
         console.info('seeding database with points...');
         const points = await this.seedService.addPointsFromJson();
         console.log('...done with length: ', points.length);
-    } */
+    }
 
     // appointments commands
 
@@ -117,4 +117,24 @@ export class DatabaseSeedCommand {
     }
 
     // users commands
+
+    @Command({
+        command: 'seed:database:users:reset',
+        describe: 'delete all users from database',
+    })
+    async deleteAllUsers() {
+        console.info('deleting all users...');
+        await this.seedService.deleteAllUsers();
+        console.log('...done');
+    }
+
+    @Command({
+        command: 'seed:database:users',
+        describe: 'seed database with users from json file',
+    })
+    async seedUsers() {
+        console.info('seeding database with users...');
+        const users = await this.seedService.addUsersFromJson();
+        console.log('...done with length: ', users.length);
+    }
 }
