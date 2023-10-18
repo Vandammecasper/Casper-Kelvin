@@ -19,7 +19,6 @@
                             <h3 class="text-3xl z-20 bg-black justify-self-end  text-center w-40 py-5">Jeff</h3>
                         </div>
                     </div>
-                    <div></div>
                 </div>
             </div>
             <div class="w-1/2">

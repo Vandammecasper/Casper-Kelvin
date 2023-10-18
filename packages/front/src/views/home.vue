@@ -51,7 +51,7 @@
         <p class="text-2xl text-neutral-700 relative Raleway">Visit us at The Barber for a haircut that defines your style. Our skilled barbers ensure every visit leaves you looking your absolute best.</p>
       </div>
       <!-- services -->
-      <div class="grid grid-cols-2 justify-self-center px-24 gap-24 mt-16">
+      <div class="grid grid-cols-2 justify-self-center px-24 gap-16 mt-8">
         <div v-for="service of result.services" :key="service.id">
           <div class="flex justify-between">
             <h3 class="text-2xl Raleway-bold">{{ service.name }}</h3>
@@ -60,7 +60,7 @@
           <p class="mt-2 text-lg text-neutral-700 Raleway">{{ service.description }}</p>
         </div>
       </div>
-      <RouterLink to="/appointment/services" class="">
+      <RouterLink to="/appointment/services" class="mt-16">
         <div class="border-4 border-yellow-600 p-2">
           <div class="border-4 border-yellow-600 p-4">
             <div class="text-xl px-8 z-30 Raleway-bold">MAKE AN APPOINTMENT</div>
