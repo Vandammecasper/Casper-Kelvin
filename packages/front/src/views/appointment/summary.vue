@@ -8,7 +8,7 @@
         <p>extra's:</p>
         <p></p>
         <p>barber:</p>
-        <p>{{ barber }}</p>
+        <p>{{ hairdressersResult.hairdresser?.name }}</p>
         <p>date:</p>
         <p>{{ date }}</p>
     </div>
@@ -17,6 +17,7 @@
 <script lang="ts">
     import { useQuery } from '@vue/apollo-composable'
     import { GET_HAIRDRESSER_BY_ID } from '@/graphql/hairdressers.query'
+    import { useRouter} from 'vue-router'
 
     export default {
         computed: {
@@ -39,12 +40,18 @@
             }
         },
         setup(){
+            const {currentRoute} = useRouter()
+            const barberid = currentRoute.value.params.barber
+            
             const {
             result: getHairdresserByIdResult,
             loading: getHairdresserByIdLoading,
         } = useQuery(GET_HAIRDRESSER_BY_ID, {
-            id: this.$route.params.barber
+            id: barberid
         })
+        return {
+            hairdressersResult: getHairdresserByIdResult,
+        }
         }
     };
 </script>
