@@ -1,0 +1,43 @@
+{
+    "en":{
+        "Key":"en",
+        "navigation":{
+            "makeAppointment":"Make An Appointment",
+            "aboutUs":"About Us",
+            "ourService":"Our Services",
+            "crew": "The Crew",
+            "hallOfFame": "Hall Of Fame"
+        },
+        "home": {
+            "about": {
+                "about": "ABOUT",
+                "title": "MORE THAN JUST A BARBERSHOP",
+                "titleSM": "BEST EQUIPMENT",
+                "p": "Investing in the right equipment is essential for running a successful barbershop. Our carefully curated selection of top-notch tools and gear ensures that we can provide the best grooming experience for our clients.",
+                "professionalBarbershop": "PROFESSIONAL BARBERSHOP",
+                "professionalBarbershop_p": "Our expert barbers deliver impeccable cuts, classic shaves, and a touch of elegance, ensuring you leave looking and feeling your best. Experience the pinnacle of grooming excellence with us.",
+                "comfortablePlace": "A COMFORTABLE PLACE",
+                "comfortablePlace_p": "At The Barber, your comfort is our priority. Enjoy a tranquil atmosphere while our skilled barbers work their magic. Sit back, unwind, and leave feeling rejuvenated."       
+            },
+            "services": {
+                "services": "SERVICES",
+                "title": "GET A GREAT HAIRCUT AT THE BARBER",
+                "p": "Visit us at The Barber for a haircut that defines your style. Our skilled barbers ensure every visit leaves you looking your absolute best."        
+            },
+            "crew": {
+                "crew": "THE CREW",
+                "title": "MEET OUR AMAZING TEAM",
+                "p": "Discover the talent behind the magic. Our dedicated barber crew is here to turn your grooming vision into reality."        
+            },
+            "hallOfFame": {
+                "hallOfFame": "HALL OF FAME",
+                "title": "BECOME ONE OF OUR HONORED CUSTOMERS",
+                "p": "Join our ranks as an honored customer. Discover the exceptional service and grooming expertise that keeps our clients coming back."
+            }
+        },
+        "footer": {
+            "information": "Information",
+            "openingHours": "Opening Hours"
+        }
+    }
+}

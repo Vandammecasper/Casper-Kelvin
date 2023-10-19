@@ -82,7 +82,7 @@ import { ref } from 'vue'
 import { type AuthError } from 'firebase/auth'
 
 import useFirebase from '@/composables/useFirebase'
-import router from '@/router'
+import router from '@/bootstrap/router'
 import useCustomUser from '@/composables/useCustomUser'
 
 export default {

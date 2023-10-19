@@ -1,0 +1,44 @@
+{
+    "de": {
+      "Key": "de",
+      "navigation": {
+        "makeAppointment": "Termin Vereinbaren",
+        "aboutUs": "Über Uns",
+        "ourService": "Unsere Dienstleistungen",
+        "crew": "Das Team",
+        "hallOfFame": "Ruhmeshalle"
+      },
+      "home": {
+        "about": {
+          "about": "ÜBER UNS",
+          "title": "MEHR ALS EIN EINFACHER BARBIERSHOP",
+          "titleSM": "BESTE AUSRÜSTUNG",
+          "p": "Die Investition in die richtige Ausrüstung ist entscheidend für den Betrieb eines erfolgreichen Barbershops. Unsere sorgfältig ausgewählte Auswahl erstklassiger Werkzeuge und Ausrüstungen garantiert, dass wir die beste Pflegeerfahrung für unsere Kunden bieten können.",
+          "professionalBarbershop": "PROFESSIONELLER BARBIERSHOP",
+          "professionalBarbershop_p": "Unsere erfahrenen Barbiermeister bieten makellose Haarschnitte, klassische Rasuren und eine Prise Eleganz, damit Sie perfekt gestylt und bestens gelaunt gehen. Erleben Sie die Spitze der Pflegeexzellenz bei uns.",
+          "comfortablePlace": "EIN BEHAGLICHER ORT",
+          "comfortablePlace_p": "Bei The Barber steht Ihr Komfort an erster Stelle. Genießen Sie eine ruhige Atmosphäre, während unsere geschickten Barbiers ihre Magie wirken. Lehnen Sie sich zurück, entspannen Sie sich und gehen Sie erfrischt wieder hinaus."
+        },
+        "services": {
+          "services": "DIENSTLEISTUNGEN",
+          "title": "BEKOMMEN SIE EINEN TOLLEN HAARSCHNITT IM BARBIERSHOP",
+          "p": "Besuchen Sie uns bei The Barber für einen Haarschnitt, der Ihren Stil definiert. Unsere erfahrenen Barbiers sorgen dafür, dass Sie bei jedem Besuch in bester Form sind."
+        },
+        "crew": {
+          "crew": "DAS TEAM",
+          "title": "LERNEN SIE UNSER TOLLES TEAM KENNEN",
+          "p": "Entdecken Sie das Talent hinter der Magie. Unser engagiertes Barbier-Team steht bereit, Ihre Vorstellung von Pflege in die Tat umzusetzen."
+        },
+        "hallOfFame": {
+          "hallOfFame": "RUHMESHALLE",
+          "title": "WERDEN SIE EINER UNSERER GEEHRTE KUNDEN",
+          "p": "Treten Sie in die Reihen unserer geehrten Kunden ein. Entdecken Sie den außergewöhnlichen Service und die Pflegeexpertise, die unsere Kunden immer wieder zurückkehren lässt."
+        }
+      },
+      "footer": {
+        "information": "Informationen",
+        "openingHours": "Öffnungszeiten"
+      }
+    }
+  }
+  

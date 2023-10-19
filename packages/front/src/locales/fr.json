@@ -1,0 +1,44 @@
+{
+    "fr": {
+      "Key": "fr",
+      "navigation": {
+        "makeAppointment": "Prendre un Rendez-vous",
+        "aboutUs": "À Propos de Nous",
+        "ourService": "Nos Services",
+        "crew": "L'Équipe",
+        "hallOfFame": "Galerie de la Gloire"
+      },
+      "home": {
+        "about": {
+          "about": "À PROPOS",
+          "title": "PLUS QU'UN SIMPLE SALON DE COIFFURE",
+          "titleSM": "MEILLEUR ÉQUIPEMENT",
+          "p": "Investir dans le bon équipement est essentiel pour gérer un salon de coiffure prospère. Notre sélection soigneusement choisie d'outils et d'équipements de première qualité garantit que nous pouvons offrir la meilleure expérience de toilettage à nos clients.",
+          "professionalBarbershop": "SALON DE COIFFURE PROFESSIONNEL",
+          "professionalBarbershop_p": "Nos barbiers experts réalisent des coupes impeccables, des rasages classiques et une touche d'élégance, vous assurant de partir en ayant l'air et en vous sentant au mieux. Vivez l'apogée de l'excellence en matière de toilettage avec nous.",
+          "comfortablePlace": "UN LIEU CONFORTABLE",
+          "comfortablePlace_p": "Chez The Barber, votre confort est notre priorité. Profitez d'une atmosphère tranquille pendant que nos barbiers qualifiés font leur magie. Détendez-vous et repartez en vous sentant revigoré."
+        },
+        "services": {
+          "services": "SERVICES",
+          "title": "OBTENEZ UNE COUPE DE CHEVEUX EXCEPTIONNELLE CHEZ LE BARBIER",
+          "p": "Venez nous rendre visite chez The Barber pour une coupe de cheveux qui définit votre style. Nos barbiers qualifiés s'assurent que chaque visite vous laisse avec un look absolument impeccable."
+        },
+        "crew": {
+          "crew": "L'ÉQUIPE",
+          "title": "RENCONTREZ NOTRE ÉQUIPE INCROYABLE",
+          "p": "Découvrez le talent derrière la magie. Notre équipe de barbiers dévouée est là pour concrétiser votre vision de toilettage."
+        },
+        "hallOfFame": {
+          "hallOfFame": "GALERIE DE LA GLOIRE",
+          "title": "DEVENEZ L'UN DE NOS CLIENTS HONORÉS",
+          "p": "Rejoignez nos rangs en tant que client honoré. Découvrez le service exceptionnel et l'expertise en toilettage qui font revenir nos clients."
+        }
+      },
+      "footer": {
+        "information": "Informations",
+        "openingHours": "Heures d'Ouverture"
+      }
+    }
+  }
+  

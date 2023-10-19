@@ -62,6 +62,21 @@
             />
         </div>
 
+        <div class="mt-6">
+          <label class="block" for="language">Select language</label>
+          <select
+            class="block mb-3 text-black"
+            name="language"
+            id="language"
+            @change="setLanguage"
+            :value="locale"
+          >
+            <option v-for="(value, key) in SUPPORTED_LOCALES" :value="key" class="text-black">
+              {{ value }}
+            </option>
+          </select>
+        </div>
+
         <button
           class="Raleway-bold mt-6 w-full  border-2 border-yellow-600 bg-yellow-600 py-2 px-4 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300"
         >
@@ -98,11 +113,14 @@ import { ref } from 'vue'
 import { type AuthError } from 'firebase/auth'
 
 import useFirebase from '@/composables/useFirebase'
-import router from '@/router'
+import router from '@/bootstrap/router'
 import useCustomUser from '@/composables/useCustomUser'
 import type { CustomUser } from '@/interfaces/custom.user.interface'
 import { useMutation } from '@vue/apollo-composable'
 import { ADD_USER } from '@/graphql/user.mutation'
+import useLanguage from '@/composables/useLanguage'
+import { useI18n } from 'vue-i18n'
+import { SUPPORTED_LOCALES } from '@/bootstrap/i18n'
 
 export default {
   setup() { // <-- was script
@@ -114,6 +132,7 @@ export default {
       name: '',
       password: '',
       email: '',
+      locale: '',
     })
     const error = ref<AuthError | null>(null)
 
@@ -130,7 +149,7 @@ export default {
         // router.push('/')
         addUser({
             createUserInput: {
-              locale: 'nl',
+              locale: newUser.value.locale,
               isPublic: false,
             },
         }).then(result => {
@@ -145,9 +164,21 @@ export default {
       })
     }
 
+    const { setLocale } = useLanguage()
+    const { locale } = useI18n()
+
+    const setLanguage = (event: Event) => {
+      const target = event.target as HTMLSelectElement
+      newUser.value.locale = target.value
+      // setLocale(target.value)
+    }
+
     return {
       newUser,
       error,
+      setLanguage,
+      locale,
+      SUPPORTED_LOCALES,
 
       handleRegister,
     }

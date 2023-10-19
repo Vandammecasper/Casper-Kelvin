@@ -50,7 +50,7 @@
 <script lang="ts">
 import { ref } from 'vue'
 import { type AuthError } from 'firebase/auth'
-import router from '@/router'
+import router from '@/bootstrap/router'
 
 import useFirebase from '@/composables/useFirebase'
 import { X } from 'lucide-vue-next'

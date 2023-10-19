@@ -4,10 +4,11 @@ import '@unocss/reset/tailwind.css'
 import 'virtual:uno.css'
 
 import App from './App.vue'
-import router from './router'
+import router from './bootstrap/router'
 
 import useFirebase from './composables/useFirebase'
 import useCustomUser from './composables/useCustomUser'
+import { i18n } from './bootstrap/i18n'
 
 import { setupCalendar } from 'v-calendar';
 
@@ -19,7 +20,7 @@ app.use(setupCalendar, {})
 // app.use(router)
 
 // app.mount('#app')
-
+app.use(i18n)
 ;(async () => {
     await restoreUser()
     if (firebaseUser.value) {

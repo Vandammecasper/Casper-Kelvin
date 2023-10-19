@@ -1,4 +1,4 @@
-import path from 'path'
+// import path from 'path'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -33,7 +33,7 @@ const router = createRouter({
       children: [
         {
           path: 'myaccount',
-          component: () => import('../views/account.vue'),
+          component: () => import('../views/Account.vue'),
         },
         {
           path: 'myappointments',
@@ -43,19 +43,19 @@ const router = createRouter({
     },
     {
       path: '/auth',
-      component: () => import('../components/wrappers/AuthWrap.vue'),
+      component: () => import('../components/wrappers/authWrap.vue'),
       children: [
         {
           path: 'login',
-          component: () => import('../views/auth/login.vue'),
+          component: () => import('../views/auth/Login.vue'),
         },
         {
           path: 'register',
-          component: () => import('../views/auth/register.vue'),
+          component: () => import('../views/auth/Register.vue'),
         },
         {
           path: 'forgotpassword',
-          component: () => import('../views/auth/forgotPassword.vue'),
+          component: () => import('../views/auth/ForgotPassword.vue'),
         }
       ],
     },
