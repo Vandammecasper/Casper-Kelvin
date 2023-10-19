@@ -3,7 +3,7 @@
         <h1 class="Raleway-bold text-6xl mt-24">SUMMARY</h1>
         <p>services:</p>
         <div>
-            <p>{{ services }}</p>
+            <p>{{ filteredServices }}</p>
         </div>
         <p>extra's:</p>
         <p>{{ extra }}</p>
@@ -18,17 +18,37 @@
 <script lang="ts">
     import { useQuery } from '@vue/apollo-composable'
     import { GET_HAIRDRESSER_BY_ID } from '@/graphql/hairdressers.query'
+    import { GET_ALL_SERVICES } from '@/graphql/services.query';
     import { useRouter} from 'vue-router'
 
     export default {
+        data(){
+            return{
+                barberid: '',
+                serviceid: '',
+                datum: '',
+                serviceIds: [],
+                selectedServices: [],
+                extraPrice: '',
+            }
+        },
         computed: {
             services() {
                 return this.$route.params.service.split(',').map(services => decodeURIComponent(services));
             },
+            handleServiceIds() {
+                this.serviceIds = this.services
+                console.log(this.serviceIds)
+                return this.serviceIds
+            },
+            handleServicesResults() {
+                this.selectedServices = this.servicesResult
+                console.log(this.servicesResult)
+                return this.selectedServices
+            },
             extra() {
                 const extraId = this.$route.params.extra
                 var extraName = ''
-                console.log(extraId)
                 if (extraId == '1' ){
                     extraName = 'Shampoo'
                     this.extraPrice = '€ 4.00'
@@ -49,32 +69,31 @@
             date() {
                 return this.$route.params.date;
             },
-        },
-        data(){
-            return{
-                barberid: '',
-                datum: '',
-                selectedServices: [],
-                extraPrice: '',
-            }
-        },
-        methods: {
-            handleExtra() {
-                
+            filteredServices() {
+                // this.serviceIds = Array.from(this.handleServiceIds)
+                // this.selectedServices = Array.from(this.handleServicesResults);
+                // return this.servicesResult.filter((obj) => this.serviceIds.includes(obj.id))
             }
         },
         setup(){
             const {currentRoute} = useRouter()
             const barberid = currentRoute.value.params.barber
+            const serviceid = currentRoute.value.params.service
             
             const {
             result: getHairdresserByIdResult,
             loading: getHairdresserByIdLoading,
-        } = useQuery(GET_HAIRDRESSER_BY_ID, {
-            id: barberid
-        })
+            } = useQuery(GET_HAIRDRESSER_BY_ID, {
+                id: barberid
+            })
+
+            const {
+            result: getServicesResult,
+            loading: getServicesLoading,
+            } = useQuery(GET_ALL_SERVICES)
         return {
             hairdressersResult: getHairdresserByIdResult,
+            servicesResult: getServicesResult,
         }
         }
     };
