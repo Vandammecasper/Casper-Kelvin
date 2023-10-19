@@ -17,12 +17,12 @@ const router = createRouter({
           component: () => import('../views/appointment/service.vue'),
         },
         {
-          path:'appointment/:service',
+          path:'appointment/:service/:extra',
           name: 'appointment',
           component: () => import('../views/appointment/barbertime.vue'),
         },
         {
-          path:'appointment/summary/:service/:barber/:date',
+          path:'appointment/summary/:service/:extra/:barber/:date',
           name: 'summary',
           component: () => import('../views/appointment/summary.vue'),
         }

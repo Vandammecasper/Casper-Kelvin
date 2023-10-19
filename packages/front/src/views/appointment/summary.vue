@@ -6,9 +6,10 @@
             <p>{{ services }}</p>
         </div>
         <p>extra's:</p>
-        <p></p>
+        <p>{{ extra }}</p>
+        <p>{{ extraPrice }}</p>
         <p>barber:</p>
-        <p>{{ hairdressersResult.hairdresser?.name }}</p>
+        <p>{{ hairdressersResult?.hairdresser?.name }}</p>
         <p>date:</p>
         <p>{{ date }}</p>
     </div>
@@ -24,6 +25,24 @@
             services() {
                 return this.$route.params.service.split(',').map(services => decodeURIComponent(services));
             },
+            extra() {
+                const extraId = this.$route.params.extra
+                var extraName = ''
+                console.log(extraId)
+                if (extraId == '1' ){
+                    extraName = 'Shampoo'
+                    this.extraPrice = '€ 4.00'
+                }
+                else if(extraId == '2') {
+                    extraName = 'Shampoo & massage'
+                    this.extraPrice = '€ 6.00'
+                }
+                else if(extraId == '0') {
+                   extraName = 'NO EXTRA' 
+                   this.extraPrice = '€ 0.00'
+                }
+            return extraName ;
+            },
             barber() {
                 return this.$route.params.barber;
             },
@@ -35,8 +54,13 @@
             return{
                 barberid: '',
                 datum: '',
-                service: [],
-                extra: ''
+                selectedServices: [],
+                extraPrice: '',
+            }
+        },
+        methods: {
+            handleExtra() {
+                
             }
         },
         setup(){
