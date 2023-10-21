@@ -5,7 +5,7 @@
         <img src="../../../assets/No.svg" alt="">
       </RouterLink>
       <div class=" py-4 px-16 grid">
-        <h1 class="text-4xl font-bold tracking-wider justify-self-center text-yellow-600 Raleway-bold">REGISTER</h1>
+        <h1 class="text-4xl font-bold tracking-wider justify-self-center text-yellow-600 Raleway-bold">  {{ $t('auth.register') }}</h1>
 
         <div v-if="error">
           <p class="text-red-600 Raleway-bold">{{ error.message }}</p>
@@ -16,7 +16,7 @@
             for="nickname"
             class="text-md block font-semibold tracking-wider  dark:text-gray-200 Raleway"
           >
-            Name
+            {{ $t('auth.name') }}
           </label>
           <input
             type="text"
@@ -33,7 +33,7 @@
             for="email"
             class="text-md block font-semibold tracking-wider  dark:text-gray-200 Raleway"
           >
-            Email address
+            {{ $t('auth.emailAddress') }}
           </label>
           <input
             type="email"
@@ -50,7 +50,7 @@
             for="password"
             class="text-md block font-semibold tracking-wider  dark:text-gray-200 Raleway"
           >
-            Password
+            {{ $t('auth.password') }}
           </label>
           <input
             type="password"
@@ -63,7 +63,7 @@
         </div>
 
         <div class="mt-6">
-          <label class="block" for="language">Select language</label>
+          <label class="block" for="language">{{ $t('auth.selectLanguage') }}</label>
           <select
             class="block mb-3 text-black"
             name="language"
@@ -80,14 +80,14 @@
         <button
           class="Raleway-bold mt-6 w-full  border-2 border-yellow-600 bg-yellow-600 py-2 px-4 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300"
         >
-          REGISTER
+          {{ $t('auth.register') }}
         </button>
         <div class="flex justify-center">
           <RouterLink
             class="Raleway-bold mt-2 inline-block rounded text-sm text-yellow-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-200 dark:text-blue-200"
             to="/auth/login"
           >
-            Already have an account?
+           {{ $t('auth.alreadyHaveAccount') }}
           </RouterLink>
         </div>
       </div>

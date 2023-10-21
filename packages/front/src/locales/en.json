@@ -37,7 +37,51 @@
         },
         "footer": {
             "information": "Information",
-            "openingHours": "Opening Hours"
-        }
+            "openingHours": "Opening Hours",
+            "monFri": "Mon - Fri",
+            "satSun": "Sat - Sun",
+            "holiday": "Holiday",
+            "monFriTime": "9:00 AM -58:00 PM",
+            "satSunTime": "9:00 AM - 1:00 PM",
+            "holidayTime": "9:00 AM - 12:00 AM"
+        },
+        "account": {
+            "myAccount": {
+                "navigation": "MY ACCOUNT",
+                "hello": "HELLO,",
+                "points": "points",
+                "place": "place",
+                "name": "Name",
+                "emailAddress": "Email Address",
+                "password": "Password",
+                "confirmPassword": "Confirm Password",
+                "language": "Language",
+                "publicShowOfPoints": "Public Show Of Points",
+                "logout": "LOG OUT",
+                "save": "SAVE"
+            },
+            "myAppointments": {
+                "navigation": "MY APPOINTMENTS",
+                "hello": "HELLO, ",
+                "cancel": "CANCEL",
+                "edit": "EDIT"
+            }
+        },
+        "auth": {
+            "login": "LOGIN",
+            "emailAddress": "Email Address",
+            "emailAddress_placeholder": "youremail@example.com",
+            "password": "Password",
+            "password_placeholder": "Your Password",
+            "forgotPassword": "Forgot Password?",
+            "dontHaveAccount": "Don't have an account?",
+            "register": "REGISTER",
+            "name": "Name",
+            "name_placeholder": "Your Name",
+            "selectLanguage": "Select Language",
+            "alreadyHaveAccount": "Already have an account?",
+            "resetPassword": "RESET PASSWORD",
+            "rememberedPassword": "Remembered your password?"
+        }    
     }
 }

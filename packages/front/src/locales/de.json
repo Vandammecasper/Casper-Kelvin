@@ -1,44 +1,87 @@
 {
-    "de": {
-      "Key": "de",
-      "navigation": {
-        "makeAppointment": "Termin Vereinbaren",
-        "aboutUs": "Über Uns",
-        "ourService": "Unsere Dienstleistungen",
-        "crew": "Das Team",
-        "hallOfFame": "Ruhmeshalle"
+  "de": {
+    "Key": "de",
+    "navigation": {
+      "makeAppointment": "Termin vereinbaren",
+      "aboutUs": "Über uns",
+      "ourService": "Unsere Dienstleistungen",
+      "crew": "Das Team",
+      "hallOfFame": "Ruhmeshalle"
+    },
+    "home": {
+      "about": {
+        "about": "ÜBER UNS",
+        "title": "MEHR ALS NUR EIN BARBIERSHOP",
+        "titleSM": "BESTE AUSRÜSTUNG",
+        "p": "Die Investition in die richtige Ausrüstung ist entscheidend für den Betrieb eines erfolgreichen Barbiershops. Unsere sorgfältig zusammengestellte Auswahl erstklassiger Werkzeuge und Ausrüstung gewährleistet, dass wir die beste Pflegeerfahrung für unsere Kunden bieten können.",
+        "professionalBarbershop": "PROFESSIONELLER BARBIERSHOP",
+        "professionalBarbershop_p": "Unsere Experten-Barbiere liefern makellose Haarschnitte, klassische Rasur und eine Prise Eleganz, um sicherzustellen, dass Sie sich bestens fühlen und aussehen. Erleben Sie die Spitze der Pflegeexzellenz bei uns.",
+        "comfortablePlace": "EIN WOHLFÜHLORT",
+        "comfortablePlace_p": "Bei The Barber ist Ihr Komfort unsere Priorität. Genießen Sie eine ruhige Atmosphäre, während unsere geschickten Barbiere ihre Magie wirken. Lehnen Sie sich zurück, entspannen Sie sich und gehen Sie mit einem Gefühl der Verjüngung."
       },
-      "home": {
-        "about": {
-          "about": "ÜBER UNS",
-          "title": "MEHR ALS EIN EINFACHER BARBIERSHOP",
-          "titleSM": "BESTE AUSRÜSTUNG",
-          "p": "Die Investition in die richtige Ausrüstung ist entscheidend für den Betrieb eines erfolgreichen Barbershops. Unsere sorgfältig ausgewählte Auswahl erstklassiger Werkzeuge und Ausrüstungen garantiert, dass wir die beste Pflegeerfahrung für unsere Kunden bieten können.",
-          "professionalBarbershop": "PROFESSIONELLER BARBIERSHOP",
-          "professionalBarbershop_p": "Unsere erfahrenen Barbiermeister bieten makellose Haarschnitte, klassische Rasuren und eine Prise Eleganz, damit Sie perfekt gestylt und bestens gelaunt gehen. Erleben Sie die Spitze der Pflegeexzellenz bei uns.",
-          "comfortablePlace": "EIN BEHAGLICHER ORT",
-          "comfortablePlace_p": "Bei The Barber steht Ihr Komfort an erster Stelle. Genießen Sie eine ruhige Atmosphäre, während unsere geschickten Barbiers ihre Magie wirken. Lehnen Sie sich zurück, entspannen Sie sich und gehen Sie erfrischt wieder hinaus."
-        },
-        "services": {
-          "services": "DIENSTLEISTUNGEN",
-          "title": "BEKOMMEN SIE EINEN TOLLEN HAARSCHNITT IM BARBIERSHOP",
-          "p": "Besuchen Sie uns bei The Barber für einen Haarschnitt, der Ihren Stil definiert. Unsere erfahrenen Barbiers sorgen dafür, dass Sie bei jedem Besuch in bester Form sind."
-        },
-        "crew": {
-          "crew": "DAS TEAM",
-          "title": "LERNEN SIE UNSER TOLLES TEAM KENNEN",
-          "p": "Entdecken Sie das Talent hinter der Magie. Unser engagiertes Barbier-Team steht bereit, Ihre Vorstellung von Pflege in die Tat umzusetzen."
-        },
-        "hallOfFame": {
-          "hallOfFame": "RUHMESHALLE",
-          "title": "WERDEN SIE EINER UNSERER GEEHRTE KUNDEN",
-          "p": "Treten Sie in die Reihen unserer geehrten Kunden ein. Entdecken Sie den außergewöhnlichen Service und die Pflegeexpertise, die unsere Kunden immer wieder zurückkehren lässt."
-        }
+      "services": {
+        "services": "DIENSTLEISTUNGEN",
+        "title": "ERHALTEN SIE EINE HERVORRAGENDE HAARSCHNITT BEI THE BARBER",
+        "p": "Besuchen Sie uns bei The Barber für einen Haarschnitt, der Ihren Stil definiert. Unsere erfahrenen Barbiere stellen sicher, dass jeder Besuch Sie in bester Form hinterlässt."
       },
-      "footer": {
-        "information": "Informationen",
-        "openingHours": "Öffnungszeiten"
+      "crew": {
+        "crew": "DAS TEAM",
+        "title": "LERNEN SIE UNSER ERSTAUNLICHES TEAM KENNEN",
+        "p": "Entdecken Sie das Talent hinter der Magie. Unser engagiertes Barbier-Team steht bereit, Ihre Vorstellung von Pflege in die Tat umzusetzen."
+      },
+      "hallOfFame": {
+        "hallOfFame": "RUHMESHALLE",
+        "title": "WERDEN SIE EINER UNSERER GEEHRTE KUNDEN",
+        "p": "Treten Sie in die Reihen unserer geehrten Kunden ein. Entdecken Sie den außergewöhnlichen Service und die Pflegeexpertise, die unsere Kunden immer wieder zurückkehren lässt."
       }
+    },
+    "footer": {
+      "information": "Informationen",
+      "openingHours": "Öffnungszeiten",
+      "monFri": "Mo - Fr",
+      "satSun": "Sa - So",
+      "holiday": "Feiertag",
+      "monFriTime": "9:00 - 18:00 Uhr",
+      "satSunTime": "9:00 - 13:00 Uhr",
+      "holidayTime": "9:00 - 12:00 Uhr"
+    },
+    "account": {
+      "myAccount": {
+        "navigation": "MEIN KONTO",
+        "hello": "HALLO,",
+        "points": "Punkte",
+        "place": "Ort",
+        "name": "Name",
+        "emailAddress": "E-Mail-Adresse",
+        "password": "Passwort",
+        "confirmPassword": "Passwort bestätigen",
+        "language": "Sprache",
+        "publicShowOfPoints": "Öffentliche Anzeige von Punkten",
+        "logout": "ABMELDEN",
+        "save": "SPEICHERN"
+      },
+      "myAppointments": {
+        "navigation": "MEINE TERMINE",
+        "hello": "HALLO, ",
+        "cancel": "STORNIEREN",
+        "edit": "BEARBEITEN"
+      }
+    },
+    "auth": {
+      "login": "ANMELDEN",
+      "emailAddress": "E-Mail-Adresse",
+      "emailAddress_placeholder": "ihremeail@beispiel.com",
+      "password": "Passwort",
+      "password_placeholder": "Ihr Passwort",
+      "forgotPassword": "Passwort vergessen?",
+      "dontHaveAccount": "Haben Sie noch kein Konto?",
+      "register": "REGISTRIEREN",
+      "name": "Name",
+      "name_placeholder": "Ihr Name",
+      "selectLanguage": "Sprache auswählen",
+      "alreadyHaveAccount": "Haben Sie bereits ein Konto?",
+      "resetPassword": "PASSWORT ZURÜCKSETZEN",
+      "rememberedPassword": "Passwort wiedererkannt?"
     }
   }
-  
+}
