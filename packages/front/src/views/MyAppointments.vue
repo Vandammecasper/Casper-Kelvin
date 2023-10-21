@@ -2,14 +2,14 @@
     <div class="flex w-full h-screen items-center">
         <div class="w-2/5 border-r-2 border-neutral-600 content-center grid justify-items-center h-80 mt-32">
             <RouterLink to="/account/myaccount">
-                <h2 class="Raleway-bold text-2xl text-neutral-700">MY ACCOUNT</h2>
+                <h2 class="Raleway-bold text-2xl text-neutral-700">{{ $t('account.myAccount.navigation') }}</h2>
             </RouterLink>
             <RouterLink to="/account/myappointments">
-                <h2 class="Raleway-bold text-3xl mt-6"> MY APPOINTMENTS</h2>
+                <h2 class="Raleway-bold text-3xl mt-6">{{ $t('account.myAppointments.navigation') }}</h2>
             </RouterLink>
         </div>
         <div class="w-full grid h-96 mt-4 px-24">
-            <h1 class="text-5xl Raleway-bold justify-self-center">HELLO {{ firebaseUser?.displayName }}</h1>
+            <h1 class="text-5xl Raleway-bold justify-self-center">{{ $t('account.myAppointments.hello') }} {{ firebaseUser?.displayName }}</h1>
             <div class="flex mt-4 gap-16">
                 <div class="hover:border-3 hover:border-yellow-600">
                     <div class="relative">
@@ -30,9 +30,9 @@
                         </div>
                     </div>
                     <div class="flex justify-between pt-1 pb-2 px-4 bg-black">
-                        <button :onclick="handleCancel()" class="Raleway-bold  border-2 border-red-500 bg-red-500 p-2 hover:bg-red-600 focus:outline-none focus-visible:border-red-500 focus-visible:bg-red-600 focus-visible:ring-2 focus-visible:ring-red-300">Cancel</button>
+                        <button :onclick="handleCancel()" class="Raleway-bold  border-2 border-red-500 bg-red-500 p-2 hover:bg-red-600 focus:outline-none focus-visible:border-red-500 focus-visible:bg-red-600 focus-visible:ring-2 focus-visible:ring-red-300">{{ $t('account.myAppointments.cancel') }}</button>
                         <RouterLink to="/">
-                            <button class="Raleway-bold  border-2 border-yellow-600 bg-yellow-600 p-2 px-5 hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-500 focus-visible:bg-yellow-600 focus-visible:ring-2 focus-visible:ring-yellow-500">Edit</button>
+                            <button class="Raleway-bold  border-2 border-yellow-600 bg-yellow-600 p-2 px-5 hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-500 focus-visible:bg-yellow-600 focus-visible:ring-2 focus-visible:ring-yellow-500">{{ $t('account.myAppointments.edit') }}</button>
                         </RouterLink>
                     </div>
                 </div>

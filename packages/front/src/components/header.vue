@@ -5,19 +5,19 @@
         </RouterLink>
         <div class="flex items-center gap-16">
             <RouterLink to="/appointment/services">
-                <h3 class="Raleway-bold">MAKE AN APPOINTMENT</h3>
+                <h3 class="Raleway-bold">{{ $t('navigation.makeAppointment') }}</h3>
             </RouterLink>
             <a href="/#about">
-                <h3 class="Raleway-bold">ABOUT US</h3>
+                <h3 class="Raleway-bold">{{ $t('navigation.aboutUs') }}</h3>
             </a>
             <a href="/#service">
-                <h3 class="Raleway-bold">OUR SERVICE</h3>
+                <h3 class="Raleway-bold">{{ $t('navigation.ourService') }}</h3>
             </a>
             <a href="/#crew">
-                <h3 class="Raleway-bold">THE CREW</h3>
+                <h3 class="Raleway-bold">{{ $t('navigation.crew') }}</h3>
             </a>
             <a href="/#halloffame">
-                <h3 class="Raleway-bold">HALL OF FAME</h3>
+                <h3 class="Raleway-bold">{{ $t('navigation.hallOfFame') }}</h3>
             </a>
             
             <RouterLink v-if="firebaseUser" to="/account/myaccount">

@@ -1,0 +1,87 @@
+{
+  "fr": {
+    "Key": "fr",
+    "navigation": {
+      "makeAppointment": "Prendre un Rendez-vous",
+      "aboutUs": "À Propos de Nous",
+      "ourService": "Nos Services",
+      "crew": "L'Équipe",
+      "hallOfFame": "Galerie de la Gloire"
+    },
+    "home": {
+      "about": {
+        "about": "À PROPOS",
+        "title": "PLUS QU'UN SIMPLE SALON DE COIFFURE",
+        "titleSM": "MEILLEUR ÉQUIPEMENT",
+        "p": "Investir dans le bon équipement est essentiel pour gérer un salon de coiffure prospère. Notre sélection soigneusement choisie d'outils et d'équipements de première qualité garantit que nous pouvons offrir la meilleure expérience de toilettage pour nos clients.",
+        "professionalBarbershop": "SALON DE COIFFURE PROFESSIONNEL",
+        "professionalBarbershop_p": "Nos experts barbiers offrent des coupes impeccables, des rasages classiques et une touche d'élégance, vous assurant de repartir en ayant l'air et en vous sentant au mieux. Vivez le summum de l'excellence en toilettage avec nous.",
+        "comfortablePlace": "UN LIEU CONFORTABLE",
+        "comfortablePlace_p": "Chez The Barber, votre confort est notre priorité. Profitez d'une atmosphère tranquille tandis que nos habiles barbiers travaillent leur magie. Détendez-vous, laissez-vous aller et repartez avec une sensation de rajeunissement."
+      },
+      "services": {
+        "services": "SERVICES",
+        "title": "OBTENEZ UNE COUPE DE CHEVEUX EXCEPTIONNELLE CHEZ LE BARBIER",
+        "p": "Visitez-nous à The Barber pour une coupe de cheveux qui définit votre style. Nos habiles barbiers s'assurent que chaque visite vous laisse avec votre meilleur aspect absolu."
+      },
+      "crew": {
+        "crew": "L'ÉQUIPE",
+        "title": "RENCONTREZ NOTRE INCROYABLE ÉQUIPE",
+        "p": "Découvrez le talent derrière la magie. Notre équipe dévouée de barbiers est là pour concrétiser votre vision en matière de toilettage."
+      },
+      "hallOfFame": {
+        "hallOfFame": "GALERIE DE LA GLOIRE",
+        "title": "DEVENEZ UN DE NOS CLIENTS HONORÉS",
+        "p": "Rejoignez nos rangs en tant que client honoré. Découvrez le service exceptionnel et l'expertise en toilettage qui font revenir nos clients."
+      }
+    },
+    "footer": {
+      "information": "Informations",
+      "openingHours": "Heures d'Ouverture",
+      "monFri": "Lun - Ven",
+      "satSun": "Sam - Dim",
+      "holiday": "Jour Férié",
+      "monFriTime": "9h00 - 18h00",
+      "satSunTime": "9h00 - 13h00",
+      "holidayTime": "9h00 - 12h00"
+    },
+    "account": {
+      "myAccount": {
+        "navigation": "MON COMPTE",
+        "hello": "BONJOUR,",
+        "points": "points",
+        "place": "endroit",
+        "name": "Nom",
+        "emailAddress": "Adresse E-mail",
+        "password": "Mot de Passe",
+        "confirmPassword": "Confirmer le Mot de Passe",
+        "language": "Langue",
+        "publicShowOfPoints": "Affichage Public des Points",
+        "logout": "DÉCONNEXION",
+        "save": "ENREGISTRER"
+      },
+      "myAppointments": {
+        "navigation": "MES RENDEZ-VOUS",
+        "hello": "BONJOUR, ",
+        "cancel": "ANNULER",
+        "edit": "MODIFIER"
+      }
+    },
+    "auth": {
+      "login": "CONNEXION",
+      "emailAddress": "Adresse E-mail",
+      "emailAddress_placeholder": "votreemail@exemple.com",
+      "password": "Mot de Passe",
+      "password_placeholder": "Votre Mot de Passe",
+      "forgotPassword": "Mot de Passe Oublié?",
+      "dontHaveAccount": "Vous n'avez pas de compte?",
+      "register": "S'INSCRIRE",
+      "name": "Nom",
+      "name_placeholder": "Votre Nom",
+      "selectLanguage": "Sélectionner la Langue",
+      "alreadyHaveAccount": "Vous avez déjà un compte?",
+      "resetPassword": "RÉINITIALISER LE MOT DE PASSE",
+      "rememberedPassword": "Vous avez retrouvé votre mot de passe?"
+    }
+  }
+}
