@@ -29,6 +29,7 @@
                 datum: '',
                 serviceIds: [],
                 selectedServices: [],
+                wantedServices: [],
                 extraPrice: '',
             }
         },
@@ -38,12 +39,10 @@
             },
             handleServiceIds() {
                 this.serviceIds = this.services
-                console.log(this.serviceIds)
                 return this.serviceIds
             },
             handleServicesResults() {
                 this.selectedServices = this.servicesResult
-                console.log(this.servicesResult)
                 return this.selectedServices
             },
             extra() {
@@ -69,10 +68,21 @@
             date() {
                 return this.$route.params.date;
             },
-            filteredServices() {
-                // this.serviceIds = Array.from(this.handleServiceIds)
-                // this.selectedServices = Array.from(this.handleServicesResults);
-                // return this.servicesResult.filter((obj) => this.serviceIds.includes(obj.id))
+            filteredServices() { 
+                // TODO: hier probeer ik de services te filteren op basis van de id's die ik heb opgehaald uit de url
+                // maar het lukt mij niet om ze te filteren op basis van de id's aangezien dit niet gaat omdat je dan een waarde undefined terugkrijgt
+                this.serviceIds = this.handleServiceIds
+                this.selectedServices = this.handleServicesResults;
+                var id = ''
+                for (id of this.serviceIds) {
+                    if (id == this.selectedServices.id) {
+                        console.log(id)
+                        console.log(this.selectedServices.id)
+                        this.wantedServices.push(id)
+                    }
+                }
+                console.log(this.wantedServices)
+                return this.wantedServices
             }
         },
         setup(){
