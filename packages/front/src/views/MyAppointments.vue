@@ -13,7 +13,7 @@
             <div class="flex mt-4 gap-16">
                 <div class="hover:border-3 hover:border-yellow-600">
                     <div class="relative">
-                        <img src="../../assets/barbers/Jeff.jpg" alt="Image" class="w-48" />
+                        <img src="../../assets/barbers/Jef.jpg" alt="Image" class="w-48" />
                         <div class="absolute bottom-32 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent"></div>
                         <div class="absolute bottom-0 left-0 w-full h-32 bg-black"></div>
                         <div class="relative flex ml-2 gap-1 mb-2">
@@ -63,7 +63,7 @@
                 </div>
                 <div class="hover:border-3 hover:border-yellow-600">
                     <div class="relative">
-                        <img src="../../assets/barbers/Jeff.jpg" alt="Image" class="w-48" />
+                        <img src="../../assets/barbers/Jef.jpg" alt="Image" class="w-48" />
                         <div class="absolute bottom-32 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent"></div>
                         <div class="absolute bottom-0 left-0 w-full h-32 bg-black"></div>
                         <div class="relative flex ml-2 gap-1 mb-2">
@@ -88,7 +88,7 @@
                 </div>
                 <div class="hover:border-3 hover:border-yellow-600">
                     <div class="relative">
-                        <img src="../../assets/barbers/Jeff.jpg" alt="Image" class="w-48" />
+                        <img src="../../assets/barbers/Jef.jpg" alt="Image" class="w-48" />
                         <div class="absolute bottom-32 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent"></div>
                         <div class="absolute bottom-0 left-0 w-full h-32 bg-black"></div>
                         <div class="relative flex ml-2 gap-1 mb-2">
