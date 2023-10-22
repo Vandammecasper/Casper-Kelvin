@@ -10,8 +10,9 @@
         </div>
         <div class="w-full grid justify-items-center h-80 mt-8">
             <h1 class="text-5xl Raleway-bold">{{ $t('account.myAccount.hello') }} {{firebaseUser?.displayName}}</h1>
-            <p class=" Raleway text-yellow-600">3 {{ $t('account.myAccount.points') }}</p>
-            <p class=" Raleway text-yellow-600">#30 {{ $t('account.myAccount.place') }}</p>
+            <p class=" Raleway text-yellow-600">{{ getPointByUidResult?.pointByUid.usablePoints }} {{ $t('account.myAccount.points') }}</p>
+            <p class=" Raleway text-yellow-600">{{ getPointByUidResult?.pointByUid.totalPoints }} {{ $t('account.myAccount.points') }}</p>
+            <p class=" Raleway text-yellow-600">#{{ getRangResult?.rank }} {{ $t('account.myAccount.place') }}</p>
             <div class="w-full grid grid-cols-2 gap-8 px-48">
                 <div>
                     <div class="mt-6">
@@ -143,6 +144,8 @@ import useLanguage from '@/composables/useLanguage'
 import { useI18n } from 'vue-i18n'
 import { SUPPORTED_LOCALES } from '@/bootstrap/i18n'
 import useCustomUser from '@/composables/useCustomUser'
+import { GET_POINT_BY_UID, GET_RANK } from '@/graphql/points.query'
+import { useQuery } from '@vue/apollo-composable'
 
 const { firebaseUser, logout } = useFirebase()
 // const { customUser } = useCustomUser()
@@ -157,6 +160,10 @@ const logoutUser = () => {
 const handleUpdateProfile = () => {
     console.log('update profile')
 }
+
+const { result: getPointByUidResult } = useQuery(GET_POINT_BY_UID)
+
+const { result: getRangResult } = useQuery(GET_RANK)
 
 const { setLocale } = useLanguage()
 const { locale } = useI18n()

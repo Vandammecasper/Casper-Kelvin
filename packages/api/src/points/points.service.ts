@@ -29,6 +29,23 @@ export class PointsService {
     return this.pointsRepository.findOne({ _id: new ObjectId(id) });
   }
 
+  findOneByUid(uid: string) {
+    return this.pointsRepository.findOne({ where: { uid } });
+  }
+
+  async getRank(uid: string) {
+    const myPoint = await this.pointsRepository.findOne({ where: { uid } });
+    if(!myPoint) return 0;
+
+    const allPoints = await this.pointsRepository.find({ order: { totalPoints: "DESC" } });
+    if (!allPoints) return 0;
+
+    const myRank = allPoints.findIndex(point => point.uid === uid);
+
+    //@ts-ignore
+    return myRank + 1;
+  }
+
   create(
     uid: string,
     userName: string,
