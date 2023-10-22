@@ -1,6 +1,6 @@
 <template>
-    <div class="h-screen grid">
-      <img src="../../assets/barbers/Samuel.jpg" alt="" class="absolute object-cover w-full h-screen z-0 opacity-50">
+    <div class="h-screen grid ">
+      <img src="../../assets/barbers/Samuel2.jpg" alt="" class="absolute object-cover w-full h-screen z-0 opacity-50 mt-10">
       <img src="../../assets/logo-PhotoRoom.png" alt="" class="h-96 w-96 mt-32 z-30 place-self-center relative">
       <RouterLink to="/appointment/services" class="place-self-center">
         <div class="border-4 border-yellow-500 p-2 relative">
@@ -85,7 +85,7 @@
           <div v-for="hairdresser of hairdressersResult?.hairdressers" :key="hairdresser.id">
             <div class="grid justify-items-center">
               <div class="relative w-5/6 border-4 border-b-0 border-yellow-600">
-                <img src="../../assets/barbers/Samue.jpg" alt="Image" class="w-full h-auto" />
+                <img :src="'../../assets/barbers/'+hairdresser.name+'.jpg'" alt="Image" class="w-full h-auto" />
                 <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"></div>
               </div>
               <div class="w-5/6 bg-black h-40 border-4 border-t-0 border-yellow-600 justify-items-center grid p-8">
