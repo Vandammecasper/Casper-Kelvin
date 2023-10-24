@@ -65,7 +65,10 @@
         "hello": "BONJOUR, ",
         "cancel": "ANNULER",
         "edit": "MODIFIER"
-      }
+      },
+      "vacation": {
+        "navigation": "VACANCES"
+      }    
     },
     "auth": {
       "login": "CONNEXION",
