@@ -2,12 +2,18 @@
     <div class="grid w-full h-screen content-center justify-items-center">
         <h1 class="Raleway-bold text-6xl mt-24">SUMMARY</h1>
         <p>services:</p>
-        <div>
-            <p>{{ filteredServices }}</p>
+        <div v-for="service of filteredServices" class="flex gap-4">
+            <p>{{ service.name }}</p>
+            <p>€ {{ service.price }}</p>
         </div>
+        <!-- <div>
+            <p>{{ filteredServices }}</p>
+        </div> -->
         <p>extra's:</p>
-        <p>{{ extra }}</p>
-        <p>{{ extraPrice }}</p>
+        <div class="flex gap-4">
+            <p>{{ extra }}</p>
+            <p>{{ extraPrice }}</p>
+        </div>
         <p>barber:</p>
         <p>{{ hairdressersResult?.hairdresser?.name }}</p>
         <p>date:</p>
@@ -68,8 +74,8 @@
                 var id = ''
                 for (id of this.serviceIds) {
                     this.selectedServices?.services.map((service) => {
-                        console.log("in the function")
                         if (service.id == id) {
+                            console.log(service.name)
                             this.wantedServices.push(service)
                         }
                     })
