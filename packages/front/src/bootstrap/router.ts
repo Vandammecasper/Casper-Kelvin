@@ -1,4 +1,6 @@
 // import path from 'path'
+import useCustomUser from '@/composables/useCustomUser';
+import useFirebase from '@/composables/useFirebase';
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -15,35 +17,51 @@ const router = createRouter({
         {
           path:'appointment/services',
           component: () => import('../views/appointment/service.vue'),
+          meta: { requiresAuth: true, requiresAdmin: false },
         },
         {
           path:'appointment/:service',
           name: 'appointment',
           component: () => import('../views/appointment/barbertime.vue'),
+          meta: { requiresAuth: true, requiresAdmin: false },
         },
         {
           path:'appointment/summary',
           component: () => import('../views/appointment/summary.vue'),
+          meta: { requiresAuth: true, requiresAdmin: false },
         }
       ]
     },
     {
       path: '/account',
       component: () => import('../../src/components/headerAccount.vue'),
+      meta: { requiresAuth: true, requiresAdmin: false },
       children: [
         {
           path: 'myaccount',
-          component: () => import('../views/Account.vue'),
+          component: () => import('../views/account/Account.vue'),
         },
         {
           path: 'myappointments',
-          component: () => import('../views/MyAppointments.vue'),
+          component: () => import('../views/account/MyAppointments.vue'),
+          meta: { requiresAuth: true, requiresAdmin: false },
+        },
+        {
+          path: 'myappointmentsadmin',
+          component: () => import('../views/account/myAppointmentsAdmin.vue'),
+          meta: { requiresAuth: true, requiresAdmin: true },
+        },
+        {
+          path: 'vacation',
+          component: () => import('../views/account/vacation.vue'),
+          meta: { requiresAuth: true, requiresAdmin: true },
         }
       ]
     },
     {
       path: '/auth',
       component: () => import('../components/wrappers/authWrap.vue'),
+      meta: { requiresAuth: false, requiresNoLogin: true},
       children: [
         {
           path: 'login',
@@ -79,5 +97,52 @@ const router = createRouter({
     },
   ],
 })
+
+/* 
+  check if user is logged in and if he is an admin 
+*/
+
+router.beforeEach((to, from, next) => {
+  const { logout, firebaseUser } = useFirebase(); // Adjust this based on your Firebase composable
+  const { customUser } = useCustomUser(); // Adjust this based on your user composable
+
+  // Check if the route requires authentication
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // Check if the user is authenticated
+    if (!firebaseUser.value) {
+      // Redirect to the login page or another appropriate page
+      next('/auth/login');
+    } else {
+      // Check if the route requires admin privileges
+      if (to.matched.some(record => record.meta.requiresAdmin)) {
+        if (customUser.value?.role === 'ADMIN') {
+          // User is authenticated and has admin privileges, allow access
+          next();
+        } else {
+          // User is not an admin, you can redirect to an error page or another appropriate page
+          next('/access-denied');
+        }
+      } else {
+        if (to.matched.some(record => record.meta.requiresNoLogin)) {
+
+        }
+        // No admin role required, allow access
+        next();
+      }
+    }
+  } else {
+    if (to.matched.some(record => record.meta.requiresNoLogin)) {
+      if (firebaseUser.value) {
+        // Redirect to the home page or another appropriate page
+        next('/');
+      } else {
+        // No authentication required, allow access
+        next();
+      }
+    }
+    // No authentication required, allow access
+    next();
+  }
+});
 
 export default router

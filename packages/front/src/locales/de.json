@@ -65,7 +65,10 @@
         "hello": "HALLO, ",
         "cancel": "STORNIEREN",
         "edit": "BEARBEITEN"
-      }
+      },
+      "vacation": {
+        "navigation": "URLAUB"
+      }    
     },
     "auth": {
       "login": "ANMELDEN",

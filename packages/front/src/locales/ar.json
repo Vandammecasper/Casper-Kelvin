@@ -65,7 +65,10 @@
         "hello": "مرحبًا، ",
         "cancel": "إلغاء",
         "edit": "تحرير"
-      }
+      },
+      "vacation": {
+        "navigation": "عطلة"
+      }    
     },
     "auth": {
       "login": "تسجيل الدخول",

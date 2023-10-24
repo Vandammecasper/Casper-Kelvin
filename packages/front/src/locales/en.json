@@ -65,6 +65,9 @@
                 "hello": "HELLO, ",
                 "cancel": "CANCEL",
                 "edit": "EDIT"
+            },
+            "vacation": {
+                "navigation": "VACATION"
             }
         },
         "auth": {

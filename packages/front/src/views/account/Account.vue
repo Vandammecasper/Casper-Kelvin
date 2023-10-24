@@ -1,13 +1,6 @@
 <template>
     <div @submit.prevent="handleUpdateProfile" class="flex w-full h-screen items-center">
-        <div class="w-2/5 border-r-2 border-neutral-600 content-center grid justify-items-center h-80 mt-32">
-            <RouterLink to="/account/myaccount">
-                <h2 class="text-3xl Raleway-bold">{{ $t('account.myAccount.navigation') }}</h2>
-            </RouterLink>
-            <RouterLink to="/account/myappointments">
-                <h2 class="text-2xl mt-6 text-neutral-700 Raleway-bold">{{ $t('account.myAppointments.navigation') }}</h2>
-            </RouterLink>
-        </div>
+        <NavigationAccount />   
         <div class="w-full grid justify-items-center h-80 mt-8">
             <h1 class="text-5xl Raleway-bold">{{ $t('account.myAccount.hello') }} {{firebaseUser?.displayName}}</h1>
             <p class=" Raleway text-yellow-600">{{ getPointByUidResult?.pointByUid.usablePoints }} {{ $t('account.myAccount.points') }}</p>
@@ -146,6 +139,7 @@ import { SUPPORTED_LOCALES } from '@/bootstrap/i18n'
 import useCustomUser from '@/composables/useCustomUser'
 import { GET_POINT_BY_UID, GET_RANK } from '@/graphql/points.query'
 import { useQuery } from '@vue/apollo-composable'
+import NavigationAccount from '@/components/navigationAccount.vue'
 
 const { firebaseUser, logout } = useFirebase()
 // const { customUser } = useCustomUser()

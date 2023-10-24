@@ -1,13 +1,6 @@
 <template>
     <div class="flex w-full h-screen items-center">
-        <div class="w-2/5 border-r-2 border-neutral-600 content-center grid justify-items-center h-80 mt-32">
-            <RouterLink to="/account/myaccount">
-                <h2 class="Raleway-bold text-2xl text-neutral-700">{{ $t('account.myAccount.navigation') }}</h2>
-            </RouterLink>
-            <RouterLink to="/account/myappointments">
-                <h2 class="Raleway-bold text-3xl mt-6">{{ $t('account.myAppointments.navigation') }}</h2>
-            </RouterLink>
-        </div>
+        <NavigationAccount />
         <div class="w-full grid h-96 mt-4 px-24">
             <h1 class="text-5xl Raleway-bold justify-self-center">{{ $t('account.myAppointments.hello') }} {{ firebaseUser?.displayName }}</h1>
             <div class="flex mt-4 gap-16">
@@ -129,6 +122,8 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import useFirebase from '@/composables/useFirebase'
+import { Navigation } from 'lucide-vue-next';
+import NavigationAccount from '@/components/navigationAccount.vue';
 
 const { firebaseUser } = useFirebase()
 
