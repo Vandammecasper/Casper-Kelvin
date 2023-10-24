@@ -12,12 +12,14 @@
         <p>extra's:</p>
         <div class="flex gap-4">
             <p>{{ extra }}</p>
-            <p>{{ extraPrice }}</p>
+            <p>€ {{ extraPrice }}.00</p>
         </div>
         <p>barber:</p>
         <p>{{ hairdressersResult?.hairdresser?.name }}</p>
         <p>date:</p>
         <p>{{ date }}</p>
+        <p>total cost:</p>
+        <p>{{ calculateTotalCost }}</p>
     </div>
 </template>
 
@@ -36,7 +38,8 @@
                 serviceIds: [],
                 selectedServices: [],
                 wantedServices: [],
-                extraPrice: '',
+                extraPrice: 0,
+                totalCost: 0,
             }
         },
         computed: {
@@ -48,15 +51,15 @@
                 var extraName = ''
                 if (extraId == '1' ){
                     extraName = 'Shampoo'
-                    this.extraPrice = '€ 4.00'
+                    this.extraPrice = 4
                 }
                 else if(extraId == '2') {
                     extraName = 'Shampoo & massage'
-                    this.extraPrice = '€ 6.00'
+                    this.extraPrice = 6
                 }
                 else if(extraId == '0') {
                    extraName = 'NO EXTRA' 
-                   this.extraPrice = '€ 0.00'
+                   this.extraPrice = 0
                 }
             return extraName ;
             },
@@ -82,6 +85,14 @@
                 }
                 console.log(this.wantedServices)
                 return this.wantedServices
+            },
+            calculateTotalCost(){
+                var service = {}
+                for (service of this.wantedServices) {
+                    this.totalCost += service.price
+                }
+                this.totalCost += this.extraPrice
+                return this.totalCost
             }
         },
         setup(){
