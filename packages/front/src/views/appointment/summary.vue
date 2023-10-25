@@ -18,8 +18,7 @@
         <p>{{ hairdressersResult?.hairdresser?.name }}</p>
         <p>date:</p>
         <p>{{ date }}</p>
-        <p>total cost:</p>
-        <p>{{ calculateTotalCost }}</p>
+        <button @click="handleAppointment" class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">TOTAL: € {{ calculateTotalCost }}</button>
     </div>
 </template>
 
@@ -28,6 +27,10 @@
     import { GET_HAIRDRESSER_BY_ID } from '@/graphql/hairdressers.query'
     import { GET_ALL_SERVICES } from '@/graphql/services.query';
     import { useRouter} from 'vue-router'
+    import type CustomAppointment from '@/interfaces/custom.appointment.interface'
+    import { useMutation } from '@vue/apollo-composable'
+    import {CREATE_APPOINTMENT} from '@/graphql/appointment.mutation'
+    import router from '@/router'
 
     export default {
         data(){
@@ -93,12 +96,41 @@
                 }
                 this.totalCost += this.extraPrice
                 return this.totalCost
-            }
+            },
         },
         setup(){
             const {currentRoute} = useRouter()
             const barberid = currentRoute.value.params.barber
             const serviceid = currentRoute.value.params.service
+
+            const extra = () => {
+                const extraId = currentRoute.value.params.extra
+                var extraName:string[] = []
+                if (extraId == '1' ){
+                    extraName = ['Shampoo']
+                }
+                else if(extraId == '2') {
+                    extraName = ['Shampoo & massage']
+                }
+                else if(extraId == '0') {
+                   extraName = ['NO EXTRA'] 
+                }
+                return extraName ;
+            }
+
+            const date = () => {
+                const datum = new Date(currentRoute.value.params.date)
+                const year = datum.getFullYear();
+                const month = String(datum.getMonth() + 1).padStart(2, '0');
+                const day = String(datum.getDate()).padStart(2, '0');
+                const hours = String(datum.getHours()).padStart(2, '0');
+                const minutes = String(datum.getMinutes()).padStart(2, '0');
+                const seconds = String(datum.getSeconds()).padStart(2, '0');
+                
+
+                const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+                return formattedDate
+                }
             
             const {
             result: getHairdresserByIdResult,
@@ -111,9 +143,39 @@
             result: getServicesResult,
             loading: getServicesLoading,
             } = useQuery(GET_ALL_SERVICES)
+
+            //ik probeer met de handleappointment functie een appointment aan te maken maar dit lukt niet
+            //wanneer de functie wordt uitgevoerd krijg ik een 400 code terug, namelijk bad request
+            //daarnaast zijn er ook 2 error messages met de info:
+            //Expected value of type \"CreateAppointmentInput!\", found CreateAppointmentInput.
+            //Variable \"$CreateAppointmentInput\" is never used in operation \"createAppointment\".
+            const {
+                mutate: CreateAppointment,
+                loading: createAppointmentLoading,
+                onDone: appointmentCreated,
+            } = useMutation<CustomAppointment>(CREATE_APPOINTMENT)
+
+            const handleAppointment = () => {
+                console.log(date())
+                console.log(barberid)
+                console.log(serviceid)
+                console.log(extra())
+                CreateAppointment({
+                    CreateAppointmentInput: {
+                        date: date(),
+                        hairdresserId: barberid,
+                        serviceIds: serviceid,
+                        extra: extra(),
+                    },
+                }).then(result => {
+                    if (!result?.data) throw new Error('Appointment creation failed.')
+                    router.push('/')
+                })
+            }
         return {
             hairdressersResult: getHairdresserByIdResult,
             servicesResult: getServicesResult,
+            handleAppointment
         }
         }
     };

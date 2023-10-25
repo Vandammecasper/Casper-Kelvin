@@ -32,11 +32,11 @@ export class AppointmentsResolver {
   @UseGuards(FirebaseGuard)
   @Mutation(() => Appointment)
   createAppointment(
-    @Args('createAppointmentInput') createAppointmentInput: CreateAppointmentInput,
+    @Args('CreateAppointmentInput') CreateAppointmentInput: CreateAppointmentInput,
     @FirebaseUser() user: UserRecord
   ): Promise<Appointment> {
     console.log(user.uid);
-    return this.appointmentsService.create(user.uid, user.displayName, createAppointmentInput);
+    return this.appointmentsService.create(user.uid, user.displayName, CreateAppointmentInput);
   }
 
   @Mutation(() => Appointment)
