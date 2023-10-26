@@ -101,7 +101,8 @@
         setup(){
             const {currentRoute} = useRouter()
             const barberid = currentRoute.value.params.barber
-            const serviceid = currentRoute.value.params.service
+            const serviceid = currentRoute.value.params.service.split(',').map(services => decodeURIComponent(services));
+            // const serviceid = currentRoute.value.params.service
 
             const extra = () => {
                 const extraId = currentRoute.value.params.extra
@@ -144,11 +145,8 @@
             loading: getServicesLoading,
             } = useQuery(GET_ALL_SERVICES)
 
-            //ik probeer met de handleappointment functie een appointment aan te maken maar dit lukt niet
-            //wanneer de functie wordt uitgevoerd krijg ik een 400 code terug, namelijk bad request
-            //daarnaast zijn er ook 2 error messages met de info:
-            //Expected value of type \"CreateAppointmentInput!\", found CreateAppointmentInput.
-            //Variable \"$CreateAppointmentInput\" is never used in operation \"createAppointment\".
+            // er stond geen $ bij > CreateAppointmentInput: $CreateAppointmentInput < hierdoor de error 
+            // serviceid was een string en moest een array zijn
             const {
                 mutate: CreateAppointment,
                 loading: createAppointmentLoading,
@@ -164,8 +162,8 @@
                     CreateAppointmentInput: {
                         date: date(),
                         hairdresserId: barberid,
-                        serviceIds: serviceid,
-                        extra: extra(),
+                        servicesId: serviceid,
+                        extras: extra(),
                     },
                 }).then(result => {
                     if (!result?.data) throw new Error('Appointment creation failed.')
