@@ -26,6 +26,10 @@ export class AppointmentsService {
   findByUid(uid: string) {
     return this.appointmentRepository.find({where: {uid: uid}, order: {date: 'ASC'}});
   }
+
+  findByHairdresserId(id: string) {
+    return this.appointmentRepository.find({where: {hairdresserId: new ObjectId(id)}, order: {date: 'ASC'}});
+  }
   
   findOne(id: string) {
     //@ts-ignore
