@@ -30,6 +30,10 @@ export class AppointmentsService {
   findByHairdresserId(id: string) {
     return this.appointmentRepository.find({where: {hairdresserId: new ObjectId(id)}, order: {date: 'ASC'}});
   }
+
+  completeAppointment(id: string) {
+    return this.appointmentRepository.updateOne({ _id: new ObjectId(id) }, { $set: { isCompleted: true } });
+  }
   
   findOne(id: string) {
     //@ts-ignore

@@ -50,3 +50,11 @@ export const GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_ID =  gql`
     }
   }
 `
+
+export const COMPLETE_APPOINTMENT =  gql`
+  mutation($id: String!) {
+    completeAppointment(id: $id) {
+      id
+    }
+  }
+`
