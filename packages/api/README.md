@@ -47,7 +47,11 @@ $ npm run start:prod
 
 ## Seeding
 
-### 1. Delete Services
+```console
+npx nestjs-command seed:...
+```
+
+### 1. Delete Services (if needed)
 
 ```console
 seed:database:services:reset
@@ -59,7 +63,7 @@ seed:database:services:reset
 seed:database:services
 ```
 
-### 3. Delete Hairdressers
+### 3. Delete Hairdressers (if needed)
 
 ```console
 seed:database:hairdressers:reset
@@ -71,7 +75,7 @@ seed:database:hairdressers:reset
 seed:database:hairdressers
 ```
 
-### 5. Delete Vacations
+### 5. Delete Vacations (if needed)
 
 ```console
 seed:database:vacations:reset
@@ -83,7 +87,7 @@ seed:database:vacations:reset
 seed:database:vacations
 ```
 
-### 7. Delete Points
+### 7. Delete Points (if needed)
 
 ```console
 seed:database:points:reset
@@ -93,6 +97,18 @@ seed:database:points:reset
 
 ```console
 seed:database:points
+```
+
+### 9. Delete Users (if needed)
+
+```console
+seed:database:users:reset
+```
+
+### 9. Add Users
+
+```console
+seed:database:users
 ```
 
 ## Services

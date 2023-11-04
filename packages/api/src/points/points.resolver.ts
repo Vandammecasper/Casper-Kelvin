@@ -15,6 +15,7 @@ import { Role } from 'src/users/entities/user.entity';
 export class PointsResolver {
   constructor(private readonly pointsService: PointsService) {}
 
+  //TODO: ask about this
   // @AllowedRoles(Role.SUPER_ADMIN)
   @UseGuards(FirebaseGuard) // , RolesGuard)  
   @Query(() => [Point], { name: 'points' })
@@ -30,6 +31,18 @@ export class PointsResolver {
   @Query(() => Point, { name: 'point' })
   findOne(@Args('id', { type: () => String }) id: string) {
     return this.pointsService.findOne(id);
+  }
+
+  @UseGuards(FirebaseGuard)
+  @Query(() => Point, { name: 'pointByUid' })
+  findOneByUid(@FirebaseUser() user: UserRecord) {
+    return this.pointsService.findOneByUid(user.uid);
+  }
+
+  @UseGuards(FirebaseGuard)
+  @Query(() => Int, { name: 'rank' })
+  getRank(@FirebaseUser() user: UserRecord) {
+    return this.pointsService.getRank(user.uid);
   }
 
   @UseGuards(FirebaseGuard)

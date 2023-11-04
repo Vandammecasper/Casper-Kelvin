@@ -1,0 +1,90 @@
+{
+  "nl": {
+    "Key": "nl",
+    "navigation": {
+      "makeAppointment": "Afspraak Maken",
+      "aboutUs": "Over Ons",
+      "ourService": "Onze Diensten",
+      "crew": "Het Team",
+      "hallOfFame": "Eregalerij"
+    },
+    "home": {
+      "about": {
+        "about": "OVER ONS",
+        "title": "MEER DAN SLECHTS EEN BARBIERSHOP",
+        "titleSM": "BESTE UITRUSTING",
+        "p": "Investeren in de juiste uitrusting is essentieel voor het runnen van een succesvolle barbierszaak. Onze zorgvuldig samengestelde selectie eersteklas gereedschap en uitrusting garandeert dat we de beste verzorgingservaring voor onze klanten kunnen bieden.",
+        "professionalBarbershop": "PROFESSIONELE BARBIERSHOP",
+        "professionalBarbershop_p": "Onze ervaren barbiers leveren onberispelijke knipbeurten, klassieke scheerbeurten en een vleugje elegantie, zodat u vertrekt met een geweldige uitstraling en een goed gevoel. Ervaar het hoogtepunt van verzorgingsexcellentie bij ons.",
+        "comfortablePlace": "EEN COMFORTABELE PLEK",
+        "comfortablePlace_p": "Bij The Barber is uw comfort onze prioriteit. Geniet van een rustige sfeer terwijl onze bekwame barbiers hun magie verrichten. Leun achterover, ontspan en vertrek met een gevoel van verjonging."
+      },
+      "services": {
+        "services": "DIENSTEN",
+        "title": "KRIJG EEN GEWELDIGE HAARKNIPBEURT BIJ DE BARBIER",
+        "p": "Bezoek ons bij The Barber voor een knipbeurt die uw stijl definieert. Onze bekwame barbiers zorgen ervoor dat elke bezoek u er op uw allerbest uit laat zien."
+      },
+      "crew": {
+        "crew": "HET TEAM",
+        "title": "ONTMOET ONS GEWELDIGE TEAM",
+        "p": "Ontdek het talent achter de magie. Ons toegewijde team van barbiers staat klaar om uw verzorgingsvisie in realiteit om te zetten."
+      },
+      "hallOfFame": {
+        "hallOfFame": "EREGALERIJ",
+        "title": "WORD EEN VAN ONZE GEËERDE KLANTEN",
+        "p": "Sluit u aan bij onze rangen als een geëerde klant. Ontdek de uitzonderlijke service en expertise op het gebied van verzorging die onze klanten steeds weer terugbrengt."
+      }
+    },
+    "footer": {
+      "information": "Informatie",
+      "openingHours": "Openingstijden",
+      "monFri": "Ma - Vr",
+      "satSun": "Za - Zo",
+      "holiday": "Feestdag",
+      "monFriTime": "9:00 - 18:00 uur",
+      "satSunTime": "9:00 - 13:00 uur",
+      "holidayTime": "9:00 - 12:00 uur"
+    },
+    "account": {
+      "myAccount": {
+        "navigation": "MIJN ACCOUNT",
+        "hello": "HALLO,",
+        "points": "punten",
+        "place": "plaats",
+        "name": "Naam",
+        "emailAddress": "E-mailadres",
+        "password": "Wachtwoord",
+        "confirmPassword": "Bevestig Wachtwoord",
+        "language": "Taal",
+        "publicShowOfPoints": "Openbare Weergave van Punten",
+        "logout": "UITLOGGEN",
+        "save": "OPSLAAN"
+      },
+      "myAppointments": {
+        "navigation": "MIJN AFSPRAKEN",
+        "hello": "HALLO, ",
+        "cancel": "ANNULEREN",
+        "edit": "BEWERKEN"
+      },
+      "vacation": {
+        "navigation": "VAKANTIE"
+      }    
+    },
+    "auth": {
+      "login": "INLOGGEN",
+      "emailAddress": "E-mailadres",
+      "emailAddress_placeholder": "jouwemail@example.com",
+      "password": "Wachtwoord",
+      "password_placeholder": "Jouw Wachtwoord",
+      "forgotPassword": "Wachtwoord Vergeten?",
+      "dontHaveAccount": "Heb je nog geen account?",
+      "register": "REGISTREREN",
+      "name": "Naam",
+      "name_placeholder": "Jouw Naam",
+      "selectLanguage": "Selecteer Taal",
+      "alreadyHaveAccount": "Heb je al een account?",
+      "resetPassword": "WACHTWOORD OPNIEUW INSTELLEN",
+      "rememberedPassword": "Herinner je je wachtwoord?"
+    }
+  }
+}

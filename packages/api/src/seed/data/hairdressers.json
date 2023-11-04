@@ -1,7 +1,7 @@
 [
     {
-      "uid": "pVbEmkBDAFUU4ChPbVYQeGMMITl2",
-      "name": "Kapper1",
+      "uid": "cQCC4OIADbOsDfn47ihVhD1B7nT2",
+      "name": "Samuel",
       "services": [
         {
           "name": "Simple Haircut",
@@ -27,8 +27,8 @@
       ]
     },
     {
-      "uid": "s2VrPmmg5EUr9cVf04TNgGLNMPH3",
-      "name": "Kapper2",
+      "uid": "DcrXhY203jaSdAHiXxLuZWCqloJ3",
+      "name": "Sofie",
       "services": [
         {
           "name": "Beard Sculpt",
@@ -62,6 +62,23 @@
           "utilities": [
             "scheermes",
             "scheermachine"
+          ]
+        }
+      ]
+    },
+    {
+      "uid": "Zd0t7ecAlZWTVGIcFx3xBI5r33x2",
+      "name": "Jef",
+      "services": [
+        {
+          "name": "Simple Haircut",
+          "description": "We believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.",
+          "price": 19.99,
+          "duration": 15,
+          "utilities": [
+            "schaar",
+            "borstel",
+            "scheermes"
           ]
         }
       ]

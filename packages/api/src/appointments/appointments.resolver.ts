@@ -23,6 +23,12 @@ export class AppointmentsResolver {
   findAll() {
     return this.appointmentsService.findAll();
   }
+
+  @UseGuards(FirebaseGuard)
+  @Query(() => [Appointment], { name: 'appointmentsByUid' })
+  findByUid(@FirebaseUser() user: UserRecord) {
+    return this.appointmentsService.findByUid(user.uid);
+  }
   
   @Query(() => Appointment, { name: 'appointment' })
   findOne(@Args('id', { type: () => String }) id: string) {

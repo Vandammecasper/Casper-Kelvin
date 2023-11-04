@@ -1,0 +1,27 @@
+[
+    {
+    "uid": "Zd0t7ecAlZWTVGIcFx3xBI5r33x2", 
+    "locale": "nl",
+    "role": "ADMIN"
+    },
+    {
+    "uid": "DcrXhY203jaSdAHiXxLuZWCqloJ3",
+    "locale": "nl",
+    "role": "ADMIN"
+    },
+    {
+    "uid": "cQCC4OIADbOsDfn47ihVhD1B7nT2",
+    "locale": "nl",
+    "role": "ADMIN"
+    },
+    {
+    "uid": "0g51xgqpOCOaA5KLPe0tIQqJcKD3",
+    "locale": "nl",
+    "role": "USER"
+    },
+    {
+    "uid": "dKAvmADcN2Q2UInpy10jpl9wAjD2",
+    "locale": "nl",
+    "role": "USER"
+    }
+]
