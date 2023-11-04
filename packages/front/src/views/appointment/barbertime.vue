@@ -9,7 +9,7 @@
                     @click="toggleSelection(hairdresser.id)"
                     :class="{
                         'border-2 border-yellow-600 hover:border-yellow-600': isSelected(hairdresser.id),
-                        'p-1 hover:border-2 hover:border-neutral-600': true // Add other classes as needed
+                        'p-1 border-2 border-transparent hover:border-neutral-600': true // Add other classes as needed
                     }">
                         <div class="h-24 relative grid content-center">
                             <img src="../../../assets/barbers/Samuel.jpg" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
