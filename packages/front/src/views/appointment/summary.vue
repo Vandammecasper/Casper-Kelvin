@@ -30,7 +30,7 @@
     import type CustomAppointment from '@/interfaces/custom.appointment.interface'
     import { useMutation } from '@vue/apollo-composable'
     import {CREATE_APPOINTMENT} from '@/graphql/appointment.mutation'
-    import router from '@/router'
+    import router from '../../bootstrap/router'
 
     export default {
         data(){
