@@ -6,4 +6,6 @@ export interface CustomService {
     duration: number;
     utilities: string[];
   }
+
+  export default CustomService;
   

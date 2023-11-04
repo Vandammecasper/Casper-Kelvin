@@ -7,7 +7,7 @@
             :key="service.id"
             :class="{
                 'border-2 border-yellow-600 hover:border-yellow-600': isSelected(service.id),
-                'p-1 hover:border-2 hover:border-neutral-600': true // Add other classes as needed
+                'p-1 hover:border-2 hover:border-neutral-600 border-2 border-transparent': true // Add other classes as needed
             }"
             @click="toggleSelection(service.id)"
             >
@@ -35,7 +35,7 @@
                 </div>
                 <p class="text-neutral-600 text-sm pr-20 Raleway">Add an extra layer of pampering to your grooming experience with our optional shampoo wash. Indulge in ultimate relaxation and leave with a clean, revitalized feel.</p>
             </button>
-            <button v-else @click="handleShampoo()" class="mx-10 p-1 text-left">
+            <button v-else @click="handleShampoo()" class="mx-10 p-1 text-left border-2 border-transparent hover:border-neutral-600">
                 <div class="flex justify-between">
                     <h4 class="text-xl Raleway-bold">SHAMPOO</h4>
                     <h4 class="text-xl Raleway-bold">+€ 4.00</h4>
@@ -49,17 +49,17 @@
                 </div>
                 <p class="text-neutral-600 text-sm pr-20 Raleway">Experience the ultimate relaxation with our optional shampoo wash and massage. Elevate your grooming session to a spa-like indulgence.</p>
             </button>
-            <button v-else @click="handleMassage()" class="mx-10 p-1 mt-8 text-left">
+            <button v-else @click="handleMassage()" class="mx-10 p-1 mt-8 text-left border-2 border-transparent hover:border-neutral-600">
                 <div class="flex justify-between">
                     <h4 class="text-xl Raleway-bold">SHAMPOO & MASSAGE</h4>
                     <h4 class="text-xl Raleway-bold">+€ 6.00</h4>
                 </div>
                 <p class="text-neutral-600 text-sm pr-20 raleway">Experience the ultimate relaxation with our optional shampoo wash and massage. Elevate your grooming session to a spa-like indulgence.</p>
             </button>
-            <router-link v-if="extra" :to="{ name: 'appointment', params: { service: selectedServices.join(',') } }">
+            <router-link v-if="extra" :to="{ name: 'appointment', params: { service: selectedServices.join(','), extra: selectedExtra } }">
                 <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">NEXT</button>
             </router-link>
-            <RouterLink v-else :to="{ name: 'appointment', params: { service: selectedServices.join(',') } }">
+            <RouterLink v-else :to="{ name: 'appointment', params: { service: selectedServices.join(','), extra: selectedExtra } }">
                 <button class="mt-8 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8 font-semibold  hover:bg-neutral-700 focus:outline-none focus-visible:border-neutral-600 focus-visible:bg-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-300">SKIP</button>
             </RouterLink>
         </div>
@@ -96,6 +96,7 @@ export default {
     data() {
         return {
             selectedServices: [],
+            selectedExtra: 0,
             cont: false,
             next: false,
             shampoo: false,
@@ -136,18 +137,15 @@ export default {
             if(this.shampoo == true){
                 this.shampoo = false;
                 this.extra = false;
-                const index = this.selectedServices.indexOf(2);
-                this.selectedServices.splice(index, 1);
+                this.selectedExtra = 0;
             }
             else{
                 this.shampoo = true;
                 this.extra = true;
-                this.selectedServices.push(1);
+                this.selectedExtra = 1;
             }
             if (this.massage == true) {
                 this.massage = false;
-                const index = this.selectedServices.indexOf(2);
-                this.selectedServices.splice(index, 1);
             }
             console.log(this.selectedServices)
         },
@@ -155,18 +153,15 @@ export default {
             if(this.massage == true){
                 this.massage = false;
                 this.extra = false;
-                const index = this.selectedServices.indexOf(1);
-                this.selectedServices.splice(index, 1);
+                this.selectedExtra = 0;
             }
             else{
                 this.massage = true;
                 this.extra = true;
-                this.selectedServices.push(2);
+                this.selectedExtra = 2;
             }
             if (this.shampoo == true) {
                 this.shampoo = false;
-                const index = this.selectedServices.indexOf(1);
-                this.selectedServices.splice(index, 1);
             }
             console.log(this.selectedServices)
         }

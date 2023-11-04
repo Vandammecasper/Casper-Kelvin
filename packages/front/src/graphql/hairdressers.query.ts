@@ -16,3 +16,12 @@ query {
     }
   }
 `
+
+export const GET_HAIRDRESSER_BY_ID = gql`
+query hairdresser($id: String!) {
+  hairdresser(id: $id){
+    id,
+    name
+  }
+}
+`

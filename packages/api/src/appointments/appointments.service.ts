@@ -31,7 +31,7 @@ export class AppointmentsService {
   async create(
     uid: string,
     userName: string,
-    createAppointmentInput: CreateAppointmentInput
+    CreateAppointmentInput: CreateAppointmentInput
     ): Promise<Appointment> {
     try{
       let servicesObjectId = [];
@@ -46,13 +46,13 @@ export class AppointmentsService {
           throw new Error('UID already exists');
 
       // if the hairdresserId is not found, throw an error
-      const hairdresser = await this.hairdresserService.findOne(createAppointmentInput.hairdresserId);
+      const hairdresser = await this.hairdresserService.findOne(CreateAppointmentInput.hairdresserId);
 
       if (!hairdresser) {
         throw new Error('Hairdresser not found');
       }
      
-      for (const serviceId of createAppointmentInput.servicesId) {
+      for (const serviceId of CreateAppointmentInput.servicesId) {
         const service = await this.serviceService.findOne(serviceId);
         if (!service) {
           throw new Error('Service not found');
@@ -64,16 +64,16 @@ export class AppointmentsService {
       }
       
       // if there is an appointment between appointment.date and appointment.date + totalTime, throw an error
-      const endDate = dayjs(createAppointmentInput.date).add(totalTime, 'minute').toDate() // manipulate
+      const endDate = dayjs(CreateAppointmentInput.date).add(totalTime, 'minute').toDate() // manipulate
 
       const appointments = await this.appointmentRepository.find({
         where: {
           date: {
-            $gte: createAppointmentInput.date,
+            $gte: CreateAppointmentInput.date,
             $lt: endDate,
           },
           isCompleted: false, // Optional: Only consider incomplete appointments
-          hairdresserId: new ObjectId(createAppointmentInput.hairdresserId),
+          hairdresserId: new ObjectId(CreateAppointmentInput.hairdresserId),
         },
       });
       
@@ -82,13 +82,13 @@ export class AppointmentsService {
       }
 
       const newAppointment = new Appointment();
-      newAppointment.date = new Date(createAppointmentInput.date);
+      newAppointment.date = new Date(CreateAppointmentInput.date);
       newAppointment.totalTime = totalTime;
       newAppointment.uid = uid;
       newAppointment.userName = userName;
-      newAppointment.hairdresserId = new ObjectId(createAppointmentInput.hairdresserId);
+      newAppointment.hairdresserId = new ObjectId(CreateAppointmentInput.hairdresserId);
       newAppointment.servicesId = servicesObjectId;
-      newAppointment.extras = createAppointmentInput.extras;
+      newAppointment.extras = CreateAppointmentInput.extras;
       newAppointment.price = totalPrice;
       newAppointment.addedPoints = addedPoints;
       newAppointment.isCompleted = false;
