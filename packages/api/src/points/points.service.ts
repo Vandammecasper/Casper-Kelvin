@@ -34,7 +34,9 @@ export class PointsService {
   }
 
   async getRank(uid: string) {
+    console.log(uid);
     const myPoint = await this.pointsRepository.findOne({ where: { uid } });
+    console.log(myPoint);
     if(!myPoint) return 0;
 
     const allPoints = await this.pointsRepository.find({ order: { totalPoints: "DESC" } });

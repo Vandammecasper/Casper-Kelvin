@@ -159,6 +159,8 @@ const { result: getPointByUidResult } = useQuery(GET_POINT_BY_UID)
 
 const { result: getRangResult } = useQuery(GET_RANK)
 
+// console.log(getRangResult?.rank, "getRangResult")
+
 const { setLocale } = useLanguage()
 const { locale } = useI18n()
 
