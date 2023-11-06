@@ -32,9 +32,9 @@ export class AppointmentsResolver {
 
   // TODO: add user guard
   @UseGuards(FirebaseGuard)
-  @Query(() => [Appointment], { name: 'appointmentsByHairdresserId' })
-  findByHairdresserId(@Args('id', { type: () => String }) id: string) {
-    return this.appointmentsService.findByHairdresserId(id);
+  @Query(() => [Appointment], { name: 'appointmentsByHairdresserUid' })
+  findByHairdresserId(@FirebaseUser() user: UserRecord) {
+    return this.appointmentsService.findByHairdresserUid(user.uid);
   }
 
   //TODO add user guard

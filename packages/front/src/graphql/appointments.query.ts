@@ -29,9 +29,9 @@ query {
   }
 `  
 
-export const GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_ID =  gql`
-  query($id: String!) {
-    appointmentsByHairdresserId(id: $id) {
+export const GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID =  gql`
+  query {
+    appointmentsByHairdresserUid {
       id
       date
       totalTime
