@@ -27,12 +27,23 @@ export class AppointmentsService {
     return this.appointmentRepository.find({where: {uid: uid}, order: {date: 'ASC'}});
   }
 
-  findByHairdresserId(id: string) {
-    return this.appointmentRepository.find({where: {hairdresserId: new ObjectId(id)}, order: {date: 'ASC'}});
+  async findByHairdresserUid(uid: string) {
+    //TODO: get id of hairdresser from uid
+    let hairdresserId;
+   await this.hairdresserService.findOneByUid(uid).then((hairdresser) => {
+      if (!hairdresser) {
+        throw new Error('Hairdresser not found');
+      }
+      console.log(hairdresser.id);
+      hairdresserId = hairdresser.id;
+    });
+    const test = this.appointmentRepository.find({where: {hairdresserId: new ObjectId(hairdresserId)}, order: {date: 'ASC'}});
+    return test
   }
 
   completeAppointment(id: string) {
     return this.appointmentRepository.updateOne({ _id: new ObjectId(id) }, { $set: { isCompleted: true } });
+    //TODO: update the points of the user
   }
   
   findOne(id: string) {
@@ -113,21 +124,21 @@ export class AppointmentsService {
   }
 
   // if isCompleted is true, then update the points of the user
-  async updateIsCompleted(id: string): Promise<Appointment> {
-    // @ts-ignore
-    const appointment = await this.appointmentRepository.findOne({ _id: new ObjectId(id) });
-    if (!appointment) {
-      throw new Error(`Appointment with id ${id} not found`);
-    }
-    if (appointment.isCompleted) {
-      throw new Error(`Appointment with id ${id} is already completed`);
-    }
-    appointment.isCompleted = true;
+  // async updateIsCompleted(id: string): Promise<Appointment> {
+  //   // @ts-ignore
+  //   const appointment = await this.appointmentRepository.findOne({ _id: new ObjectId(id) });
+  //   if (!appointment) {
+  //     throw new Error(`Appointment with id ${id} not found`);
+  //   }
+  //   if (appointment.isCompleted) {
+  //     throw new Error(`Appointment with id ${id} is already completed`);
+  //   }
+  //   appointment.isCompleted = true;
 
-    // TODO: update the points of the user
+  //   // TODO: update the points of the user
 
-    return this.appointmentRepository.save(appointment);
-  }
+  //   return this.appointmentRepository.save(appointment);
+  // }
 
   update(id: number, updateAppointmentInput: UpdateAppointmentInput) {
     return `This action updates a #${id} appointment`;

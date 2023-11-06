@@ -12,17 +12,21 @@ export class HairdressersService {
   
   constructor(
     @InjectRepository(Hairdresser)
-    private readonly birdRepository: Repository<Hairdresser>,
+    private readonly hairdresserRepository: Repository<Hairdresser>,
     private readonly serviceService: ServicesService,
   ) {}
 
   findAll() {
-    return this.birdRepository.find();
+    return this.hairdresserRepository.find();
   }
 
   findOne(id: string) {
     //@ts-ignore
-    return this.birdRepository.findOne({ _id: new ObjectId(id) });
+    return this.hairdresserRepository.findOne({ _id: new ObjectId(id) });
+  }
+
+  findOneByUid(uid: string) {
+    return this.hairdresserRepository.findOne({where: {uid: uid}});
   }
 
   async create(
@@ -44,7 +48,7 @@ export class HairdressersService {
         newHairdresser.uid = createHairdresserInput.uid;
         newHairdresser.name = createHairdresserInput.name;
         newHairdresser.servicesId = servicesObjectId;
-        return this.birdRepository.save(newHairdresser);
+        return this.hairdresserRepository.save(newHairdresser);
     } catch (error) {
       console.log(error);
     }
@@ -60,10 +64,10 @@ export class HairdressersService {
 
   // functions for seeding
   saveAll(hairdressers: Hairdresser[]): Promise<Hairdresser[]> {
-    return this.birdRepository.save(hairdressers);
+    return this.hairdresserRepository.save(hairdressers);
   }
 
   truncate(): Promise<void> {
-    return this.birdRepository.clear();
+    return this.hairdresserRepository.clear();
   }
 }

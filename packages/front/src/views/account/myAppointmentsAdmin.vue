@@ -1,14 +1,22 @@
 <template>
     <div class="flex w-full h-screen items-center">
         <NavigationAccount />
-        <div class="w-full grid h-96 mt-4 px-24">
-            <h1 class="text-5xl Raleway-bold">{{ $t('account.myAccount.hello') }} {{firebaseUser?.displayName}}</h1>
+        <div class="w-full h-96 mt-4 px-24">
+            <h1 class="text-5xl Raleway-bold mb-4">{{ $t('account.myAccount.hello') }} {{firebaseUser?.displayName}}</h1>
 
-            <select class="bg-neutral-900 border-white border-1 h-10" name="isOpen" id="" v-model="isOpen" @change="getWantedAppointments">
+            <select class="bg-neutral-900 border-white border-1 h-10 w-full" name="isOpen" id="" v-model="isOpen">
                 <option :value="true">Open Appointments</option>
                 <option :value="false">All Appointments</option>
             </select>
 
+            <div class="mt-2">
+                <input id="start-picker" type="text" placeholder="Select start date" class="bg-neutral-900 border-2 mr-2 p-1">
+                <input id="end-picker" type="text" placeholder="Select end date" class="bg-neutral-900 border-2 mr-2 p-1">
+                <button @click="getWantedAppointments" class="lg:float-right border-3 p-1">Apply Filter</button>
+            </div>
+            <div v-if="error != ''">
+                <p class="text-red-500 text-center">{{ error }}</p>
+            </div>
             <ul class="w-full mt-4">
                 <li class="p-2 border-y-slate-700 border-b-2 flex justify-between">
                     <p>Services</p>
@@ -77,17 +85,22 @@
 
 import NavigationAccount from '@/components/navigationAccount.vue';
 import { useMutation, useQuery } from '@vue/apollo-composable';
-import { GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_ID, COMPLETE_APPOINTMENT } from '@/graphql/appointments.query';
+import { GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID, COMPLETE_APPOINTMENT } from '@/graphql/appointments.query';
 import useFirebase from '@/composables/useFirebase';
 import { ref, type Ref } from 'vue';
 import { X } from 'lucide-vue-next'
 import type { CustomAppointment } from '@/interfaces/custom.appointment.interface';
+import flatpickr from "flatpickr";
+import 'flatpickr/dist/flatpickr.css';
+import { onMounted } from 'vue';
 
 const { firebaseUser } = useFirebase()
 
 const showOverlay = ref(false);
 const isOpen = ref(true) as Ref<boolean>;
 const selectedAppointment = ref({} as CustomAppointment);
+
+let error = "";
 
 const toggleShowOverlay = () => {
     showOverlay.value = !showOverlay.value;
@@ -99,16 +112,71 @@ const selectAppointment = (appointment: any) => {
 
 const visualAppointments = ref([] as CustomAppointment[]);
 
+/*
+ * Flatpickr
+*/
+ // Calculate the default start date (Monday of the current week)
+ const currentDate = new Date();
+const currentDay = currentDate.getDay();
+const daysUntilMonday = currentDay === 0 ? 6 : currentDay - 1; // Sunday is 0, so we adjust to Monday being 1
+const defaultStartDate = new Date(currentDate);
+defaultStartDate.setDate(currentDate.getDate() - daysUntilMonday);
+
+// Calculate the default end date (Sunday of the current week)
+const defaultEndDate = new Date(defaultStartDate);
+defaultEndDate.setDate(defaultStartDate.getDate() + 6);
+
+const startDate = ref(new Date());
+const endDate = ref(new Date());
+
+//TODO: add validation to the date pickers
+onMounted(() => {
+    const startPicker = flatpickr('#start-picker', {
+        altInput: true,
+        altFormat: 'F j, Y',
+        dateFormat: 'Y-m-d\TH:i:S.000\Z',
+        defaultDate: defaultStartDate,
+        onClose: function (selectedDates) {
+            if(selectedDates[0] < endDate.value) {
+                startDate.value = selectedDates[0];
+            }
+        },
+    });
+
+    const endPicker = flatpickr('#end-picker', {
+        altInput: true,
+        altFormat: 'F j, Y',
+        dateFormat: 'Y-m-d\TH:i:S.000\Z',
+        defaultDate: defaultEndDate,
+        onClose: function (selectedDates) {
+            if(selectedDates[0] > startDate.value) {
+                endDate.value = selectedDates[0];
+            }
+        },
+    });
+});
+
+/*
+ * End Flatpickr
+*/
+
 const getWantedAppointments = () => {
-    // console.log(getAppointmentsResult.value.appointmentsByHairdresserId);
-    console.log(isOpen.value);
-    visualAppointments.value = [];
-    console.log(visualAppointments.value, "visualAppointments");
-    visualAppointments.value = getAppointmentsResult?.value.appointmentsByHairdresserId
+    // visualAppointments.value = [];
+
+    //TODO: error with errors
+    error = "";
+
+    if (getAppointmentsResult?.value?.appointmentsByHairdresserUid <= 0) {
+        error = "No appointments found";
+        console.log(error);
+    };
+
+    visualAppointments.value = getAppointmentsResult?.value.appointmentsByHairdresserUid
         .map((appointment: any) => {
 
-            console.log(appointment.isCompleted);
             if (isOpen.value == true && appointment.isCompleted == true) return null;
+
+            if (startDate.value > new Date(appointment.date) || endDate.value < new Date(appointment.date)) return null;
 
             return {
                 id: appointment.id,
@@ -124,9 +192,14 @@ const getWantedAppointments = () => {
                 userName: appointment.userName
             };
         })
-        .filter(appointment => appointment !== null); // Remove the filtered null values
-
-    console.log(visualAppointments.value);
+        .filter((appointment: any) => appointment !== null); // Remove the filtered null values
+    
+    if(visualAppointments.value.length == 0){ 
+        if (error == "")
+            error = "No appointments found in this time period";
+    }else{
+        error = "";
+    }
 };
     
 const finishAppointment = () => {
@@ -142,9 +215,7 @@ const finishAppointment = () => {
 
 
 //TODO: get the hairdresser id
-const {result: getAppointmentsResult, loading } = useQuery(GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_ID, {
-    id: "652fd58239d9756ff8009ab9"
-})
+const {result: getAppointmentsResult, loading } = useQuery(GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID)
 
 const { mutate: completeAppointment } = useMutation(COMPLETE_APPOINTMENT);
 
