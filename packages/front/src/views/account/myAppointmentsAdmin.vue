@@ -126,8 +126,8 @@ defaultStartDate.setDate(currentDate.getDate() - daysUntilMonday);
 const defaultEndDate = new Date(defaultStartDate);
 defaultEndDate.setDate(defaultStartDate.getDate() + 6);
 
-const startDate = ref(new Date());
-const endDate = ref(new Date());
+const startDate = ref(new Date(defaultStartDate));
+const endDate = ref(new Date(defaultEndDate));
 
 //TODO: add validation to the date pickers
 onMounted(() => {
