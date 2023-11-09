@@ -92,6 +92,7 @@ import { X } from 'lucide-vue-next'
 import type { CustomAppointment } from '@/interfaces/custom.appointment.interface';
 import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.css';
+import 'flatpickr/dist/themes/dark.css';
 import { onMounted } from 'vue';
 
 const { firebaseUser } = useFirebase()
