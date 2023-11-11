@@ -12,3 +12,11 @@ mutation
   }
 }
 `
+
+export const DELETE_APPOINTMENT_BY_ID = gql`
+  mutation($id: String!) {
+    removeAppointment(id: $id) {
+      date
+    }
+  }
+`

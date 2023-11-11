@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="flex justify-between pt-1 pb-2 px-4 bg-black">
-                        <button :onclick="handleCancel" class="Raleway-bold  border-2 border-red-500 bg-red-500 p-2 hover:bg-red-600 focus:outline-none focus-visible:border-red-500 focus-visible:bg-red-600 focus-visible:ring-2 focus-visible:ring-red-300">{{ $t('account.myAppointments.cancel') }}</button>
+                        <button :onclick="() => handleDeleteAppointment(appointment?.id)" class="Raleway-bold  border-2 border-red-500 bg-red-500 p-2 hover:bg-red-600 focus:outline-none focus-visible:border-red-500 focus-visible:bg-red-600 focus-visible:ring-2 focus-visible:ring-red-300">{{ $t('account.myAppointments.cancel') }}</button>
                         <RouterLink to="/">
                             <button class="Raleway-bold  border-2 border-yellow-600 bg-yellow-600 p-2 px-5 hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-500 focus-visible:bg-yellow-600 focus-visible:ring-2 focus-visible:ring-yellow-500">{{ $t('account.myAppointments.edit') }}</button>
                         </RouterLink>
@@ -53,18 +53,27 @@ import { useRouter } from 'vue-router'
 import useFirebase from '@/composables/useFirebase'
 import { Navigation } from 'lucide-vue-next';
 import NavigationAccount from '@/components/navigationAccount.vue';
-import { useQuery } from '@vue/apollo-composable';
+import { useMutation, useQuery } from '@vue/apollo-composable';
 import { GET_ALL_APPOINTMENTS_BY_UID } from '@/graphql/appointments.query';
+import { DELETE_APPOINTMENT_BY_ID } from '@/graphql/appointment.mutation';
 
 const { firebaseUser } = useFirebase()
 
 const {
     result: getAllAppointmentsByUid,
-} = useQuery(GET_ALL_APPOINTMENTS_BY_UID)
+} = useQuery(GET_ALL_APPOINTMENTS_BY_UID, {
+    "isOpen": false,
+})
 
+const {
+    mutate: deleteAppointment,
+} = useMutation(DELETE_APPOINTMENT_BY_ID)
 
-const handleCancel = () => {
-    console.log('cancel')
+const handleDeleteAppointment = async (id: string) => {
+    await deleteAppointment({
+        id: id
+    })
+    location.reload()
 }
 
 </script>

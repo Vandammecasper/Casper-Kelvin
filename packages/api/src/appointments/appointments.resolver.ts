@@ -26,8 +26,11 @@ export class AppointmentsResolver {
 
   @UseGuards(FirebaseGuard)
   @Query(() => [Appointment], { name: 'appointmentsByUid' })
-  findByUid(@FirebaseUser() user: UserRecord) {
-    return this.appointmentsService.findByUid(user.uid);
+  findByUid(
+    @FirebaseUser() user: UserRecord,
+    @Args('isOpen', { type: () => Boolean }) isOpen: boolean
+  ) {
+    return this.appointmentsService.findByUid(user.uid, isOpen);
   }
 
   // TODO: add user guard

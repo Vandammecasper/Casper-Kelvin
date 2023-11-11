@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const GET_ALL_APPOINTMENTS_BY_UID =  gql`
-query {
-    appointmentsByUid {
+query($isOpen: Boolean!) {
+    appointmentsByUid(isOpen: $isOpen) {
       id
       date
       totalTime
