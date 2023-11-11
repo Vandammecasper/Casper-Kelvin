@@ -23,7 +23,10 @@ export class AppointmentsService {
     return this.appointmentRepository.find();
   }
 
-  findByUid(uid: string) {
+  findByUid(uid: string, isOpen: boolean) {
+    if (isOpen) {
+      return this.appointmentRepository.find({where: {uid: uid, isCompleted: false}, order: {date: 'ASC'}});
+    }
     return this.appointmentRepository.find({where: {uid: uid}, order: {date: 'ASC'}});
   }
 
