@@ -8,6 +8,7 @@ import { HairdressersService } from 'src/hairdressers/hairdressers.service';
 import { ServicesService } from 'src/services/services.service';
 import { ObjectId } from 'mongodb';
 import * as dayjs from 'dayjs';
+import { PointsService } from 'src/points/points.service';
 
 @Injectable()
 export class AppointmentsService {
@@ -17,6 +18,7 @@ export class AppointmentsService {
     private readonly appointmentRepository: MongoRepository<Appointment>,
     private readonly hairdresserService: HairdressersService,
     private readonly serviceService: ServicesService,
+    private readonly pointsService: PointsService,
   ) {}
   
   findAll() {
@@ -44,9 +46,17 @@ export class AppointmentsService {
     return test
   }
 
-  completeAppointment(id: string) {
-    return this.appointmentRepository.updateOne({ _id: new ObjectId(id) }, { $set: { isCompleted: true } });
-    //TODO: update the points of the user
+  async completeAppointment(id: string) {
+    const updateResult = await this.appointmentRepository.updateOne({ _id: new ObjectId(id) }, { $set: { isCompleted: true } });
+    
+    if (updateResult.matchedCount > 0) {
+      // @ts-ignore
+      const updatedAppointment = await this.appointmentRepository.findOne({ _id: new ObjectId(id) });
+      console.log(updatedAppointment.addedPoints);
+      await this.pointsService.addPoints(updatedAppointment?.uid, updatedAppointment?.addedPoints);
+      return updatedAppointment;
+    }
+    throw new Error(`Appointment with id ${id} not found`);
   }
   
   findOne(id: string) {
