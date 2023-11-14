@@ -5,12 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Appointment } from './entities/appointment.entity';
 import { HairdressersModule } from 'src/hairdressers/hairdressers.module';
 import { ServicesModule } from 'src/services/services.module';
+import { PointsModule } from 'src/points/points.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Appointment]),
     HairdressersModule,
-    ServicesModule
+    ServicesModule,
+    PointsModule
   ],
   providers: [AppointmentsResolver, AppointmentsService],
   exports: [AppointmentsService],
