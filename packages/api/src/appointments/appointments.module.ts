@@ -6,13 +6,15 @@ import { Appointment } from './entities/appointment.entity';
 import { HairdressersModule } from 'src/hairdressers/hairdressers.module';
 import { ServicesModule } from 'src/services/services.module';
 import { PointsModule } from 'src/points/points.module';
+import { ExtrasModule } from 'src/extras/extras.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Appointment]),
     HairdressersModule,
     ServicesModule,
-    PointsModule
+    PointsModule,
+    ExtrasModule,
   ],
   providers: [AppointmentsResolver, AppointmentsService],
   exports: [AppointmentsService],

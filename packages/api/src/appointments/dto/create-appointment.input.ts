@@ -14,6 +14,6 @@ export class CreateAppointmentInput {
   servicesId: string[];
 
   @Field(() => [String], { description: 'Extra’s' })
-  extras: string[];
+  extraId: string;
 
 }

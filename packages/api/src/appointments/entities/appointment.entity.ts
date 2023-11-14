@@ -3,6 +3,7 @@ import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
 import {ObjectId} from 'mongodb';
 import { Service } from 'src/services/entities/service.entity';
+import { Extra } from 'src/extras/entities/extra.entity';
 
 @Entity()
 @ObjectType()
@@ -41,8 +42,10 @@ export class Appointment {
   services: Service[]
 
   @Column()
-  @Field(() => [String], { description: 'Extra’s', nullable: true })
-  extras: string[]
+  extraId: ObjectId
+
+  @Field(() => Extra, { description: 'Extra', nullable: true })
+  extra: Extra
 
   @Column()
   @Field(() => Float, { description: 'Price', nullable: true })

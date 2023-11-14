@@ -11,12 +11,15 @@ import { FirebaseUser } from 'src/authentication/user.decorator';
 import { UserRecord } from 'firebase-admin/auth';
 import { UseGuards } from '@nestjs/common';
 import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
+import { ExtrasService } from 'src/extras/extras.service';
+import { Extra } from 'src/extras/entities/extra.entity';
 
 @Resolver(() => Appointment)
 export class AppointmentsResolver {
   constructor(private readonly appointmentsService: AppointmentsService,
     private readonly servicesService: ServicesService,
-    private readonly hairdressersService: HairdressersService) {}
+    private readonly hairdressersService: HairdressersService,
+    private readonly extrasService: ExtrasService) {}
 
   
   @Query(() => [Appointment], { name: 'appointments' })
@@ -82,5 +85,11 @@ export class AppointmentsResolver {
   @ResolveField()
   services(@Parent() appointment: Appointment): Promise<Service[]> {
     return this.servicesService.findByIds(appointment.servicesId);
+  }
+
+  //Resolver for the extra field of the Appointment type
+  @ResolveField()
+  extra(@Parent() appointment: Appointment): Promise<Extra> {
+    return this.extrasService.findOne(appointment.extraId.toString());
   }
 }

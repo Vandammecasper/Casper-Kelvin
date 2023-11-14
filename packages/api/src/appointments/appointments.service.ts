@@ -124,7 +124,7 @@ export class AppointmentsService {
       newAppointment.userName = userName;
       newAppointment.hairdresserId = new ObjectId(CreateAppointmentInput.hairdresserId);
       newAppointment.servicesId = servicesObjectId;
-      newAppointment.extras = CreateAppointmentInput.extras;
+      newAppointment.extraId = new ObjectId(CreateAppointmentInput.extraId);
       newAppointment.price = totalPrice;
       newAppointment.addedPoints = addedPoints;
       newAppointment.isCompleted = false;
