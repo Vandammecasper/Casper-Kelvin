@@ -1,7 +1,7 @@
 <template>
     <div class="grid w-full h-screen content-center justify-items-center">
         <h1 class="Raleway-bold text-6xl mt-24">SUMMARY</h1>
-        <div class="mt-8 grid grid-cols-2 gap-24 px-16">
+        <div class="mt-8 grid grid-cols-2 gap-80 px-16">
             <div>
                 <h2 class="Raleway-bold text-5xl mb-2">SERVICES</h2>
                 <div v-for="service of filteredServices" class="flex justify-between mt-2">
@@ -14,7 +14,7 @@
                     <p class="Raleway text-2xl">€ {{ extraPrice }}.00</p>
                 </div>
                 <p class="w-3/4 mt-2 text-neutral-600 Raleway">{{ description }}</p>
-                <div class="flex mt-4 gap-56">
+                <div v-if="checkAvailablePoints()" class="flex mt-4 gap-56">
                     <div class="flex gap-2">
                         <button @click="usePoints" class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center">
                             <img v-if="usingPoints" src="../../../assets/icons/cross.svg" alt="">
@@ -23,6 +23,13 @@
                     </div>
                     <h2 class="Raleway text-3xl">5/{{ getPointByUidResult?.pointByUid.usablePoints }}</h2>
                 </div>
+                <div v-else class="flex mt-4 gap-56 opacity-30">
+                        <div class="flex gap-2">
+                            <div class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center"></div>
+                            <h2 class="Raleway text-3xl">USE POINTS</h2>
+                        </div>
+                        <h2 class="Raleway text-3xl">5/{{ getPointByUidResult?.pointByUid.usablePoints }}</h2>
+                    </div>
                 <p class="w-3/4 mt-2 text-neutral-600 Raleway">Use 5 points to get a 50% discount</p>
             </div>
             <div>
@@ -98,6 +105,14 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
                     console.log(this.usingPoints)
                 }
                 return this.usingPoints
+            },
+            checkAvailablePoints() {
+                if (this.getPointByUidResult?.pointByUid.usablePoints >= 5) {
+                    return true
+                }
+                else {
+                    return false
+                }
             }
         },
         computed: {
@@ -198,23 +213,22 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
                 else if(extraId == '0') {
                    extraName = ['NO EXTRA'] 
                 }
-                // console.log(getPointByUidResult?.pointByUid.usablePoints)
                 return extraName ;
             }
 
             const date = () => {
-                const datum = new Date(currentRoute.value.params.date)
-                const year = datum.getFullYear();
-                const month = String(datum.getMonth() + 1).padStart(2, '0');
-                const day = String(datum.getDate()).padStart(2, '0');
-                const hours = String(datum.getHours()).padStart(2, '0');
-                const minutes = String(datum.getMinutes()).padStart(2, '0');
-                const seconds = String(datum.getSeconds()).padStart(2, '0');
-                
+            const datum = new Date(currentRoute.value.params.date)
+            const year = datum.getFullYear();
+            const month = String(datum.getMonth() + 1).padStart(2, '0');
+            const day = String(datum.getDate()).padStart(2, '0');
+            const hours = String(datum.getHours()).padStart(2, '0');
+            const minutes = String(datum.getMinutes()).padStart(2, '0');
+            const seconds = String(datum.getSeconds()).padStart(2, '0');
 
-                const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-                return formattedDate
-                }
+
+            const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+            return formattedDate
+        }
 
             const { result: getPointByUidResult } = useQuery(GET_POINT_BY_UID)
             
