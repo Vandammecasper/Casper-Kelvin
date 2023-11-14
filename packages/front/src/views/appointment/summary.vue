@@ -33,13 +33,32 @@
                         <h3 class="text-3xl z-20 bg-black justify-self-end text-center w-40 py-5">{{ hairdressersResult?.hairdresser?.name }}</h3>
                     </div>
                 </div>
-                <h2 class="Raleway-bold text-5xl mt-24">CALENDAR</h2>
-                <p>{{ date }}</p>
+                <h2 class="Raleway-bold text-5xl mt-12">CALENDAR</h2>
+                <div class="flex gap-24 mt-4">
+                    <div>
+                        <h3 class="Raleway text-3xl">DATE</h3>
+                        <p class="Raleway text-xl">{{ date }}</p>
+                    </div>
+                    <div>
+                        <h3 class="Raleway text-3xl">HOUR</h3>
+                        <p class="Raleway text-xl">{{ uur }}</p>
+                    </div>
+                </div>
             </div>
         </div>
         <button @click="handleAppointment" class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">TOTAL: € {{ calculateTotalCost }}</button>
     </div>
 </template>
+
+<style>
+.Raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.Raleway-bold {
+    font-family: 'Raleway-Bold', sans-serif;
+}
+</style>
 
 <script lang="ts">
     import { useQuery } from '@vue/apollo-composable'
@@ -58,6 +77,7 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
                 barberid: '',
                 serviceid: '',
                 datum: '',
+                uur:'',
                 serviceIds: [],
                 selectedServices: [],
                 wantedServices: [],
@@ -107,7 +127,25 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
                 return this.$route.params.barber;
             },
             date() {
-                return this.$route.params.date;
+                const inputDate = new Date(this.$route.params.date);
+
+                // Extracting date information
+                const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                const day = dayOfWeek[inputDate.getDay()];
+                this.datum = `${day} ${inputDate.getDate()}/${inputDate.getMonth() + 1}/${inputDate.getFullYear()}`;
+
+                // Extracting time information
+                const hours = inputDate.getHours();
+                const minutes = inputDate.getMinutes();
+                const period = hours < 12 ? 'AM' : 'PM';
+                this.uur = `${hours % 12 || 12}.${minutes < 10 ? '0' : ''}${minutes} ${period}`;
+
+                console.log("Route Date:", this.$route.params.date)
+                console.log("Input Date:", inputDate)
+                console.log("Formatted Date:", this.datum);
+                console.log("Formatted Time:", this.uur);
+
+                return this.datum;
             },
             filteredServices() { 
                 this.serviceIds = this.services
