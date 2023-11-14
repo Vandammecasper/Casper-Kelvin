@@ -6,7 +6,7 @@ import { Extra } from './entities/extra.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Extra]),
+    TypeOrmModule.forFeature([Extra])
   ],
   providers: [ExtrasResolver, ExtrasService],
   exports: [ExtrasService]

@@ -3,14 +3,14 @@ import { CreateExtraInput } from './dto/create-extra.input';
 import { UpdateExtraInput } from './dto/update-extra.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Extra } from './entities/extra.entity';
-import { MongoRepository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ExtrasService {
 
   constructor(
     @InjectRepository(Extra)
-    private readonly extraRepository: MongoRepository<Extra>,
+    private readonly extraRepository: Repository<Extra>,
   ) {}
 
   create(createExtraInput: CreateExtraInput) {
@@ -32,5 +32,15 @@ export class ExtrasService {
 
   remove(id: number) {
     return `This action removes a #${id} extra`;
+  }
+
+  // 
+
+  saveAll(extras: Extra[]) {
+    return this.extraRepository.save(extras);
+  }
+
+  truncate() {
+    return this.extraRepository.clear();
   }
 }

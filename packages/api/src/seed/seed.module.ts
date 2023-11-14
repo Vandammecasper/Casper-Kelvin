@@ -8,9 +8,10 @@ import { VacationsModule } from 'src/vacations/vacations.module';
 import { PointsModule } from 'src/points/points.module';
 import { AppointmentsModule } from 'src/appointments/appointments.module';
 import { UsersModule } from 'src/users/users.module';
+import { ExtrasModule } from 'src/extras/extras.module';
 
 @Module({
-    imports: [ServicesModule, HairdressersModule, VacationsModule, PointsModule, AppointmentsModule, UsersModule, CommandModule],
+    imports: [ServicesModule, HairdressersModule, VacationsModule, PointsModule, AppointmentsModule, ExtrasModule, UsersModule, CommandModule],
     providers: [DatabaseSeedCommand, SeedService],
 
 })
