@@ -4,25 +4,24 @@
         <div class="mt-8 grid grid-cols-2 gap-24 px-16">
             <div>
                 <h2 class="Raleway-bold text-5xl mb-2">SERVICES</h2>
-                <div v-for="service of filteredServices" class="grid grid-cols-2 gap-48 mt-2">
+                <div v-for="service of filteredServices" class="flex justify-between mt-2">
                     <p class="Raleway text-2xl">{{ service.name }}</p>
                     <p class="Raleway text-2xl">€ {{ service.price }}</p>
                 </div>
-                <h2 class="Raleway-bold text-5xl mt-12">EXTRA'S</h2>
-                <div class="grid grid-cols-2 gap-48 mt-2">
+                <h2 class="Raleway-bold text-5xl mt-4">EXTRA'S</h2>
+                <div class="flex justify-between mt-2">
                     <p class="Raleway text-2xl">{{ extra }}</p>
                     <p class="Raleway text-2xl">€ {{ extraPrice }}.00</p>
                 </div>
                 <p class="w-3/4 mt-2 text-neutral-600 Raleway">{{ description }}</p>
                 <div class="flex mt-4 gap-56">
                     <div class="flex gap-2">
-                        <button @click="usePoints" v-if="usingPoints" class="mt-1 w-6 h-6 bg-transparent border-2 border-white">
-                            <img src="../../../assets/icons/cross.svg" alt="">
+                        <button @click="usePoints" class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center">
+                            <img v-if="usingPoints" src="../../../assets/icons/cross.svg" alt="">
                         </button>
-                        <button @click="usePoints" v-else class="mt-1 w-6 h-6 bg-transparent border-2 border-white"></button>
                         <h2 class="Raleway text-3xl">USE POINTS</h2>
                     </div>
-                    <h2 class="Raleway text-3xl">5/0</h2>
+                    <h2 class="Raleway text-3xl">5/{{ getPointByUidResult?.pointByUid.usablePoints }}</h2>
                 </div>
                 <p class="w-3/4 mt-2 text-neutral-600 Raleway">Use 5 points to get a 50% discount</p>
             </div>
@@ -51,7 +50,8 @@
     import { useMutation } from '@vue/apollo-composable'
     import {CREATE_APPOINTMENT} from '@/graphql/appointment.mutation'
     import router from '../../bootstrap/router'
-
+import { GET_POINT_BY_UID } from '@/graphql/points.query'
+    
     export default {
         data(){
             return{
@@ -64,6 +64,20 @@
                 extraPrice: 0,
                 totalCost: 0,
                 description: '',
+                usingPoints: false,
+            }
+        },
+        methods: {
+            usePoints() {
+                if (this.usingPoints == false) {
+                    this.usingPoints = true
+                    console.log(this.usingPoints)
+                }
+                else {
+                    this.usingPoints = false
+                    console.log(this.usingPoints)
+                }
+                return this.usingPoints
             }
         },
         computed: {
@@ -123,18 +137,15 @@
             const {currentRoute} = useRouter()
             const barberid = currentRoute.value.params.barber
             const serviceid = currentRoute.value.params.service.split(',').map(services => decodeURIComponent(services));
-            var usingPoints = false
-
-            const usePoints = () => {
-                if (usingPoints == false) {
-                    usingPoints = true
-                    console.log(usingPoints)
+            
+            //!!needs to be checked!!
+            const checkPoints = () => {
+                if(getPointByUidResult?.pointByUid.usablePoints >= 5){
+                    return true
                 }
-                else {
-                    usingPoints = false
-                    console.log(usingPoints)
+                else{
+                    return false
                 }
-                return usingPoints
             }
 
             const extra = () => {
@@ -149,6 +160,7 @@
                 else if(extraId == '0') {
                    extraName = ['NO EXTRA'] 
                 }
+                // console.log(getPointByUidResult?.pointByUid.usablePoints)
                 return extraName ;
             }
 
@@ -165,6 +177,8 @@
                 const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
                 return formattedDate
                 }
+
+            const { result: getPointByUidResult } = useQuery(GET_POINT_BY_UID)
             
             const {
             result: getHairdresserByIdResult,
@@ -207,7 +221,8 @@
             hairdressersResult: getHairdresserByIdResult,
             servicesResult: getServicesResult,
             handleAppointment,
-            usePoints,
+            getPointByUidResult,
+            checkPoints,
         }
         }
     };
