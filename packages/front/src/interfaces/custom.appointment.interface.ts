@@ -9,9 +9,13 @@ export interface CustomAppointment {
     date: Date;
     hairdresser: CustomHairdresser;
     services: CustomService[];
-    extra: string;
     price: number;
+    extra: {
+        id: string;
+        name: string;
+        description: string;
+        price: number;
+        utilities: string[];
+    };
     isCompleted: boolean;
 }
-
-export default CustomAppointment;

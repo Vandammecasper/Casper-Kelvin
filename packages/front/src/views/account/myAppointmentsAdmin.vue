@@ -64,12 +64,13 @@
                             <p>{{ utilitie }}</p>
                         </div>
                     </div>
+                    <div v-for="util of selectedAppointment?.extra.utilities">
+                        <p>{{ util }}</p>
+                    </div>
                 </div> 
                 <div>
                     <h1 class="text-4xl">Extra's</h1>   
-                    <div v-for="extra of selectedAppointment?.extras">
-                        <p>{{ extra }}</p>
-                    </div>          
+                    <p>{{ selectedAppointment?.extra.name }}</p>
                 </div>
                 <div>
                     <h1 class="text-4xl">Complete appointment</h1>   
@@ -99,6 +100,7 @@ const { firebaseUser } = useFirebase()
 const showOverlay = ref(false);
 const isOpen = ref(true) as Ref<boolean>;
 const selectedAppointment = ref({} as CustomAppointment);
+const visualAppointments = ref([] as CustomAppointment[]);
 
 let error = "";
 
@@ -106,11 +108,16 @@ const toggleShowOverlay = () => {
     showOverlay.value = !showOverlay.value;
 }
 
+const test = () => {
+    console.log(selectedAppointment.value);
+}
+
 const selectAppointment = (appointment: any) => {
+    console.log(appointment);
     selectedAppointment.value = appointment;
 }
 
-const visualAppointments = ref([] as CustomAppointment[]);
+
 
 /*
  * Flatpickr
@@ -188,7 +195,7 @@ const getWantedAppointments = () => {
                         utilities: service.utilities
                     };
                 }),
-                extras: appointment.extras,
+                extra: appointment.extra,
                 userName: appointment.userName
             };
         })

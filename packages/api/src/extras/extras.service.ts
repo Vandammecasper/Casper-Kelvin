@@ -4,6 +4,7 @@ import { UpdateExtraInput } from './dto/update-extra.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Extra } from './entities/extra.entity';
 import { Repository } from 'typeorm';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class ExtrasService {
@@ -22,6 +23,7 @@ export class ExtrasService {
   }
 
   findOne(id: string) {
+    console.log(id, "extaraa");
     //@ts-ignore
     return this.extraRepository.findOne({ _id: new ObjectId(id) });
   }

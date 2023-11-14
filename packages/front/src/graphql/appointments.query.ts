@@ -43,7 +43,13 @@ export const GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID =  gql`
         duration
         utilities
       }
-      extras
+      extra{
+        id
+        name
+        description
+        price
+        utilities
+      }
       price
       addedPoints
       isCompleted

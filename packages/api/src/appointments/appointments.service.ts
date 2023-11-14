@@ -9,6 +9,7 @@ import { ServicesService } from 'src/services/services.service';
 import { ObjectId } from 'mongodb';
 import * as dayjs from 'dayjs';
 import { PointsService } from 'src/points/points.service';
+import { ExtrasService } from 'src/extras/extras.service';
 
 @Injectable()
 export class AppointmentsService {
@@ -19,6 +20,7 @@ export class AppointmentsService {
     private readonly hairdresserService: HairdressersService,
     private readonly serviceService: ServicesService,
     private readonly pointsService: PointsService,
+    private readonly extrasService: ExtrasService,
   ) {}
   
   findAll() {
@@ -87,6 +89,12 @@ export class AppointmentsService {
       if (!hairdresser) {
         throw new Error('Hairdresser not found');
       }
+
+      const extra = await this.extrasService.findOne(CreateAppointmentInput.extraId);
+      
+      if (!extra) {
+        throw new Error('Extra not found');
+      }
      
       for (const serviceId of CreateAppointmentInput.servicesId) {
         const service = await this.serviceService.findOne(serviceId);
@@ -124,7 +132,7 @@ export class AppointmentsService {
       newAppointment.userName = userName;
       newAppointment.hairdresserId = new ObjectId(CreateAppointmentInput.hairdresserId);
       newAppointment.servicesId = servicesObjectId;
-      newAppointment.extraId = new ObjectId(CreateAppointmentInput.extraId);
+      newAppointment.extraId = new ObjectId(extra.id);
       newAppointment.price = totalPrice;
       newAppointment.addedPoints = addedPoints;
       newAppointment.isCompleted = false;
