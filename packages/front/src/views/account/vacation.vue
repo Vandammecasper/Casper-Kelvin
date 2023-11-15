@@ -3,7 +3,7 @@
         <NavigationAccount />
         <div class="h-screen w-full pt-40 px-40">
             <h1 class="text-5xl Raleway-bold mb-4">HELLO, {{ firebaseUser?.displayName }}</h1>
-            <div class="grid grid-cols-2 gap-24">
+            <div class="grid grid-cols-2">
                 <div class="w-1/2">
                     <h3>Day off</h3>
                     <select class="bg-neutral-900 border-white border-1 h-10 w-full" v-model="day" @click="handleDayOff()">
@@ -15,10 +15,13 @@
                         <option value="7">Saturday</option>
                         <option value="1">Sunday</option>
                     </select>
-                    <button @click="handleHolidays()" class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">SAVE</button>
                 </div>
-                <input ref="datePicker" type="text" v-model="selectedDates" placeholder="Select a date range">
+                <div>
+                    <h3>Vacation</h3>
+                    <input id="rangepicker" ref="datePicker" type="text" placeholder="Select a date range" class="w-full h-10 bg-neutral-900 border-2 mr-2 p-1 border-white">
+                </div>
             </div>
+            <button @click="handleHolidays()" class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">SAVE</button>
             
         </div>
     </div>
@@ -31,29 +34,30 @@ import { ref } from 'vue';
 import 'v-calendar/style.css';
 import useFirebase from '@/composables/useFirebase';
 import { type Ref } from 'vue';
-import Flatpickr from 'flatpickr';
+import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import 'flatpickr/dist/themes/dark.css';
 import { onMounted } from 'vue';
 
+const startDate = ref(new Date());
+const endDate = ref(new Date());
+
 const { firebaseUser } = useFirebase()
 const day = ref("2") as Ref<string>;
 var dayoff = 2;
-const range = ref({
-    start: new Date(),
-    end: new Date(),
-});
-const selectedDates = [];
 
 onMounted(() => {
-      const datePicker = new Flatpickr(document.querySelector('.flatpickr'), {
+      const datePicker = flatpickr('#rangepicker', {
         mode: 'range',
+        minDate: 'today',
+        //maxDate has to be the end of the month
+        maxDate: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+        altInput: true,
+        altFormat: 'F j, Y',
+        defaultDate: [startDate.value, endDate.value],
         dateFormat: 'Y-m-d',
-        onChange: (selected) => {
-          selectedDates.value = selected;
-        },
-      });
     });
+});
 
 
 const handleDayOff = () => {
@@ -86,8 +90,6 @@ const handleDayOff = () => {
 }
 
 const handleHolidays = () => {
-    console.log(range.value.start)
-    console.log(range.value.end)
     console.log(dayoff)
 }
 

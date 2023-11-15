@@ -145,8 +145,6 @@
             loading: getServicesLoading,
             } = useQuery(GET_ALL_SERVICES)
 
-            // er stond geen $ bij > CreateAppointmentInput: $CreateAppointmentInput < hierdoor de error 
-            // serviceid was een string en moest een array zijn
             const {
                 mutate: CreateAppointment,
                 loading: createAppointmentLoading,
