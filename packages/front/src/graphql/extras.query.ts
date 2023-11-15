@@ -11,3 +11,15 @@ query {
     }
   }
 `  
+
+export const GET_EXTRA_BY_ID =  gql`
+query($id: String!) {
+  extra(id: $id) {
+    id
+    name
+    description
+    price
+    utilities
+  }
+}
+`

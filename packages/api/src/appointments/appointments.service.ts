@@ -95,6 +95,8 @@ export class AppointmentsService {
       if (!extra) {
         throw new Error('Extra not found');
       }
+
+      totalPrice += extra.price;
      
       for (const serviceId of CreateAppointmentInput.servicesId) {
         const service = await this.serviceService.findOne(serviceId);
