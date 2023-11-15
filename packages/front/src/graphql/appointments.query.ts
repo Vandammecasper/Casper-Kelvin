@@ -21,7 +21,13 @@ query($isOpen: Boolean!) {
         duration
         utilities
       }
-      extras
+      extra{
+        id
+        name
+        description
+        price
+        utilities
+      }
       price
       addedPoints
       isCompleted

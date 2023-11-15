@@ -59,10 +59,8 @@
                 </div>
                 <div class="">
                     <h1 class="text-4xl">Supplies Needed</h1>
-                    <div v-for="service of selectedAppointment?.services">
-                        <div v-for="utilitie in service.utilities">
-                            <p>{{ utilitie }}</p>
-                        </div>
+                    <div v-for="util of getUniqueUtilities(selectedUtilities)">
+                        <p>{{ util }}</p>
                     </div>
                     <div v-for="util of selectedAppointment?.extra.utilities">
                         <p>{{ util }}</p>
@@ -101,6 +99,7 @@ const showOverlay = ref(false);
 const isOpen = ref(true) as Ref<boolean>;
 const selectedAppointment = ref({} as CustomAppointment);
 const visualAppointments = ref([] as CustomAppointment[]);
+let selectedUtilities: string[] = [];
 
 let error = "";
 
@@ -108,14 +107,27 @@ const toggleShowOverlay = () => {
     showOverlay.value = !showOverlay.value;
 }
 
-const test = () => {
-    console.log(selectedAppointment.value);
-}
-
 const selectAppointment = (appointment: any) => {
     console.log(appointment);
+    selectedUtilities = [];
     selectedAppointment.value = appointment;
+    selectedAppointment.value.services.forEach(service => {
+        service.utilities.forEach(utilitie => {
+            selectedUtilities.push(utilitie);
+        });
+    });
 }
+
+const getUniqueUtilities = (utilities: any) => {
+    let uniqueUtilities: string[] = [];
+    for (let i = 0; i < utilities.length; i++) {
+        if (!uniqueUtilities.includes(utilities[i])) {
+            uniqueUtilities.push(utilities[i]);
+        }
+    }
+    console.log(uniqueUtilities);
+    return uniqueUtilities;
+};
 
 
 
