@@ -31,6 +31,16 @@
     
 </template>
 
+<style>
+.Raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.Raleway-bold {
+    font-family: 'Raleway-Bold', sans-serif;
+}
+</style>
+
 <script lang="ts">
 import { ref } from 'vue';
 import { Calendar, DatePicker } from 'v-calendar';
