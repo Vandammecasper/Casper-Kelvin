@@ -119,25 +119,6 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
             services() {
                 return this.$route.params.service.split(',').map(services => decodeURIComponent(services));
             },
-            extra() {
-                const extraId = this.$route.params.extra
-                var extraName = ''
-                if (extraId == '1' ){
-                    extraName = 'Shampoo'
-                    this.extraPrice = 4
-                    this.description = 'Add an extra layer of pampering to your grooming experience with our optional shampoo wash. Indulge in ultimate relaxation and leave with a clean, revitalized feel.'
-                }
-                else if(extraId == '2') {
-                    extraName = 'Shampoo & massage'
-                    this.extraPrice = 6
-                    this.description = 'Experience the ultimate relaxation with our optional shampoo wash and massage. Elevate your grooming session to a spa-like indulgence.'
-                }
-                else if(extraId == '0') {
-                   extraName = 'NO EXTRA' 
-                   this.extraPrice = 0
-                }
-            return extraName ;
-            },
             barber() {
                 return this.$route.params.barber;
             },
@@ -190,6 +171,8 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
             const {currentRoute} = useRouter()
             const barberid = currentRoute.value.params.barber
             const serviceid = currentRoute.value.params.service.split(',').map(services => decodeURIComponent(services));
+            const extraId = currentRoute.value.params.extra
+            // const serviceid = currentRoute.value.params.service
             
             //!!needs to be checked!!
             const checkPoints = () => {
@@ -199,21 +182,6 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
                 else{
                     return false
                 }
-            }
-
-            const extra = () => {
-                const extraId = currentRoute.value.params.extra
-                var extraName:string[] = []
-                if (extraId == '1' ){
-                    extraName = ['Shampoo']
-                }
-                else if(extraId == '2') {
-                    extraName = ['Shampoo & massage']
-                }
-                else if(extraId == '0') {
-                   extraName = ['NO EXTRA'] 
-                }
-                return extraName ;
             }
 
             const date = () => {
@@ -256,13 +224,13 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
                 console.log(date())
                 console.log(barberid)
                 console.log(serviceid)
-                console.log(extra())
+                console.log(extraId)
                 CreateAppointment({
                     CreateAppointmentInput: {
                         date: date(),
                         hairdresserId: barberid,
                         servicesId: serviceid,
-                        extras: extra(),
+                        extraId: extraId,
                     },
                 }).then(result => {
                     if (!result?.data) throw new Error('Appointment creation failed.')

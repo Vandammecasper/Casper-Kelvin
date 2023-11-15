@@ -137,4 +137,26 @@ export class DatabaseSeedCommand {
         const users = await this.seedService.addUsersFromJson();
         console.log('...done with length: ', users.length);
     }
+
+    //extras commands
+
+    @Command({
+        command: 'seed:database:extras:reset',
+        describe: 'delete all extras from database',
+    })
+    async deleteAllExtras() {
+        console.info('deleting all extras...');
+        await this.seedService.deleteAllExtras();
+        console.log('...done');
+    }
+
+    @Command({
+        command: 'seed:database:extras',
+        describe: 'seed database with extras from json file',
+    })
+    async seedExtras() {
+        console.info('seeding database with extras...');
+        const extras = await this.seedService.addExtrasFromJson();
+        console.log('...done with length: ', extras.length);
+    }
 }

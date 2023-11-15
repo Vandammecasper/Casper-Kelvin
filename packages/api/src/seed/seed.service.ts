@@ -6,6 +6,7 @@ import * as hairdressers from './data/hairdressers.json';
 import * as vacations from './data/vacations.json';
 import * as points from './data/points.json';
 import * as users from './data/users.json';
+import * as extras from './data/extras.json';
 
 import { Service } from 'src/services/entities/service.entity';
 import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
@@ -19,6 +20,8 @@ import { AppointmentsService } from 'src/appointments/appointments.service';
 import { UsersService } from 'src/users/users.service';
 import { Appointment } from 'src/appointments/entities/appointment.entity';
 import { Role, User } from 'src/users/entities/user.entity';
+import { ExtrasService } from 'src/extras/extras.service';
+import { Extra } from 'src/extras/entities/extra.entity';
 
 @Injectable()
 export class SeedService {
@@ -28,7 +31,8 @@ export class SeedService {
         private vacationsService: VacationsService,
         private pointsService: PointsService,
         private appointmentsService: AppointmentsService,
-        private usersService: UsersService
+        private usersService: UsersService,
+        private extrasService: ExtrasService
     ) {}
     
     //services
@@ -159,5 +163,25 @@ export class SeedService {
 
     async deleteAllUsers(): Promise<void> {
         return this.usersService.truncate();
+    }
+
+    //extras
+
+    async addExtrasFromJson(): Promise<Extra[]> {
+        const extrasArray:Extra[] = [];
+        for(const extra of extras){
+            const e = new Extra();
+            e.name = extra.name;
+            e.description = extra.description;
+            e.price = extra.price;
+            e.utilities = extra.utilities;
+            extrasArray.push(e);
+        }
+
+        return this.extrasService.saveAll(extrasArray);
+    }
+
+    async deleteAllExtras(): Promise<void> {
+        return this.extrasService.truncate();
     }
 }

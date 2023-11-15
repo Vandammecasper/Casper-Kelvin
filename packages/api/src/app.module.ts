@@ -13,6 +13,7 @@ import { VacationsModule } from './vacations/vacations.module';
 import { PointsModule } from './points/points.module';
 import { AppointmentsModule } from './appointments/appointments.module';
 import { UsersModule } from './users/users.module';
+import { ExtrasModule } from './extras/extras.module';
 
 @Module({
   imports: [
@@ -45,6 +46,8 @@ import { UsersModule } from './users/users.module';
     AppointmentsModule,
     
     UsersModule,
+    
+    ExtrasModule,
 
   ],
   controllers: [AppController],

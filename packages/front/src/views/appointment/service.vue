@@ -3,7 +3,7 @@
         <h1 class="Raleway-bold text-6xl mt-24">SERVICES</h1>
         <div class="grid grid-cols-2 justify-self-center px-24 gap-10 mt-8">
             <button
-            v-for="service in result.services"
+            v-for="service in getServicesResult.services"
             :key="service.id"
             :class="{
                 'border-2 border-yellow-600 hover:border-yellow-600': isSelected(service.id),
@@ -28,34 +28,22 @@
                 <h3 class="text-4xl Raleway-bold">SELECT EXTRA'S</h3>
                 <p class="text-neutral-600 mt-2 Raleway">Choose from our selection of premium extras to take your grooming experience to the next level.</p>
             </div>
-            <button v-if="shampoo" @click="handleShampoo()" class="mx-10 p-1 text-left border-2 border-yellow-600">
-                <div class="flex justify-between">
-                    <h4 class="text-xl Raleway-bold">SHAMPOO</h4>
-                    <h4 class="text-xl Raleway-bold">+€ 4.00</h4>
-                </div>
-                <p class="text-neutral-600 text-sm pr-20 Raleway">Add an extra layer of pampering to your grooming experience with our optional shampoo wash. Indulge in ultimate relaxation and leave with a clean, revitalized feel.</p>
-            </button>
-            <button v-else @click="handleShampoo()" class="mx-10 p-1 text-left border-2 border-transparent hover:border-neutral-600">
-                <div class="flex justify-between">
-                    <h4 class="text-xl Raleway-bold">SHAMPOO</h4>
-                    <h4 class="text-xl Raleway-bold">+€ 4.00</h4>
-                </div>
-                <p class="text-neutral-600 text-sm pr-20 Raleway">Add an extra layer of pampering to your grooming experience with our optional shampoo wash. Indulge in ultimate relaxation and leave with a clean, revitalized feel.</p>
-            </button>
-            <button v-if="massage" @click="handleMassage()" class="mx-10 p-1 mt-8 text-left border-2 border-yellow-600">
-                <div class="flex justify-between">
-                    <h4 class="text-xl Raleway-bold">SHAMPOO & MASSAGE</h4>
-                    <h4 class="text-xl Raleway-bold">+€ 6.00</h4>
-                </div>
-                <p class="text-neutral-600 text-sm pr-20 Raleway">Experience the ultimate relaxation with our optional shampoo wash and massage. Elevate your grooming session to a spa-like indulgence.</p>
-            </button>
-            <button v-else @click="handleMassage()" class="mx-10 p-1 mt-8 text-left border-2 border-transparent hover:border-neutral-600">
-                <div class="flex justify-between">
-                    <h4 class="text-xl Raleway-bold">SHAMPOO & MASSAGE</h4>
-                    <h4 class="text-xl Raleway-bold">+€ 6.00</h4>
-                </div>
-                <p class="text-neutral-600 text-sm pr-20 raleway">Experience the ultimate relaxation with our optional shampoo wash and massage. Elevate your grooming session to a spa-like indulgence.</p>
-            </button>
+            <div v-for="extra of getExtrasResult.extras">
+                <button v-if="extra?.id == selectedExtra" @click="handleExtra(extra.id)" class="mx-10 p-1 text-left border-2 border-yellow-600">
+                    <div class="flex justify-between">
+                        <h4 class="text-xl Raleway-bold">{{ extra.name }}</h4>
+                        <h4 class="text-xl Raleway-bold">+€ {{ extra.price }}</h4>
+                    </div>
+                    <p class="text-neutral-600 text-sm pr-20 Raleway">{{ extra.description }}</p>
+                </button>
+                <button v-else @click="handleExtra(extra.id)" class="mx-10 p-1 text-left border-2 border-transparent hover:border-neutral-600">
+                    <div class="flex justify-between">
+                        <h4 class="text-xl Raleway-bold">{{ extra.name }}</h4>
+                        <h4 class="text-xl Raleway-bold">+€ {{ extra.price }}</h4>
+                    </div>
+                    <p class="text-neutral-600 text-sm pr-20 Raleway">{{ extra.description }}</p>
+                </button>
+            </div>
             <router-link v-if="extra" :to="{ name: 'appointment', params: { service: selectedServices.join(','), extra: selectedExtra } }">
                 <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">NEXT</button>
             </router-link>
@@ -80,6 +68,7 @@
 import { useQuery } from '@vue/apollo-composable'
 import { GET_ALL_SERVICES } from '@/graphql/services.query'
 import type { CustomService } from '@/interfaces/custom.service.interface'
+import { GET_ALL_EXTRAS } from '@/graphql/extras.query';
 
 export default {
     setup() {
@@ -88,15 +77,22 @@ export default {
             loading: getServicesLoading,
         } = useQuery(GET_ALL_SERVICES)
 
+        const {
+            result: getExtrasResult,
+            loading: getExtrasLoading,
+        } = useQuery(GET_ALL_EXTRAS)
+
         return {
-            result: getServicesResult,
-            loading: getServicesLoading,
+            getServicesResult,
+            getServicesLoading,
+            getExtrasResult,
+            getExtrasLoading
         }
     },
     data() {
         return {
             selectedServices: [],
-            selectedExtra: 0,
+            selectedExtra: "0", // this was 0, I now get an error when pressing on continue
             cont: false,
             next: false,
             shampoo: false,
@@ -132,38 +128,16 @@ export default {
         },
         handleContinue() {
             this.next = true;
+            console.log(this.getExtrasResult)
         },
-        handleShampoo() {
-            if(this.shampoo == true){
-                this.shampoo = false;
+        handleExtra(id: string){
+            if(this.selectedExtra == id){
+                this.selectedExtra = "0";
                 this.extra = false;
-                this.selectedExtra = 0;
-            }
-            else{
-                this.shampoo = true;
+            }else{
+                this.selectedExtra = id;
                 this.extra = true;
-                this.selectedExtra = 1;
             }
-            if (this.massage == true) {
-                this.massage = false;
-            }
-            console.log(this.selectedServices)
-        },
-        handleMassage() {
-            if(this.massage == true){
-                this.massage = false;
-                this.extra = false;
-                this.selectedExtra = 0;
-            }
-            else{
-                this.massage = true;
-                this.extra = true;
-                this.selectedExtra = 2;
-            }
-            if (this.shampoo == true) {
-                this.shampoo = false;
-            }
-            console.log(this.selectedServices)
         }
     }
 };

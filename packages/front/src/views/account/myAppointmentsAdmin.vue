@@ -59,17 +59,16 @@
                 </div>
                 <div class="">
                     <h1 class="text-4xl">Supplies Needed</h1>
-                    <div v-for="service of selectedAppointment?.services">
-                        <div v-for="utilitie in service.utilities">
-                            <p>{{ utilitie }}</p>
-                        </div>
+                    <div v-for="util of getUniqueUtilities(selectedUtilities)">
+                        <p>{{ util }}</p>
+                    </div>
+                    <div v-for="util of selectedAppointment?.extra.utilities">
+                        <p>{{ util }}</p>
                     </div>
                 </div> 
                 <div>
                     <h1 class="text-4xl">Extra's</h1>   
-                    <div v-for="extra of selectedAppointment?.extras">
-                        <p>{{ extra }}</p>
-                    </div>          
+                    <p>{{ selectedAppointment?.extra.name }}</p>
                 </div>
                 <div>
                     <h1 class="text-4xl">Complete appointment</h1>   
@@ -99,6 +98,8 @@ const { firebaseUser } = useFirebase()
 const showOverlay = ref(false);
 const isOpen = ref(true) as Ref<boolean>;
 const selectedAppointment = ref({} as CustomAppointment);
+const visualAppointments = ref([] as CustomAppointment[]);
+let selectedUtilities: string[] = [];
 
 let error = "";
 
@@ -107,10 +108,28 @@ const toggleShowOverlay = () => {
 }
 
 const selectAppointment = (appointment: any) => {
+    console.log(appointment);
+    selectedUtilities = [];
     selectedAppointment.value = appointment;
+    selectedAppointment.value.services.forEach(service => {
+        service.utilities.forEach(utilitie => {
+            selectedUtilities.push(utilitie);
+        });
+    });
 }
 
-const visualAppointments = ref([] as CustomAppointment[]);
+const getUniqueUtilities = (utilities: any) => {
+    let uniqueUtilities: string[] = [];
+    for (let i = 0; i < utilities.length; i++) {
+        if (!uniqueUtilities.includes(utilities[i])) {
+            uniqueUtilities.push(utilities[i]);
+        }
+    }
+    console.log(uniqueUtilities);
+    return uniqueUtilities;
+};
+
+
 
 /*
  * Flatpickr
@@ -188,7 +207,7 @@ const getWantedAppointments = () => {
                         utilities: service.utilities
                     };
                 }),
-                extras: appointment.extras,
+                extra: appointment.extra,
                 userName: appointment.userName
             };
         })
