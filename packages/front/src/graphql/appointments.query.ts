@@ -59,6 +59,7 @@ export const GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID =  gql`
       price
       addedPoints
       isCompleted
+      isPointsUsed
     }
   }
 `

@@ -35,7 +35,7 @@
     </div>
     <div v-if="showOverlay" class="grid">
         <div class="absolute w-screen h-screen z-50 top-0 left-0 bg-black opacity-60 "></div>
-        <div class="bg-neutral-800 z-50 absolute w-full justify-self-center max-w-xl top-40 p-4">
+        <div class="bg-neutral-800 z-50 absolute w-full justify-self-center max-w-xl top-20 p-4">
             <button @click="toggleShowOverlay()">
                 <X class="w-8 h-8 text-white absolute top-2 right-2" />
             </button>
@@ -74,6 +74,14 @@
                     <h1 class="text-4xl">Complete appointment</h1>   
                     <button @click="finishAppointment()" v-if="!selectedAppointment?.isCompleted" class="max-w-[200px] w-full bg-green-600">complete appointment</button>    
                     <button v-else class="max-w-[200px] w-full bg-red-600" disabled>Already Completed</button>     
+                </div>
+                <div>
+                    <h1 class="text-4xl">Total Price</h1>
+                    <p>€ {{ selectedAppointment?.price }}</p>
+                </div>
+                <div>
+                    <h1 class="text-4xl">Points used</h1>
+                    <p>{{ selectedAppointment?.isPointsUsed }}</p>
                 </div>
             </div>
         </div>
@@ -125,7 +133,6 @@ const getUniqueUtilities = (utilities: any) => {
             uniqueUtilities.push(utilities[i]);
         }
     }
-    console.log(uniqueUtilities);
     return uniqueUtilities;
 };
 
@@ -208,11 +215,13 @@ const getWantedAppointments = () => {
                     };
                 }),
                 extra: appointment.extra,
-                userName: appointment.userName
+                userName: appointment.userName,
+                price: appointment.price,
+                isPointsUsed: appointment.isPointsUsed
             };
         })
         .filter((appointment: any) => appointment !== null); // Remove the filtered null values
-    
+        
     if(visualAppointments.value.length == 0){ 
         if (error == "")
             error = "No appointments found in this time period";

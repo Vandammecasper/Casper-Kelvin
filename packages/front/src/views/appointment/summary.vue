@@ -239,6 +239,7 @@ import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
                         hairdresserId: barberid,
                         servicesId: serviceid,
                         extraId: extraId,
+                        isPointsUsed: false, // needs to change to user input
                     },
                 }).then(result => {
                     if (!result?.data) throw new Error('Appointment creation failed.')

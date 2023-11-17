@@ -80,6 +80,19 @@ export class PointsService {
     return this.pointsRepository.update({ uid }, { totalPoints: existingPoints.totalPoints+points, usablePoints: existingPoints.usablePoints+points });
   }
 
+  async subtractPoints(uid: string, points: number) {
+    //@ts-ignore
+    console.log(uid);
+
+    const existingPoints = await this.pointsRepository.findOne({where:{uid}});
+
+    if (!existingPoints) {
+      throw new Error('User not found'); 
+    }
+    
+    return this.pointsRepository.update({ uid }, { usablePoints: existingPoints.usablePoints-points });
+  }
+
   update(id: number, updatePointInput: UpdatePointInput) {
     return `This action updates a #${id} point`;
   }

@@ -18,4 +18,5 @@ export interface CustomAppointment {
         utilities: string[];
     };
     isCompleted: boolean;
+    isPointsUsed: boolean;
 }
