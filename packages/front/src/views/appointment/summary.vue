@@ -10,8 +10,8 @@
                 </div>
                 <h2 class="Raleway-bold text-5xl mt-4">EXTRA'S</h2>
                 <div class="flex justify-between mt-2">
-                    <p class="Raleway text-2xl">{{ extra }}</p>
-                    <p class="Raleway text-2xl">€ {{ extraPrice }}.00</p>
+                    <p class="Raleway text-2xl">{{ getExtraResult?.extra.name }}</p>
+                    <p class="Raleway text-2xl">€ {{ getExtraResult?.extra.price }}.00</p>
                 </div>
                 <p class="w-3/4 mt-2 text-neutral-600 Raleway">{{ description }}</p>
                 <div v-if="checkAvailablePoints()" class="flex mt-4 gap-56">
@@ -77,6 +77,7 @@
     import {CREATE_APPOINTMENT} from '@/graphql/appointment.mutation'
     import router from '../../bootstrap/router'
 import { GET_POINT_BY_UID } from '@/graphql/points.query'
+import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
     
     export default {
         data(){
@@ -88,7 +89,6 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
                 serviceIds: [],
                 selectedServices: [],
                 wantedServices: [],
-                extraPrice: 0,
                 totalCost: 0,
                 description: '',
                 usingPoints: false,
@@ -159,11 +159,12 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
                 return this.wantedServices
             },
             calculateTotalCost(){
+                this.totalCost = 0
                 var service = {}
                 for (service of this.wantedServices) {
                     this.totalCost += service.price
                 }
-                this.totalCost += this.extraPrice
+                this.totalCost += this.getExtraResult?.extra.price
                 return this.totalCost
             },
         },
@@ -212,6 +213,13 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
             loading: getServicesLoading,
             } = useQuery(GET_ALL_SERVICES)
 
+            const {
+                result: getExtraResult,
+                loading: getExtraLoading,
+            } = useQuery(GET_EXTRA_BY_ID, {
+                id: extraId
+            })
+
             // er stond geen $ bij > CreateAppointmentInput: $CreateAppointmentInput < hierdoor de error 
             // serviceid was een string en moest een array zijn
             const {
@@ -243,6 +251,7 @@ import { GET_POINT_BY_UID } from '@/graphql/points.query'
             handleAppointment,
             getPointByUidResult,
             checkPoints,
+            getExtraResult,
         }
         }
     };
