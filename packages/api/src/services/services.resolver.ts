@@ -5,38 +5,43 @@ import { CreateServiceInput } from './dto/create-service.input';
 import { UpdateServiceInput } from './dto/update-service.input';
 import { UseGuards } from '@nestjs/common';
 import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
+import { Role } from 'src/users/entities/user.entity';
+import { RolesGuard } from 'src/users/guards/roles.guard';
+import { Allow } from 'class-validator';
+import { AllowedRoles } from 'src/users/decorators/role.decorator';
 
 @Resolver(() => Service)
 export class ServicesResolver {
   constructor(private readonly servicesService: ServicesService) {}
 
-  // @UseGuards(FirebaseGuard)
   @Query(() => [Service], { name: 'services' })
   findAll() {
     return this.servicesService.findAll();
   }
 
-  // @UseGuards(FirebaseGuard)
   @Query(() => Service, { name: 'service' })
   findOne(@Args('id') id: string): Promise<Service> {
     return this.servicesService.findOne(id);
   }
 
-  // @UseGuards(FirebaseGuard)
+  @AllowedRoles(Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Service)
   createService(@Args('createServiceInput') createServiceInput: CreateServiceInput
   ): Promise<Service> {
     return this.servicesService.create(createServiceInput);
   }
 
-  // @UseGuards(FirebaseGuard)
+  @AllowedRoles(Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Service)
   updateService(@Args('updateServiceInput') updateServiceInput: UpdateServiceInput
   ): Promise<Service>  {
     return this.servicesService.update(updateServiceInput.id, updateServiceInput);
   }
 
-  // @UseGuards(FirebaseGuard)
+  @AllowedRoles(Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard)
   @Mutation(() => Service)
   removeService(@Args('id', { type: () => Int }) id: string) {
     return this.servicesService.remove(id);

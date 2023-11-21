@@ -13,6 +13,9 @@ import { UseGuards } from '@nestjs/common';
 import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
 import { ExtrasService } from 'src/extras/extras.service';
 import { Extra } from 'src/extras/entities/extra.entity';
+import { RolesGuard } from 'src/users/guards/roles.guard';
+import { AllowedRoles } from 'src/users/decorators/role.decorator';
+import { Role } from 'src/users/entities/user.entity';
 
 @Resolver(() => Appointment)
 export class AppointmentsResolver {
@@ -22,6 +25,8 @@ export class AppointmentsResolver {
     private readonly extrasService: ExtrasService) {}
 
   
+  @AllowedRoles(Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Query(() => [Appointment], { name: 'appointments' })
   findAll() {
     return this.appointmentsService.findAll();
@@ -35,21 +40,22 @@ export class AppointmentsResolver {
   ) {
     return this.appointmentsService.findByUid(user.uid, isOpen);
   }
-
-  // TODO: add user guard
-  @UseGuards(FirebaseGuard)
+  
+  @AllowedRoles(Role.ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Query(() => [Appointment], { name: 'appointmentsByHairdresserUid' })
   findByHairdresserId(@FirebaseUser() user: UserRecord) {
     return this.appointmentsService.findByHairdresserUid(user.uid);
   }
 
-  //TODO add user guard
-  @UseGuards(FirebaseGuard)
+  @AllowedRoles(Role.ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Appointment, { name: 'completeAppointment' })
   completeAppointment(@Args('id', { type: () => String }) id: string) {
     return this.appointmentsService.completeAppointment(id);
   }
   
+  @UseGuards(FirebaseGuard)
   @Query(() => Appointment, { name: 'appointment' })
   findOne(@Args('id', { type: () => String }) id: string) {
     return this.appointmentsService.findOne(id);
