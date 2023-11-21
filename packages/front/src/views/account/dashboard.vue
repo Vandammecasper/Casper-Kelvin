@@ -1,29 +1,44 @@
 <template>
-    <Bar :data="data" :options="options" class="mt-32" />
+    <div class="mt-32 h-124">
+        <div class="flex h-24 px-8 gap-32 mb-8 justify-center">
+            <div class="">
+                <RevenueChart/>
+                <div class="flex justify-between">
+                    <p>Total revenue</p>
+                    <h3>€ 288</h3>
+                </div>
+            </div>
+            <div class="">
+                <CustomerChart/>
+                <div class="flex justify-between">
+                    <p>Total customers</p>
+                    <h3>40</h3>
+                </div>
+            </div>
+            <div class="">
+                <AppointmentChart />
+                <div class="flex justify-between">
+                    <p>Total appointments</p>
+                    <h3>1234</h3>
+                </div>
+            </div>
+        </div>
+        <div class="flex p-8 h-110 w-screen justify-center">
+            <div class="w-1/2">
+                <BarChart />
+            </div>
+            <div class="w-1/2">
+                <DoughnutChart/>
+            </div>
+            
+        </div>
+    </div>
 </template>
 
-<script lang="ts">
-import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale
-} from 'chart.js'
-import { Bar } from 'vue-chartjs'
-import * as chartConfig from './chartConfig.js'
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
-
-export default {
-    name: 'App',
-    components: {
-        Bar
-    },
-    data() {
-        return chartConfig
-    }
-}
+<script setup lang="ts">
+import BarChart from '@/components/barChart.vue'
+import RevenueChart from '@/components/revenueChart.vue'
+import CustomerChart from '@/components/customerChart.vue'
+import AppointmentChart from '@/components/appointmentChart.vue'
+import DoughnutChart from '@/components/doughnutChart.vue'
 </script>
