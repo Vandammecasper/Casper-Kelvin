@@ -14,4 +14,6 @@ export class CreateAppointmentInput {
   @Field(() => String, { description: 'Extra’s' })
   extraId: string;
 
+  @Field(() => Boolean, { description: 'isPointsUsed' })
+  isPointsUsed: boolean;
 }

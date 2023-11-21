@@ -90,6 +90,7 @@ export class AppointmentsService {
         throw new Error('Hairdresser not found');
       }
 
+      // if the extraId is not found, throw an error
       const extra = await this.extrasService.findOne(CreateAppointmentInput.extraId);
       
       if (!extra) {
@@ -98,6 +99,7 @@ export class AppointmentsService {
 
       totalPrice += extra.price;
      
+      // if the serviceId is not found, throw an error
       for (const serviceId of CreateAppointmentInput.servicesId) {
         const service = await this.serviceService.findOne(serviceId);
         if (!service) {
@@ -127,6 +129,16 @@ export class AppointmentsService {
         throw new Error('There is already an appointment on that date');
       }
 
+      console.log(totalPrice, "totalPrice");
+
+      //subtract points if isPointsUsed is true
+      if(CreateAppointmentInput.isPointsUsed){
+        const points = await this.pointsService.subtractPoints(uid, 5);
+        totalPrice /= 2;
+      }
+
+      console.log(totalPrice, "totalPrice");
+
       const newAppointment = new Appointment();
       newAppointment.date = new Date(CreateAppointmentInput.date);
       newAppointment.totalTime = totalTime;
@@ -138,6 +150,7 @@ export class AppointmentsService {
       newAppointment.price = totalPrice;
       newAppointment.addedPoints = addedPoints;
       newAppointment.isCompleted = false;
+      newAppointment.isPointsUsed = CreateAppointmentInput.isPointsUsed;
 
       return this.appointmentRepository.save(newAppointment);
 

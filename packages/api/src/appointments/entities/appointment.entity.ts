@@ -1,6 +1,6 @@
 import { ObjectType, Field, Int, ID, Float } from '@nestjs/graphql';
 import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
-import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ObjectIdColumn, UpdateDateColumn } from 'typeorm';
 import {ObjectId} from 'mongodb';
 import { Service } from 'src/services/entities/service.entity';
 import { Extra } from 'src/extras/entities/extra.entity';
@@ -56,8 +56,20 @@ export class Appointment {
   addedPoints: number
 
   @Column()
+  @Field(() => Boolean, { description: 'isPointsUsed', nullable: true })
+  isPointsUsed: boolean
+
+  @Column()
   @Field(() => Boolean, { description: 'isCompleted', nullable: true})
   isCompleted: boolean
+
+  @Field({ nullable: true })
+  @CreateDateColumn({ type: 'timestamp', nullable: true })
+  createdAt?: Date
+
+  @Field({ nullable: true })
+  @UpdateDateColumn({ type: 'timestamp', nullable: true })
+  updatedAt?: Date
 }
 
 
