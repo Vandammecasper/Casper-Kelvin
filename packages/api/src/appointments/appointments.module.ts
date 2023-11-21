@@ -7,6 +7,7 @@ import { HairdressersModule } from 'src/hairdressers/hairdressers.module';
 import { ServicesModule } from 'src/services/services.module';
 import { PointsModule } from 'src/points/points.module';
 import { ExtrasModule } from 'src/extras/extras.module';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ExtrasModule } from 'src/extras/extras.module';
     ServicesModule,
     PointsModule,
     ExtrasModule,
+    UsersModule,
   ],
   providers: [AppointmentsResolver, AppointmentsService],
   exports: [AppointmentsService],

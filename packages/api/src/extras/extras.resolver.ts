@@ -3,12 +3,18 @@ import { ExtrasService } from './extras.service';
 import { Extra } from './entities/extra.entity';
 import { CreateExtraInput } from './dto/create-extra.input';
 import { UpdateExtraInput } from './dto/update-extra.input';
+import { UseGuards } from '@nestjs/common';
+import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
+import { AllowedRoles } from 'src/users/decorators/role.decorator';
+import { Role } from 'src/users/entities/user.entity';
+import { RolesGuard } from 'src/users/guards/roles.guard';
 
 @Resolver(() => Extra)
 export class ExtrasResolver {
   constructor(private readonly extrasService: ExtrasService) {}
 
-  //TODO: add user guard
+  @AllowedRoles(Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Extra)
   createExtra(@Args('createExtraInput') createExtraInput: CreateExtraInput) {
     return this.extrasService.create(createExtraInput);

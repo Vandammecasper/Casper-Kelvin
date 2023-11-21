@@ -4,11 +4,13 @@ import { VacationsResolver } from './vacations.resolver';
 import { HairdressersModule } from 'src/hairdressers/hairdressers.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Vacation } from './entities/vacation.entity';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Vacation]),
-    HairdressersModule
+    HairdressersModule,
+    UsersModule
   ],
   providers: [VacationsResolver, VacationsService],
   exports: [VacationsService],
