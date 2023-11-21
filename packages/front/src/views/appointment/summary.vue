@@ -17,7 +17,7 @@
                 <div v-if="checkAvailablePoints()" class="flex mt-4 gap-56">
                     <div class="flex gap-2">
                         <button @click="usePoints" class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center">
-                            <img v-if="usingPoints" src="../../../assets/icons/cross.svg" alt="">
+                            <img v-if="isPointsUsed" src="../../../assets/icons/cross.svg" alt="">
                         </button>
                         <h2 class="Raleway text-3xl">USE POINTS</h2>
                     </div>
