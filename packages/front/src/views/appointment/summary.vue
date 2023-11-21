@@ -78,6 +78,7 @@
     import router from '../../bootstrap/router'
 import { GET_POINT_BY_UID } from '@/graphql/points.query'
 import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
+import { ref } from 'vue';
     
     export default {
         data(){
@@ -95,17 +96,17 @@ import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
             }
         },
         methods: {
-            usePoints() {
-                if (this.usingPoints == false) {
-                    this.usingPoints = true
-                    console.log(this.usingPoints)
-                }
-                else {
-                    this.usingPoints = false
-                    console.log(this.usingPoints)
-                }
-                return this.usingPoints
-            },
+            // usePoints() {
+            //     if (this.usingPoints == false) {
+            //         this.usingPoints = true
+            //         console.log(this.usingPoints)
+            //     }
+            //     else {
+            //         this.usingPoints = false
+            //         console.log(this.usingPoints)
+            //     }
+            //     return this.usingPoints
+            // },
             checkAvailablePoints() {
                 if (this.getPointByUidResult?.pointByUid.usablePoints >= 5) {
                     return true
@@ -165,6 +166,9 @@ import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
                     this.totalCost += service.price
                 }
                 this.totalCost += this.getExtraResult?.extra.price
+                if (this.isPointsUsed == true) {
+                    this.totalCost = this.totalCost / 2
+                }
                 return this.totalCost
             },
         },
@@ -174,6 +178,10 @@ import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
             const serviceid = currentRoute.value.params.service.split(',').map(services => decodeURIComponent(services));
             const extraId = currentRoute.value.params.extra
             // const serviceid = currentRoute.value.params.service
+            const isPointsUsed = ref(false)
+            const usePoints = () => {
+                isPointsUsed.value = !isPointsUsed.value
+            }
             
             //!!needs to be checked!!
             const checkPoints = () => {
@@ -239,7 +247,7 @@ import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
                         hairdresserId: barberid,
                         servicesId: serviceid,
                         extraId: extraId,
-                        isPointsUsed: false, // needs to change to user input
+                        isPointsUsed: isPointsUsed.value, //TODO: needs to change to user input
                     },
                 }).then(result => {
                     if (!result?.data) throw new Error('Appointment creation failed.')
@@ -253,6 +261,8 @@ import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
             getPointByUidResult,
             checkPoints,
             getExtraResult,
+            isPointsUsed,
+            usePoints,
         }
         }
     };
