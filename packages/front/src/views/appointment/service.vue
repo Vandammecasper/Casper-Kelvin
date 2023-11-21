@@ -47,9 +47,7 @@
             <router-link v-if="extra" :to="{ name: 'appointment', params: { service: selectedServices.join(','), extra: selectedExtra } }">
                 <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">NEXT</button>
             </router-link>
-            <RouterLink v-else :to="{ name: 'appointment', params: { service: selectedServices.join(','), extra: selectedExtra } }">
-                <button class="mt-8 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8 font-semibold  hover:bg-neutral-700 focus:outline-none focus-visible:border-neutral-600 focus-visible:bg-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-300">SKIP</button>
-            </RouterLink>
+            <button v-else class="mt-8 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8 font-semibold  hover:bg-neutral-700 focus:outline-none focus-visible:border-neutral-600 focus-visible:bg-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-300 cursor-not-allowed">NEXT</button>
         </div>
     </div>
 </template>

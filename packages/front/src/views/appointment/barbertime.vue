@@ -12,7 +12,7 @@
                         'p-1 border-2 border-transparent hover:border-neutral-600': true // Add other classes as needed
                     }">
                         <div class="h-24 relative grid content-center">
-                            <img src="../../../assets/barbers/Samuel.jpg" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
+                            <img :src="'../../../assets/barbers/'+hairdresser.name+'.jpg'" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
                             <h3 class="text-3xl z-20 bg-black justify-self-end text-center w-40 py-5">{{hairdresser.name}}</h3>
                         </div>
                     </div>
