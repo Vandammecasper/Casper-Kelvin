@@ -12,11 +12,15 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@vue/apollo-composable": "^4.0.0-beta.11",
+    "apexcharts": "^3.44.0",
+    "chart.js": "^4.4.0",
     "firebase": "^10.4.0",
     "flatpickr": "^4.6.13",
     "lucide-vue-next": "^0.279.0",
     "v-calendar": "^3.1.2",
     "vue": "^3.3.4",
+    "vue-apexcharts": "^1.6.2",
+    "vue-chartjs": "^5.2.0",
     "vue-i18n": "^9.5.0",
     "vue-router": "^4.2.4"
   },
