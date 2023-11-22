@@ -136,7 +136,6 @@ import useFirebase from '@/composables/useFirebase'
 import useLanguage from '@/composables/useLanguage'
 import { useI18n } from 'vue-i18n'
 import { SUPPORTED_LOCALES } from '@/bootstrap/i18n'
-import useCustomUser from '@/composables/useCustomUser'
 import { GET_POINT_BY_UID, GET_RANK } from '@/graphql/points.query'
 import { useQuery } from '@vue/apollo-composable'
 import NavigationAccount from '@/components/navigationAccount.vue'
@@ -156,15 +155,12 @@ const handleUpdateProfile = () => {
     console.log('update profile')
 }
 
-const { result: getPointByUidResult } = useQuery(GET_POINT_BY_UID)
+const { result: getPointByUidResult } = useQuery(GET_POINT_BY_UID);
 
 const { result: getRangResult } = useQuery(GET_RANK)
 
-//TODO: fix isPublic placholder for checkbox
-console.log(getPointByUidResult.value?.pointByUid.isPublic, "getRangResult")
-const isPublic = ref(getPointByUidResult.value?.pointByUid.isPublic)
-
-// console.log(getPointByUidResult?.pointByUid.usablePoints, "getRangResult")
+//TODO: set to getPointsByUidResult?.value.pointByUid.isPublic
+const isPublic = ref(false)
 
 const { setLocale } = useLanguage()
 const { locale } = useI18n()
@@ -174,5 +170,6 @@ const setLanguage = (event: Event) => {
     //update user profile
     setLocale(target.value)
 }
+
 
 </script>
