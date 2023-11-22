@@ -77,6 +77,18 @@
           </select>
         </div>
 
+        <div class="mt-6">
+          <div class="flex gap-3">
+            <label class="block" for="isPublic">Public Points</label>
+            <Tooltip content="Other people can see your total points if you check this box.">
+              <HelpCircleIcon class="w-5 h-5 text-white" />
+            </Tooltip>
+          </div>
+          <button type="button" @click="useIsPublic" class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center">
+              <img v-if="isPublic" src="../../../assets/icons/cross.svg" alt="">
+          </button>
+        </div>
+
         <button
           class="Raleway-bold mt-6 w-full  border-2 border-yellow-600 bg-yellow-600 py-2 px-4 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300"
         >
@@ -121,12 +133,20 @@ import { ADD_USER } from '@/graphql/user.mutation'
 import useLanguage from '@/composables/useLanguage'
 import { useI18n } from 'vue-i18n'
 import { SUPPORTED_LOCALES } from '@/bootstrap/i18n'
+import { HelpCircleIcon } from 'lucide-vue-next'
+import Tooltip from '../../components/tooltip.vue';
 
 export default {
   setup() { // <-- was script
     // Composables
     const { register } = useFirebase()
     const { customUser } = useCustomUser()
+    const isPublic = ref(false)
+
+    const useIsPublic = () => {
+      isPublic.value = !isPublic.value
+      console.log(isPublic.value)
+    }
 
     const newUser = ref({
       name: '',
@@ -150,7 +170,7 @@ export default {
         addUser({
             createUserInput: {
               locale: newUser.value.locale,
-              isPublic: false,
+              isPublic: isPublic.value,
             },
         }).then(result => {
             if (!result?.data) throw new Error('Custom user creation failed.')
@@ -180,8 +200,14 @@ export default {
       locale,
       SUPPORTED_LOCALES,
 
+      isPublic,
+      useIsPublic,
       handleRegister,
     }
+  },
+  components: {
+    HelpCircleIcon,
+    Tooltip,
   },
 }
 </script>
