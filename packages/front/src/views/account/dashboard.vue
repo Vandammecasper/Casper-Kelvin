@@ -23,11 +23,13 @@
                 </div>
             </div>
         </div>
-        <div class="flex p-8 h-110 w-screen justify-center">
-            <div class="w-1/2">
+        <div class="flex p-8 h-105 w-screen justify-center">
+            <div class="w-1/2 grid justify-items-center">
+                <h1 class="text-2xl mb-4">Barber revenue</h1>
                 <BarChart />
             </div>
-            <div class="w-1/2">
+            <div class="w-1/2 grid justify-items-center">
+                <h1 class="text-2xl mb-4">Appointment revenue</h1>
                 <DoughnutChart/>
             </div>
             

@@ -14,6 +14,8 @@ import {
     Legend
 } from 'chart.js'
 import { Line } from 'vue-chartjs'
+import { GET_ALL_APPOINTMENTS } from '@/graphql/appointments.query'
+import { useQuery } from '@vue/apollo-composable'
 
 ChartJS.register(
     CategoryScale,
@@ -39,7 +41,7 @@ export default {
                         label: '',
                         backgroundColor: '#F91818',
                         borderColor: '#F91818',
-                        data: [40, 39, 10, 40, 39, 80, 40, 39, 10, 40, 39, 80, 40]
+                        data: [this.januaryAppointments, this.februaryAppointments, this.marchAppointments, this.aprilAppointments, this.mayAppointments, this.juneAppointments, this.julyAppointments, this.augustAppointments, this.septemberAppointments, this.octoberAppointments, this.novemberAppointments, this.decemberAppointments]
                     }
                 ]
             },
@@ -47,6 +49,106 @@ export default {
                 responsive: true,
                 maintainAspectRatio: false,
             }
+        }
+    },
+    
+    setup(){
+        const firstDayOfJanuary= new Date(new Date().getFullYear(), 0, 1)
+        const firstDayOfFebruary= new Date(new Date().getFullYear(), 1, 1)
+        const firstDayOfMarch= new Date(new Date().getFullYear(), 2, 1)
+        const firstDayOfApril= new Date(new Date().getFullYear(), 3, 1)
+        const firstDayOfMay= new Date(new Date().getFullYear(), 4, 1)
+        const firstDayOfJune= new Date(new Date().getFullYear(), 5, 1)
+        const firstDayOfJuly= new Date(new Date().getFullYear(), 6, 1)
+        const firstDayOfAugust= new Date(new Date().getFullYear(), 7, 1)
+        const firstDayOfSeptember= new Date(new Date().getFullYear(), 8, 1)
+        const firstDayOfOctober= new Date(new Date().getFullYear(), 9, 1)
+        const firstDayOfNovember= new Date(new Date().getFullYear(), 10, 1)
+        const firstDayOfDecember= new Date(new Date().getFullYear(), 11, 1)
+        let januaryAppointments= 0
+        let februaryAppointments= 0
+        let marchAppointments= 0
+        let aprilAppointments= 0
+        let mayAppointments= 0
+        let juneAppointments= 0
+        let julyAppointments= 0
+        let augustAppointments= 0
+        let septemberAppointments= 0
+        let octoberAppointments= 0
+        let novemberAppointments= 0
+        let decemberAppointments= 0
+
+        const countAppointments = () => {
+            console.log('start counting appointments', getAppointmentsResult.value.appointments[0])
+            for (let i = 0; i < getAppointmentsResult.value.appointments?.length; i++) {
+                const appointment = getAppointmentsResult.value.appointments[i];
+                console.log(new Date(appointment.date) > firstDayOfNovember && new Date(appointment.date) < firstDayOfDecember)
+                if (new Date(appointment.date) > firstDayOfJanuary && new Date(appointment.date) < firstDayOfFebruary) {
+                    januaryAppointments++
+                }
+                if (new Date(appointment.date) > firstDayOfFebruary && new Date(appointment.date) < firstDayOfMarch) {
+                    februaryAppointments++
+                }
+                if (new Date(appointment.date) > firstDayOfMarch && new Date(appointment.date) < firstDayOfApril) {
+                    marchAppointments++
+                }
+                if (new Date(appointment.date) > firstDayOfApril && new Date(appointment.date) < firstDayOfMay) {
+                    aprilAppointments++
+                }
+                if (new Date(appointment.date) > firstDayOfMay && new Date(appointment.date) < firstDayOfJune) {
+                    mayAppointments++
+                }
+                if (new Date(appointment.date) > firstDayOfJune && new Date(appointment.date) < firstDayOfJuly) {
+                    juneAppointments++
+                }
+                if (new Date(appointment.date) > firstDayOfJuly && new Date(appointment.date) < firstDayOfAugust) {
+                    julyAppointments++
+                }
+                if (new Date(appointment.date) > firstDayOfAugust && new Date(appointment.date) < firstDayOfSeptember) {
+                    augustAppointments++
+                }
+                if (new Date(appointment.date) > firstDayOfSeptember && new Date(appointment.date) < firstDayOfOctober) {
+                    septemberAppointments++
+                }
+                if (new Date(appointment.date) > firstDayOfOctober && new Date(appointment.date) < firstDayOfNovember) {
+                    octoberAppointments++
+                }
+                if (new Date(appointment.date) > firstDayOfNovember && new Date(appointment.date) < firstDayOfDecember) {
+                    novemberAppointments++
+                    console.log('november', novemberAppointments)
+                }
+                if (new Date(appointment.date) > firstDayOfDecember && new Date(appointment.date) < new Date(new Date().getFullYear(), 12, 1)) {
+                    decemberAppointments++
+                }
+                
+            }
+        }
+
+        const {
+            result: getAppointmentsResult,
+            onResult: countA,
+        } = useQuery(GET_ALL_APPOINTMENTS)
+        console.log(getAppointmentsResult)
+
+        countA((data) => {
+            countAppointments()
+        })
+
+
+        return{
+            getAppointmentsResult,
+            januaryAppointments,
+            februaryAppointments,
+            marchAppointments,
+            aprilAppointments,
+            mayAppointments,
+            juneAppointments,
+            julyAppointments,
+            augustAppointments,
+            septemberAppointments,
+            octoberAppointments,
+            novemberAppointments,
+            decemberAppointments,
         }
     }
 }

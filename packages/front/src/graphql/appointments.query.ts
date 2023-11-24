@@ -70,3 +70,18 @@ export const COMPLETE_APPOINTMENT =  gql`
     }
   }
 `
+
+export const GET_ALL_APPOINTMENTS = gql`
+  query {
+    appointments {
+      id
+      date
+      userName
+      services {
+        id
+        name
+      }
+      price
+    }
+  }
+`
