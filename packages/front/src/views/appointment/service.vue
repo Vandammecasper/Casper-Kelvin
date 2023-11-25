@@ -23,31 +23,31 @@
     </div>
     <div v-if="next" class="grid">
         <div class="absolute w-screen h-screen z-50 top-0 left-0 bg-black opacity-60 "></div>
-        <div class="bg-neutral-800 justify-self-center top-16 h-3/4 w-2/5  absolute z-50 grid justify-items-center px-16 py-16">
-            <div class="text-center px-16">
-                <h3 class="text-4xl Raleway-bold">SELECT EXTRA'S</h3>
-                <p class="text-neutral-600 mt-2 Raleway">Choose from our selection of premium extras to take your grooming experience to the next level.</p>
+        <div class="bg-neutral-800 justify-self-center top-16 h-3/4 w-2/5 max-lg:w-3/5 max-md:w-4/5 max-md:h-4/5 absolute z-50 grid justify-items-center max-lg:px-0 max-lg:py-2 max-xl:px-2 max-xl:py-4 max-md:py-6 max-sm:py-2 px-8 py-6">
+            <div class="text-center px-16 max-sm:px-10">
+                <h3 class="text-2xl Raleway-bold max-sm:text-xl">SELECT EXTRA'S</h3>
+                <p class="text-neutral-600 mt-2 Raleway text-sm max-sm:text-xs">Choose from our selection of premium extras to take your grooming experience to the next level.</p>
             </div>
             <div v-for="extra of getExtrasResult.extras">
-                <button v-if="extra?.id == selectedExtra" @click="handleExtra(extra.id)" class="mx-10 p-1 text-left border-2 border-yellow-600">
+                <button v-if="extra?.id == selectedExtra" @click="handleExtra(extra.id)" class="mx-10 max-lg:mx-8 p-1 text-left border-2 border-yellow-600">
                     <div class="flex justify-between">
-                        <h4 class="text-xl Raleway-bold">{{ extra.name }}</h4>
-                        <h4 class="text-xl Raleway-bold">+€ {{ extra.price }}</h4>
+                        <h4 class="Raleway-bold max-sm:text-sm">{{ extra.name }}</h4>
+                        <h4 class="Raleway-bold max-sm:text-sm">+€ {{ extra.price }}</h4>
                     </div>
-                    <p class="text-neutral-600 text-sm pr-20 Raleway">{{ extra.description }}</p>
+                    <p class="text-neutral-600 text-sm pr-20 max-sm:pr-12 Raleway max-sm:text-xs">{{ extra.description }}</p>
                 </button>
-                <button v-else @click="handleExtra(extra.id)" class="mx-10 p-1 text-left border-2 border-transparent hover:border-neutral-600">
+                <button v-else @click="handleExtra(extra.id)" class="mx-10 max-lg:mx-8 p-1 text-left border-2 border-transparent hover:border-neutral-600">
                     <div class="flex justify-between">
-                        <h4 class="text-xl Raleway-bold">{{ extra.name }}</h4>
-                        <h4 class="text-xl Raleway-bold">+€ {{ extra.price }}</h4>
+                        <h4 class="Raleway-bold max-sm:text-sm">{{ extra.name }}</h4>
+                        <h4 class="Raleway-bold max-sm:text-sm">+€ {{ extra.price }}</h4>
                     </div>
-                    <p class="text-neutral-600 text-sm pr-20 Raleway">{{ extra.description }}</p>
+                    <p class="text-neutral-600 text-sm pr-20 max-sm:pr-12 Raleway max-sm:text-xs">{{ extra.description }}</p>
                 </button>
             </div>
             <router-link v-if="extra" :to="{ name: 'appointment', params: { service: selectedServices.join(','), extra: selectedExtra } }">
-                <button class="mt-8 max-lg:mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">NEXT</button>
+                <button class="mt-6 max-lg:mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">NEXT</button>
             </router-link>
-        <button v-else class="Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8 font-semibold  hover:bg-neutral-700 focus:outline-none focus-visible:border-neutral-600 focus-visible:bg-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-300 cursor-not-allowed">NEXT</button>
+            <button v-else class="mt-6 max-lg:mt-4 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8 hover:bg-neutral-700 focus:outline-none focus-visible:border-neutral-600 focus-visible:bg-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-300 cursor-not-allowed">NEXT</button>
         </div>
     </div>
 </template>
