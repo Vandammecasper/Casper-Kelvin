@@ -1,25 +1,25 @@
 <template>
     <div class="grid w-full h-screen content-center justify-items-center">
-        <h1 class="Raleway-bold text-6xl mt-24">SERVICES</h1>
-        <div class="grid grid-cols-2 justify-self-center px-24 gap-10 mt-8">
+        <h1 class="Raleway-bold text-6xl max-lg:text-5xl max-sm:text-md mt-24 max-sm:mt-112 3xl:text-8xl">SERVICES</h1>
+        <div class="sm:grid sm:grid-cols-2 3xl:mt-32 justify-self-center max-xl:px-8 xl:px-24 max-xl:gap-4 xl:gap-10 max-xl:mt-4 xl:mt-8 max-lg:mt-2">
             <button
             v-for="service in getServicesResult.services"
             :key="service.id"
             :class="{
-                'border-2 border-yellow-600 hover:border-yellow-600': isSelected(service.id),
-                'p-1 hover:border-2 hover:border-neutral-600 border-2 border-transparent': true // Add other classes as needed
+                'border-2 border-yellow-600 hover:border-yellow-600 max-sm:mt-2': isSelected(service.id),
+                'p-1 hover:border-2 hover:border-neutral-600 border-2 border-transparent max-sm:mt-2': true // Add other classes as needed
             }"
             @click="toggleSelection(service.id)"
             >
             <div class="flex justify-between">
-                <h3 class="text-xl Raleway-bold">{{ service.name }}</h3>
-                <h3 class="text-xl Raleway-bold">€ {{ service.price }}</h3>
+                <h3 class="text-xl max-md:text-lg 3xl:text-5xl Raleway-bold">{{ service.name }}</h3>
+                <h3 class="text-xl max-md:text-lg 3xl:text-5xl Raleway-bold">€ {{ service.price }}</h3>
             </div>
-            <p class="mt-2 text-lg text-neutral-700 Raleway text-left">{{ service.description }}</p>
+            <p class="mt-2 lg:text-lg max-md:text-sm 3xl:text-3xl text-neutral-700 Raleway text-left">{{ service.description }}</p>
             </button>
         </div>
-        <button v-if="cont" @click="handleContinue()" class="Raleway-bold mt-6  border-2 border-yellow-600 bg-yellow-600 py-4 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">CONTINUE</button>
-        <div v-else class="Raleway-bold mt-6 bg-neutral-500 py-4 px-8 font-semibold">CONTINUE</div>
+        <button v-if="cont" @click="handleContinue()" class="Raleway-bold mt-6 3xl:text-3xl 3xl:py-6 3xl:px-10 3xl:mt-24 border-2 border-yellow-600 bg-yellow-600 py-4 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">CONTINUE</button>
+        <div v-else class="Raleway-bold mt-6 bg-neutral-500 py-4 px-8 3xl:text-3xl 3xl:py-6 3xl:px-10 3xl:mt-24 font-semibold">CONTINUE</div>
     </div>
     <div v-if="next" class="grid">
         <div class="absolute w-screen h-screen z-50 top-0 left-0 bg-black opacity-60 "></div>
@@ -45,9 +45,9 @@
                 </button>
             </div>
             <router-link v-if="extra" :to="{ name: 'appointment', params: { service: selectedServices.join(','), extra: selectedExtra } }">
-                <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">NEXT</button>
+                <button class="mt-8 max-lg:mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">NEXT</button>
             </router-link>
-            <button v-else class="mt-8 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8 font-semibold  hover:bg-neutral-700 focus:outline-none focus-visible:border-neutral-600 focus-visible:bg-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-300 cursor-not-allowed">NEXT</button>
+        <button v-else class="Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8 font-semibold  hover:bg-neutral-700 focus:outline-none focus-visible:border-neutral-600 focus-visible:bg-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-300 cursor-not-allowed">NEXT</button>
         </div>
     </div>
 </template>
