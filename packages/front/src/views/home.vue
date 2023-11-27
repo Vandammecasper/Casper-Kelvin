@@ -1,11 +1,11 @@
 <template>
     <div class="h-screen grid ">
       <img src="../../assets/barbers/Samuel2.jpg" alt="" class="absolute object-cover w-full h-screen z-0 opacity-50 mt-10">
-      <img src="../../assets/logo-PhotoRoom.png" alt="" class="h-96 w-96 mt-32 z-30 place-self-center relative">
+      <img src="../../assets/logo-PhotoRoom.png" alt="" class="h-72 sm:h-96 mt-32 z-30 place-self-center relative">
       <RouterLink to="/appointment/services" class="place-self-center">
-        <div class="border-4 border-yellow-500 p-2 relative">
-          <div class="border-4 border-yellow-500 p-4 relative">
-            <div class="text-xl px-8 z-30 relative Raleway-bold">{{ $t('navigation.makeAppointment') }}</div>
+        <div class="border-4 border-yellow-500 p-1.5 sm:p-2 relative">
+          <div class="border-4 border-yellow-500 p-3 sm:p-4 relative">
+            <div class="text-lg sm:text-xl px-8 z-30 relative Raleway-bold">{{ $t('navigation.makeAppointment') }}</div>
           </div>
         </div>
       </RouterLink>
