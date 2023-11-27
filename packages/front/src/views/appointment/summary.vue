@@ -1,20 +1,20 @@
 <template>
     <div class="grid w-full h-screen content-center justify-items-center">
-        <h1 class="Raleway-bold text-6xl mt-24">SUMMARY</h1>
-        <div class="mt-8 grid grid-cols-2 gap-80 px-16">
+        <h1 class="Raleway-bold text-5xl md:text-6xl mt-76 sm:mt-16 lg:mt-24">SUMMARY</h1>
+        <div class="mt-6 sm:mt-8 sm:grid sm:grid-cols-2 sm:gap-12 md:gap-24 lg:gap-40 xl:gap-80 px-8 md:px-12 xl:px-16">
             <div>
-                <h2 class="Raleway-bold text-5xl mb-2">SERVICES</h2>
+                <h2 class="Raleway-bold text-3xl md:text-5xl mb-2">SERVICES</h2>
                 <div v-for="service of filteredServices" class="flex justify-between mt-2">
-                    <p class="Raleway text-2xl">{{ service.name }}</p>
-                    <p class="Raleway text-2xl">€ {{ service.price }}</p>
+                    <p class="Raleway text-xl md:text-2xl">{{ service.name }}</p>
+                    <p class="Raleway text-xl md:text-2xl">€ {{ service.price }}</p>
                 </div>
-                <h2 class="Raleway-bold text-5xl mt-4">EXTRA'S</h2>
+                <h2 class="Raleway-bold text-3xl md:text-5xl mt-4">EXTRA'S</h2>
                 <div class="flex justify-between mt-2">
-                    <p class="Raleway text-2xl">{{ getExtraResult?.extra.name }}</p>
-                    <p class="Raleway text-2xl">€ {{ getExtraResult?.extra.price }}.00</p>
+                    <p class="Raleway text-xl md:text-2xl">{{ getExtraResult?.extra.name }}</p>
+                    <p class="Raleway text-xl md:text-2xl">€ {{ getExtraResult?.extra.price }}.00</p>
                 </div>
                 <p class="w-3/4 mt-2 text-neutral-600 Raleway">{{ description }}</p>
-                <div v-if="checkAvailablePoints()" class="flex mt-4 gap-56">
+                <div v-if="checkAvailablePoints()" class="flex mt-4 justify-between">
                     <div class="flex gap-2">
                         <button @click="usePoints" class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center">
                             <img v-if="isPointsUsed" src="../../../assets/icons/cross.svg" alt="">
@@ -23,31 +23,32 @@
                     </div>
                     <h2 class="Raleway text-3xl">5/{{ getPointByUidResult?.pointByUid.usablePoints }}</h2>
                 </div>
-                <div v-else class="flex mt-4 gap-56 opacity-30">
+                <div v-else class="flex mt-4 justify-between opacity-30">
                         <div class="flex gap-2">
                             <div class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center"></div>
-                            <h2 class="Raleway text-3xl">USE POINTS</h2>
+                            <h2 class="Raleway text-2xl md:text-3xl">USE POINTS</h2>
                         </div>
-                        <h2 class="Raleway text-3xl">5/{{ getPointByUidResult?.pointByUid.usablePoints }}</h2>
+                        <h2 class="Raleway text-2xl md:text-3xl">5/{{ getPointByUidResult?.pointByUid.usablePoints }}</h2>
                     </div>
                 <p class="w-3/4 mt-2 text-neutral-600 Raleway">Use 5 points to get a 50% discount</p>
             </div>
             <div>
-                <h2 class="Raleway-bold text-5xl">BARBER</h2>
-                <div class="border-2 border-yellow-600 hover:border-yellow-600">
+                <h2 class="Raleway-bold text-3xl md:text-5xl max-sm:mt-4">BARBER</h2>
+                <div class="border-2 border-yellow-600 hover:border-yellow-600 max-md:mt-2">
                     <div class="h-24 relative grid content-center">
+                        <!-- lukt niet om variabele foto te gebruiken -->
                         <img src="../../../assets/barbers/Samuel.jpg" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
-                        <h3 class="text-3xl z-20 bg-black justify-self-end text-center w-40 py-5">{{ hairdressersResult?.hairdresser?.name }}</h3>
+                        <h3 class="text-2xl lg:text-3xl z-20 bg-black justify-self-end text-center w-32 lg:w-40 py-4 lg:py-5">{{ hairdressersResult?.hairdresser?.name }}</h3>
                     </div>
                 </div>
-                <h2 class="Raleway-bold text-5xl mt-12">CALENDAR</h2>
-                <div class="flex gap-24 mt-4">
+                <h2 class="Raleway-bold text-3xl md:text-5xl mt-4 sm:mt-12">CALENDAR</h2>
+                <div class="flex gap-12 md:gap-24 mt-2 md:mt-4">
                     <div>
-                        <h3 class="Raleway text-3xl">DATE</h3>
+                        <h3 class="Raleway text-2xl md:text-3xl">DATE</h3>
                         <p class="Raleway text-xl">{{ date }}</p>
                     </div>
                     <div>
-                        <h3 class="Raleway text-3xl">HOUR</h3>
+                        <h3 class="Raleway text-2xl md:text-3xl">HOUR</h3>
                         <p class="Raleway text-xl">{{ uur }}</p>
                     </div>
                 </div>
