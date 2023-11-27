@@ -22,8 +22,8 @@
         <div v-else class="Raleway-bold mt-6 bg-neutral-500 py-4 px-8 3xl:text-3xl 3xl:py-6 3xl:px-10 3xl:mt-24 font-semibold">CONTINUE</div>
     </div>
     <div v-if="next" class="grid">
-        <div class="absolute w-screen h-screen z-50 top-0 left-0 bg-black opacity-60 "></div>
-        <div class="bg-neutral-800 justify-self-center top-16 h-3/4 w-2/5 max-lg:w-3/5 max-md:w-4/5 max-md:h-4/5 absolute z-50 grid justify-items-center max-lg:px-0 max-lg:py-2 max-xl:px-2 max-xl:py-4 max-md:py-6 max-sm:py-2 px-8 py-6">
+        <div class="fixed w-screen h-screen z-50 top-0 left-0 bg-black opacity-60 "></div>
+        <div class="fixed bg-neutral-800 justify-self-center top-16 h-3/4 w-2/5 max-lg:w-3/5 max-md:w-4/5 max-md:h-4/5 absolute z-50 grid justify-items-center max-lg:px-0 max-lg:py-2 max-xl:px-2 max-xl:py-4 max-md:py-6 max-sm:py-2 px-8 py-6">
             <div class="text-center px-16 max-sm:px-10">
                 <h3 class="text-2xl Raleway-bold max-sm:text-xl">SELECT EXTRA'S</h3>
                 <p class="text-neutral-600 mt-2 Raleway text-sm max-sm:text-xs">Choose from our selection of premium extras to take your grooming experience to the next level.</p>
