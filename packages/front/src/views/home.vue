@@ -12,15 +12,15 @@
     </div>
     <div class="h-2"></div>
     <div id="about" class="h-18"></div>
-    <div class="flex justify-between p-16">
-      <div class="w-1/2">
-        <img src="../../assets/about.jpg" alt="" class="w-3/5">
+    <div class="max-sm:grid sm:flex sm:justify-between p-6 md:p-8 lg:p-16">
+      <div class="max-sm:hidden w-1/2">
+        <img src="../../assets/about.jpg" alt="" class="w-4/5 xl:w-3/5">
       </div>
-      <div class="w-1/2">
-        <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">{{ $t('home.about.about') }}</h1>
-        <h2 class="text-5xl w-4/6 mt-17 relative z-10 Raleway-bold">{{ $t('home.about.title') }}</h2>
-        <h3 class="text-3xl mt-8 Raleway-bold">{{ $t('home.about.titleSM') }}</h3>
-        <p class="w-2/3 mt-2 text-lg Raleway">{{ $t('home.about.p') }}</p>
+      <div class="sm:w-1/2">
+        <h1 class="text-neutral-800 text-7xl md:text-8xl lg:text-9xl absolute Raleway-bold">{{ $t('home.about.about') }}</h1>
+        <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl w-5/6 xl:w-4/6 mt-9 md:mt-13.5 lg:mt-19 xl:mt-17 relative z-10 Raleway-bold">{{ $t('home.about.title') }}</h2>
+        <h3 class="text-xl lg:text-2xl xl:text-3xl mt-4 md:mt-8 Raleway-bold">{{ $t('home.about.titleSM') }}</h3>
+        <p class=" md:w-3/4 xl:w-2/3 mt-2 lg:text-lg Raleway">{{ $t('home.about.p') }}</p>
       </div>
     </div>
     <div class="grid grid-cols-2 mt-40">
