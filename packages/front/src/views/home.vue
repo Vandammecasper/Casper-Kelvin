@@ -73,10 +73,10 @@
     <div class=""></div>
     <div id="crew" class="h-32"></div>
     <div class="grid justify-items-center w-full">
-        <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">{{ $t('home.crew.crew') }}</h1>
-        <div class="relative z-10 w-1/2 text-center">
-          <h2 class="text-4xl mt-19 mb-4 Raleway-bold">{{ $t('home.crew.title') }}</h2>
-          <p class="text-2xl text-neutral-700 relative Raleway">{{ $t('home.crew.p') }}</p>
+        <h1 class="text-neutral-800 text-6xl sm:text-7xl md:text-8xl lg:text-9xl absolute Raleway-bold">{{ $t('home.crew.crew') }}</h1>
+        <div class="relative z-10 w-4/5 sm:w-3/5 lg:w-3/4 xl:w-1/2 text-center">
+          <h2 class="text-xl sm:text-2xl md:text-4xl mt-7.5 sm:mt-9 md:mt-12.5 lg:mt-19 mb-4 Raleway-bold">{{ $t('home.crew.title') }}</h2>
+          <p class="sm:text-lg md:text-2xl text-neutral-700 relative Raleway">{{ $t('home.crew.p') }}</p>
         </div>
         <div class="grid grid-cols-3 mt-16 justify-self-center">
           <!-- 
@@ -88,10 +88,10 @@
                 <img :src="'../../assets/barbers/'+hairdresser.name+'.jpg'" alt="Image" class="w-full h-auto" />
                 <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"></div>
               </div>
-              <div class="w-5/6 bg-black h-40 border-4 border-t-0 border-yellow-600 justify-items-center grid p-8">
-                <h4 class="text-5xl Raleway-bold">{{ hairdresser.name }}</h4>
+              <div class="w-5/6 bg-black h-40 border-4 border-t-0 border-yellow-600 justify-items-center grid p-4 lg:p-8">
+                <h4 class="text-xl sm:text-3xl lg:text-5xl Raleway-bold text-center">{{ hairdresser.name }}</h4>
                 <div v-for="service of hairdresser?.services" :key="service.id">
-                  <p class="text-2xl text-neutral-600 Raleway">{{ service.name }}</p>
+                  <p class="sm:text-xl lg:text-2xl text-neutral-600 Raleway text-center max-sm:mt-0.5">{{ service.name }}</p>
                 </div>
               </div>
             </div>
