@@ -101,46 +101,46 @@
       <div class="h-18"></div>
       <div id="halloffame" class="h-2"></div>
       <div class="grid justify-items-center w-full mt-40">
-          <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">{{ $t('home.hallOfFame.hallOfFame') }}</h1>
-          <div class="relative z-10 w-1/2 text-center">
-            <h2 class="text-3xl mt-20 mb-4 Raleway-bold">{{ $t('home.hallOfFame.title') }}</h2>
-            <p class="text-2xl text-neutral-700 relative Raleway">{{ $t('home.hallOfFame.p') }}</p>
+          <h1 class="text-neutral-800 text-5xl sm:text-7xl md:text-8xl lg:text-9xl absolute Raleway-bold">{{ $t('home.hallOfFame.hallOfFame') }}</h1>
+          <div class="relative z-10 w-4/5 sm:w-3/5 lg:w-3/4 xl:w-3/4 text-center">
+            <h2 class="text-xl sm:text-2xl md:text-4xl mt-5 sm:mt-9 md:mt-12.5 lg:mt-19 mb-4 Raleway-bold">{{ $t('home.hallOfFame.title') }}</h2>
+            <p class="sm:text-lg md:text-2xl text-neutral-700 relative Raleway">{{ $t('home.hallOfFame.p') }}</p>
           </div>
-          <div class="grid grid-cols-3 w-full mt-16 px-32">
+          <div class="grid grid-cols-3 w-full mt-16 px-4 sm:px-6 md:px-16 lg:px-32">
             <div v-if="scoreBoardResult?.pointsPublic[1]" class="mt-24 grid">
-              <h3 class="Raleway-bold justify-self-center text-4xl">{{ scoreBoardResult?.pointsPublic[1].userName }}</h3>
-              <div class="bg-gradient-to-t from-transparent to-gray-300 h-64 grid mt-4">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">{{ scoreBoardResult?.pointsPublic[1].totalPoints }}</h4>
+              <h3 class="Raleway-bold justify-self-center text-xl sm:text-4xl">{{ scoreBoardResult?.pointsPublic[1].userName }}</h3>
+              <div class="bg-gradient-to-t from-transparent to-gray-300 h-40 sm:h-64 grid mt-4">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-4xl sm:text-5xl">{{ scoreBoardResult?.pointsPublic[1].totalPoints }}</h4>
               </div>
             </div>
             <div v-else class="mt-24 grid">
-              <h3 class="Raleway-bold justify-self-center text-4xl">/</h3>
-              <div class="bg-gradient-to-t from-transparent to-gray-300 h-64 grid mt-4">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">/</h4>
+              <h3 class="Raleway-bold justify-self-center text-xl sm:text-4xl">/</h3>
+              <div class="bg-gradient-to-t from-transparent to-gray-300 h-40 sm:h-64 grid mt-4">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-4xl sm:text-5xl">/</h4>
               </div>
             </div>
             <div v-if="scoreBoardResult?.pointsPublic[0]" class="grid">
-              <h3 class="justify-self-center Raleway-bold text-4xl">{{ scoreBoardResult?.pointsPublic[0].userName }}</h3>
-              <div class="bg-gradient-to-t from-transparent to-yellow-600 h-80 grid">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">{{ scoreBoardResult?.pointsPublic[0].totalPoints }}</h4>
+              <h3 class="Raleway-bold justify-self-center text-xl sm:text-4xl">{{ scoreBoardResult?.pointsPublic[0].userName }}</h3>
+              <div class="bg-gradient-to-t from-transparent to-yellow-600 h-56 sm:h-80 grid">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-4xl sm:text-5xl">{{ scoreBoardResult?.pointsPublic[0].totalPoints }}</h4>
               </div>
             </div>
             <div v-else class="mt-24 grid">
-              <h3 class="justify-self-center Raleway-bold text-4xl">/</h3>
-              <div class="bg-gradient-to-t from-transparent to-yellow-600 h-80 grid">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">/</h4>
+              <h3 class="Raleway-bold justify-self-center text-xl sm:text-4xl">/</h3>
+              <div class="bg-gradient-to-t from-transparent to-yellow-600 h-56 sm:h-80 grid">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-4xl sm:text-5xl">/</h4>
               </div>
             </div>
             <div v-if="scoreBoardResult?.pointsPublic[2]" class="mt-40 grid">
-              <h3 class="justify-self-center Raleway-bold text-4xl">{{ scoreBoardResult?.pointsPublic[2].userName }}</h3>
-              <div class="bg-gradient-to-t from-transparent to-amber-800 h-48 grid">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">{{ scoreBoardResult?.pointsPublic[2].totalPoints }}</h4>
+              <h3 class="Raleway-bold justify-self-center text-xl sm:text-4xl">{{ scoreBoardResult?.pointsPublic[2].userName }}</h3>
+              <div class="bg-gradient-to-t from-transparent to-amber-800 h-24 sm:h-48 grid">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-4xl sm:text-5xl">{{ scoreBoardResult?.pointsPublic[2].totalPoints }}</h4>
               </div>
             </div>
             <div v-else class="mt-24 grid">
-              <h3 class="justify-self-center Raleway-bold text-4xl">/</h3>
-              <div class="bg-gradient-to-t from-transparent to-amber-800 h-48 grid">
-                <h4 class="Raleway-bold justify-self-center mt-8 text-5xl">/</h4>
+              <h3 class="Raleway-bold justify-self-center text-xl sm:text-4xl">/</h3>
+              <div class="bg-gradient-to-t from-transparent to-amber-800 h-24 sm:h-48 grid">
+                <h4 class="Raleway-bold justify-self-center mt-8 text-4xl sm:text-5xl">/</h4>
               </div>
             </div>
           </div>
