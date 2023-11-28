@@ -2,10 +2,10 @@
     <div class="h-screen grid ">
       <img src="../../assets/barbers/Samuel2.jpg" alt="" class="absolute object-cover w-full h-screen z-0 opacity-50 mt-10">
       <img src="../../assets/logo-PhotoRoom.png" alt="" class="h-72 sm:h-96 mt-32 z-30 place-self-center relative">
-      <RouterLink to="/appointment/services" class="place-self-center">
-        <div class="border-4 border-yellow-500 p-1.5 sm:p-2 relative">
-          <div class="border-4 border-yellow-500 p-3 sm:p-4 relative">
-            <div class="text-lg sm:text-xl px-8 z-30 relative Raleway-bold">{{ $t('navigation.makeAppointment') }}</div>
+      <RouterLink to="/appointment/services" class="place-self-center max-lg:mt-8">
+        <div class="border-3 lg:border-4 border-yellow-500 p-1.5 sm:p-2 relative">
+          <div class="border-3 lg:border-4 border-yellow-500 p-3 sm:p-4 relative">
+            <div class="text-lg md:text-lg sm:text-xl px-8 z-30 relative Raleway-bold">{{ $t('navigation.makeAppointment') }}</div>
           </div>
         </div>
       </RouterLink>
@@ -23,24 +23,24 @@
         <p class=" md:w-3/4 xl:w-2/3 mt-2 lg:text-lg Raleway">{{ $t('home.about.p') }}</p>
       </div>
     </div>
-    <div class="grid grid-cols-2 mt-40">
+    <div class="md:grid md:grid-cols-2 mt-40">
       <div>
         <div class="grid grid-cols-2">
-          <img src="../../assets/beardtrim.jpg" alt="">
-          <div class="bg-black grid justify-items-center p-8 py-16">
-            <h5 class="text-yellow-600 text-xl Raleway-bold">{{ $t('home.about.professionalBarbershop') }}</h5>
-            <p class="text-lg text-center Raleway">{{ $t('home.about.professionalBarbershop_p') }}</p>
+          <img src="../../assets/beardtrim.jpg">
+          <div class="bg-black grid justify-items-center content-center max-sm:p-1.5 sm:p-6 md:p-1 lg:p-6 xl:p-8 sm:py-8 md:py-2 lg:py-4 xl:py-16">
+            <h5 class="text-yellow-600 text-center sm:text-xl md:text-sm xl:text-xl Raleway-bold">{{ $t('home.about.professionalBarbershop') }}</h5>
+            <p class="max-sm:text-xs md:text-xs lg:text-sm xl:text-lg text-center Raleway">{{ $t('home.about.professionalBarbershop_p') }}</p>
           </div>
         </div>
         <div class="grid grid-cols-2">
-          <div class="bg-black grid justify-items-center p-8 py-16">
-            <h5 class="text-yellow-600 text-xl Raleway-bold">{{ $t('home.about.comfortablePlace') }}</h5>
-            <p class="text-lg text-center Raleway">{{ $t('home.about.comfortablePlace_p') }}</p>
+          <div class="bg-black grid justify-items-center content-center max-sm:p-1.5 sm:p-6 md:p-1 lg:p-6 xl:p-8 sm:py-8 md:py-2 lg:py-4 xl:py-16">
+            <h5 class="text-yellow-600 text-center sm:text-xl md:text-sm xl:text-xl Raleway-bold">{{ $t('home.about.comfortablePlace') }}</h5>
+            <p class="max-sm:text-xs md:text-xs lg:text-sm xl:text-lg text-center Raleway">{{ $t('home.about.comfortablePlace_p') }}</p>
           </div>
-          <img src="../../assets/barbershop.jpg" alt="">
+          <img src="../../assets/barbershop.jpg">
         </div>
       </div>
-      <img src="../../assets/dryer.jpg" alt="" class="">
+      <img src="../../assets/dryer.jpg" alt="" class="max-md:hidden">
     </div>
     <div class="h-20"></div>
     <div id="service" class=""></div>
@@ -48,24 +48,24 @@
       <!--
         services
       -->
-      <h1 class="text-neutral-800 text-9xl absolute Raleway-bold">{{ $t('home.services.services') }}</h1>
-      <div class="relative z-10 w-1/2 text-center">
-        <h2 class="text-4xl mt-19 mb-4 Raleway-bold">{{ $t('home.services.title') }}</h2>
-        <p class="text-2xl text-neutral-700 relative Raleway">{{ $t('home.services.p') }}</p>
+      <h1 class="text-neutral-800 text-6xl sm:text-7xl md:text-8xl lg:text-9xl absolute Raleway-bold">{{ $t('home.services.services') }}</h1>
+      <div class="relative z-10 w-4/5 sm:w-3/5 lg:w-3/4 xl:w-1/2 text-center">
+        <h2 class="text-xl sm:text-2xl md:text-4xl mt-7.5 sm:mt-9 md:mt-12.5 lg:mt-19 mb-4 Raleway-bold">{{ $t('home.services.title') }}</h2>
+        <p class="sm:text-lg md:text-2xl text-neutral-700 relative Raleway">{{ $t('home.services.p') }}</p>
       </div>
-      <div class="grid grid-cols-2 justify-self-center px-24 gap-24 mt-16">
+      <div class="grid sm:grid-cols-2 justify-self-center px-12 md:px-24 gap-8 sm:gap-24 mt-16">
         <div v-for="service of servicesResult?.services" :key="service.id">
           <div class="flex justify-between">
-            <h3 class="text-2xl Raleway-bold">{{ service.name }}</h3>
-            <h3 class="text-2xl Raleway-bold">€ {{ service.price }}</h3>
+            <h3 class="text-xl lg:text-2xl Raleway-bold">{{ service.name }}</h3>
+            <h3 class="text-xl lg:text-2xl Raleway-bold">€ {{ service.price }}</h3>
           </div>
-          <p class="mt-2 text-lg text-neutral-700 Raleway">{{ service.description }}</p>
+          <p class="mt-2 md:text-lg text-neutral-700 Raleway">{{ service.description }}</p>
         </div>
       </div>
-      <RouterLink to="/appointment/services" class="mt-16">
-        <div class="border-4 border-yellow-600 p-2">
-          <div class="border-4 border-yellow-600 p-4">
-            <div class="text-xl px-8 z-30 Raleway-bold">{{ $t('navigation.makeAppointment') }}</div>
+      <RouterLink to="/appointment/services" class="place-self-center max-lg:mt-12">
+        <div class="border-3 lg:border-4 border-yellow-500 p-1.5 sm:p-2 relative">
+          <div class="border-3 lg:border-4 border-yellow-500 p-3 sm:p-4 relative">
+            <div class="text-lg md:text-lg sm:text-xl px-8 z-30 relative Raleway-bold">{{ $t('navigation.makeAppointment') }}</div>
           </div>
         </div>
       </RouterLink>
