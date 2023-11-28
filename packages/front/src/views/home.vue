@@ -23,7 +23,7 @@
         <p class=" md:w-3/4 xl:w-2/3 mt-2 lg:text-lg Raleway">{{ $t('home.about.p') }}</p>
       </div>
     </div>
-    <div class="md:grid md:grid-cols-2 mt-40">
+    <div class="md:grid md:grid-cols-2 mt-20 sm:mt-40">
       <div>
         <div class="grid grid-cols-2">
           <img src="../../assets/beardtrim.jpg">
@@ -44,7 +44,7 @@
     </div>
     <div class="h-20"></div>
     <div id="service" class=""></div>
-    <div class="grid justify-items-center w-full mt-40">
+    <div class="grid justify-items-center w-full mt-20 sm:mt-40">
       <!--
         services
       -->
@@ -71,8 +71,7 @@
       </RouterLink>
     </div>
     <div class=""></div>
-    <div id="crew" class="h-32"></div>
-    <div class="grid justify-items-center w-full">
+    <div class="grid justify-items-center w-full mt-20 sm:mt-40">
         <h1 class="text-neutral-800 text-6xl sm:text-7xl md:text-8xl lg:text-9xl absolute Raleway-bold">{{ $t('home.crew.crew') }}</h1>
         <div class="relative z-10 w-4/5 sm:w-3/5 lg:w-3/4 xl:w-1/2 text-center">
           <h2 class="text-xl sm:text-2xl md:text-4xl mt-7.5 sm:mt-9 md:mt-12.5 lg:mt-19 mb-4 Raleway-bold">{{ $t('home.crew.title') }}</h2>
@@ -100,7 +99,7 @@
       </div> 
       <div class="h-18"></div>
       <div id="halloffame" class="h-2"></div>
-      <div class="grid justify-items-center w-full mt-40">
+      <div class="grid justify-items-center w-full mt-20 sm:mt-40">
           <h1 class="text-neutral-800 text-5xl sm:text-7xl md:text-8xl lg:text-9xl absolute Raleway-bold">{{ $t('home.hallOfFame.hallOfFame') }}</h1>
           <div class="relative z-10 w-4/5 sm:w-3/5 lg:w-3/4 xl:w-3/4 text-center">
             <h2 class="text-xl sm:text-2xl md:text-4xl mt-5 sm:mt-9 md:mt-12.5 lg:mt-19 mb-4 Raleway-bold">{{ $t('home.hallOfFame.title') }}</h2>
@@ -145,43 +144,43 @@
             </div>
           </div>
         </div>
-        <div class="w-full bg-black h-56 mt-40 grid grid-cols-3 p-8 justify-items-center">
+        <div class="w-full bg-black h-56 mt-20 sm:mt-40 grid grid-cols-3 p-4 md:p-8 justify-items-center">
           <div class="grid justify-items-center">
-            <h2 class="Raleway-bold text-3xl">{{ $t('footer.information') }}</h2>
+            <h2 class="Raleway-bold text-center text-lg sm:text-2xl md:text-3xl">{{ $t('footer.information') }}</h2>
             <div class="flex gap-2">
-              <img src="../../assets/icons/Places.svg" alt="" class="h-4">
-              <p class="Raleway text-xs">946 Smoky Hollow Dr. Windermere, FL 34786</p>
+              <img src="../../assets/icons/Places.svg" alt="" class="h-4 max-md:mt-1.5">
+              <p class="Raleway text-xs text-center">946 Smoky Hollow Dr. Windermere, FL 34786</p>
             </div>
             <div class="flex gap-2">
               <img src="../../assets/icons/Places.svg" alt="" class="h-4">
-              <p class="Raleway text-xs">539 School Ave. Laurel, MD 20707</p>
+              <p class="Raleway text-xs text-center">539 School Ave. Laurel, MD 20707</p>
             </div>
             <div class="flex gap-2">
               <img src="../../assets/icons/Phone.svg" alt="" class="h-4">
               <p class="Raleway text-xs">(212) 658-3916</p>
             </div>
           </div>
-          <img src="../../assets/logo-PhotoRoom.png" alt="" class="h-40">
+          <img src="../../assets/logo-PhotoRoom.png" alt="" class="max-sm:mt-12 h-24 sm:h-40">
           <div class="grid justify-items-center">
-            <h2 class="Raleway-bold text-3xl">{{ $t('footer.openingHours') }}</h2>
-            <div class="flex gap-8">
+            <h2 class="Raleway-bold text-center text-lg sm:text-2xl md:text-3xl">{{ $t('footer.openingHours') }}</h2>
+            <div class="sm:flex sm:gap-4 md:gap-8">
               <p class="Raleway text-xs">Mon - Fri:</p>
               <div class="flex gap-1">
                 <img src="../../assets/icons/time.svg" alt="" class="h-4">
                 <p class="Raleway text-xs">9.00 AM - 5.00 PM</p>
               </div>
             </div>
-            <div class="flex gap-8">
+            <div class="sm:flex sm:gap-4 md:gap-8">
               <p class="Raleway text-xs">Sat - Sun:</p>
               <div class="flex gap-1">
                 <img src="../../assets/icons/time.svg" alt="" class="h-4">
                 <p class="Raleway text-xs">9.00 AM - 1.00 PM</p>
               </div>
             </div>
-            <div class="flex gap-8">
-              <p class="Raleway text-xs ml-2">Holiday:</p>
+            <div class="sm:flex sm:gap-1 md:gap-8">
+              <p class="Raleway text-xs sm:ml-2">Holiday:</p>
               <div class="flex gap-1">
-                <img src="../../assets/icons/time.svg" alt="" class="h-4 ml-2">
+                <img src="../../assets/icons/time.svg" alt="" class="h-4 sm:ml-2">
                 <p class="Raleway text-xs">9.00 AM - 12.00 AM</p>
               </div>
             </div>
