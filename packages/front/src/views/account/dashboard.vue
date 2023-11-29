@@ -19,7 +19,7 @@
                 <AppointmentChart />
                 <div class="flex justify-between">
                     <p>Total appointments</p>
-                    <h3>1234</h3>
+                    <h3>1</h3>
                 </div>
             </div>
         </div>

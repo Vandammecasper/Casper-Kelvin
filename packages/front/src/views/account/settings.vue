@@ -5,14 +5,15 @@
             <div class="w-1/2 grid justify-items-center border-2 border-white">
                 <h2 class="text-2xl">BARBERS</h2>
                 <div class="w-full px-8 py-4">
-                    <div v-for="hairdresser of getHairdressersResult?.hairdressers" :key="hairdresser.id" class="my-2">
+                    <div v-for="user of users" :key="user.id" class="my-2">
                         <div class="w-full h-0.5 bg-white"></div>
                         <div class="flex justify-between mt-1">
-                            <p>{{ hairdresser.name }}</p>
-                            <p>{{ hairdresser.id }}</p>
+                            <p>name</p>
+                            <p>{{ user.uid }}</p>
                             <div class="flex gap-2">
                                 <p>Barber</p>
-                                <input class="mt-1" type="checkbox">
+                                <input v-if="user.role == 'ADMIN'" class="mt-1" type="checkbox" checked>
+                                <input v-else class="mt-1" type="checkbox">
                             </div>
                         </div>
                     </div>
@@ -29,7 +30,7 @@
                         <div v-for="vacation of getVacationsResult?.vacations" :key="vacation.id" class="my-2">
                             <div class="w-full h-0.5 bg-white"></div>
                             <div class="flex justify-between mt-1">
-                                <p>Jef</p>
+                                <p>name</p>
                                 <p>{{ handleDates(new Date(vacation.startDate)) }} - {{ handleDates(new Date(vacation.endDate)) }}</p>
                                 <div class="flex gap-2">
                                     <button class="px-2 py-1 bg-green-500">
@@ -49,14 +50,31 @@
 
 <script setup lang="ts">
     import { useQuery } from '@vue/apollo-composable'
-    import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
+    import { GET_ALL_USERS } from '@/graphql/user.query'
     import { GET_ALL_VACATIONS } from '@/graphql/vacations.query'
-    import useFirebase from '@/composables/useFirebase';
+    import { ref, watchEffect } from 'vue';
     
+    const hasFetchedData = ref(false);
+    let users = []
 
     const {
-        result: getHairdressersResult,
-    } = useQuery(GET_ALL_HAIRDRESSERS)
+        result: getUsersResult,
+        refetch
+    } = useQuery(GET_ALL_USERS)
+    
+    watchEffect(() => {
+        if (getUsersResult.value) {
+            hasFetchedData.value = true;
+            console.log(getUsersResult?.value.users)
+            users = getUsersResult?.value.users
+    } else if (hasFetchedData.value) {
+        console.log('Retrying data fetch...');
+        refetch();
+    } else {
+        console.log('No data');
+        refetch();
+    }
+});
     
     const {
         result: getVacationsResult,
@@ -70,16 +88,6 @@
         const formattedDate = `${day} ${month} ${year}`
         console.log(formattedDate)
         return formattedDate
-    }
-
-    const handleHairdresserName = (id) =>{
-        let hairdresser
-        console.log(getHairdressersResult)
-        // for (hairdresser of getHairdressersResult?.hairdressers){
-        //     if (hairdresser.id == id){
-        //         return hairdresser.name
-        //     }
-        // }
     }
 
 </script>

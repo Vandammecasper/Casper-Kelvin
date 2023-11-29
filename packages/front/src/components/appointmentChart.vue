@@ -1,5 +1,5 @@
 <template>
-    <Line :data="chartData" :options="chartOptions" />
+    <Line v-if="hasFetchedData" :data="chartData" :options="chartOptions" />
 </template>
 
 <script lang="ts">
@@ -16,6 +16,7 @@ import {
 import { Line } from 'vue-chartjs'
 import { GET_ALL_APPOINTMENTS } from '@/graphql/appointments.query'
 import { useQuery } from '@vue/apollo-composable'
+import { ref, watchEffect } from 'vue';
 
 ChartJS.register(
     CategoryScale,
@@ -33,23 +34,26 @@ export default {
         Line
     },
     data() {
-        return {
-            chartData: {
-                labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
-                datasets: [
-                    {
-                        label: '',
-                        backgroundColor: '#F91818',
-                        borderColor: '#F91818',
-                        data: [this.januaryAppointments, this.februaryAppointments, this.marchAppointments, this.aprilAppointments, this.mayAppointments, this.juneAppointments, this.julyAppointments, this.augustAppointments, this.septemberAppointments, this.octoberAppointments, this.novemberAppointments, this.decemberAppointments]
-                    }
-                ]
-            },
-            chartOptions: {
-                responsive: true,
-                maintainAspectRatio: false,
+        // if(this.hasFetchedData){
+            return {
+                chartData: {
+                    labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
+                    datasets: [
+                        {
+                            label: '',
+                            backgroundColor: '#F91818',
+                            borderColor: '#F91818',
+                            data: [this.ChartData]
+                        }
+                    ]
+                },
+                chartOptions: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
             }
-        }
+        // }
+        
     },
     
     setup(){
@@ -77,9 +81,31 @@ export default {
         let octoberAppointments= 0
         let novemberAppointments= 0
         let decemberAppointments= 0
+        let ChartData = []
+        
+        const {
+            result: getAppointmentsResult,
+            refetch
+        } = useQuery(GET_ALL_APPOINTMENTS)
 
-        const countAppointments = () => {
-            console.log('start counting appointments', getAppointmentsResult.value.appointments[0])
+        const hasFetchedData = ref(false);
+
+        watchEffect(() => {
+            if (getAppointmentsResult.value) {
+                hasFetchedData.value = true;
+                countAppointments(getAppointmentsResult.value);
+            } else if (hasFetchedData.value) {
+                console.log('Retrying data fetch...');
+                refetch();
+            } else {
+                console.log('No data');
+                refetch();
+            }
+        });
+
+
+        const countAppointments = (data) => {
+            console.log('start counting appointments', data.value)
             for (let i = 0; i < getAppointmentsResult.value.appointments?.length; i++) {
                 const appointment = getAppointmentsResult.value.appointments[i];
                 console.log(new Date(appointment.date) > firstDayOfNovember && new Date(appointment.date) < firstDayOfDecember)
@@ -122,17 +148,9 @@ export default {
                 }
                 
             }
+            ChartData = [januaryAppointments, februaryAppointments, marchAppointments, aprilAppointments, mayAppointments, juneAppointments, julyAppointments, augustAppointments, septemberAppointments, octoberAppointments, novemberAppointments, decemberAppointments]
         }
 
-        const {
-            result: getAppointmentsResult,
-            onResult: countA,
-        } = useQuery(GET_ALL_APPOINTMENTS)
-        console.log(getAppointmentsResult)
-
-        countA((data) => {
-            countAppointments()
-        })
 
 
         return{
@@ -149,6 +167,8 @@ export default {
             octoberAppointments,
             novemberAppointments,
             decemberAppointments,
+            hasFetchedData,
+            ChartData
         }
     }
 }
