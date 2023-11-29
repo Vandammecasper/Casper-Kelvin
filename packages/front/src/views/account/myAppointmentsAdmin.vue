@@ -26,7 +26,7 @@
                 <li v-for="appointment in visualAppointments" class="p-2 border-y-slate-700 border-b-2">
                     <div class="flex justify-between cursor-pointer" @click="toggleShowOverlay(), selectAppointment(appointment)">
                         <p>{{ appointment?.services[0].name }}</p>
-                        <p>{{ appointment.date }}</p>
+                        <p>{{ date(appointment.date) }}</p>
                         <p>{{ appointment.isCompleted }}</p>
                     </div>
                 </li>
@@ -108,6 +108,7 @@ const isOpen = ref(true) as Ref<boolean>;
 const selectedAppointment = ref({} as CustomAppointment);
 const visualAppointments = ref([] as CustomAppointment[]);
 let selectedUtilities: string[] = [];
+let datum = ''
 
 let error = "";
 
@@ -134,6 +135,22 @@ const getUniqueUtilities = (utilities: any) => {
         }
     }
     return uniqueUtilities;
+};
+
+const date = (givendate) => {
+    const inputDate = new Date(givendate);
+
+    // Extracting date information
+    const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const day = dayOfWeek[inputDate.getDay()];
+    
+    // Extracting time information
+    const hours = inputDate.getHours();
+    const minutes = inputDate.getMinutes();
+    const period = hours < 12 ? 'AM' : 'PM';
+    datum = `${day} ${inputDate.getDate()}/${inputDate.getMonth() + 1}/${inputDate.getFullYear()} ${hours % 12 || 12}.${minutes < 10 ? '0' : ''}${minutes} ${period}`;
+    
+    return datum;
 };
 
 
