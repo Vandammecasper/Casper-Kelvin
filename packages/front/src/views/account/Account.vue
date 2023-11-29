@@ -1,17 +1,17 @@
 <template>
-    <div @submit.prevent="handleUpdateProfile" class="flex w-full h-screen items-center">
+    <div @submit.prevent="handleUpdateProfile" class="sm:flex w-full h-screen items-center">
         <NavigationAccount />   
-        <div class="w-full grid justify-items-center h-80 mt-8">
-            <h1 class="text-5xl Raleway-bold">{{ $t('account.myAccount.hello') }} {{firebaseUser?.displayName}}</h1>
-            <p class=" Raleway text-yellow-600">{{ getPointByUidResult?.pointByUid.usablePoints }} {{ $t('account.myAccount.points') }}</p>
-            <p class=" Raleway text-yellow-600">{{ getPointByUidResult?.pointByUid.totalPoints }} {{ $t('account.myAccount.points') }}</p>
-            <p class=" Raleway text-yellow-600">#{{ getRangResult?.rank }} {{ $t('account.myAccount.place') }}</p>
-            <div class="w-full grid grid-cols-2 gap-8 px-48">
+        <div class="w-full grid justify-items-center h-80 mt-2 sm:mt-8">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl Raleway-bold">{{ $t('account.myAccount.hello') }} {{firebaseUser?.displayName}}</h1>
+            <p class="max-md:text-sm Raleway text-yellow-600">{{ getPointByUidResult?.pointByUid.usablePoints }} {{ $t('account.myAccount.points') }}</p>
+            <p class="max-md:text-sm Raleway text-yellow-600">{{ getPointByUidResult?.pointByUid.totalPoints }} {{ $t('account.myAccount.points') }}</p>
+            <p class="max-md:text-sm Raleway text-yellow-600">#{{ getRangResult?.rank }} {{ $t('account.myAccount.place') }}</p>
+            <div class="w-full grid grid-cols-2 gap-4 lg:gap-8 px-8 lg:px-16 xl:px-48">
                 <div>
                     <div class="mt-6">
                         <label
                             for="username"
-                            class="text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
+                            class="text-sm sm:text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
                         >
                             {{ $t('account.myAccount.name') }}
                         </label>
@@ -27,7 +27,7 @@
                     <div class="mt-6">
                         <label
                             for="password"
-                            class="text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
+                            class="text-sm sm:text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
                         >
                             {{ $t('account.myAccount.password') }}
                         </label>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="mt-6">
                         <label
-                            class="text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
+                            class="text-sm sm:text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
                         >
                             {{ $t('account.myAccount.language') }}
                         </label>
@@ -58,7 +58,7 @@
                         </select>
                     </div>
                     <button @click="logoutUser"
-                    class="Raleway-bold mt-6 w-full  border-2 border-red-500 bg-red-500 py-2 px-4 font-semibold hover:bg-red-600 focus:outline-none focus-visible:border-red-500 focus-visible:bg-red-600 focus-visible:ring-2 focus-visible:ring-red-300"
+                    class="Raleway-bold mt-9.5 sm:mt-10.5 md:mt-6 w-full  border-2 border-red-500 bg-red-500 py-2 px-4 font-semibold hover:bg-red-600 focus:outline-none focus-visible:border-red-500 focus-visible:bg-red-600 focus-visible:ring-2 focus-visible:ring-red-300"
                     >
                         {{ $t('account.myAccount.logout') }}
                     </button>
@@ -67,7 +67,7 @@
                     <div class="mt-6">
                         <label
                             for="email"
-                            class="text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
+                            class="text-sm sm:text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
                         >
                             {{ $t('account.myAccount.emailAddress') }}
                         </label>
@@ -80,10 +80,10 @@
                             class="Raleway mt-1 block border-3 w-full  bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
                         />
                     </div>
-                    <div class="mt-6">
+                    <div class="mt-7 sm:mt-6">
                         <label
                             for="confirmpassword"
-                            class="text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
+                            class="text-xs sm:text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
                         >
                             {{ $t('account.myAccount.confirmPassword') }}
                         </label>
@@ -98,7 +98,7 @@
                     <div class="mt-6">
                         <label
                             for="public"
-                            class="text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
+                            class="text-xs sm:text-sm lg:text-md block font-semibold tracking-wider dark:text-gray-200 Raleway"
                         >
                             {{ $t('account.myAccount.publicShowOfPoints') }}
                         </label>
