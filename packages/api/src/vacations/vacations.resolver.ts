@@ -5,34 +5,43 @@ import { CreateVacationInput } from './dto/create-vacation.input';
 import { UpdateVacationInput } from './dto/update-vacation.input';
 import { HairdressersService } from 'src/hairdressers/hairdressers.service';
 import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
+import { UseGuards } from '@nestjs/common';
+import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
 
 @Resolver(() => Vacation)
 export class VacationsResolver {
   constructor(private readonly vacationsService: VacationsService,
     private readonly hairdressersService: HairdressersService) {}
 
-  // @UseGuards(FirebaseGuard)
+  @UseGuards(FirebaseGuard)
   @Query(() => [Vacation], { name: 'vacations' })
   findAll() {
     return this.vacationsService.findAll();
   }
 
-  // @UseGuards(FirebaseGuard)
+  @UseGuards(FirebaseGuard)
   @Query(() => Vacation, { name: 'vacation' })
   findOne(@Args('id', { type: () => String }) id: string) {
     return this.vacationsService.findOne(id);
   }
 
+  @UseGuards(FirebaseGuard)
   @Query(() => [Vacation], { name: 'vacationsByHairdresserId' })
   findByHairdresserId(@Args('hairdresserId', { type: () => String }) hairdresserId: string) {
     return this.vacationsService.findByHairdresserId(hairdresserId);
   }
 
-  // @UseGuards(FirebaseGuard)
+  @UseGuards(FirebaseGuard)
   @Mutation(() => Vacation)
   createVacation(@Args('createVacationInput') createVacationInput: CreateVacationInput
   ): Promise<Vacation> {
     return this.vacationsService.create(createVacationInput);
+  }
+
+  @UseGuards(FirebaseGuard)
+  @Mutation(() => Vacation)
+  approveVacation(@Args('id', { type: () => String }) id: string): Promise<Vacation> {
+    return this.vacationsService.approveVacation(id);
   }
 
   // @UseGuards(FirebaseGuard)
