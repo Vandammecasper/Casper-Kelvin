@@ -1,17 +1,17 @@
 <template>
-  <form @submit.prevent="handleRegister" class="w-screen h-screen grid">
+  <form @submit.prevent="handleRegister" class="w-screen h-screen grid p-4">
     <div class="grid bg-neutral-800 p-4 place-self-center">
       <RouterLink to="/" class="justify-self-end">
         <img src="../../../assets/No.svg" alt="">
       </RouterLink>
-      <div class=" py-4 px-16 grid">
-        <h1 class="text-4xl font-bold tracking-wider justify-self-center text-yellow-600 Raleway-bold">  {{ $t('auth.register') }}</h1>
+      <div class="py-1 sm:py-4 px-6 sm:px-16 grid">
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-wider justify-self-center text-yellow-600 Raleway-bold">  {{ $t('auth.register') }}</h1>
 
         <div v-if="error">
           <p class="text-red-600 Raleway-bold">{{ error.message }}</p>
         </div>
 
-        <div class="mt-6">
+        <div class="mt-4 sm:mt-6">
           <label
             for="nickname"
             class="text-md block font-semibold tracking-wider  dark:text-gray-200 Raleway"
@@ -28,7 +28,7 @@
             />
         </div>
 
-        <div class="mt-6">
+        <div class="mt-4 sm:mt-6">
           <label
             for="email"
             class="text-md block font-semibold tracking-wider  dark:text-gray-200 Raleway"
@@ -45,7 +45,7 @@
           />
         </div>
 
-        <div class="mt-6">
+        <div class="mt-4 sm:mt-6">
           <label
             for="password"
             class="text-md block font-semibold tracking-wider  dark:text-gray-200 Raleway"
@@ -62,7 +62,7 @@
             />
         </div>
 
-        <div class="mt-6">
+        <div class="mt-4 sm:mt-6">
           <label class="block" for="language">{{ $t('auth.selectLanguage') }}</label>
           <select
             class="block mb-3 text-black"
@@ -77,7 +77,7 @@
           </select>
         </div>
 
-        <div class="mt-6">
+        <div class="mt-4">
           <div class="flex gap-3">
             <label class="block" for="isPublic">Public Points</label>
             <Tooltip content="Other people can see your total points if you check this box.">
