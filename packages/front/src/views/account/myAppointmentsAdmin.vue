@@ -1,7 +1,7 @@
 <template>
-    <div class="flex w-full h-screen items-center">
+    <div class="sm:flex w-full h-screen items-center">
         <NavigationAccount />
-        <div class="w-full h-96 mt-4 px-24">
+        <div class="w-full h-96 mt-4 px-8 sm:px-24">
             <h1 class="text-5xl Raleway-bold mb-4">{{ $t('account.myAccount.hello') }} {{firebaseUser?.displayName}}</h1>
 
             <select class="bg-neutral-900 border-white border-1 h-10 w-full" name="isOpen" id="" v-model="isOpen">
