@@ -41,10 +41,16 @@ export class VacationsService {
       newVacation.hairdresserId = new ObjectId(createVacationInput.hairdresserId);
       newVacation.startDate = createVacationInput.startDate;
       newVacation.endDate = createVacationInput.endDate;
+      newVacation.isRepeat = createVacationInput.isRepeat;
+      newVacation.isApproved = false;
       return this.vacationRepository.save(newVacation);
     }catch(error) {
       console.log(error);
     }
+  }
+
+  approveVacation(id: string): Promise<Vacation> {
+    return this.vacationRepository.save({ _id: new ObjectId(id), isApproved: true });
   }
 
   update(id: number, updateVacationInput: UpdateVacationInput) {
