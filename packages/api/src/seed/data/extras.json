@@ -1,0 +1,24 @@
+[
+  {
+    "name": "NOTHING",
+    "description": "Just a haircut. No shampoo, no massage, no nothing. Just a haircut.",
+    "price": 0,
+    "utilities": []
+  },
+  {
+    "name": "SHAMPOO",
+    "description": "Add an extra layer of pampering to your grooming experience with our optional shampoo wash. Indulge in ultimate relaxation and leave with a clean, revitalized feel.",
+    "price": 4,
+    "utilities": [
+      "shampoo"
+    ]
+  },
+  {
+    "name": "SHAMPOO & MASSAGE",
+    "description": "Experience the ultimate relaxation with our optional shampoo wash and massage. Elevate your grooming session to a spa-like indulgence.",
+    "price": 6,
+    "utilities": [
+      "shampoo"
+    ]
+  }
+]

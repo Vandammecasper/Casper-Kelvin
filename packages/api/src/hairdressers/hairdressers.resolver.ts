@@ -5,8 +5,11 @@ import { CreateHairdresserInput } from './dto/create-hairdresser.input';
 import { UpdateHairdresserInput } from './dto/update-hairdresser.input';
 import { ServicesService } from 'src/services/services.service';
 import { Service } from 'src/services/entities/service.entity';
-import { UseGuards } from '@nestjs/common';
+import { All, UseGuards } from '@nestjs/common';
 import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
+import { RolesGuard } from 'src/users/guards/roles.guard';
+import { AllowedRoles } from 'src/users/decorators/role.decorator';
+import { Role } from 'src/users/entities/user.entity';
 
 @Resolver(() => Hairdresser)
 export class HairdressersResolver {
@@ -25,7 +28,8 @@ export class HairdressersResolver {
     return this.hairdressersService.findOne(id);
   }
 
-  // @UseGuards(FirebaseGuard)
+  @AllowedRoles(Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Hairdresser)
   createHairdresser(
     @Args('createHairdresserInput') createHairdresserInput: CreateHairdresserInput
@@ -33,19 +37,20 @@ export class HairdressersResolver {
     return this.hairdressersService.create(createHairdresserInput);
   }
 
-  // @UseGuards(FirebaseGuard)
+  @AllowedRoles(Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Hairdresser)
   updateHairdresser(@Args('updateHairdresserInput') updateHairdresserInput: UpdateHairdresserInput) {
     return this.hairdressersService.update(updateHairdresserInput.id, updateHairdresserInput);
   }
 
-  // @UseGuards(FirebaseGuard)
+  @AllowedRoles(Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Hairdresser)
   removeHairdresser(@Args('id', { type: () => Int }) id: string) {
     return this.hairdressersService.remove(id);
   }
 
-  // @UseGuards(FirebaseGuard)
   // Resolver for the services field of the Hairdresser type
   @ResolveField()
   services(@Parent() hairdresser: Hairdresser): Promise<Service[]> {

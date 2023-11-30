@@ -7,6 +7,7 @@ import { Repository } from 'typeorm';
 import { ObjectId } from 'mongodb';
 import { FirebaseUser } from 'src/authentication/user.decorator';
 import { UserRecord } from 'firebase-admin/auth';
+import { Console } from 'console';
 
 @Injectable()
 export class PointsService {
@@ -64,6 +65,32 @@ export class PointsService {
     }catch(error) {
       console.log(error);
     }
+  }
+
+  async addPoints(uid: string, points: number) {
+    //@ts-ignore
+    console.log(uid);
+
+    const existingPoints = await this.pointsRepository.findOne({where:{uid}});
+
+    if (!existingPoints) {
+      throw new Error('User not found'); 
+    }
+    
+    return this.pointsRepository.update({ uid }, { totalPoints: existingPoints.totalPoints+points, usablePoints: existingPoints.usablePoints+points });
+  }
+
+  async subtractPoints(uid: string, points: number) {
+    //@ts-ignore
+    console.log(uid);
+
+    const existingPoints = await this.pointsRepository.findOne({where:{uid}});
+
+    if (!existingPoints) {
+      throw new Error('User not found'); 
+    }
+    
+    return this.pointsRepository.update({ uid }, { usablePoints: existingPoints.usablePoints-points });
   }
 
   update(id: number, updatePointInput: UpdatePointInput) {

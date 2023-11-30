@@ -4,7 +4,7 @@
       <RouterLink to="/" class="justify-self-end">
         <img src="../../../assets/No.svg" alt="">
       </RouterLink>
-      <div class=" py-4 px-16 grid">
+      <div class=" py-4 px-10 sm:px-16 grid">
         <h1 class="text-4xl font-bold tracking-wider justify-self-center text-yellow-600 Raleway-bold">{{ $t('auth.login') }}</h1>
         <div v-if="error">
           <p class="text-red-600">{{ error.message }}</p>

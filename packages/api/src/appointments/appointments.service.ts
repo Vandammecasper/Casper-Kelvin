@@ -8,6 +8,8 @@ import { HairdressersService } from 'src/hairdressers/hairdressers.service';
 import { ServicesService } from 'src/services/services.service';
 import { ObjectId } from 'mongodb';
 import * as dayjs from 'dayjs';
+import { PointsService } from 'src/points/points.service';
+import { ExtrasService } from 'src/extras/extras.service';
 
 @Injectable()
 export class AppointmentsService {
@@ -17,13 +19,18 @@ export class AppointmentsService {
     private readonly appointmentRepository: MongoRepository<Appointment>,
     private readonly hairdresserService: HairdressersService,
     private readonly serviceService: ServicesService,
+    private readonly pointsService: PointsService,
+    private readonly extrasService: ExtrasService,
   ) {}
   
   findAll() {
     return this.appointmentRepository.find();
   }
 
-  findByUid(uid: string) {
+  findByUid(uid: string, isOpen: boolean) {
+    if (isOpen) {
+      return this.appointmentRepository.find({where: {uid: uid, isCompleted: false}, order: {date: 'ASC'}});
+    }
     return this.appointmentRepository.find({where: {uid: uid}, order: {date: 'ASC'}});
   }
 
@@ -41,9 +48,17 @@ export class AppointmentsService {
     return test
   }
 
-  completeAppointment(id: string) {
-    return this.appointmentRepository.updateOne({ _id: new ObjectId(id) }, { $set: { isCompleted: true } });
-    //TODO: update the points of the user
+  async completeAppointment(id: string) {
+    const updateResult = await this.appointmentRepository.updateOne({ _id: new ObjectId(id) }, { $set: { isCompleted: true } });
+    
+    if (updateResult.matchedCount > 0) {
+      // @ts-ignore
+      const updatedAppointment = await this.appointmentRepository.findOne({ _id: new ObjectId(id) });
+      console.log(updatedAppointment.addedPoints);
+      await this.pointsService.addPoints(updatedAppointment?.uid, updatedAppointment?.addedPoints);
+      return updatedAppointment;
+    }
+    throw new Error(`Appointment with id ${id} not found`);
   }
   
   findOne(id: string) {
@@ -74,7 +89,17 @@ export class AppointmentsService {
       if (!hairdresser) {
         throw new Error('Hairdresser not found');
       }
+
+      // if the extraId is not found, throw an error
+      const extra = await this.extrasService.findOne(CreateAppointmentInput.extraId);
+      
+      if (!extra) {
+        throw new Error('Extra not found');
+      }
+
+      totalPrice += extra.price;
      
+      // if the serviceId is not found, throw an error
       for (const serviceId of CreateAppointmentInput.servicesId) {
         const service = await this.serviceService.findOne(serviceId);
         if (!service) {
@@ -104,6 +129,16 @@ export class AppointmentsService {
         throw new Error('There is already an appointment on that date');
       }
 
+      console.log(totalPrice, "totalPrice");
+
+      //subtract points if isPointsUsed is true
+      if(CreateAppointmentInput.isPointsUsed){
+        const points = await this.pointsService.subtractPoints(uid, 5);
+        totalPrice /= 2;
+      }
+
+      console.log(totalPrice, "totalPrice");
+
       const newAppointment = new Appointment();
       newAppointment.date = new Date(CreateAppointmentInput.date);
       newAppointment.totalTime = totalTime;
@@ -111,10 +146,11 @@ export class AppointmentsService {
       newAppointment.userName = userName;
       newAppointment.hairdresserId = new ObjectId(CreateAppointmentInput.hairdresserId);
       newAppointment.servicesId = servicesObjectId;
-      newAppointment.extras = CreateAppointmentInput.extras;
+      newAppointment.extraId = new ObjectId(extra.id);
       newAppointment.price = totalPrice;
       newAppointment.addedPoints = addedPoints;
       newAppointment.isCompleted = false;
+      newAppointment.isPointsUsed = CreateAppointmentInput.isPointsUsed;
 
       return this.appointmentRepository.save(newAppointment);
 

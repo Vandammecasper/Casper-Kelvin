@@ -105,7 +105,7 @@
                         <input
                             type="checkbox"
                             name="public"
-                            id="public"
+                            v-model="isPublic"
                             class="Raleway mt-1 block border-3 w-full mb-5  bg-neutral-800 border-neutral-500 p-2 focus:outline-none focus-visible:ring-2 focus-visible:border-yellow-600 focus-visible:ring-yellow-600"
                         >
                     </div>
@@ -136,10 +136,10 @@ import useFirebase from '@/composables/useFirebase'
 import useLanguage from '@/composables/useLanguage'
 import { useI18n } from 'vue-i18n'
 import { SUPPORTED_LOCALES } from '@/bootstrap/i18n'
-import useCustomUser from '@/composables/useCustomUser'
 import { GET_POINT_BY_UID, GET_RANK } from '@/graphql/points.query'
 import { useQuery } from '@vue/apollo-composable'
 import NavigationAccount from '@/components/navigationAccount.vue'
+import { ref } from 'vue'
 
 const { firebaseUser, logout } = useFirebase()
 // const { customUser } = useCustomUser()
@@ -155,11 +155,12 @@ const handleUpdateProfile = () => {
     console.log('update profile')
 }
 
-const { result: getPointByUidResult } = useQuery(GET_POINT_BY_UID)
+const { result: getPointByUidResult } = useQuery(GET_POINT_BY_UID);
 
 const { result: getRangResult } = useQuery(GET_RANK)
 
-// console.log(getRangResult?.rank, "getRangResult")
+//TODO: set to getPointsByUidResult?.value.pointByUid.isPublic
+const isPublic = ref(false)
 
 const { setLocale } = useLanguage()
 const { locale } = useI18n()
@@ -169,5 +170,6 @@ const setLanguage = (event: Event) => {
     //update user profile
     setLocale(target.value)
 }
+
 
 </script>

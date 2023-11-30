@@ -35,7 +35,7 @@
     </div>
     <div v-if="showOverlay" class="grid">
         <div class="absolute w-screen h-screen z-50 top-0 left-0 bg-black opacity-60 "></div>
-        <div class="bg-neutral-800 z-50 absolute w-full justify-self-center max-w-xl top-40 p-4">
+        <div class="bg-neutral-800 z-50 absolute w-full justify-self-center max-w-xl top-20 p-4">
             <button @click="toggleShowOverlay()">
                 <X class="w-8 h-8 text-white absolute top-2 right-2" />
             </button>
@@ -59,22 +59,29 @@
                 </div>
                 <div class="">
                     <h1 class="text-4xl">Supplies Needed</h1>
-                    <div v-for="service of selectedAppointment?.services">
-                        <div v-for="utilitie in service.utilities">
-                            <p>{{ utilitie }}</p>
-                        </div>
+                    <div v-for="util of getUniqueUtilities(selectedUtilities)">
+                        <p>{{ util }}</p>
+                    </div>
+                    <div v-for="util of selectedAppointment?.extra.utilities">
+                        <p>{{ util }}</p>
                     </div>
                 </div> 
                 <div>
                     <h1 class="text-4xl">Extra's</h1>   
-                    <div v-for="extra of selectedAppointment?.extras">
-                        <p>{{ extra }}</p>
-                    </div>          
+                    <p>{{ selectedAppointment?.extra.name }}</p>
                 </div>
                 <div>
                     <h1 class="text-4xl">Complete appointment</h1>   
                     <button @click="finishAppointment()" v-if="!selectedAppointment?.isCompleted" class="max-w-[200px] w-full bg-green-600">complete appointment</button>    
                     <button v-else class="max-w-[200px] w-full bg-red-600" disabled>Already Completed</button>     
+                </div>
+                <div>
+                    <h1 class="text-4xl">Total Price</h1>
+                    <p>€ {{ selectedAppointment?.price }}</p>
+                </div>
+                <div>
+                    <h1 class="text-4xl">Points used</h1>
+                    <p>{{ selectedAppointment?.isPointsUsed }}</p>
                 </div>
             </div>
         </div>
@@ -100,6 +107,8 @@ const { firebaseUser } = useFirebase()
 const showOverlay = ref(false);
 const isOpen = ref(true) as Ref<boolean>;
 const selectedAppointment = ref({} as CustomAppointment);
+const visualAppointments = ref([] as CustomAppointment[]);
+let selectedUtilities: string[] = [];
 
 let error = "";
 
@@ -108,10 +117,27 @@ const toggleShowOverlay = () => {
 }
 
 const selectAppointment = (appointment: any) => {
+    console.log(appointment);
+    selectedUtilities = [];
     selectedAppointment.value = appointment;
+    selectedAppointment.value.services.forEach(service => {
+        service.utilities.forEach(utilitie => {
+            selectedUtilities.push(utilitie);
+        });
+    });
 }
 
-const visualAppointments = ref([] as CustomAppointment[]);
+const getUniqueUtilities = (utilities: any) => {
+    let uniqueUtilities: string[] = [];
+    for (let i = 0; i < utilities.length; i++) {
+        if (!uniqueUtilities.includes(utilities[i])) {
+            uniqueUtilities.push(utilities[i]);
+        }
+    }
+    return uniqueUtilities;
+};
+
+
 
 /*
  * Flatpickr
@@ -127,8 +153,8 @@ defaultStartDate.setDate(currentDate.getDate() - daysUntilMonday);
 const defaultEndDate = new Date(defaultStartDate);
 defaultEndDate.setDate(defaultStartDate.getDate() + 6);
 
-const startDate = ref(new Date());
-const endDate = ref(new Date());
+const startDate = ref(new Date(defaultStartDate));
+const endDate = ref(new Date(defaultEndDate));
 
 //TODO: add validation to the date pickers
 onMounted(() => {
@@ -189,12 +215,14 @@ const getWantedAppointments = () => {
                         utilities: service.utilities
                     };
                 }),
-                extras: appointment.extras,
-                userName: appointment.userName
+                extra: appointment.extra,
+                userName: appointment.userName,
+                price: appointment.price,
+                isPointsUsed: appointment.isPointsUsed
             };
         })
         .filter((appointment: any) => appointment !== null); // Remove the filtered null values
-    
+        
     if(visualAppointments.value.length == 0){ 
         if (error == "")
             error = "No appointments found in this time period";

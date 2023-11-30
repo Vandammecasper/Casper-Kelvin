@@ -15,9 +15,8 @@ import { Role } from 'src/users/entities/user.entity';
 export class PointsResolver {
   constructor(private readonly pointsService: PointsService) {}
 
-  //TODO: ask about this
   // @AllowedRoles(Role.SUPER_ADMIN)
-  @UseGuards(FirebaseGuard) // , RolesGuard)  
+  @UseGuards(FirebaseGuard) //, RolesGuard)  
   @Query(() => [Point], { name: 'points' })
   findAll(@Args('sort', { type: () => Boolean }) isSort: boolean) {
     return this.pointsService.findAll(isSort);

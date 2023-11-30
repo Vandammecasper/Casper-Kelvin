@@ -7,6 +7,9 @@ import { HairdressersService } from 'src/hairdressers/hairdressers.service';
 import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
 import { UseGuards } from '@nestjs/common';
 import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
+import { RolesGuard } from 'src/users/guards/roles.guard';
+import { AllowedRoles } from 'src/users/decorators/role.decorator';
+import { Role } from 'src/users/entities/user.entity';
 
 @Resolver(() => Vacation)
 export class VacationsResolver {
@@ -31,7 +34,8 @@ export class VacationsResolver {
     return this.vacationsService.findByHairdresserId(hairdresserId);
   }
 
-  @UseGuards(FirebaseGuard)
+  @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Vacation)
   createVacation(@Args('createVacationInput') createVacationInput: CreateVacationInput
   ): Promise<Vacation> {
@@ -45,12 +49,15 @@ export class VacationsResolver {
   }
 
   // @UseGuards(FirebaseGuard)
+  @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Vacation)
   updateVacation(@Args('updateVacationInput') updateVacationInput: UpdateVacationInput) {
     return this.vacationsService.update(updateVacationInput.id, updateVacationInput);
   }
 
-  // @UseGuards(FirebaseGuard)
+  @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Vacation)
   removeVacation(@Args('id', { type: () => Int }) id: number) {
     return this.vacationsService.remove(id);

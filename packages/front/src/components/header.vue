@@ -1,23 +1,23 @@
 <template>
-    <div class="h-24 w-full bg-black p-4 px-16 flex justify-between fixed z-50">
+    <div class="h-24 w-full bg-black p-4 px-16 max-md:gap-3 max-md:px-4 max-lg:px-8 flex justify-between fixed z-50">
         <RouterLink to="/">
             <img src="../../assets/logo-PhotoRoom.png" alt="logo" class="h-16">
         </RouterLink>
-        <div class="flex items-center gap-16">
+        <div class="flex items-center gap-16 max-md:gap-3 max-lg:gap-4 max-xl:gap-8">
             <RouterLink to="/appointment/services">
-                <h3 class="Raleway-bold">{{ $t('navigation.makeAppointment') }}</h3>
+                <h3 class="Raleway-bold max-md:text-sm">{{ $t('navigation.makeAppointment') }}</h3>
             </RouterLink>
-            <a href="/#about">
-                <h3 class="Raleway-bold">{{ $t('navigation.aboutUs') }}</h3>
+            <a href="/#about" class="max-sm:hidden">
+                <h3 class="Raleway-bold max-md:text-sm">{{ $t('navigation.aboutUs') }}</h3>
             </a>
-            <a href="/#service">
-                <h3 class="Raleway-bold">{{ $t('navigation.ourService') }}</h3>
+            <a href="/#service" class="max-sm:hidden">
+                <h3 class="Raleway-bold max-md:text-sm">{{ $t('navigation.ourService') }}</h3>
             </a>
-            <a href="/#crew">
-                <h3 class="Raleway-bold">{{ $t('navigation.crew') }}</h3>
+            <a href="/#crew" class="max-sm:hidden">
+                <h3 class="Raleway-bold max-md:text-sm">{{ $t('navigation.crew') }}</h3>
             </a>
-            <a href="/#halloffame">
-                <h3 class="Raleway-bold">{{ $t('navigation.hallOfFame') }}</h3>
+            <a href="/#halloffame" class="max-sm:hidden">
+                <h3 class="Raleway-bold max-md:text-sm">{{ $t('navigation.hallOfFame') }}</h3>
             </a>
             
             <RouterLink v-if="firebaseUser" to="/account/myaccount">
