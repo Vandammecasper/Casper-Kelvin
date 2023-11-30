@@ -38,6 +38,13 @@ export class VacationsResolver {
 
   @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
   @UseGuards(FirebaseGuard, RolesGuard)
+  @Query(() => [Vacation], { name: 'vacationsByUid' })
+  findByUid(@FirebaseUser() user: UserRecord) {
+    return this.vacationsService.findByUid(user.uid);
+  }
+
+  @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Vacation)
   createVacation(
     @Args('createVacationInput') createVacationInput: CreateVacationInput,

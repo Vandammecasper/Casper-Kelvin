@@ -30,6 +30,15 @@ export class VacationsService {
     return this.vacationRepository.find({ where: { hairdresserId } });
   }
 
+  async findByUid(uid: string) {
+    const hairdresser = await this.hairdressersService.findOneByUid(uid);
+    if (!hairdresser) {
+      throw new Error('Hairdresser not found');
+    }
+    
+    return this.vacationRepository.find({ where: { hairdresserId: new ObjectId(hairdresser.id) } });
+  } 
+
   async create(
       uid: string,
       createVacationInput: CreateVacationInput
@@ -39,6 +48,24 @@ export class VacationsService {
       if (!hairdresser) {
         throw new Error('Hairdresser not found');
       }
+
+      const vacations = await this.vacationRepository.find({ where: { hairdresserId: new ObjectId(hairdresser.id) } });
+
+      vacations.forEach(vacation => {
+        if (vacation.startDate <= createVacationInput.startDate && vacation.endDate >= createVacationInput.startDate) {
+          throw new Error('Vacation already exists');
+          return;
+        }
+        if (vacation.startDate <= createVacationInput.endDate && vacation.endDate >= createVacationInput.endDate) {
+          throw new Error('Vacation already exists');
+          return;
+        }
+        if (vacation.startDate >= createVacationInput.startDate && vacation.endDate <= createVacationInput.endDate) {
+          throw new Error('Vacation already exists');
+          return;
+        }
+      });
+
       const newVacation = new Vacation();
       newVacation.hairdresserId = new ObjectId(hairdresser.id);
       newVacation.startDate = createVacationInput.startDate;
