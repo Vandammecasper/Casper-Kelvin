@@ -30,15 +30,17 @@ export class VacationsService {
     return this.vacationRepository.find({ where: { hairdresserId } });
   }
 
-  async create(createVacationInput: CreateVacationInput
+  async create(
+      uid: string,
+      createVacationInput: CreateVacationInput
     ): Promise<Vacation> {
     try{
-      const hairdresser = await this.hairdressersService.findOne(createVacationInput.hairdresserId);
+      const hairdresser = await this.hairdressersService.findOneByUid(uid);
       if (!hairdresser) {
         throw new Error('Hairdresser not found');
       }
       const newVacation = new Vacation();
-      newVacation.hairdresserId = new ObjectId(createVacationInput.hairdresserId);
+      newVacation.hairdresserId = new ObjectId(hairdresser.id);
       newVacation.startDate = createVacationInput.startDate;
       newVacation.endDate = createVacationInput.endDate;
       newVacation.isRepeat = createVacationInput.isRepeat;

@@ -3,9 +3,6 @@ import { IsDate, IsNotEmpty } from 'class-validator';
 
 @InputType()
 export class CreateVacationInput {
-  @IsNotEmpty()
-  @Field(() => String)
-  hairdresserId: string;
 
   @IsDate()
   @Field(() => Date)

@@ -10,6 +10,8 @@ import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
 import { RolesGuard } from 'src/users/guards/roles.guard';
 import { AllowedRoles } from 'src/users/decorators/role.decorator';
 import { Role } from 'src/users/entities/user.entity';
+import { FirebaseUser } from 'src/authentication/user.decorator';
+import { UserRecord } from 'firebase-admin/auth';
 
 @Resolver(() => Vacation)
 export class VacationsResolver {
@@ -37,9 +39,11 @@ export class VacationsResolver {
   @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
   @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Vacation)
-  createVacation(@Args('createVacationInput') createVacationInput: CreateVacationInput
+  createVacation(
+    @Args('createVacationInput') createVacationInput: CreateVacationInput,
+    @FirebaseUser() user: UserRecord
   ): Promise<Vacation> {
-    return this.vacationsService.create(createVacationInput);
+    return this.vacationsService.create(user.uid, createVacationInput);
   }
 
   @UseGuards(FirebaseGuard)
