@@ -7,13 +7,13 @@
                 <div class="w-full">
                     <h3 class="text-2xl mb-2">Day off</h3>
                     <select class="bg-neutral-900 border-white border-1 h-10 w-full" v-model="dayOff">
-                        <option value=2>Monday</option>
-                        <option value=3>Tuesday</option>
-                        <option value=4>Wednesday</option>
-                        <option value=5>Thursday</option>
-                        <option value=6>Friday</option>
-                        <option value=7>Saturday</option>
-                        <option value=1>Sunday</option>
+                        <option value=1>Monday</option>
+                        <option value=2>Tuesday</option>
+                        <option value=3>Wednesday</option>
+                        <option value=4>Thursday</option>
+                        <option value=5>Friday</option>
+                        <option value=6>Saturday</option>
+                        <option value=0>Sunday</option>
                     </select>
                     <button @click="handleDayOff()" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">SAVE</button>
                 </div>
@@ -30,6 +30,7 @@
                             <input id="end-picker" type="text" placeholder="Select a date range" class="w-full h-10 bg-neutral-900 border-2 mr-2 p-1 border-white">
                         </div>
                     </div>
+                    <p v-if="error != ''" class="text-red-700">{{ error }}</p>
                     <button @click="handleHolidays()" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">REQUEST</button>
                 </div>
                 <hr class="my-4">
@@ -70,24 +71,30 @@ import { onMounted } from 'vue';
 import { GET_ALL_VACATIONS_BY_UID } from '@/graphql/vacation.query';
 import { useMutation, useQuery } from '@vue/apollo-composable';
 import { ADD_VACATION } from '@/graphql/vacation.mutation';
+import { CHANGE_DAYS_OFF } from '@/graphql/hairdresser.mutation';
+import { GET_HAIRDRESSER_BY_UID } from '@/graphql/hairdressers.query';
 
 const startDate = ref(new Date());
 const endDate = ref(new Date());
 
 const { firebaseUser } = useFirebase()
-const dayOff = ref(2) as Ref<number>;
+const dayOff = ref(1) as Ref<number>;
+
+const error = ref('');
 
 onMounted(() => {
 
+    //TODO: date doesnt get saved
     const startPicker = flatpickr('#start-picker', {
         altInput: true,
         altFormat: 'F j, Y',
         dateFormat: 'Y-m-d\TH:i:S.000\Z',
         defaultDate: new Date(),
         onClose: function (selectedDates) {
-            if(selectedDates[0] < endDate.value) {
+            
                 startDate.value = selectedDates[0];
-            }
+                console.log(startDate.value);
+            
         },
     });
 
@@ -97,9 +104,8 @@ onMounted(() => {
         dateFormat: 'Y-m-d\TH:i:S.000\Z',
         defaultDate: new Date(),
         onClose: function (selectedDates) {
-            if(selectedDates[0] > startDate.value) {
                 endDate.value = selectedDates[0];
-            }
+                console.log(endDate.value);
         },
     });
 });
@@ -107,26 +113,51 @@ onMounted(() => {
 
 const { result: getVacationsResult, refetch: refetchData } = useQuery(GET_ALL_VACATIONS_BY_UID);
 
-const { mutate: CreateVacation} = useMutation(ADD_VACATION);
+const { result: getHairdresserResult, refetch: refetchHairdresser } = useQuery(GET_HAIRDRESSER_BY_UID);
+
+const { mutate: CreateVacation } = useMutation(ADD_VACATION);
+
+const { mutate: CreateDayOff } = useMutation(CHANGE_DAYS_OFF);
+
+
 
 
 const handleHolidays = () => {
-    console.log(dayOff.value)
+    console.log(startDate.value, endDate.value)
+    if (startDate.value > endDate.value) {
+        error.value = "Start date must be before end date";
+        return;
+    }
     CreateVacation({
         createVacationInput: {
             startDate: startDate.value,
             endDate: endDate.value,
-            isRepeat: false,
         }
     }).then(() => {
         console.log("Vacation created");
+        error.value = "";
         refetchData();
     }).catch((err) => {
         console.log(err);
+        error.value = "There already is a vacation in this period";
     });
 }
 
 const handleDayOff = () => {
     console.log(dayOff.value)
+    //TODO: get user value
+    //TODO: the days get updated at all the hairdressers, this can only be the one of the id
+    const daysOff =  [4]//[dayOff.value];
+    console.log(getHairdresserResult?.value?.hairdresserByUid?.id   )
+    CreateDayOff({
+        id: getHairdresserResult?.value?.hairdresserByUid?.id,
+        daysOff: daysOff
+    }).then(() => {
+        console.log("Day off changed");
+        error.value = "";
+        refetchHairdresser();
+    }).catch((err) => {
+        console.log(err);
+    });
 }
 </script>

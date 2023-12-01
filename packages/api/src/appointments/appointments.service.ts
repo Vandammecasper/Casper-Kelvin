@@ -37,7 +37,6 @@ export class AppointmentsService {
   }
 
   async findByHairdresserUid(uid: string) {
-    //TODO: get id of hairdresser from uid
     let hairdresserId;
    await this.hairdresserService.findOneByUid(uid).then((hairdresser) => {
       if (!hairdresser) {

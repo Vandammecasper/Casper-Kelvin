@@ -10,11 +10,6 @@ export class CreateVacationInput {
 
   @IsDate()
   @Field(() => Date)
-  endDate: Date;
-
-  @IsNotEmpty()
-  @Field(() => Boolean)
-  isRepeat: boolean;
-  
+  endDate: Date;  
   
 }

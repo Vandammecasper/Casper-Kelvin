@@ -76,6 +76,8 @@ export class SeedService {
             h.uid = hairdresser.uid;
             h.name = hairdresser.name;
             h.servicesId = newServicesId;
+            h.vacationDays = hairdresser.vacationDays;
+            h.daysOff = hairdresser.daysOff;
 
             hairdressersArray.push(h);
         }

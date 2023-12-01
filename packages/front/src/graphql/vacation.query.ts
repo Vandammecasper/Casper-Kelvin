@@ -10,7 +10,6 @@ export const GET_ALL_VACATIONS = gql`
             }
             startDate
             endDate
-            isRepeat
             isApproved
             createdAt
         }
@@ -27,7 +26,6 @@ export const GET_ALL_VACATIONS_BY_UID =  gql`
         }
         startDate
         endDate
-        isRepeat
         isApproved
         createdAt
         }

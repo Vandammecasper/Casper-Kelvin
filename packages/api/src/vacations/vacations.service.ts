@@ -53,25 +53,42 @@ export class VacationsService {
 
       vacations.forEach(vacation => {
         if (vacation.startDate <= createVacationInput.startDate && vacation.endDate >= createVacationInput.startDate) {
+          console.log(vacation.startDate, createVacationInput.startDate, vacation.endDate)
           throw new Error('Vacation already exists');
-          return;
         }
         if (vacation.startDate <= createVacationInput.endDate && vacation.endDate >= createVacationInput.endDate) {
           throw new Error('Vacation already exists');
-          return;
         }
         if (vacation.startDate >= createVacationInput.startDate && vacation.endDate <= createVacationInput.endDate) {
           throw new Error('Vacation already exists');
-          return;
         }
       });
+
+      let totalVacationDays = 0;
+      const startDate = new Date(createVacationInput.startDate);
+      const endDate = new Date(createVacationInput.endDate);
+      while (startDate <= endDate) {
+        if (!hairdresser.daysOff.includes(startDate.getDay())) {
+          totalVacationDays++;
+          startDate.setDate(startDate.getDate() + 1);
+        }
+      }
+
+      console.log(totalVacationDays);
+
+      if (totalVacationDays > hairdresser.vacationDays) {
+        throw new Error('Not enough vacation days');
+      }
+
+      //TODO: add substract vacation days from hairdresser
+      const test = await this.hairdressersService.subtractVacationDays(hairdresser.id.toString(), totalVacationDays);
 
       const newVacation = new Vacation();
       newVacation.hairdresserId = new ObjectId(hairdresser.id);
       newVacation.startDate = createVacationInput.startDate;
       newVacation.endDate = createVacationInput.endDate;
-      newVacation.isRepeat = createVacationInput.isRepeat;
       newVacation.isApproved = false;
+
       return this.vacationRepository.save(newVacation);
     }catch(error) {
       console.log(error);

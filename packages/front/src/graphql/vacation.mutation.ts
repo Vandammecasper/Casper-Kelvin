@@ -10,7 +10,6 @@ export const ADD_VACATION = gql`
         }
         startDate
         endDate
-        isRepeat
         isApproved
         createdAt
         }

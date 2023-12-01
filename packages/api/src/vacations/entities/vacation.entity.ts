@@ -27,10 +27,6 @@ export class Vacation {
 
   @Column()
   @Field(() => Boolean)
-  isRepeat: boolean
-
-  @Column()
-  @Field(() => Boolean)
   isApproved: boolean
 
   @Field({ nullable: true })
