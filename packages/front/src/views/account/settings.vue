@@ -5,7 +5,7 @@
             <div class="w-1/2 grid justify-items-center border-2 border-white">
                 <h2 class="text-2xl">BARBERS</h2>
                 <div class="w-full px-8 py-4">
-                    <div v-for="user of users" :key="user.id" class="my-2">
+                    <div v-for="user of getUsersResult?.users " :key="user.id" class="my-2">
                         <div class="w-full h-0.5 bg-white"></div>
                         <div class="flex justify-between mt-1">
                             <p>name</p>
@@ -33,10 +33,10 @@
                                 <p>name</p>
                                 <p>{{ handleDates(new Date(vacation.startDate)) }} - {{ handleDates(new Date(vacation.endDate)) }}</p>
                                 <div class="flex gap-2">
-                                    <button class="px-2 py-1 bg-green-500">
+                                    <button class="px-2 py-1 Raleway-bold border-2 border-green-600 bg-green-600  hover:bg-green-700 focus:outline-none focus-visible:border-green-600 focus-visible:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-300">
                                         <p>accept</p>
                                     </button>
-                                    <button class="px-2 py-1 bg-red-500">
+                                    <button class="px-2 py-1 Raleway-bold border-2 border-red-600 bg-red-600  hover:bg-red-700 focus:outline-none focus-visible:border-red-600 focus-visible:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300">
                                         <p>decline</p>
                                     </button>
                                 </div>
@@ -55,7 +55,6 @@
     import { ref, watchEffect } from 'vue';
     
     const hasFetchedData = ref(false);
-    let users = []
 
     const {
         result: getUsersResult,
@@ -64,17 +63,14 @@
     
     watchEffect(() => {
         if (getUsersResult.value) {
-            hasFetchedData.value = true;
-            console.log(getUsersResult?.value.users)
-            users = getUsersResult?.value.users
-    } else if (hasFetchedData.value) {
-        console.log('Retrying data fetch...');
-        refetch();
-    } else {
-        console.log('No data');
-        refetch();
-    }
-});
+                hasFetchedData.value = true;
+                console.log(getUsersResult?.value.users)
+        }
+        else {
+            console.log('No data');
+            refetch();
+        }
+    });
     
     const {
         result: getVacationsResult,
