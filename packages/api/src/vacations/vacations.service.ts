@@ -51,18 +51,16 @@ export class VacationsService {
 
       const vacations = await this.vacationRepository.find({ where: { hairdresserId: new ObjectId(hairdresser.id) } });
 
-      vacations.forEach(vacation => {
-        if (vacation.startDate <= createVacationInput.startDate && vacation.endDate >= createVacationInput.startDate) {
-          console.log(vacation.startDate, createVacationInput.startDate, vacation.endDate)
-          throw new Error('Vacation already exists');
-        }
-        if (vacation.startDate <= createVacationInput.endDate && vacation.endDate >= createVacationInput.endDate) {
-          throw new Error('Vacation already exists');
-        }
-        if (vacation.startDate >= createVacationInput.startDate && vacation.endDate <= createVacationInput.endDate) {
-          throw new Error('Vacation already exists');
-        }
+      const isOverlapping = vacations.some(vacation => {
+        return (
+          (vacation.startDate < createVacationInput.endDate &&
+            vacation.endDate > createVacationInput.startDate)
+        );
       });
+      
+      if (isOverlapping) {
+        throw new Error('Vacation already exists');
+      }
 
       let totalVacationDays = 0;
       const startDate = new Date(createVacationInput.startDate);
@@ -70,11 +68,10 @@ export class VacationsService {
       while (startDate <= endDate) {
         if (!hairdresser.daysOff.includes(startDate.getDay())) {
           totalVacationDays++;
-          startDate.setDate(startDate.getDate() + 1);
         }
+        startDate.setDate(startDate.getDate() + 1);
       }
 
-      console.log(totalVacationDays);
 
       if (totalVacationDays > hairdresser.vacationDays) {
         throw new Error('Not enough vacation days');

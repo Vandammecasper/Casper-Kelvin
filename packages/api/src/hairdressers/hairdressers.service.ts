@@ -58,12 +58,12 @@ export class HairdressersService {
   }
 
   changeDaysOff(id: string, daysOff: number[]) {
+    console.log(daysOff);
     //@ts-ignore
-    return this.hairdresserRepository.update({where: { _id: new ObjectId(id) }}, { daysOff: daysOff });
+    return this.hairdresserRepository.update({ id: new ObjectId(id) }, { daysOff: daysOff });
   }
 
   async subtractVacationDays(id: string, days: number) {
-    // TODO: all the vacationdays get subtracted, not only the one of the id
     const hairdresser = await this.findOne(id);
     if (!hairdresser) {
       throw new Error('Hairdresser not found');
@@ -71,7 +71,7 @@ export class HairdressersService {
     const newVacationDays = hairdresser.vacationDays - days;
     console.log(newVacationDays);
     //@ts-ignore
-    return this.hairdresserRepository.update({ _id: new ObjectId(id) }, { vacationDays: newVacationDays });
+    return this.hairdresserRepository.update({ id: new ObjectId(id) }, { vacationDays: newVacationDays });
   }
 
   update(id: string, updateHairdresserInput: UpdateHairdresserInput) {

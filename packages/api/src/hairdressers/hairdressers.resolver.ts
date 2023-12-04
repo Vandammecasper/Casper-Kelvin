@@ -48,7 +48,11 @@ export class HairdressersResolver {
   @AllowedRoles(Role.SUPER_ADMIN, Role.ADMIN)
   @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Hairdresser)
-  changeDaysOff(@Args('id', { type: () => String }) id: string, @Args('daysOff', { type: () => [Int] }) daysOff: number[]) {
+  changeDaysOff(
+    @Args('id', { type: () => String }) id: string,
+    @Args('daysOff', { type: () => [Int] }) daysOff: number[]
+  ) {
+    console.log(daysOff);
     return this.hairdressersService.changeDaysOff(id, daysOff);
   }
 

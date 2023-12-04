@@ -2,20 +2,23 @@
     <div class="flex w-full h-screen items-center">
         <NavigationAccount />
         <div class="h-screen w-full pt-40 pl-20 pr-10">
-            <h1 class="text-5xl Raleway-bold mb-4">HELLO, {{ firebaseUser?.displayName }}</h1>
+            <div class="flex">
+                <h1 class="text-5xl Raleway-bold mb-4">HELLO, {{ firebaseUser?.displayName }}</h1>
+                <p class="mt-5 ml-4">Available vacation days {{ getHairdresserResult?.hairdresserByUid?.vacationDays }}</p>
+            </div>
             <div class="h-[60vh] overflow-scroll overflow-x-hidden pr-1">
                 <div class="w-full">
                     <h3 class="text-2xl mb-2">Day off</h3>
                     <select class="bg-neutral-900 border-white border-1 h-10 w-full" v-model="dayOff">
-                        <option value=1>Monday</option>
-                        <option value=2>Tuesday</option>
-                        <option value=3>Wednesday</option>
-                        <option value=4>Thursday</option>
-                        <option value=5>Friday</option>
-                        <option value=6>Saturday</option>
-                        <option value=0>Sunday</option>
+                        <option :value="1">Monday</option>
+                        <option :value="2">Tuesday</option>
+                        <option :value="3">Wednesday</option>
+                        <option :value="4">Thursday</option>
+                        <option :value="5">Friday</option>
+                        <option :value="6">Saturday</option>
+                        <option :value="0">Sunday</option>
                     </select>
-                    <button @click="handleDayOff()" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">SAVE</button>
+                    <button @click="handleDayOff" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">SAVE</button>
                 </div>
                 <hr class="my-4">
                 <div>
@@ -31,7 +34,7 @@
                         </div>
                     </div>
                     <p v-if="error != ''" class="text-red-700">{{ error }}</p>
-                    <button @click="handleHolidays()" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">REQUEST</button>
+                    <button @click="handleHolidays" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">REQUEST</button>
                 </div>
                 <hr class="my-4">
                 <div>
@@ -113,13 +116,21 @@ onMounted(() => {
 
 const { result: getVacationsResult, refetch: refetchData } = useQuery(GET_ALL_VACATIONS_BY_UID);
 
-const { result: getHairdresserResult, refetch: refetchHairdresser } = useQuery(GET_HAIRDRESSER_BY_UID);
+const { result: getHairdresserResult, refetch: refetchHairdresser, onResult: onResultHairdresser } = useQuery(GET_HAIRDRESSER_BY_UID);
 
 const { mutate: CreateVacation } = useMutation(ADD_VACATION);
 
 const { mutate: CreateDayOff } = useMutation(CHANGE_DAYS_OFF);
 
 
+onResultHairdresser((hairdresser) => {
+    console.log(hairdresser);
+    if(hairdresser.loading === false){
+        console.log(hairdresser?.data.hairdresserByUid?.daysOff);
+        dayOff.value = hairdresser?.data.hairdresserByUid?.daysOff[0];
+    }
+    
+})
 
 
 const handleHolidays = () => {
@@ -144,11 +155,12 @@ const handleHolidays = () => {
 }
 
 const handleDayOff = () => {
-    console.log(dayOff.value)
     //TODO: get user value
     //TODO: the days get updated at all the hairdressers, this can only be the one of the id
-    const daysOff =  [4]//[dayOff.value];
-    console.log(getHairdresserResult?.value?.hairdresserByUid?.id   )
+    const daysOff =  []//[dayOff.value];
+    const selectedDayOff = +dayOff.value;
+    daysOff.push( selectedDayOff);
+
     CreateDayOff({
         id: getHairdresserResult?.value?.hairdresserByUid?.id,
         daysOff: daysOff
