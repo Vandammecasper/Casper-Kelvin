@@ -242,12 +242,17 @@ const finishAppointment = () => {
     })
 }
 
-
 //TODO: get the hairdresser id
-const {result: getAppointmentsResult, loading } = useQuery(GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID)
+const {result: getAppointmentsResult, loading, onResult: onResultAppointment } = useQuery(GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID)
 
 const { mutate: completeAppointment } = useMutation(COMPLETE_APPOINTMENT);
 
+
+onResultAppointment((appointment)=>{
+    if(appointment.loading === false){
+        getWantedAppointments();
+    }
+})
 
 
 </script>
