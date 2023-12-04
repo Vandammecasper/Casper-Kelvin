@@ -84,11 +84,15 @@ export class AppointmentsService {
         if(testAppointment.isCompleted == false)
           throw new Error('UID already exists');
 
-      // if the hairdresserId is not found, throw an error
+      // if the hairdresserId is not found, throw an error and if dayOff is the same as the date, throw an error
       const hairdresser = await this.hairdresserService.findOne(CreateAppointmentInput.hairdresserId);
 
       if (!hairdresser) {
         throw new Error('Hairdresser not found');
+      }
+
+      if (hairdresser.daysOff.includes(CreateAppointmentInput.date.getDay())) {
+        throw new Error('Hairdresser is on day off');
       }
 
       // if the extraId is not found, throw an error
@@ -138,7 +142,6 @@ export class AppointmentsService {
           throw new Error('Hairdresser is on vacation');
         }
       });
-      // TODO: check for day off
 
       //subtract points if isPointsUsed is true
       if(CreateAppointmentInput.isPointsUsed){
