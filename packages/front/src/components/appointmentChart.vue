@@ -1,5 +1,9 @@
 <template>
-    <Line v-if="hasFetchedData" :data="chartData" :options="chartOptions" />
+    <Line v-if="getAppointmentsResult && getAppointmentsResult.appointments.length" :data="chartData" />
+    <div class="flex justify-between">
+        <p>Total appointments</p>
+        <h3>{{ appointmentsNumber }}</h3>
+    </div>
 </template>
 
 <script lang="ts">
@@ -34,141 +38,70 @@ export default {
         Line
     },
     data() {
-        // if(this.hasFetchedData){
             return {
-                chartData: {
-                    labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
-                    datasets: [
-                        {
-                            label: '',
-                            backgroundColor: '#F91818',
-                            borderColor: '#F91818',
-                            data: [this.ChartData]
-                        }
-                    ]
-                },
                 chartOptions: {
                     responsive: true,
                     maintainAspectRatio: false,
                 }
             }
-        // }
-        
     },
     
     setup(){
-        const firstDayOfJanuary= new Date(new Date().getFullYear(), 0, 1)
-        const firstDayOfFebruary= new Date(new Date().getFullYear(), 1, 1)
-        const firstDayOfMarch= new Date(new Date().getFullYear(), 2, 1)
-        const firstDayOfApril= new Date(new Date().getFullYear(), 3, 1)
-        const firstDayOfMay= new Date(new Date().getFullYear(), 4, 1)
-        const firstDayOfJune= new Date(new Date().getFullYear(), 5, 1)
-        const firstDayOfJuly= new Date(new Date().getFullYear(), 6, 1)
-        const firstDayOfAugust= new Date(new Date().getFullYear(), 7, 1)
-        const firstDayOfSeptember= new Date(new Date().getFullYear(), 8, 1)
-        const firstDayOfOctober= new Date(new Date().getFullYear(), 9, 1)
-        const firstDayOfNovember= new Date(new Date().getFullYear(), 10, 1)
-        const firstDayOfDecember= new Date(new Date().getFullYear(), 11, 1)
-        let januaryAppointments= 0
-        let februaryAppointments= 0
-        let marchAppointments= 0
-        let aprilAppointments= 0
-        let mayAppointments= 0
-        let juneAppointments= 0
-        let julyAppointments= 0
-        let augustAppointments= 0
-        let septemberAppointments= 0
-        let octoberAppointments= 0
-        let novemberAppointments= 0
-        let decemberAppointments= 0
-        let ChartData = []
+        const chartData = ref()
+        const appointmentsNumber = ref()
         
         const {
             result: getAppointmentsResult,
             refetch
         } = useQuery(GET_ALL_APPOINTMENTS)
 
-        const hasFetchedData = ref(false);
-
         watchEffect(() => {
             if (getAppointmentsResult.value) {
-                hasFetchedData.value = true;
-                countAppointments(getAppointmentsResult.value);
-            } else if (hasFetchedData.value) {
-                console.log('Retrying data fetch...');
-                refetch();
+                countAppointments();
             } else {
-                console.log('No data');
                 refetch();
             }
         });
 
 
-        const countAppointments = (data) => {
-            console.log('start counting appointments', data.value)
+        const countAppointments = () => {
+            const monthAppointments = Array(12).fill(0);
+
             for (let i = 0; i < getAppointmentsResult.value.appointments?.length; i++) {
                 const appointment = getAppointmentsResult.value.appointments[i];
-                console.log(new Date(appointment.date) > firstDayOfNovember && new Date(appointment.date) < firstDayOfDecember)
-                if (new Date(appointment.date) > firstDayOfJanuary && new Date(appointment.date) < firstDayOfFebruary) {
-                    januaryAppointments++
+                const appointmentDate = new Date(appointment.date);
+
+                for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
+                    const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
+                    const lastDayOfMonth = new Date(new Date().getFullYear(), monthIndex + 1, 1);
+
+                    if (appointmentDate > firstDayOfMonth && appointmentDate < lastDayOfMonth) {
+                        monthAppointments[monthIndex]++;
+                        break; // Break out of the loop once the month is found
+                    }
                 }
-                if (new Date(appointment.date) > firstDayOfFebruary && new Date(appointment.date) < firstDayOfMarch) {
-                    februaryAppointments++
-                }
-                if (new Date(appointment.date) > firstDayOfMarch && new Date(appointment.date) < firstDayOfApril) {
-                    marchAppointments++
-                }
-                if (new Date(appointment.date) > firstDayOfApril && new Date(appointment.date) < firstDayOfMay) {
-                    aprilAppointments++
-                }
-                if (new Date(appointment.date) > firstDayOfMay && new Date(appointment.date) < firstDayOfJune) {
-                    mayAppointments++
-                }
-                if (new Date(appointment.date) > firstDayOfJune && new Date(appointment.date) < firstDayOfJuly) {
-                    juneAppointments++
-                }
-                if (new Date(appointment.date) > firstDayOfJuly && new Date(appointment.date) < firstDayOfAugust) {
-                    julyAppointments++
-                }
-                if (new Date(appointment.date) > firstDayOfAugust && new Date(appointment.date) < firstDayOfSeptember) {
-                    augustAppointments++
-                }
-                if (new Date(appointment.date) > firstDayOfSeptember && new Date(appointment.date) < firstDayOfOctober) {
-                    septemberAppointments++
-                }
-                if (new Date(appointment.date) > firstDayOfOctober && new Date(appointment.date) < firstDayOfNovember) {
-                    octoberAppointments++
-                }
-                if (new Date(appointment.date) > firstDayOfNovember && new Date(appointment.date) < firstDayOfDecember) {
-                    novemberAppointments++
-                    console.log('november', novemberAppointments)
-                }
-                if (new Date(appointment.date) > firstDayOfDecember && new Date(appointment.date) < new Date(new Date().getFullYear(), 12, 1)) {
-                    decemberAppointments++
-                }
-                
             }
-            ChartData = [januaryAppointments, februaryAppointments, marchAppointments, aprilAppointments, mayAppointments, juneAppointments, julyAppointments, augustAppointments, septemberAppointments, octoberAppointments, novemberAppointments, decemberAppointments]
+            const dataForChart = [monthAppointments[0], monthAppointments[1], monthAppointments[2], monthAppointments[3], monthAppointments[4], monthAppointments[5], monthAppointments[6], monthAppointments[7], monthAppointments[8], monthAppointments[9], monthAppointments[10], monthAppointments[11]]
+            console.log(dataForChart)
+            chartData.value = {
+                labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
+                datasets: [
+                    {
+                        label: '',
+                        backgroundColor: '#F91818',
+                        borderColor: '#F91818',
+                        data: dataForChart
+                    }
+                ]
+            }
+            appointmentsNumber.value = monthAppointments[0] + monthAppointments[1] + monthAppointments[2] + monthAppointments[3] + monthAppointments[4] + monthAppointments[5] + monthAppointments[6] + monthAppointments[7] + monthAppointments[8] + monthAppointments[9] + monthAppointments[10] + monthAppointments[11]
         }
-
-
 
         return{
             getAppointmentsResult,
-            januaryAppointments,
-            februaryAppointments,
-            marchAppointments,
-            aprilAppointments,
-            mayAppointments,
-            juneAppointments,
-            julyAppointments,
-            augustAppointments,
-            septemberAppointments,
-            octoberAppointments,
-            novemberAppointments,
-            decemberAppointments,
-            hasFetchedData,
-            ChartData
+            countAppointments,
+            chartData,
+            appointmentsNumber
         }
     }
 }

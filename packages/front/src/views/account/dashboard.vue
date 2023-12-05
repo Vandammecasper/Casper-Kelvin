@@ -17,10 +17,6 @@
             </div>
             <div class="">
                 <AppointmentChart />
-                <div class="flex justify-between">
-                    <p>Total appointments</p>
-                    <h3>1</h3>
-                </div>
             </div>
         </div>
         <div class="flex p-8 h-105 w-screen justify-center">
