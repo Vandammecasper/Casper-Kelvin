@@ -1,5 +1,5 @@
 <template>
-    <Line v-if="getAppointmentsResult && getAppointmentsResult.appointments.length" :data="chartData" />
+    <Line v-if="countAppointments()" :data="chartData" />
     <div class="flex justify-between">
         <p>Total appointments</p>
         <h3>{{ appointmentsNumber }}</h3>
@@ -18,9 +18,7 @@ import {
     Legend
 } from 'chart.js'
 import { Line } from 'vue-chartjs'
-import { GET_ALL_APPOINTMENTS } from '@/graphql/appointments.query'
-import { useQuery } from '@vue/apollo-composable'
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 
 ChartJS.register(
     CategoryScale,
@@ -37,6 +35,12 @@ export default {
     components: {
         Line
     },
+    props: {
+        componentData: {
+            type: Object as () => Object | null,    
+            required: false
+        }
+    },
     data() {
             return {
                 chartOptions: {
@@ -45,39 +49,28 @@ export default {
                 }
             }
     },
+
     
-    setup(){
+    setup(props){
         const chartData = ref()
         const appointmentsNumber = ref()
-        
-        const {
-            result: getAppointmentsResult,
-            refetch
-        } = useQuery(GET_ALL_APPOINTMENTS)
-
-        watchEffect(() => {
-            if (getAppointmentsResult.value) {
-                countAppointments();
-            } else {
-                refetch();
-            }
-        });
-
 
         const countAppointments = () => {
             const monthAppointments = Array(12).fill(0);
+            console.log(props.componentData)
+            if(props.componentData){
+                for (let i = 0; i < props.componentData.value.appointments?.length; i++) {
+                    const appointment = props.componentData.value.appointments[i];
+                    const appointmentDate = new Date(appointment.date);
 
-            for (let i = 0; i < getAppointmentsResult.value.appointments?.length; i++) {
-                const appointment = getAppointmentsResult.value.appointments[i];
-                const appointmentDate = new Date(appointment.date);
+                    for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
+                        const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
+                        const lastDayOfMonth = new Date(new Date().getFullYear(), monthIndex + 1, 1);
 
-                for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
-                    const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
-                    const lastDayOfMonth = new Date(new Date().getFullYear(), monthIndex + 1, 1);
-
-                    if (appointmentDate > firstDayOfMonth && appointmentDate < lastDayOfMonth) {
-                        monthAppointments[monthIndex]++;
-                        break; // Break out of the loop once the month is found
+                        if (appointmentDate > firstDayOfMonth && appointmentDate < lastDayOfMonth) {
+                            monthAppointments[monthIndex]++;
+                            break; // Break out of the loop once the month is found
+                        }
                     }
                 }
             }
@@ -95,10 +88,10 @@ export default {
                 ]
             }
             appointmentsNumber.value = monthAppointments[0] + monthAppointments[1] + monthAppointments[2] + monthAppointments[3] + monthAppointments[4] + monthAppointments[5] + monthAppointments[6] + monthAppointments[7] + monthAppointments[8] + monthAppointments[9] + monthAppointments[10] + monthAppointments[11]
+            return chartData
         }
 
         return{
-            getAppointmentsResult,
             countAppointments,
             chartData,
             appointmentsNumber

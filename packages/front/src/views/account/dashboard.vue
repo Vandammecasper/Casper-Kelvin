@@ -2,11 +2,7 @@
     <div class="mt-32 h-124">
         <div class="flex h-24 px-8 gap-32 mb-8 justify-center">
             <div class="">
-                <RevenueChart/>
-                <div class="flex justify-between">
-                    <p>Total revenue</p>
-                    <h3>€ 288</h3>
-                </div>
+                <RevenueChart :componentData="data"/>
             </div>
             <div class="">
                 <CustomerChart/>
@@ -16,7 +12,7 @@
                 </div>
             </div>
             <div class="">
-                <AppointmentChart />
+                <AppointmentChart :componentData="data"/>
             </div>
         </div>
         <div class="flex p-8 h-105 w-screen justify-center">
@@ -39,4 +35,29 @@ import RevenueChart from '@/components/revenueChart.vue'
 import CustomerChart from '@/components/customerChart.vue'
 import AppointmentChart from '@/components/appointmentChart.vue'
 import DoughnutChart from '@/components/doughnutChart.vue'
+import { GET_ALL_APPOINTMENTS } from '@/graphql/appointments.query'
+import { useQuery } from '@vue/apollo-composable'
+import { ref, watchEffect } from 'vue';
+
+const {
+    result: getAppointmentsResult,
+    refetch
+} = useQuery(GET_ALL_APPOINTMENTS)
+
+const data = ref({})
+
+watchEffect(() => {
+    if (getAppointmentsResult.value) {
+        setData();
+    } else {
+        refetch();
+        console.log('refetch counting')
+    }
+});
+
+const setData = () =>{
+    data.value = getAppointmentsResult
+    console.log('component data: ')
+    console.log(data)
+}
 </script>
