@@ -20,7 +20,7 @@
             </div>
             <div class="sm:w-1/2 max-sm:mt-4">
                 <h2 class="text-3xl lg:text-4xl">AGENDA</h2>
-                <DatePicker class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" time-accuracy={{1}} :rules="rules"/>
+                <DatePicker class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" :disabled-dates="disabledDates" time-accuracy={{1}} :rules="rules"/>
             </div>
         </div>
         <RouterLink v-if="cont" :to="{ name: 'summary', params: { service: selectedServices.join(','),extra: selectedExtra, barber: selectedBarber, date: selectedDate } }">
@@ -77,7 +77,7 @@ export default {
         }
     },
     methods: {
-        isSelected(barberId) {
+        isSelected(barberId: string) {
             if(this.selectedBarber == barberId){
                 return true;
             }
@@ -85,7 +85,7 @@ export default {
                 return false;
             }
         },
-        toggleSelection(barberId) {
+        toggleSelection(barberId: string) {
             if (this.isSelected(barberId)) {
                 // barber is already selected, so remove it
                 this.selectedBarber = '';
@@ -93,6 +93,15 @@ export default {
             } else {
                 // Barber is not selected, so add it
                 this.selectedBarber = barberId;
+                // this.daysOffSelectedBarber = this.hairdressersResult?.hairdressers.find(hairdresser => hairdresser.id == barberId)?.daysOff;
+                this.disabledDates = [
+                    {
+                        repeat:{
+                            weekdays: this.hairdressersResult?.hairdressers.find(hairdresser => hairdresser.id == barberId)?.daysOff
+                        }
+                    }
+                ]
+                // console.log(this.daysOffSelectedBarber);
                 this.checkContinue();
             }
         },
@@ -111,9 +120,20 @@ export default {
             loading: getHairdressersLoading,
         } = useQuery(GET_ALL_HAIRDRESSERS)
         
-        console.log(getHairdressersResult)
+        // const daysOffSelectedBarber = ref([1])
+
+        //get active barber from data 
+        const disabledDates = ref([
+            {
+                repeat:{
+                    weekdays: []
+                }
+            }
+        ])
+
         return {
             hairdressersResult: getHairdressersResult,
+            disabledDates,
         }
     },
     computed: {

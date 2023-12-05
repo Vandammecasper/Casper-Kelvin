@@ -13,6 +13,8 @@ query {
         duration
         utilities
       }
+      vacationDays
+      daysOff
     }
   }
 `
