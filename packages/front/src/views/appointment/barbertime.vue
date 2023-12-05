@@ -20,7 +20,7 @@
             </div>
             <div class="sm:w-1/2 max-sm:mt-4">
                 <h2 class="text-3xl lg:text-4xl">AGENDA</h2>
-                <DatePicker class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" :disabled-dates="disabledDates" time-accuracy={{1}} :rules="rules"/>
+                <DatePicker class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" :disabled-dates="disabledDates" time-accuracy={{1}} :locale="locale" :rules="rules"/>
             </div>
         </div>
         <RouterLink v-if="cont" :to="{ name: 'summary', params: { service: selectedServices.join(','),extra: selectedExtra, barber: selectedBarber, date: selectedDate } }">
@@ -48,6 +48,7 @@ import 'v-calendar/style.css';
 import { useQuery } from '@vue/apollo-composable'
 import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
 import { GET_ALL_VACATIONS } from '@/graphql/vacation.query';
+import { useI18n } from 'vue-i18n';
 
 
 export default {
@@ -144,6 +145,9 @@ export default {
             loading: getVacationsLoading,
         } = useQuery(GET_ALL_VACATIONS)
 
+        
+        const { locale } = useI18n()
+
         console.log(getVacationsResult);
 
         //get active barber from data 
@@ -159,10 +163,12 @@ export default {
             hairdressersResult: getHairdressersResult,
             disabledDates,
             vacationsResult: getVacationsResult,
+            locale,
         }
     },
     computed: {
         selectedServices() {
+            // @ts-ignore
             return this.$route.params.service.split(',').map((service: string) => decodeURIComponent(service));
         },
         selectedExtra() {
