@@ -79,10 +79,17 @@ export class AppointmentsService {
       let totalTime = 0;
 
       // if the UID is found and isComplete is false, throw an error
-      const testAppointment = await this.appointmentRepository.findOne({where: {uid: uid}})
+      const testAppointment = await this.appointmentRepository.find({where: {uid: uid}})
+      console.log(testAppointment);
       if(testAppointment)
-        if(testAppointment.isCompleted == false)
-          throw new Error('UID already exists');
+      {
+        testAppointment.forEach(appointment => {
+          if(appointment.isCompleted == false)
+          {
+            throw new Error('You already have an appointment');
+          }
+        });
+      }
 
       // if the hairdresserId is not found, throw an error and if dayOff is the same as the date, throw an error
       const hairdresser = await this.hairdresserService.findOne(CreateAppointmentInput.hairdresserId);
