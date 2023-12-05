@@ -99,10 +99,11 @@ export default {
                 //TODO: get vacations from barber and add them to disabledDates
                 console.log(this.vacationsResult)
 
+                const daysOffSelectedBarber = this.hairdressersResult?.hairdressers.find((hairdresser: { id: string; }) => hairdresser.id == barberId)?.daysOff.map((day: number) => day + 1);
                 this.disabledDates = [
                     {
                         repeat:{
-                            weekdays: this.hairdressersResult?.hairdressers.find((hairdresser: { id: string; }) => hairdresser.id == barberId)?.daysOff
+                            weekdays: daysOffSelectedBarber
                         }
                     }
                 ]
