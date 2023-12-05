@@ -47,6 +47,7 @@ import { Calendar, DatePicker } from 'v-calendar';
 import 'v-calendar/style.css';
 import { useQuery } from '@vue/apollo-composable'
 import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
+import { GET_ALL_VACATIONS } from '@/graphql/vacation.query';
 
 
 export default {
@@ -63,7 +64,7 @@ export default {
     data() {
         return {
             rules: ref({
-                hours: (hour, { weekday }) => {
+                hours: (hour: number, { weekday }: any) => {
                     // 8AM - 12PM on the weekends
                     if ([1, 7].includes(weekday)) return hour >= 9 && hour < 14;
                     // Any hour otherwise
@@ -93,14 +94,32 @@ export default {
             } else {
                 // Barber is not selected, so add it
                 this.selectedBarber = barberId;
-                // this.daysOffSelectedBarber = this.hairdressersResult?.hairdressers.find(hairdresser => hairdresser.id == barberId)?.daysOff;
+                
+                //TODO: get vacations from barber and add them to disabledDates
+                console.log(this.vacationsResult)
+
                 this.disabledDates = [
                     {
                         repeat:{
-                            weekdays: this.hairdressersResult?.hairdressers.find(hairdresser => hairdresser.id == barberId)?.daysOff
+                            weekdays: this.hairdressersResult?.hairdressers.find((hairdresser: { id: string; }) => hairdresser.id == barberId)?.daysOff
                         }
                     }
                 ]
+
+                // add vacations from specific hairdresser to disabledDates
+                for (let i = 0; i < this.vacationsResult?.vacations.length; i++) {
+                    if(this.vacationsResult?.vacations[i].hairdresser.id == barberId){
+                        this.disabledDates.push({
+                            start: new Date(this.vacationsResult?.vacations[i].startDate),
+                            end: new Date(this.vacationsResult?.vacations[i].endDate),
+                        })
+                    }
+                }
+
+                // this.disabledDates.push({
+                //     start: new Date(2023, 11, 6),
+                //     end: new Date(2023, 11, 10),
+                // })
                 // console.log(this.daysOffSelectedBarber);
                 this.checkContinue();
             }
@@ -119,8 +138,13 @@ export default {
             result: getHairdressersResult,
             loading: getHairdressersLoading,
         } = useQuery(GET_ALL_HAIRDRESSERS)
-        
-        // const daysOffSelectedBarber = ref([1])
+
+        const {
+            result: getVacationsResult,
+            loading: getVacationsLoading,
+        } = useQuery(GET_ALL_VACATIONS)
+
+        console.log(getVacationsResult);
 
         //get active barber from data 
         const disabledDates = ref([
@@ -134,11 +158,12 @@ export default {
         return {
             hairdressersResult: getHairdressersResult,
             disabledDates,
+            vacationsResult: getVacationsResult,
         }
     },
     computed: {
         selectedServices() {
-            return this.$route.params.service.split(',').map(service => decodeURIComponent(service));
+            return this.$route.params.service.split(',').map((service: string) => decodeURIComponent(service));
         },
         selectedExtra() {
             return this.$route.params.extra;
