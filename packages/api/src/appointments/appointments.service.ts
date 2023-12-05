@@ -10,6 +10,7 @@ import { ObjectId } from 'mongodb';
 import * as dayjs from 'dayjs';
 import { PointsService } from 'src/points/points.service';
 import { ExtrasService } from 'src/extras/extras.service';
+import { VacationsService } from 'src/vacations/vacations.service';
 
 @Injectable()
 export class AppointmentsService {
@@ -21,6 +22,7 @@ export class AppointmentsService {
     private readonly serviceService: ServicesService,
     private readonly pointsService: PointsService,
     private readonly extrasService: ExtrasService,
+    private readonly vacationsService: VacationsService,
   ) {}
   
   findAll() {
@@ -35,7 +37,6 @@ export class AppointmentsService {
   }
 
   async findByHairdresserUid(uid: string) {
-    //TODO: get id of hairdresser from uid
     let hairdresserId;
    await this.hairdresserService.findOneByUid(uid).then((hairdresser) => {
       if (!hairdresser) {
@@ -83,11 +84,15 @@ export class AppointmentsService {
         if(testAppointment.isCompleted == false)
           throw new Error('UID already exists');
 
-      // if the hairdresserId is not found, throw an error
+      // if the hairdresserId is not found, throw an error and if dayOff is the same as the date, throw an error
       const hairdresser = await this.hairdresserService.findOne(CreateAppointmentInput.hairdresserId);
 
       if (!hairdresser) {
         throw new Error('Hairdresser not found');
+      }
+
+      if (hairdresser.daysOff.includes(CreateAppointmentInput.date.getDay())) {
+        throw new Error('Hairdresser is on day off');
       }
 
       // if the extraId is not found, throw an error
@@ -129,15 +134,20 @@ export class AppointmentsService {
         throw new Error('There is already an appointment on that date');
       }
 
-      console.log(totalPrice, "totalPrice");
+      // if the date is not in a hairdresser vacation, throw an error
+      const vacations = await this.vacationsService.findByHairdresserId(hairdresser.id);
+
+      vacations.forEach(vacation => {
+        if (vacation.startDate <= CreateAppointmentInput.date && vacation.endDate >= CreateAppointmentInput.date) {
+          throw new Error('Hairdresser is on vacation');
+        }
+      });
 
       //subtract points if isPointsUsed is true
       if(CreateAppointmentInput.isPointsUsed){
         const points = await this.pointsService.subtractPoints(uid, 5);
         totalPrice /= 2;
       }
-
-      console.log(totalPrice, "totalPrice");
 
       const newAppointment = new Appointment();
       newAppointment.date = new Date(CreateAppointmentInput.date);

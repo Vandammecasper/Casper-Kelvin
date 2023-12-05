@@ -24,6 +24,11 @@
             "scheerschuim"
           ]
         }
+      ],
+      "vacationDays": 35,
+      "daysOff": [
+        0,
+        6
       ]
     },
     {
@@ -64,6 +69,11 @@
             "scheermachine"
           ]
         }
+      ],
+      "vacationDays": 35,
+      "daysOff": [
+        1,
+        5
       ]
     },
     {
@@ -81,6 +91,11 @@
             "scheermes"
           ]
         }
+      ],
+      "vacationDays": 35,
+      "daysOff": [
+        3,
+        4
       ]
     }
   ]

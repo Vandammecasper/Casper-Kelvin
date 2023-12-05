@@ -30,21 +30,70 @@ export class VacationsService {
     return this.vacationRepository.find({ where: { hairdresserId } });
   }
 
-  async create(createVacationInput: CreateVacationInput
+  async findByUid(uid: string) {
+    const hairdresser = await this.hairdressersService.findOneByUid(uid);
+    if (!hairdresser) {
+      throw new Error('Hairdresser not found');
+    }
+    
+    return this.vacationRepository.find({ where: { hairdresserId: new ObjectId(hairdresser.id) } });
+  } 
+
+  async create(
+      uid: string,
+      createVacationInput: CreateVacationInput
     ): Promise<Vacation> {
     try{
-      const hairdresser = await this.hairdressersService.findOne(createVacationInput.hairdresserId);
+      const hairdresser = await this.hairdressersService.findOneByUid(uid);
       if (!hairdresser) {
         throw new Error('Hairdresser not found');
       }
+
+      const vacations = await this.vacationRepository.find({ where: { hairdresserId: new ObjectId(hairdresser.id) } });
+
+      const isOverlapping = vacations.some(vacation => {
+        return (
+          (vacation.startDate < createVacationInput.endDate &&
+            vacation.endDate > createVacationInput.startDate)
+        );
+      });
+      
+      if (isOverlapping) {
+        throw new Error('Vacation already exists');
+      }
+
+      let totalVacationDays = 0;
+      const startDate = new Date(createVacationInput.startDate);
+      const endDate = new Date(createVacationInput.endDate);
+      while (startDate <= endDate) {
+        if (!hairdresser.daysOff.includes(startDate.getDay())) {
+          totalVacationDays++;
+        }
+        startDate.setDate(startDate.getDate() + 1);
+      }
+
+
+      if (totalVacationDays > hairdresser.vacationDays) {
+        throw new Error('Not enough vacation days');
+      }
+
+      //TODO: add substract vacation days from hairdresser
+      const test = await this.hairdressersService.subtractVacationDays(hairdresser.id.toString(), totalVacationDays);
+
       const newVacation = new Vacation();
-      newVacation.hairdresserId = new ObjectId(createVacationInput.hairdresserId);
+      newVacation.hairdresserId = new ObjectId(hairdresser.id);
       newVacation.startDate = createVacationInput.startDate;
       newVacation.endDate = createVacationInput.endDate;
+      newVacation.isApproved = false;
+
       return this.vacationRepository.save(newVacation);
     }catch(error) {
       console.log(error);
     }
+  }
+
+  approveVacation(id: string): Promise<Vacation> {
+    return this.vacationRepository.save({ _id: new ObjectId(id), isApproved: true });
   }
 
   update(id: number, updateVacationInput: UpdateVacationInput) {

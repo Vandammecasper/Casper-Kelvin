@@ -25,3 +25,18 @@ query hairdresser($id: String!) {
   }
 }
 `
+
+export const GET_HAIRDRESSER_BY_UID = gql`
+query {
+  hairdresserByUid {
+    id
+    name
+    services {
+      id
+      name
+    }
+    vacationDays
+    daysOff
+  }
+}
+`

@@ -10,24 +10,27 @@ import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
 import { RolesGuard } from 'src/users/guards/roles.guard';
 import { AllowedRoles } from 'src/users/decorators/role.decorator';
 import { Role } from 'src/users/entities/user.entity';
+import { FirebaseUser } from 'src/authentication/user.decorator';
+import { UserRecord } from 'firebase-admin/auth';
 
 @Resolver(() => Vacation)
 export class VacationsResolver {
   constructor(private readonly vacationsService: VacationsService,
     private readonly hairdressersService: HairdressersService) {}
 
-  // @UseGuards(FirebaseGuard)
+  @UseGuards(FirebaseGuard)
   @Query(() => [Vacation], { name: 'vacations' })
   findAll() {
     return this.vacationsService.findAll();
   }
 
-  // @UseGuards(FirebaseGuard)
+  @UseGuards(FirebaseGuard)
   @Query(() => Vacation, { name: 'vacation' })
   findOne(@Args('id', { type: () => String }) id: string) {
     return this.vacationsService.findOne(id);
   }
 
+  @UseGuards(FirebaseGuard)
   @Query(() => [Vacation], { name: 'vacationsByHairdresserId' })
   findByHairdresserId(@Args('hairdresserId', { type: () => String }) hairdresserId: string) {
     return this.vacationsService.findByHairdresserId(hairdresserId);
@@ -35,12 +38,28 @@ export class VacationsResolver {
 
   @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
   @UseGuards(FirebaseGuard, RolesGuard)
-  @Mutation(() => Vacation)
-  createVacation(@Args('createVacationInput') createVacationInput: CreateVacationInput
-  ): Promise<Vacation> {
-    return this.vacationsService.create(createVacationInput);
+  @Query(() => [Vacation], { name: 'vacationsByUid' })
+  findByUid(@FirebaseUser() user: UserRecord) {
+    return this.vacationsService.findByUid(user.uid);
   }
 
+  @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
+  @UseGuards(FirebaseGuard, RolesGuard)
+  @Mutation(() => Vacation)
+  createVacation(
+    @Args('createVacationInput') createVacationInput: CreateVacationInput,
+    @FirebaseUser() user: UserRecord
+  ): Promise<Vacation> {
+    return this.vacationsService.create(user.uid, createVacationInput);
+  }
+
+  @UseGuards(FirebaseGuard)
+  @Mutation(() => Vacation)
+  approveVacation(@Args('id', { type: () => String }) id: string): Promise<Vacation> {
+    return this.vacationsService.approveVacation(id);
+  }
+
+  // @UseGuards(FirebaseGuard)
   @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
   @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Vacation)

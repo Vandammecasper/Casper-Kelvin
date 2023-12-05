@@ -111,6 +111,7 @@ export default {
             loading: getHairdressersLoading,
         } = useQuery(GET_ALL_HAIRDRESSERS)
         
+        console.log(getHairdressersResult)
         return {
             hairdressersResult: getHairdressersResult,
         }

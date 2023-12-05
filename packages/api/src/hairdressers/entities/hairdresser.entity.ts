@@ -19,13 +19,18 @@ export class Hairdresser {
   @Field(() => String, { description: 'Fullname' })
   name: string;
 
-  // @Column('simple-array', { default: [] }) // Use 'simple-array' type for an array of IDs
-  // @Field(() => [Int], { description: 'Array of IDs' }) // GraphQL field for the array of IDs
-  // otherIds: number[]
   @Field(() => [Service])
   services: Service[]
 
   @Column('simple-array', { default: []})
   servicesId: ObjectId[]
+
+  @Column({nullable: true})
+  @Field(() => Number, { description: 'vacation days' , nullable: true} )
+  vacationDays: number
+
+  @Column({nullable: true})
+  @Field(() => [Number], { description: 'days off in the week', nullable: true })
+  daysOff: number[]
 
 }

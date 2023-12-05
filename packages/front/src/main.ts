@@ -10,6 +10,7 @@ import useFirebase from './composables/useFirebase'
 import useCustomUser from './composables/useCustomUser'
 import { i18n } from './bootstrap/i18n'
 
+import 'v-calendar/style.css';
 import { setupCalendar } from 'v-calendar';
 
 const app = createApp(App)

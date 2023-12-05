@@ -99,6 +99,7 @@ import { X } from 'lucide-vue-next'
 import type { CustomAppointment } from '@/interfaces/custom.appointment.interface';
 import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.css';
+import 'flatpickr/dist/themes/dark.css';
 import { onMounted } from 'vue';
 
 const { firebaseUser } = useFirebase()
@@ -258,12 +259,17 @@ const finishAppointment = () => {
     })
 }
 
-
 //TODO: get the hairdresser id
-const {result: getAppointmentsResult, loading } = useQuery(GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID)
+const {result: getAppointmentsResult, loading, onResult: onResultAppointment } = useQuery(GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID)
 
 const { mutate: completeAppointment } = useMutation(COMPLETE_APPOINTMENT);
 
+
+onResultAppointment((appointment)=>{
+    if(appointment.loading === false){
+        getWantedAppointments();
+    }
+})
 
 
 </script>

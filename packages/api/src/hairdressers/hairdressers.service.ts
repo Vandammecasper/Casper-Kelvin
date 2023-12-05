@@ -48,10 +48,30 @@ export class HairdressersService {
         newHairdresser.uid = createHairdresserInput.uid;
         newHairdresser.name = createHairdresserInput.name;
         newHairdresser.servicesId = servicesObjectId;
+        newHairdresser.vacationDays = createHairdresserInput.vacationDays;
+        newHairdresser.daysOff = createHairdresserInput.daysOff;
+
         return this.hairdresserRepository.save(newHairdresser);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  changeDaysOff(id: string, daysOff: number[]) {
+    console.log(daysOff);
+    //@ts-ignore
+    return this.hairdresserRepository.update({ id: new ObjectId(id) }, { daysOff: daysOff });
+  }
+
+  async subtractVacationDays(id: string, days: number) {
+    const hairdresser = await this.findOne(id);
+    if (!hairdresser) {
+      throw new Error('Hairdresser not found');
+    }
+    const newVacationDays = hairdresser.vacationDays - days;
+    console.log(newVacationDays);
+    //@ts-ignore
+    return this.hairdresserRepository.update({ id: new ObjectId(id) }, { vacationDays: newVacationDays });
   }
 
   update(id: string, updateHairdresserInput: UpdateHairdresserInput) {
@@ -59,7 +79,9 @@ export class HairdressersService {
   }
 
   remove(id: string) {
-    return `This action removes a #${id} hairdresser`;
+    //TODO: set user rights to user 
+    //@ts-ignore
+    return this.hairdresserRepository.delete({ _id: new ObjectId(id) });
   }
 
   // functions for seeding

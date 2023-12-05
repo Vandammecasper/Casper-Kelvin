@@ -17,4 +17,13 @@ export class CreateHairdresserInput {
   // @ValidateNested()
   @Field(() => [String])
   servicesId: string[];
+
+  @IsNotEmpty()
+  @Field(() => Number)
+  vacationDays: number;
+
+  @IsNotEmpty()
+  @Field(() => [Number])
+  daysOff: number[];
+
 }
