@@ -139,6 +139,25 @@ const handleHolidays = () => {
         error.value = "Start date must be before end date";
         return;
     }
+    if (startDate.value < new Date()) {
+        error.value = "Start date must be in the future";
+        return;
+    }
+
+    let startDateObj = new Date(startDate.value);
+    let endDateObj = new Date(endDate.value);
+
+    // Calculate the duration in milliseconds
+    let durationInMilliseconds = endDateObj.getTime() - startDateObj.getTime();
+
+    // Convert milliseconds to days
+    let durationInDays = durationInMilliseconds / (1000 * 60 * 60 * 24);
+
+    if (durationInDays > getHairdresserResult.value.hairdresserByUid.vacationDays) {
+        error.value = "You don't have enough vacation days";
+        return;
+    }
+
     CreateVacation({
         createVacationInput: {
             startDate: startDate.value,
