@@ -82,7 +82,6 @@
         const month = dateObject.toLocaleString('default', { month: 'long' });
         const day = dateObject.getDate();
         const formattedDate = `${day} ${month} ${year}`
-        console.log(formattedDate)
         return formattedDate
     }
 

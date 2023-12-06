@@ -18,11 +18,7 @@ import {
     Legend
 } from 'chart.js'
 import { Line } from 'vue-chartjs'
-import { GET_ALL_APPOINTMENTS } from '@/graphql/appointments.query'
-import { useQuery } from '@vue/apollo-composable'
-import { ref, watchEffect } from 'vue';
-import { propsDef } from 'v-calendar/dist/types/src/use/calendar.js';
-import { data } from './barChartConfig';
+import { ref } from 'vue';
 
 ChartJS.register(
     CategoryScale,
@@ -88,8 +84,6 @@ export default {
                 }
                 totalRevenue.value = monthAppointments[0] + monthAppointments[1] + monthAppointments[2] + monthAppointments[3] + monthAppointments[4] + monthAppointments[5] + monthAppointments[6] + monthAppointments[7] + monthAppointments[8] + monthAppointments[9] + monthAppointments[10] + monthAppointments[11]
             }
-            
-            console.log(monthAppointments)
             return monthAppointments
         }
         return { 

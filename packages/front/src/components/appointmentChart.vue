@@ -57,7 +57,6 @@ export default {
 
         const countAppointments = () => {
             const monthAppointments = Array(12).fill(0);
-            console.log(props.componentData)
             if(props.componentData){
                 for (let i = 0; i < props.componentData.value.appointments?.length; i++) {
                     const appointment = props.componentData.value.appointments[i];
@@ -75,7 +74,6 @@ export default {
                 }
             }
             const dataForChart = [monthAppointments[0], monthAppointments[1], monthAppointments[2], monthAppointments[3], monthAppointments[4], monthAppointments[5], monthAppointments[6], monthAppointments[7], monthAppointments[8], monthAppointments[9], monthAppointments[10], monthAppointments[11]]
-            console.log(dataForChart)
             chartData.value = {
                 labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
                 datasets: [

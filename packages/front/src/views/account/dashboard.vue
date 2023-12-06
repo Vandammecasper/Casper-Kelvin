@@ -18,11 +18,11 @@
         <div class="flex p-8 h-105 w-screen justify-center">
             <div class="w-1/2 grid justify-items-center">
                 <h1 class="text-2xl mb-4">Barber revenue</h1>
-                <BarChart />
+                <BarChart :componentData="data"/>
             </div>
             <div class="w-1/2 grid justify-items-center">
                 <h1 class="text-2xl mb-4">Appointment revenue</h1>
-                <DoughnutChart/>
+                <DoughnutChart :componentData="data"/>
             </div>
             
         </div>
@@ -51,13 +51,10 @@ watchEffect(() => {
         setData();
     } else {
         refetch();
-        console.log('refetch counting')
     }
 });
 
 const setData = () =>{
     data.value = getAppointmentsResult
-    console.log('component data: ')
-    console.log(data)
 }
 </script>
