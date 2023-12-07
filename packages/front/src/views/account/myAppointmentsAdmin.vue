@@ -41,7 +41,7 @@
             </button>
             <div class="grid columns-2 gap-4">
                 <div class="col-span-2 text-center">
-                    <p>{{ selectedAppointment?.date }}</p>
+                    <p>{{ date(selectedAppointment?.date) }}</p>
                 </div>
                 <div>
                     <h1 class="text-4xl">Customer</h1>
