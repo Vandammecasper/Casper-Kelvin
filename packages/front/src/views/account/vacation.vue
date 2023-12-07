@@ -1,7 +1,7 @@
 <template>
-    <div class="flex w-full h-screen items-center">
+    <div class="sm:flex w-full h-screen items-center">
         <NavigationAccount />
-        <div class="h-screen w-full pt-40 pl-20 pr-10">
+        <div class="h-screen w-full p-4 px-6 sm:pt-40 sm:pl-20 sm:pr-10">
             <div class="flex">
                 <h1 class="text-5xl Raleway-bold mb-4">HELLO, {{ firebaseUser?.displayName }}</h1>
                 <p class="mt-5 ml-4">Available vacation days {{ getHairdresserResult?.hairdresserByUid?.vacationDays }}</p>
