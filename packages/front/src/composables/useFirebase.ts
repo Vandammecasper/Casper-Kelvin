@@ -9,7 +9,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
+  updateEmail,
   type User,
+  updatePassword,
 } from 'firebase/auth'
 import firebase from 'firebase/compat/app'
 import { ref } from 'vue'
@@ -68,6 +70,20 @@ const register = async (
   })
 }
 
+const updateAccount = async (
+  name: string,
+  email: string,
+  password: string,
+) : Promise<User> => {
+  return new Promise((resolve, reject) => {
+    updateProfile(this.auth.currentUser, { displayName: name })
+      .then(() => updateEmail(this.auth.currentUser, email))
+      .then(() => updatePassword(this.auth.currentUser, password))
+      .then(() => resolve(this.auth.currentUser))
+      .catch((error) => reject(error));
+  })
+}
+
 const resetPassword = async (email: string): Promise<void> => {
   return new Promise((resolve, reject) => {
     sendPasswordResetEmail(auth, email)
@@ -117,5 +133,6 @@ export default () => {
     register,
     resetPassword,
     restoreUser,
+    updateAccount
   }
 }
