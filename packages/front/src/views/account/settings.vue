@@ -30,7 +30,7 @@
                         <div v-for="vacation of getVacationsResult?.vacations" :key="vacation.id" class="my-2">
                             <div class="w-full h-0.5 bg-white"></div>
                             <div class="flex justify-between mt-1">
-                                <p>name</p>
+                                <p>{{getHairdresserName(vacation.hairdresserId)}}</p>
                                 <p>{{ handleDates(new Date(vacation.startDate)) }} - {{ handleDates(new Date(vacation.endDate)) }}</p>
                                 <div class="flex gap-2">
                                     <button class="px-2 py-1 Raleway-bold border-2 border-green-600 bg-green-600  hover:bg-green-700 focus:outline-none focus-visible:border-green-600 focus-visible:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-300">
@@ -53,18 +53,23 @@
     import { GET_ALL_USERS } from '@/graphql/user.query'
     import { GET_ALL_VACATIONS } from '@/graphql/vacations.query'
     import { ref, watchEffect } from 'vue';
+    import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
     
     const hasFetchedData = ref(false);
 
     const {
-        result: getUsersResult,
+        result: getHairdressersResult,
         refetch
+    } = useQuery(GET_ALL_HAIRDRESSERS)
+    
+    const {
+        result: getUsersResult,
     } = useQuery(GET_ALL_USERS)
     
     watchEffect(() => {
-        if (getUsersResult.value) {
+        if (getHairdressersResult.value) {
                 hasFetchedData.value = true;
-                console.log(getUsersResult?.value.users)
+                console.log(getHairdressersResult?.value)
         }
         else {
             console.log('No data');
@@ -83,6 +88,17 @@
         const day = dateObject.getDate();
         const formattedDate = `${day} ${month} ${year}`
         return formattedDate
+    }
+
+    const getHairdresserName = (hairdresserId) => {
+        if(getHairdressersResult.value){
+            for (const hairdresser of getHairdressersResult.value?.hairdressers) {
+                if (hairdresser.id == hairdresserId) {
+                    console.log(hairdresser)
+                    return hairdresser.name
+                }
+            }
+        }
     }
 
 </script>

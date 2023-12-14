@@ -2,7 +2,7 @@
     <div class="mt-32 h-124">
         <div class="flex h-24 px-8 gap-32 mb-8 justify-center">
             <div class="">
-                <RevenueChart :componentData="data"/>
+                <!-- <RevenueChart :componentData="data"/> -->
             </div>
             <div class="">
                 <!-- <CustomerChart/>
