@@ -138,7 +138,7 @@ const getUniqueUtilities = (utilities: any) => {
     return uniqueUtilities;
 };
 
-const date = (givendate) => {
+const date = (givendate:any) => {
     const inputDate = new Date(givendate);
 
     // Extracting date information
