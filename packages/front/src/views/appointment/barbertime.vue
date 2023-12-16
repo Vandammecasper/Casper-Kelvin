@@ -20,7 +20,7 @@
             </div>
             <div class="sm:w-1/2 max-sm:mt-4">
                 <h2 class="text-3xl lg:text-4xl">AGENDA</h2>
-                <DatePicker class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" :disabled-dates="disabledDates" time-accuracy={{1}} :locale="locale" :rules="rules"/>
+                <DatePicker class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" :disabled-dates="disabledDates" :time-accuracy=1 :locale="locale" :rules="rules"/>
             </div>
         </div>
         <RouterLink v-if="cont" :to="{ name: 'summary', params: { service: selectedServices.join(','),extra: selectedExtra, barber: selectedBarber, date: selectedDate } }">
@@ -122,6 +122,7 @@ export default {
                 for (let i = 0; i < this.vacationsResult?.vacations.length; i++) {
                     if(this.vacationsResult?.vacations[i].hairdresser.id == barberId){
                         this.disabledDates.push({
+                            // @ts-ignore
                             start: new Date(this.vacationsResult?.vacations[i].startDate),
                             end: new Date(this.vacationsResult?.vacations[i].endDate),
                         })

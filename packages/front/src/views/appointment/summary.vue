@@ -73,13 +73,13 @@
     import { GET_HAIRDRESSER_BY_ID } from '@/graphql/hairdressers.query'
     import { GET_ALL_SERVICES } from '@/graphql/services.query';
     import { useRouter} from 'vue-router'
-    import type CustomAppointment from '@/interfaces/custom.appointment.interface'
+    import type {CustomAppointment} from '@/interfaces/custom.appointment.interface'
     import { useMutation } from '@vue/apollo-composable'
     import {CREATE_APPOINTMENT} from '@/graphql/appointment.mutation'
     import router from '../../bootstrap/router'
-import { GET_POINT_BY_UID } from '@/graphql/points.query'
-import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
-import { ref } from 'vue';
+    import { GET_POINT_BY_UID } from '@/graphql/points.query'
+    import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
+    import { ref } from 'vue';
     
     export default {
         data(){
@@ -90,7 +90,7 @@ import { ref } from 'vue';
                 uur:'',
                 serviceIds: [],
                 selectedServices: [],
-                wantedServices: [],
+                wantedServices: [] as Array<{ name: string, price: number }>,
                 totalCost: 0,
                 description: '',
                 usingPoints: false,
@@ -119,12 +119,13 @@ import { ref } from 'vue';
         },
         computed: {
             services() {
-                return this.$route.params.service.split(',').map(services => decodeURIComponent(services));
+                return (this.$route.params.service as string).split(',').map((services:string) => decodeURIComponent(services));
             },
             barber() {
                 return this.$route.params.barber;
             },
             date() {
+                //@ts-ignore
                 const inputDate = new Date(this.$route.params.date);
 
                 // Extracting date information
@@ -146,11 +147,13 @@ import { ref } from 'vue';
                 return this.datum;
             },
             filteredServices() { 
+                //@ts-ignore
                 this.serviceIds = this.services
                 this.selectedServices = this.servicesResult;
                 var id = ''
                 for (id of this.serviceIds) {
-                    this.selectedServices?.services.map((service) => {
+                    //@ts-ignore
+                    this.selectedServices?.services.map((service:any) => {
                         if (service.id == id) {
                             console.log(service.name)
                             this.wantedServices.push(service)
@@ -164,7 +167,7 @@ import { ref } from 'vue';
                 this.totalCost = 0
                 var service = {}
                 for (service of this.wantedServices) {
-                    this.totalCost += service.price
+                    this.totalCost += (service as any).price
                 }
                 this.totalCost += this.getExtraResult?.extra.price
                 if (this.isPointsUsed == true) {
@@ -176,7 +179,7 @@ import { ref } from 'vue';
         setup(){
             const {currentRoute} = useRouter()
             const barberid = currentRoute.value.params.barber
-            const serviceid = currentRoute.value.params.service.split(',').map(services => decodeURIComponent(services));
+            const serviceid = (currentRoute.value.params.service as string).split(',').map((services:string) => decodeURIComponent(services));
             const extraId = currentRoute.value.params.extra
             // const serviceid = currentRoute.value.params.service
             const isPointsUsed = ref(false)
@@ -186,7 +189,7 @@ import { ref } from 'vue';
             
             //!!needs to be checked!!
             const checkPoints = () => {
-                if(getPointByUidResult?.pointByUid.usablePoints >= 5){
+                if(getPointByUidResult.value?.pointByUid.usablePoints >= 5){
                     return true
                 }
                 else{
@@ -195,6 +198,7 @@ import { ref } from 'vue';
             }
 
             const date = () => {
+                //@ts-ignore
             const datum = new Date(currentRoute.value.params.date)
             const year = datum.getFullYear();
             const month = String(datum.getMonth() + 1).padStart(2, '0');

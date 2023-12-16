@@ -89,7 +89,7 @@ export default {
     },
     data() {
         return {
-            selectedServices: [],
+            selectedServices: [] as string[],
             selectedExtra: "0", // this was 0, I now get an error when pressing on continue
             cont: false,
             next: false,
@@ -99,10 +99,10 @@ export default {
         };
     },
     methods: {
-        isSelected(serviceId) {
+        isSelected(serviceId:string) {
             return this.selectedServices.includes(serviceId);
         },
-        toggleSelection(serviceId) {
+        toggleSelection(serviceId:string) {
             if (this.isSelected(serviceId)) {
                 console.log(this.selectedServices)
                 // Service is already selected, so remove it

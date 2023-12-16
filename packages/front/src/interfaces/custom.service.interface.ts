@@ -7,5 +7,5 @@ export interface CustomService {
     utilities: string[];
   }
 
-  export default CustomService;
+  // export default CustomService;
   
