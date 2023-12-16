@@ -91,6 +91,16 @@ export default {
             if (this.isSelected(barberId)) {
                 // barber is already selected, so remove it
                 this.selectedBarber = '';
+
+                // remove vacations from disabledDates
+                this.disabledDates = [
+                    {
+                        repeat:{
+                            weekdays: []
+                        }
+                    }
+                ]
+
                 this.checkContinue();
             } else {
                 // Barber is not selected, so add it
