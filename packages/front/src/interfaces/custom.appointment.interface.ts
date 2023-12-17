@@ -1,5 +1,5 @@
-import type CustomHairdresser from './custom.hairdresser.interface';
-import type CustomService from './custom.service.interface';
+import type { CustomHairdresser } from './custom.hairdresser.interface';
+import type { CustomService } from './custom.service.interface';
 
 export interface CustomAppointment {
     id: string;

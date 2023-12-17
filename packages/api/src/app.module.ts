@@ -15,6 +15,9 @@ import { AppointmentsModule } from './appointments/appointments.module';
 import { UsersModule } from './users/users.module';
 import { ExtrasModule } from './extras/extras.module';
 
+require('dotenv').config();
+console.log(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
+
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -23,9 +26,9 @@ import { ExtrasModule } from './extras/extras.module';
     }),
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb://localhost:27031/api-thebarber',
+      url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
       entities: [__dirname + '/**/*.entity.{js,ts}'],
-      synchronize: true, // Careful with this in production
+      synchronize: process.env.NODE_ENV == 'production' ? false : true, // Careful with this in production
       useNewUrlParser: true,
       useUnifiedTopology: true, // Disable deprecated warnings
     }),
@@ -52,5 +55,7 @@ import { ExtrasModule } from './extras/extras.module';
   ],
   controllers: [AppController],
   providers: [AppService],
+  
 })
+
 export class AppModule {}

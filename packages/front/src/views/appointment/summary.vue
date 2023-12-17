@@ -73,7 +73,7 @@
     import { GET_HAIRDRESSER_BY_ID } from '@/graphql/hairdressers.query'
     import { GET_ALL_SERVICES } from '@/graphql/services.query';
     import { useRouter} from 'vue-router'
-    import type CustomAppointment from '@/interfaces/custom.appointment.interface'
+    import { type CustomAppointment } from '@/interfaces/custom.appointment.interface'
     import { useMutation } from '@vue/apollo-composable'
     import {CREATE_APPOINTMENT} from '@/graphql/appointment.mutation'
     import router from '../../bootstrap/router'
@@ -119,12 +119,14 @@ import { ref } from 'vue';
         },
         computed: {
             services() {
+                //@ts-ignore
                 return this.$route.params.service.split(',').map(services => decodeURIComponent(services));
             },
             barber() {
                 return this.$route.params.barber;
             },
             date() {
+                //@ts-ignore
                 const inputDate = new Date(this.$route.params.date);
 
                 // Extracting date information
@@ -146,13 +148,16 @@ import { ref } from 'vue';
                 return this.datum;
             },
             filteredServices() { 
+                if (this.selectedServices == null) return [{name: 'Loading...', price: 0}]
                 this.serviceIds = this.services
                 this.selectedServices = this.servicesResult;
                 var id = ''
                 for (id of this.serviceIds) {
+                    //@ts-ignore
                     this.selectedServices?.services.map((service) => {
                         if (service.id == id) {
                             console.log(service.name)
+                            //@ts-ignore
                             this.wantedServices.push(service)
                         }
                     })
@@ -164,6 +169,7 @@ import { ref } from 'vue';
                 this.totalCost = 0
                 var service = {}
                 for (service of this.wantedServices) {
+                    //@ts-ignore
                     this.totalCost += service.price
                 }
                 this.totalCost += this.getExtraResult?.extra.price
@@ -176,6 +182,7 @@ import { ref } from 'vue';
         setup(){
             const {currentRoute} = useRouter()
             const barberid = currentRoute.value.params.barber
+            //@ts-ignore
             const serviceid = currentRoute.value.params.service.split(',').map(services => decodeURIComponent(services));
             const extraId = currentRoute.value.params.extra
             // const serviceid = currentRoute.value.params.service
@@ -186,6 +193,7 @@ import { ref } from 'vue';
             
             //!!needs to be checked!!
             const checkPoints = () => {
+                //@ts-ignore
                 if(getPointByUidResult?.pointByUid.usablePoints >= 5){
                     return true
                 }
@@ -195,6 +203,7 @@ import { ref } from 'vue';
             }
 
             const date = () => {
+                //@ts-ignore
             const datum = new Date(currentRoute.value.params.date)
             const year = datum.getFullYear();
             const month = String(datum.getMonth() + 1).padStart(2, '0');

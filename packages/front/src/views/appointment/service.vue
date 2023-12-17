@@ -99,19 +99,22 @@ export default {
         };
     },
     methods: {
-        isSelected(serviceId) {
+        isSelected(serviceId: any) {
+            //@ts-ignore
             return this.selectedServices.includes(serviceId);
         },
-        toggleSelection(serviceId) {
+        toggleSelection(serviceId: any) {
             if (this.isSelected(serviceId)) {
                 console.log(this.selectedServices)
                 // Service is already selected, so remove it
+                //@ts-ignore
                 const index = this.selectedServices.indexOf(serviceId);
                 this.selectedServices.splice(index, 1);
                 this.checkContinue();
             } else {
                 console.log(this.selectedServices)
                 // Service is not selected, so add it
+                //@ts-ignore
                 this.selectedServices.push(serviceId);
                 this.checkContinue();
             }
