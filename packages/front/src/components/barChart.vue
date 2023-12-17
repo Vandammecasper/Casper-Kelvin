@@ -16,6 +16,7 @@ import { Bar } from 'vue-chartjs'
 import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
 import { useQuery } from '@vue/apollo-composable'
 import { ref, watchEffect } from 'vue';
+import { count } from 'console';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -58,18 +59,20 @@ export default {
         const {
             result: getHairdressersResult,
             refetch,
-            loading
+            loading,
+            onResult,
         } = useQuery(GET_ALL_HAIRDRESSERS)
 
         const data = ref({})
 
-        watchEffect(() => {
-            if (getHairdressersResult.value) {
-                countRevenueByBarber();
-            } else {
-                refetch();
+        onResult((result) => {
+            if (!result.loading) {
+                console.log(result)
+                data.value = getHairdressersResult
+                countRevenueByBarber()
             }
-        });
+        })
+        
 
         const chartData = ref()
         const countRevenueByBarber = () =>{
@@ -78,10 +81,11 @@ export default {
                 for(let i = 0; i < getHairdressersResult.value.hairdressers?.length; i++){
                     let barberName = getHairdressersResult.value.hairdressers[i].name
                     let barberRevenue = [0,0,0,0,0,0,0,0,0,0,0,0]
+                    console.log(barberName)
                     for (let i = 0; i < props.componentData.value.appointments?.length; i++) {
                         const appointment = props.componentData.value.appointments[i];
                         const appointmentDate = new Date(appointment.date);
-
+                        console.log(appointmentDate)
                         for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
                             const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
                             const lastDayOfMonth = new Date(new Date().getFullYear(), monthIndex + 1, 1);
@@ -99,6 +103,7 @@ export default {
                         }
                     )
                 }
+                console.log(revenueLists.value)
                 //remove the first element of the revenueLists array
                 revenueLists.value.shift()
                 chartData.value = {

@@ -5,21 +5,21 @@
                 <!-- <RevenueChart :componentData="data"/> -->
             </div>
             <div class="">
-                <!-- <CustomerChart/>
+                <CustomerChart/>
                 <div class="flex justify-between">
                     <p>Total customers</p>
                     <h3>40</h3>
-                </div> -->
+                </div>
             </div>
             <div class="">
                 <AppointmentChart :componentData="data"/>
             </div>
         </div>
         <div class="flex p-8 h-105 w-screen justify-center">
-            <!-- <div class="w-1/2 grid justify-items-center">
+            <div class="w-1/2 grid justify-items-center">
                 <h1 class="text-2xl mb-4">Barber revenue</h1>
                 <BarChart :componentData="data"/>
-            </div> -->
+            </div>
             <div class="w-1/2 grid justify-items-center">
                 <h1 class="text-2xl mb-4">Appointment revenue</h1>
                 <DoughnutChart :componentData="data"/>
