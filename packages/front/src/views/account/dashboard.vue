@@ -41,20 +41,20 @@ import { ref, watchEffect } from 'vue';
 
 const {
     result: getAppointmentsResult,
-    refetch
+    refetch,
+    onResult,
 } = useQuery(GET_ALL_APPOINTMENTS)
 
 const data = ref({})
 
-watchEffect(() => {
-    if (getAppointmentsResult.value) {
-        setData();
-    } else {
-        refetch();
+onResult((result) => {
+    if (!result.loading) {
+        setData()
     }
-});
+})
 
 const setData = () =>{
+    console.log(getAppointmentsResult?.value?.appointments)
     data.value = getAppointmentsResult
 }
 </script>

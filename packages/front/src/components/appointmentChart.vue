@@ -58,7 +58,7 @@ export default {
         const countAppointments = () => {
             const monthAppointments = Array(12).fill(0);
             if(props.componentData){
-                for (let i = 0; i < props.componentData.value.appointments?.length; i++) {
+                for (let i = 0; i < props.componentData?.value?.appointments?.length; i++) {
                     const appointment = props.componentData.value.appointments[i];
                     const appointmentDate = new Date(appointment.date);
 
