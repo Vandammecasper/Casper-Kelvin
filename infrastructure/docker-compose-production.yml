@@ -14,8 +14,8 @@ services:
 
   api:
     build:
-      context: .
-      dockerfile: ./../packages/api/Dockerfile
+      context: ../.
+      dockerfile: packages/api/Dockerfile
     env_file:
       - ./../packages/api/.env.production.local
     environment:

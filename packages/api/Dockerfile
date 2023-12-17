@@ -4,7 +4,7 @@
 
 # FROM node:18-alpine as development ### werkt niet voor python, dus hier de full version
 FROM node:18 as development
-RUN npm cache clean --force
+
 WORKDIR /usr/src/app
 
 #copy from the root monorepo folder
@@ -13,8 +13,7 @@ COPY --chown=node:node packages/api/package*.json ./packages/api/
 
 RUN npm ci
 
-COPY --chown=node:node /packages/api ./packages/api
-
+COPY --chown=node:node packages/api ./packages/api 
 
 USER node
 
@@ -31,7 +30,7 @@ COPY --chown=node:node package*.json ./
 # In order to run `npm run build` we need access to the Nest CLI which is a dev dependency. In the previous development stage we ran `npm ci` which installed all dependencies, so we can copy over the node_modules directory from the development image
 COPY --chown=node:node --from=development /usr/src/app/node_modules ./node_modules
 
-COPY --chown=node:node --from=development /usr/src/app/api ./packages/api
+COPY --chown=node:node packages/api packages/api
 
 RUN npm run build -w api
 
