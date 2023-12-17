@@ -14,6 +14,7 @@ import { PointsModule } from './points/points.module';
 import { AppointmentsModule } from './appointments/appointments.module';
 import { UsersModule } from './users/users.module';
 import { ExtrasModule } from './extras/extras.module';
+import { CommandModule } from 'nestjs-command';
 
 require('dotenv').config();
 console.log(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
@@ -26,13 +27,17 @@ console.log(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.e
     }),
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+      url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`,
+      database: process.env.DB_NAME ?? 'api-thebarber-production', // database hier toevogen
       entities: [__dirname + '/**/*.entity.{js,ts}'],
       synchronize: process.env.NODE_ENV == 'production' ? false : true, // Careful with this in production
       useNewUrlParser: true,
       useUnifiedTopology: true, // Disable deprecated warnings
+      directConnection: true, // blijkbaar helpt dit
     }),
     ConfigModule.forRoot(),
+
+    CommandModule,
 
     HairdressersModule,
 
