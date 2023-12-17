@@ -16,7 +16,6 @@ import { Bar } from 'vue-chartjs'
 import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
 import { useQuery } from '@vue/apollo-composable'
 import { ref, watchEffect } from 'vue';
-import { count } from 'console';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -52,6 +51,7 @@ export default {
         const revenueLists = ref([
             {
                 label: '',
+                backgroundColor: '#9594FC',
                 data: [0,0,0,0,0,0,0,0,0,0,0,0]
             }
         ])
@@ -73,6 +73,7 @@ export default {
             }
         })
         
+        const counter = ref(0)
 
         const chartData = ref()
         const countRevenueByBarber = () =>{
@@ -80,25 +81,40 @@ export default {
             if(props.componentData && getHairdressersResult.value && revenueLists.value.length == 1){
                 for(let i = 0; i < getHairdressersResult.value.hairdressers?.length; i++){
                     let barberName = getHairdressersResult.value.hairdressers[i].name
+                    let barberId = getHairdressersResult.value.hairdressers[i].id
+                    const colors = ['#9594FC', '#FFC148', '#35E5AA']
+                    let randomColor = colors[counter.value]
                     let barberRevenue = [0,0,0,0,0,0,0,0,0,0,0,0]
+                    counter.value++
+                    if (counter.value==3){
+                        counter.value = 0
+                    }
                     console.log(barberName)
+                    console.log(barberId)
+                    console.log(props.componentData.value.appointments)
                     for (let i = 0; i < props.componentData.value.appointments?.length; i++) {
-                        const appointment = props.componentData.value.appointments[i];
-                        const appointmentDate = new Date(appointment.date);
-                        console.log(appointmentDate)
-                        for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
-                            const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
-                            const lastDayOfMonth = new Date(new Date().getFullYear(), monthIndex + 1, 1);
+                        if(props.componentData.value.appointments[i].hairdresser.id == barberId){
+                            console.log(barberId)
+                            console.log(props.componentData.value.appointments[i])
+                            const appointment = props.componentData.value.appointments[i];
+                            const appointmentDate = new Date(appointment.date);
+                            console.log(appointmentDate)
+                            for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
+                                const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
+                                const lastDayOfMonth = new Date(new Date().getFullYear(), monthIndex + 1, 1);
 
-                            if (appointmentDate > firstDayOfMonth && appointmentDate < lastDayOfMonth) {
-                                barberRevenue[monthIndex] += appointment.price;
-                                break; // Break out of the loop once the month is found
+                                if (appointmentDate > firstDayOfMonth && appointmentDate < lastDayOfMonth) {
+                                    barberRevenue[monthIndex] += appointment.price;
+                                    break; // Break out of the loop once the month is found
+                                }
                             }
                         }
+                        
                     }
                     revenueLists.value.push(
                         {
                             label: barberName,
+                            backgroundColor: randomColor,
                             data: barberRevenue
                         }
                     )

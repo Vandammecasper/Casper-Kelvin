@@ -83,6 +83,7 @@ export default {
                         ]
                 }
                 totalRevenue.value = monthAppointments[0] + monthAppointments[1] + monthAppointments[2] + monthAppointments[3] + monthAppointments[4] + monthAppointments[5] + monthAppointments[6] + monthAppointments[7] + monthAppointments[8] + monthAppointments[9] + monthAppointments[10] + monthAppointments[11]
+                Math.floor(totalRevenue.value)
             }
             return monthAppointments
         }

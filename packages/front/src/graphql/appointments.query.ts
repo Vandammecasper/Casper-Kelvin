@@ -78,6 +78,9 @@ export const GET_ALL_APPOINTMENTS: TypedDocumentNode<{appoinments: CustomAppoint
       id
       date
       userName
+      hairdresser {
+        id
+      }
       services {
         id
         name
