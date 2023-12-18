@@ -77,7 +77,7 @@ const handleDeleteAppointment = async (id: string) => {
     location.reload()
 }
 
-const date = (givendate: any) => {
+const date = (givendate:string) => {
     const inputDate = new Date(givendate);
 
     // Extracting date information

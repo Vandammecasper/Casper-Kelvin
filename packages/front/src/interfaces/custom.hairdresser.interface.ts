@@ -6,3 +6,4 @@ export interface CustomHairdresser {
     name: string;
     services: CustomService[];
   }
+

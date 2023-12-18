@@ -73,13 +73,13 @@
     import { GET_HAIRDRESSER_BY_ID } from '@/graphql/hairdressers.query'
     import { GET_ALL_SERVICES } from '@/graphql/services.query';
     import { useRouter} from 'vue-router'
-    import { type CustomAppointment } from '@/interfaces/custom.appointment.interface'
+    import type { CustomAppointment } from '@/interfaces/custom.appointment.interface'
     import { useMutation } from '@vue/apollo-composable'
     import {CREATE_APPOINTMENT} from '@/graphql/appointment.mutation'
     import router from '../../bootstrap/router'
-import { GET_POINT_BY_UID } from '@/graphql/points.query'
-import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
-import { ref } from 'vue';
+    import { GET_POINT_BY_UID } from '@/graphql/points.query'
+    import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
+    import { ref } from 'vue';
     
     export default {
         data(){
@@ -90,7 +90,7 @@ import { ref } from 'vue';
                 uur:'',
                 serviceIds: [],
                 selectedServices: [],
-                wantedServices: [],
+                wantedServices: [] as Array<{ name: string, price: number }>,
                 totalCost: 0,
                 description: '',
                 usingPoints: false,
@@ -119,8 +119,7 @@ import { ref } from 'vue';
         },
         computed: {
             services() {
-                //@ts-ignore
-                return this.$route.params.service.split(',').map(services => decodeURIComponent(services));
+                return (this.$route.params.service as string).split(',').map((services:string) => decodeURIComponent(services));
             },
             barber() {
                 return this.$route.params.barber;
@@ -149,12 +148,13 @@ import { ref } from 'vue';
             },
             filteredServices() { 
                 if (this.selectedServices == null) return [{name: 'Loading...', price: 0}]
+                
                 this.serviceIds = this.services
                 this.selectedServices = this.servicesResult;
                 var id = ''
                 for (id of this.serviceIds) {
                     //@ts-ignore
-                    this.selectedServices?.services.map((service) => {
+                    this.selectedServices?.services.map((service:any) => {
                         if (service.id == id) {
                             console.log(service.name)
                             //@ts-ignore
@@ -169,8 +169,7 @@ import { ref } from 'vue';
                 this.totalCost = 0
                 var service = {}
                 for (service of this.wantedServices) {
-                    //@ts-ignore
-                    this.totalCost += service.price
+                    this.totalCost += (service as any).price
                 }
                 this.totalCost += this.getExtraResult?.extra.price
                 if (this.isPointsUsed == true) {
@@ -182,8 +181,7 @@ import { ref } from 'vue';
         setup(){
             const {currentRoute} = useRouter()
             const barberid = currentRoute.value.params.barber
-            //@ts-ignore
-            const serviceid = currentRoute.value.params.service.split(',').map(services => decodeURIComponent(services));
+            const serviceid = (currentRoute.value.params.service as string).split(',').map((services:string) => decodeURIComponent(services));
             const extraId = currentRoute.value.params.extra
             // const serviceid = currentRoute.value.params.service
             const isPointsUsed = ref(false)
@@ -193,8 +191,7 @@ import { ref } from 'vue';
             
             //!!needs to be checked!!
             const checkPoints = () => {
-                //@ts-ignore
-                if(getPointByUidResult?.pointByUid.usablePoints >= 5){
+                if(getPointByUidResult.value?.pointByUid.usablePoints >= 5){
                     return true
                 }
                 else{
