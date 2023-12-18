@@ -1,6 +1,6 @@
 <template>
     <div class="mt-32 h-124">
-        <div class="flex h-24 px-8 gap-32 mb-8 justify-center">
+        <div class="flex h-24 gap-8 lg:gap-24 xl:gap-32 mb-8 justify-center">
             <div class="">
                 <RevenueChart :componentData="data"/>
             </div>
