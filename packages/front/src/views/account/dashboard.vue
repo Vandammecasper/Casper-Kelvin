@@ -21,7 +21,7 @@
                 <BarChart :componentData="data"/>
             </div>
             <div class="w-1/2 grid justify-items-center">
-                <h1 class="text-2xl mb-4">Appointment revenue</h1>
+                <h1 class="text-2xl mb-4">Service revenue</h1>
                 <DoughnutChart :componentData="data"/>
             </div>
             

@@ -67,7 +67,7 @@ export default {
 
         onResult((result) => {
             if (!result.loading) {
-                console.log(result)
+                // console.log(result)
                 data.value = getHairdressersResult
                 countRevenueByBarber()
             }
@@ -89,16 +89,16 @@ export default {
                     if (counter.value==3){
                         counter.value = 0
                     }
-                    console.log(barberName)
-                    console.log(barberId)
-                    console.log(props.componentData.value.appointments)
+                    // console.log(barberName)
+                    // console.log(barberId)
+                    // console.log(props.componentData.value.appointments)
                     for (let i = 0; i < props.componentData.value.appointments?.length; i++) {
                         if(props.componentData.value.appointments[i].hairdresser.id == barberId){
-                            console.log(barberId)
-                            console.log(props.componentData.value.appointments[i])
+                            // console.log(barberId)
+                            // console.log(props.componentData.value.appointments[i])
                             const appointment = props.componentData.value.appointments[i];
                             const appointmentDate = new Date(appointment.date);
-                            console.log(appointmentDate)
+                            // console.log(appointmentDate)
                             for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
                                 const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
                                 const lastDayOfMonth = new Date(new Date().getFullYear(), monthIndex + 1, 1);
@@ -119,7 +119,7 @@ export default {
                         }
                     )
                 }
-                console.log(revenueLists.value)
+                // console.log(revenueLists.value)
                 //remove the first element of the revenueLists array
                 revenueLists.value.shift()
                 chartData.value = {
@@ -139,7 +139,7 @@ export default {
                     ],
                     datasets: revenueLists.value
                 }
-                console.log(chartData.value)
+                // console.log(chartData.value)
             }
             done.value = true
             return done.value
