@@ -8,6 +8,7 @@ import { ObjectId } from 'mongodb';
 import { FirebaseUser } from 'src/authentication/user.decorator';
 import { UserRecord } from 'firebase-admin/auth';
 import { Console } from 'console';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class PointsService {
@@ -93,8 +94,8 @@ export class PointsService {
     return this.pointsRepository.update({ uid }, { usablePoints: existingPoints.usablePoints-points });
   }
 
-  update(id: number, updatePointInput: UpdatePointInput) {
-    return `This action updates a #${id} point`;
+  update(id: string, updatePointInput: Point) {
+    return this.pointsRepository.update(new ObjectId(id), updatePointInput);
   }
 
   remove(id: number) {

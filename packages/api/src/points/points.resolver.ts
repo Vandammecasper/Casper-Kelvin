@@ -52,10 +52,10 @@ export class PointsResolver {
     return this.pointsService.create(user.uid, user.displayName, createPointInput);
   }
 
-  @Mutation(() => Point)
-  updatePoint(@Args('updatePointInput') updatePointInput: UpdatePointInput) {
-    return this.pointsService.update(updatePointInput.id, updatePointInput);
-  }
+  // @Mutation(() => Point)
+  // updatePoint(@Args('updatePointInput') updatePointInput: UpdatePointInput) {
+  //   return this.pointsService.update(updatePointInput.id, updatePointInput);
+  // }
 
   @Mutation(() => Point)
   removePoint(@Args('id', { type: () => Int }) id: number) {

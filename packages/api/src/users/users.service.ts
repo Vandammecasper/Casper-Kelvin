@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { Role, User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PointsService } from 'src/points/points.service';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class UsersService {
@@ -51,8 +52,27 @@ export class UsersService {
     return createdUser;
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserInput: UpdateUserInput) {
+    //@ts-ignore
+    const user = await this.usersRepository.findOne({_id: new ObjectId(id)});
+    if(!user)
+      throw new Error('User not found');
+
+    user.locale = updateUserInput.locale ?? user.locale;
+
+    const points = await this.pointsService.findOneByUid(user.uid);
+    if(!points)
+      throw new Error('Points not found');
+
+    points.isPublic = updateUserInput.isPublic ?? points.isPublic;
+
+    await this.pointsService.update(points.id, points);
+
+    return this.usersRepository.update(new ObjectId(id), {locale: user.locale});
+  }
+
+  updateRole(id: string, role: Role) {
+    return this.usersRepository.update(new ObjectId(id), {role});
   }
 
   remove(id: number) {
