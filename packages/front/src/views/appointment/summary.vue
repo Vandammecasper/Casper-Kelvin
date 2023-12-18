@@ -149,6 +149,7 @@
             filteredServices() { 
                 if (this.selectedServices == null) return [{name: 'Loading...', price: 0}]
                 
+                // @ts-ignore
                 this.serviceIds = this.services
                 this.selectedServices = this.servicesResult;
                 var id = ''
