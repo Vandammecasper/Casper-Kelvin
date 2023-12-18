@@ -1,4 +1,4 @@
-import type {CustomService} from './custom.service.interface';
+import {type CustomService} from './custom.service.interface';
 
 export interface CustomHairdresser {
     id: string;
@@ -7,4 +7,3 @@ export interface CustomHairdresser {
     services: CustomService[];
   }
 
-  // export default CustomHairdresser;

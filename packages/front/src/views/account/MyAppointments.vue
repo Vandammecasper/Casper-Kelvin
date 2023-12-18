@@ -7,19 +7,19 @@
             <div class="mt-4 gap-16" v-for="appointment of getAllAppointmentsByUid?.appointmentsByUid">
                 <div class="border-2 md:border-3 border-neutral-900 hover:border-yellow-600">
                     <div class="relative w-40 md:w-48">
-                        <img :src="'../../../assets/barbers/' + appointment.hairdresser.name + '.jpg'" alt="Image" class="w-40 md:w-48" />
+                        <img :src="'/barbers/' + appointment.hairdresser.name + '.jpg'" alt="Image" class="w-40 md:w-48" />
                         <div class="absolute bottom-32 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent"></div>
                         <div class="absolute bottom-0 left-0 w-full h-32 bg-black"></div>
                         <div class="relative flex ml-2 gap-1 mb-2">
-                            <img src="../../../assets/icons/Calendar.svg" alt="" class="h-5">
+                            <img src="/icons/Calendar.svg" alt="" class="h-5">
                             <p class="Raleway text-xs md:text-sm">{{ date(appointment.date) }}</p>
                         </div>
                         <div class="relative flex ml-4 gap-2 mb-2">
-                            <img src="../../../assets/icons/man.svg" alt="" class="h-5">
+                            <img src="/icons/man.svg" alt="" class="h-5">
                             <p class="Raleway text-sm">{{ appointment.hairdresser.name }}</p>
                         </div>
                         <div class="relative flex ml-2 gap-1 pb-2">
-                            <img src="../../../assets/icons/cut.svg" alt="" class="h-5 mt-1.5">
+                            <img src="/icons/cut.svg" alt="" class="h-5 mt-1.5">
                             <div v-for="service of appointment.services">
                                 <p class="Raleway text-xs md:text-sm">{{ service.name }}</p>
                             </div>

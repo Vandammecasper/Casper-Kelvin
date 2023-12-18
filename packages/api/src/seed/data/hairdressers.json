@@ -27,8 +27,7 @@
       ],
       "vacationDays": 35,
       "daysOff": [
-        0,
-        6
+        1
       ]
     },
     {
@@ -72,8 +71,7 @@
       ],
       "vacationDays": 35,
       "daysOff": [
-        1,
-        5
+        2
       ]
     },
     {
@@ -94,8 +92,7 @@
       ],
       "vacationDays": 35,
       "daysOff": [
-        3,
-        4
+        3
       ]
     }
   ]

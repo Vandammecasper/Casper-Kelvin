@@ -17,7 +17,7 @@
                 <div v-if="checkAvailablePoints()" class="flex mt-4 justify-between">
                     <div class="flex gap-2">
                         <button @click="usePoints" class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center">
-                            <img v-if="isPointsUsed" src="../../../assets/icons/cross.svg" alt="">
+                            <img v-if="isPointsUsed" src="/icons/cross.svg" alt="">
                         </button>
                         <h2 class="Raleway text-3xl">USE POINTS</h2>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="border-2 border-yellow-600 hover:border-yellow-600 max-md:mt-2">
                     <div class="h-24 relative grid content-center">
                         <!-- lukt niet om variabele foto te gebruiken -->
-                        <img src="../../../assets/barbers/Samuel.jpg" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
+                        <img src="/barbers/Samuel.jpg" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
                         <h3 class="text-2xl lg:text-3xl z-20 bg-black justify-self-end text-center w-32 lg:w-40 py-4 lg:py-5">{{ hairdressersResult?.hairdresser?.name }}</h3>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
     import { GET_HAIRDRESSER_BY_ID } from '@/graphql/hairdressers.query'
     import { GET_ALL_SERVICES } from '@/graphql/services.query';
     import { useRouter} from 'vue-router'
-    import type {CustomAppointment} from '@/interfaces/custom.appointment.interface'
+    import type { CustomAppointment } from '@/interfaces/custom.appointment.interface'
     import { useMutation } from '@vue/apollo-composable'
     import {CREATE_APPOINTMENT} from '@/graphql/appointment.mutation'
     import router from '../../bootstrap/router'
@@ -147,7 +147,8 @@
                 return this.datum;
             },
             filteredServices() { 
-                //@ts-ignore
+                if (this.selectedServices == null) return [{name: 'Loading...', price: 0}]
+                
                 this.serviceIds = this.services
                 this.selectedServices = this.servicesResult;
                 var id = ''
@@ -156,6 +157,7 @@
                     this.selectedServices?.services.map((service:any) => {
                         if (service.id == id) {
                             console.log(service.name)
+                            //@ts-ignore
                             this.wantedServices.push(service)
                         }
                     })

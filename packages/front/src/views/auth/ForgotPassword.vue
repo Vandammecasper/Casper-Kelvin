@@ -2,7 +2,7 @@
     <form @submit.prevent="handleResetPassword" class="w-screen h-screen grid px-4 sm:px-8 md:px-16">
         <div class="grid bg-neutral-800 place-self-center p-4">
             <RouterLink to="/" class="justify-self-end">
-                <img src="../../../assets/No.svg" alt="">
+                <img src="/No.svg" alt="">
             </RouterLink>
             <div class=" py-4 px-8 sm:px-16">
                 <h1 class="text-xl sm:text-3xl lg:text-4xl font-bold tracking-wider justify-self-center text-yellow-600 Raleway-bold">{{ $t('auth.resetPassword') }}</h1>
