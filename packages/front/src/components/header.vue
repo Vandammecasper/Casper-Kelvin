@@ -1,7 +1,7 @@
 <template>
     <div class="h-24 w-full bg-black p-4 px-16 max-md:gap-3 max-md:px-4 max-lg:px-8 flex justify-between fixed z-50">
         <RouterLink to="/">
-            <img src="../../assets/logo-PhotoRoom.png" alt="logo" class="h-16">
+            <img src="/logo-PhotoRoom.png" alt="logo" class="h-16">
         </RouterLink>
         <div class="flex items-center gap-16 max-md:gap-3 max-lg:gap-4 max-xl:gap-8">
             <RouterLink to="/appointment/services">
@@ -22,12 +22,12 @@
             
             <RouterLink v-if="firebaseUser" to="/account/myaccount">
                 <div class="h-16 w-16 bg-yellow-600 rounded-full flex items-center justify-center">
-                    <img src="../../assets/Profile.svg" alt="profile icon" class="h-10 w-10 mb-1">
+                    <img src="/Profile.svg" alt="profile icon" class="h-10 w-10 mb-1">
                 </div>
             </RouterLink>
             <RouterLink v-else to="/auth/login">
                 <div class="h-16 w-16 bg-neutral-500 rounded-full flex items-center justify-center">
-                    <img src="../../assets/Profile.svg" alt="profile icon" class="h-10 w-10 mb-1">
+                    <img src="/Profile.svg" alt="profile icon" class="h-10 w-10 mb-1">
                 </div>
             </RouterLink>
         </div>

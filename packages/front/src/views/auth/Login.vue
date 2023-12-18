@@ -2,7 +2,7 @@
   <form @submit.prevent="handleLogin" class="w-screen h-screen grid">
     <div class="grid bg-neutral-800 p-4 place-self-center">
       <RouterLink to="/" class="justify-self-end">
-        <img src="../../../assets/No.svg" alt="">
+        <img src="/No.svg" alt="">
       </RouterLink>
       <div class=" py-4 px-10 sm:px-16 grid">
         <h1 class="text-4xl font-bold tracking-wider justify-self-center text-yellow-600 Raleway-bold">{{ $t('auth.login') }}</h1>

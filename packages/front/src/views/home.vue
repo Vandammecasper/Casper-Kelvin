@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen grid ">
-      <img src="../../assets/barbers/Samuel2.jpg" alt="" class="absolute object-cover w-full h-screen z-0 opacity-50 mt-10">
-      <img src="../../assets/logo-PhotoRoom.png" alt="" class="h-72 sm:h-96 mt-32 z-30 place-self-center relative">
+      <img src="/barbers/Samuel2.jpg" alt="" class="absolute object-cover w-full h-screen z-0 opacity-50 mt-10">
+      <img src="/logo-PhotoRoom.png" alt="" class="h-72 sm:h-96 mt-32 z-30 place-self-center relative">
       <RouterLink to="/appointment/services" class="place-self-center max-lg:mt-8">
         <div class="border-3 lg:border-4 border-yellow-500 p-1.5 sm:p-2 relative">
           <div class="border-3 lg:border-4 border-yellow-500 p-3 sm:p-4 relative">
@@ -14,7 +14,7 @@
     <div id="about" class="h-18"></div>
     <div class="max-sm:grid sm:flex sm:justify-between p-6 md:p-8 lg:p-16">
       <div class="max-sm:hidden w-1/2">
-        <img src="../../assets/about.jpg" alt="" class="w-4/5 xl:w-3/5">
+        <img src="/about.jpg" alt="" class="w-4/5 xl:w-3/5">
       </div>
       <div class="sm:w-1/2">
         <h1 class="text-neutral-800 text-7xl md:text-8xl lg:text-9xl absolute Raleway-bold">{{ $t('home.about.about') }}</h1>
@@ -26,7 +26,7 @@
     <div class="md:grid md:grid-cols-2 mt-20 sm:mt-40">
       <div>
         <div class="grid grid-cols-2">
-          <img src="../../assets/beardtrim.jpg">
+          <img src="/beardtrim.jpg">
           <div class="bg-black grid justify-items-center content-center max-sm:p-1.5 sm:p-6 md:p-1 lg:p-6 xl:p-8 sm:py-8 md:py-2 lg:py-4 xl:py-16">
             <h5 class="text-yellow-600 text-center sm:text-xl md:text-sm xl:text-xl Raleway-bold">{{ $t('home.about.professionalBarbershop') }}</h5>
             <p class="max-sm:text-xs md:text-xs lg:text-sm xl:text-lg text-center Raleway">{{ $t('home.about.professionalBarbershop_p') }}</p>
@@ -37,10 +37,10 @@
             <h5 class="text-yellow-600 text-center sm:text-xl md:text-sm xl:text-xl Raleway-bold">{{ $t('home.about.comfortablePlace') }}</h5>
             <p class="max-sm:text-xs md:text-xs lg:text-sm xl:text-lg text-center Raleway">{{ $t('home.about.comfortablePlace_p') }}</p>
           </div>
-          <img src="../../assets/barbershop.jpg">
+          <img src="/barbershop.jpg">
         </div>
       </div>
-      <img src="../../assets/dryer.jpg" alt="" class="max-md:hidden">
+      <img src="/dryer.jpg" alt="" class="max-md:hidden">
     </div>
     <div class="h-20"></div>
     <div id="service" class=""></div>
@@ -84,7 +84,7 @@
           <div v-for="hairdresser of hairdressersResult?.hairdressers" :key="hairdresser.id">
             <div class="grid justify-items-center">
               <div class="relative w-5/6 border-4 border-b-0 border-yellow-600">
-                <img :src="'../../assets/barbers/'+hairdresser.name+'.jpg'" alt="Image" class="w-full h-auto" />
+                <img :src="'/barbers/'+hairdresser.name+'.jpg'" alt="Image" class="w-full h-auto" />
                 <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"></div>
               </div>
               <div class="w-5/6 bg-black h-40 border-4 border-t-0 border-yellow-600 justify-items-center grid p-4 lg:p-8">
@@ -148,39 +148,39 @@
           <div class="grid justify-items-center">
             <h2 class="Raleway-bold text-center text-lg sm:text-2xl md:text-3xl">{{ $t('footer.information') }}</h2>
             <div class="flex gap-2">
-              <img src="../../assets/icons/Places.svg" alt="" class="h-4 max-md:mt-1.5">
+              <img src="/icons/Places.svg" alt="" class="h-4 max-md:mt-1.5">
               <p class="Raleway text-xs text-center">946 Smoky Hollow Dr. Windermere, FL 34786</p>
             </div>
             <div class="flex gap-2">
-              <img src="../../assets/icons/Places.svg" alt="" class="h-4">
+              <img src="/icons/Places.svg" alt="" class="h-4">
               <p class="Raleway text-xs text-center">539 School Ave. Laurel, MD 20707</p>
             </div>
             <div class="flex gap-2">
-              <img src="../../assets/icons/Phone.svg" alt="" class="h-4">
+              <img src="/icons/Phone.svg" alt="" class="h-4">
               <p class="Raleway text-xs">(212) 658-3916</p>
             </div>
           </div>
-          <img src="../../assets/logo-PhotoRoom.png" alt="" class="max-sm:mt-12 h-24 sm:h-40">
+          <img src="/logo-PhotoRoom.png" alt="" class="max-sm:mt-12 h-24 sm:h-40">
           <div class="grid justify-items-center">
             <h2 class="Raleway-bold text-center text-lg sm:text-2xl md:text-3xl">{{ $t('footer.openingHours') }}</h2>
             <div class="sm:flex sm:gap-4 md:gap-8">
               <p class="Raleway text-xs">Mon - Fri:</p>
               <div class="flex gap-1">
-                <img src="../../assets/icons/time.svg" alt="" class="h-4">
+                <img src="/icons/time.svg" alt="" class="h-4">
                 <p class="Raleway text-xs">9.00 AM - 5.00 PM</p>
               </div>
             </div>
             <div class="sm:flex sm:gap-4 md:gap-8">
               <p class="Raleway text-xs">Sat - Sun:</p>
               <div class="flex gap-1">
-                <img src="../../assets/icons/time.svg" alt="" class="h-4">
+                <img src="/icons/time.svg" alt="" class="h-4">
                 <p class="Raleway text-xs">9.00 AM - 1.00 PM</p>
               </div>
             </div>
             <div class="sm:flex sm:gap-1 md:gap-8">
               <p class="Raleway text-xs sm:ml-2">Holiday:</p>
               <div class="flex gap-1">
-                <img src="../../assets/icons/time.svg" alt="" class="h-4 sm:ml-2">
+                <img src="/icons/time.svg" alt="" class="h-4 sm:ml-2">
                 <p class="Raleway text-xs">9.00 AM - 12.00 AM</p>
               </div>
             </div>

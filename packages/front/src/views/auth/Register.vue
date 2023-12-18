@@ -2,7 +2,7 @@
   <form @submit.prevent="handleRegister" class="w-screen h-screen grid p-4">
     <div class="grid bg-neutral-800 p-4 place-self-center">
       <RouterLink to="/" class="justify-self-end">
-        <img src="../../../assets/No.svg" alt="">
+        <img src="/No.svg" alt="">
       </RouterLink>
       <div class="py-1 sm:py-4 px-6 sm:px-16 grid">
         <h1 class="text-3xl sm:text-4xl font-bold tracking-wider justify-self-center text-yellow-600 Raleway-bold">  {{ $t('auth.register') }}</h1>
@@ -85,7 +85,7 @@
             </Tooltip>
           </div>
           <button type="button" @click="useIsPublic" class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center">
-              <img v-if="isPublic" src="../../../assets/icons/cross.svg" alt="">
+              <img v-if="isPublic" src="/icons/cross.svg" alt="">
           </button>
         </div>
 
