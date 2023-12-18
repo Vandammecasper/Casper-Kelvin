@@ -1,5 +1,9 @@
 <template>
     <Line v-if="chartData" :data="chartData" :options="chartOptions" />
+    <div class="flex justify-between">
+        <p>Total customers</p>
+        <h3>{{totalUsers}}</h3>
+    </div>
 </template>
 
 <script lang="ts">
@@ -45,40 +49,46 @@ export default {
         const {
             result: getUsersResult,
             refetch,
-            loading
+            loading,
+            onResult
         } = useQuery(GET_ALL_USERS)
 
-        watchEffect(() => {
-            if (getUsersResult.value) {
-                countUsers();
-            } else {
-                refetch();
+        const data = ref({})
+
+        onResult((result) => {
+            if (!result.loading) {
+                // console.log(result)
+                data.value = getUsersResult
+                countUsers()
             }
-        });
+        })
 
         const chartData = ref()
         const totalUsers = ref()
 
         const countUsers = () => {
-            const monthAppointments = Array(12).fill(0);
-            if (getUsersResult.value) {
-                for (let i = 0; i < getUsersResult.value.appointments?.length; i++) {
-                    if (getUsersResult.value.appointments[i].role === 'USER') {
-                        const appointment = getUsersResult.value.appointments[i];
-                        const appointmentDate = new Date(appointment.date);
+            const monthUsers = Array(12).fill(0);
+            if (data.value) {
+                for (let i = 0; i < getUsersResult.value.users?.length; i++) {
+                    // console.log(getUsersResult.value.users)
+                    if (getUsersResult.value.users[i].role === 'USER') {
+                        console.log('user')
+                        const user = getUsersResult.value.users[i];
+                        const creationDate = new Date(user.createdAt);
+                        console.log(creationDate)
 
                         for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
                             const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
                             const lastDayOfMonth = new Date(new Date().getFullYear(), monthIndex + 1, 1);
 
-                            if (appointmentDate > firstDayOfMonth && appointmentDate < lastDayOfMonth) {
-                                monthAppointments[monthIndex] += appointment.price;
+                            if (creationDate > firstDayOfMonth && creationDate < lastDayOfMonth) {
+                                monthUsers[monthIndex] += 1;
                                 break; // Break out of the loop once the month is found
                             }
                         }
                     }
                 }
-                const dataForChart = [monthAppointments[0], monthAppointments[1], monthAppointments[2], monthAppointments[3], monthAppointments[4], monthAppointments[5], monthAppointments[6], monthAppointments[7], monthAppointments[8], monthAppointments[9], monthAppointments[10], monthAppointments[11]]
+                const dataForChart = [monthUsers[0], monthUsers[1], monthUsers[2], monthUsers[3], monthUsers[4], monthUsers[5], monthUsers[6], monthUsers[7], monthUsers[8], monthUsers[9], monthUsers[10], monthUsers[11]]
                 chartData.value = {
                     labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
                     datasets: [
@@ -90,7 +100,7 @@ export default {
                         }
                     ]
                 }
-                totalUsers.value = monthAppointments[0] + monthAppointments[1] + monthAppointments[2] + monthAppointments[3] + monthAppointments[4] + monthAppointments[5] + monthAppointments[6] + monthAppointments[7] + monthAppointments[8] + monthAppointments[9] + monthAppointments[10] + monthAppointments[11]
+                totalUsers.value = monthUsers[0] + monthUsers[1] + monthUsers[2] + monthUsers[3] + monthUsers[4] + monthUsers[5] + monthUsers[6] + monthUsers[7] + monthUsers[8] + monthUsers[9] + monthUsers[10] + monthUsers[11]
             }
         }
         return { 

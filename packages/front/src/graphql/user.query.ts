@@ -5,7 +5,8 @@ export const GET_ALL_USERS = gql`
       users{
         id,
         uid,
-        role
+        role,
+        createdAt,
       }
     }
   `

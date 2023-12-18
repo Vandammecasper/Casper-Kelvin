@@ -6,10 +6,6 @@
             </div>
             <div class="">
                 <CustomerChart/>
-                <div class="flex justify-between">
-                    <p>Total customers</p>
-                    <h3>40</h3>
-                </div>
             </div>
             <div class="">
                 <AppointmentChart :componentData="data"/>
