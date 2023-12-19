@@ -36,7 +36,7 @@
                                     <button @click="handleApproveVacation(vacation.id)" class="px-2 py-1 Raleway-bold border-2 border-green-600 bg-green-600  hover:bg-green-700 focus:outline-none focus-visible:border-green-600 focus-visible:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-300">
                                         <p>accept</p>
                                     </button>
-                                    <button class="px-2 py-1 Raleway-bold border-2 border-red-600 bg-red-600  hover:bg-red-700 focus:outline-none focus-visible:border-red-600 focus-visible:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300">
+                                    <button @click="handleRemoveVacation(vacation.id)" class="px-2 py-1 Raleway-bold border-2 border-red-600 bg-red-600  hover:bg-red-700 focus:outline-none focus-visible:border-red-600 focus-visible:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300">
                                         <p>decline</p>
                                     </button>
                                 </div>
@@ -52,11 +52,10 @@
     import { useMutation, useQuery } from '@vue/apollo-composable'
     import { GET_ALL_USERS } from '@/graphql/user.query'
     import { GET_ALL_VACATIONS } from '@/graphql/vacation.query'
-    import { APPROVE_VACATION } from '@/graphql/vacation.mutation'
+    import { APPROVE_VACATION, REMOVE_VACATION } from '@/graphql/vacation.mutation'
     import { ref, watchEffect } from 'vue';
     import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
-import type { CustomAppointment } from '@/interfaces/custom.appointment.interface';
-import router from '@/bootstrap/router';
+    import type { CustomAppointment } from '@/interfaces/custom.appointment.interface';
     
     const hasFetchedData = ref(false);
 
@@ -123,6 +122,20 @@ import router from '@/bootstrap/router';
         console.log('approving vacation')
         console.log(vacationid)
         approveVacation({
+            id: vacationid
+        })
+        window.location.reload();
+    }
+
+    const {
+    mutate: removeVacation,
+    loading: removeVacationLoading,
+} = useMutation<CustomAppointment>(REMOVE_VACATION)
+
+    const handleRemoveVacation = (vacationid:number) => {
+        console.log('removing vacation')
+        console.log(vacationid)
+        removeVacation({
             id: vacationid
         })
         window.location.reload();
