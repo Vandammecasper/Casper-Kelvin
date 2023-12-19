@@ -45,12 +45,17 @@ const data = ref({})
 
 onResult((result) => {
     if (!result.loading) {
+        console.log(result)
         setData()
+    }
+    else{
+        console.log(result)
+        refetch()
     }
 })
 
 const setData = () =>{
-    console.log(getAppointmentsResult?.value?.appointments)
+    console.log(getAppointmentsResult?.value)
     data.value = getAppointmentsResult
 }
 </script>

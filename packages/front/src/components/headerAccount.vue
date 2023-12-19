@@ -6,10 +6,10 @@
         </RouterLink>
         </div>
         <div class="flex gap-16 items-center">
-            <RouterLink v-if="customUser?.role == 'ADMIN'" to="/account/settings">
+            <RouterLink v-if="customUser?.role == 'SUPER_ADMIN'" to="/account/settings">
                 <h1>BARBER SETTINGS</h1>
             </RouterLink>
-            <RouterLink v-if="customUser?.role == 'ADMIN'" to="/account/dashboard">
+            <RouterLink v-if="customUser?.role == 'SUPER_ADMIN'" to="/account/dashboard">
                 <h1>BARBER ANALYTICS</h1>
             </RouterLink>
         </div>

@@ -126,7 +126,7 @@ router.beforeEach((to, from, next) => {
     } else {
       // Check if the route requires admin privileges
       if (to.matched.some(record => record.meta.requiresAdmin)) {
-        if (customUser.value?.role === 'ADMIN') {
+        if (customUser.value?.role === 'ADMIN' || customUser.value?.role === 'SUPER_ADMIN') {
           // User is authenticated and has admin privileges, allow access
           next();
         } else {

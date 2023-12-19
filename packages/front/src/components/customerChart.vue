@@ -72,10 +72,10 @@ export default {
                 for (let i = 0; i < getUsersResult.value.users?.length; i++) {
                     // console.log(getUsersResult.value.users)
                     if (getUsersResult.value.users[i].role === 'USER') {
-                        console.log('user')
+                        // console.log('user')
                         const user = getUsersResult.value.users[i];
                         const creationDate = new Date(user.createdAt);
-                        console.log(creationDate)
+                        // console.log(creationDate)
 
                         for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
                             const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
