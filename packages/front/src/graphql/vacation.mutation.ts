@@ -15,3 +15,19 @@ export const ADD_VACATION = gql`
         }
     }
 `
+
+export const APPROVE_VACATION = gql`
+    mutation($id: String!) {
+        approveVacation(id: $id) {
+        id
+        hairdresser {
+            id
+            name
+        }
+        startDate
+        endDate
+        isApproved
+        createdAt
+        }
+    }
+`
