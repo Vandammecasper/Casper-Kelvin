@@ -5,7 +5,7 @@
             <img src="/logo-PhotoRoom.png" alt="logo" class="h-16">
         </RouterLink>
         </div>
-        <div class="flex gap-16">
+        <div class="flex gap-16 items-center">
             <RouterLink v-if="customUser?.role == 'ADMIN'" to="/account/settings">
                 <h1>BARBER SETTINGS</h1>
             </RouterLink>
