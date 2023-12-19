@@ -7,6 +7,7 @@ export const GET_ALL_USERS = gql`
         uid,
         role,
         createdAt,
+        userName
       }
     }
   `

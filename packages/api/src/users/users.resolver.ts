@@ -46,6 +46,14 @@ export class UsersResolver {
   }
 
   @Mutation(() => User)
+  updateRole(
+    @Args('id', { type: () => String }) id: string,
+    @Args('role', { type: () => String }) role: Role
+  ) {
+    return this.usersService.updateRole(id, role);
+  }
+
+  @Mutation(() => User)
   removeUser(@Args('id', { type: () => Int }) id: number) {
     return this.usersService.remove(id);
   }

@@ -8,21 +8,16 @@
                     <div v-for="user of getUsersResult?.users " :key="user.id" class="my-2">
                         <div class="w-full h-0.5 bg-white"></div>
                         <div class="flex justify-between mt-1">
-                            <p>name</p>
+                            <p>{{user.userName}}</p>
                             <p>{{ user.uid }}</p>
                             <div class="flex gap-2">
                                 <p>Barber</p>
-                                <input v-if="user.role == 'ADMIN' || user.role == 'SUPER_ADMIN'" class="mt-1" type="checkbox" checked>
-                                <input v-else class="mt-1" type="checkbox">
+                                <input @click="handleRoleChange(user.id, 'USER')" v-if="user.role == 'ADMIN' || user.role == 'SUPER_ADMIN'" class="mt-1" type="checkbox" checked>
+                                <input @click="handleRoleChange(user.id, 'ADMIN')" v-else class="mt-1" type="checkbox">
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="submit"
-                class="Raleway-bold mt-2 mb-4 w-24  border-2 border-yellow-600 bg-yellow-600 py-2 px-4 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300"
-                >
-                    SAVE
-                </button>
             </div>
             <div class="w-1/2 grid justify-items-center border-2 border-white">
                     <h2 class="text-2xl">HOLIDAYS</h2>
@@ -56,6 +51,8 @@
     import { ref, watchEffect } from 'vue';
     import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
     import type { CustomAppointment } from '@/interfaces/custom.appointment.interface';
+    import { UPDATE_USER_ROLE } from '@/graphql/user.mutation';
+import type { CustomUser } from '@/interfaces/custom.user.interface';
     
     const hasFetchedData = ref(false);
 
@@ -137,6 +134,20 @@
         console.log(vacationid)
         removeVacation({
             id: vacationid
+        })
+        window.location.reload();
+    }
+
+    const {
+    mutate: changeRole,
+    loading: changeRoleLoading,
+} = useMutation<CustomUser>(UPDATE_USER_ROLE)
+
+    const handleRoleChange = (userid:string, role:string) => {
+        console.log('changing role')
+        changeRole({
+            id: userid,
+            role: role
         })
         window.location.reload();
     }
