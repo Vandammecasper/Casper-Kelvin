@@ -57,7 +57,7 @@ export default {
 
         onResult((result) => {
             if (!result.loading) {
-                // console.log(result)
+                console.log(result)
                 data.value = getUsersResult
                 countUsers()
             }
