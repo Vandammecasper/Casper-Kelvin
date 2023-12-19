@@ -100,8 +100,8 @@ export class VacationsService {
     return `This action updates a #${id} vacation`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} vacation`;
+  remove(id: string) {
+    return this.vacationRepository.delete(new ObjectId(id));
   }
 
   // for seeding

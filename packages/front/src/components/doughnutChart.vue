@@ -5,10 +5,10 @@
 <script lang="ts">
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'vue-chartjs'
-import * as chartConfig from './doughnutChartConfig.js'
 import { ref } from 'vue'
 import { GET_ALL_SERVICES } from '@/graphql/services.query'
 import { useQuery } from '@vue/apollo-composable'
+import type { Ref } from 'vue'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -48,9 +48,9 @@ export default {
             }
         })
 
-        const revenueList = ref([])
+        const revenueList: Ref<number[]> = ref([])
 
-        const serviceNameList = ref([])
+        const serviceNameList: Ref<string[]> = ref([])
 
         const counter = ref(0)
 
@@ -59,7 +59,7 @@ export default {
         const countRevenueByService = () => {
             if (props.componentData && getServicesResult.value) {
                 for (let i = 0; i < getServicesResult.value.services?.length; i++) {
-                    let serviceName = getServicesResult.value.services[i].name
+                    let serviceName:string = getServicesResult.value.services[i].name
                     let serviceId = getServicesResult.value.services[i].id
                     let servicePrice = getServicesResult.value.services[i].price
                     let serviceRevenue = 0
@@ -69,11 +69,14 @@ export default {
                     }
                     // console.log(serviceName)
                     // console.log(serviceId)
+                    //@ts-ignore
                     for (let i = 0; i < props.componentData.value.appointments?.length; i++) {
                         // console.log(props.componentData.value.appointments[i].services)
                         // console.log(serviceId)
                         let serviceIdList = []
+                        //@ts-ignore
                         for(let j = 0; j < props.componentData.value.appointments[i].services.length; j++){
+                            //@ts-ignore
                             serviceIdList.push(props.componentData.value.appointments[i].services[j].id)
                         }
                         // console.log(serviceIdList)

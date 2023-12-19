@@ -6,6 +6,8 @@ export const GET_ALL_VACATIONS =  gql`
         id
         startDate
         endDate
+        hairdresserId
+        isApproved
         }
     }
 `

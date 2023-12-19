@@ -70,7 +70,7 @@ export class VacationsResolver {
   @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
   @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Vacation)
-  removeVacation(@Args('id', { type: () => Int }) id: number) {
+  removeVacation(@Args('id', { type: () => String }) id: string) {
     return this.vacationsService.remove(id);
   }
 

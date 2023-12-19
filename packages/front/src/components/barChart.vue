@@ -92,10 +92,13 @@ export default {
                     // console.log(barberName)
                     // console.log(barberId)
                     // console.log(props.componentData.value.appointments)
+                    //@ts-ignore
                     for (let i = 0; i < props.componentData.value.appointments?.length; i++) {
+                        //@ts-ignore
                         if(props.componentData.value.appointments[i].hairdresser.id == barberId){
                             // console.log(barberId)
                             // console.log(props.componentData.value.appointments[i])
+                            //@ts-ignore
                             const appointment = props.componentData.value.appointments[i];
                             const appointmentDate = new Date(appointment.date);
                             // console.log(appointmentDate)
