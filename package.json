@@ -36,5 +36,9 @@
     "vue-bootstrap-datetimepicker": "^5.0.1",
     "vue-tailwind": "^2.5.1",
     "vuejs-datepicker": "^1.6.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "ts-jest": "^29.1.1"
   }
 }
