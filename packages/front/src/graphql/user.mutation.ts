@@ -5,6 +5,7 @@ export const ADD_USER = gql`
     createUser(createUserInput: $createUserInput) {
       id
       uid
+      userName
       locale
       role
       createdAt

@@ -169,6 +169,7 @@ export default {
         // router.push('/')
         addUser({
             createUserInput: {
+              userName: newUser.value.name,
               locale: newUser.value.locale,
               isPublic: isPublic.value,
             },

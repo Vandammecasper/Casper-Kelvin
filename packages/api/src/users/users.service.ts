@@ -34,6 +34,7 @@ export class UsersService {
     // TODO: Check if user already exists
 
     const user = new User();
+    user.userName = userName;
     user.uid = uid;
     user.locale = createUserInput.locale ?? 'nl';
     user.role = Role.USER;
@@ -57,6 +58,8 @@ export class UsersService {
     const user = await this.usersRepository.findOne({_id: new ObjectId(id)});
     if(!user)
       throw new Error('User not found');
+
+    user.userName = updateUserInput.userName ?? user.userName;
 
     user.locale = updateUserInput.locale ?? user.locale;
 
