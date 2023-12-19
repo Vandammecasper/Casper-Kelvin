@@ -47,7 +47,7 @@
         </div>
     </div> -->
     <div class="flex h-full w-full mt-80 justify-center">
-        <h1 class="text-2xl">We're diligently crafting this page to match the precision of our barbers' artistry</h1>
+        <h1 class="text-2xl">We're diligently crafting this page to match the precision of our barbers' artistry!</h1>
     </div>
 </template>
 
