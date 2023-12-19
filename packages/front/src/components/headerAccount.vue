@@ -12,6 +12,11 @@
             <RouterLink v-if="customUser?.role == 'SUPER_ADMIN'" to="/account/dashboard">
                 <h1>BARBER ANALYTICS</h1>
             </RouterLink>
+            <RouterLink to="/account/myaccount">
+                <div class="h-16 w-16 bg-yellow-600 rounded-full flex items-center justify-center">
+                    <img src="/Profile.svg" alt="profile icon" class="h-10 w-10 mb-1">
+                </div>
+            </RouterLink>
         </div>
     </div>
     <RouterView />
