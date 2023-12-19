@@ -1,5 +1,6 @@
 <template>
     <div class="h-24 w-screen bg-black p-4 px-16 flex justify-between absolute top-0 z-50">
+        <div>
         <RouterLink to="/">
             <img src="/logo-PhotoRoom.png" alt="logo" class="h-16">
         </RouterLink>
