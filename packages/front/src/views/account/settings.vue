@@ -26,7 +26,7 @@
                             <div class="w-full h-0.5 bg-white"></div>
                             <div class="flex justify-between mt-1">
                                 <p>{{vacation.hairdresser.name}}</p>
-                                <p>{{ handleDates(new Date(vacation.startDate)) }} - {{ handleDates(new Date(vacation.endDate)) }}</p>
+                                <p>{{ handleDates(vacation.startDate) }} - {{ handleDates(vacation.endDate) }}</p>
                                 <div class="flex gap-2">
                                     <button @click="handleApproveVacation(vacation.id)" class="px-2 py-1 Raleway-bold border-2 border-green-600 bg-green-600  hover:bg-green-700 focus:outline-none focus-visible:border-green-600 focus-visible:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-300">
                                         <p>accept</p>
@@ -53,6 +53,8 @@
     import type { CustomAppointment } from '@/interfaces/custom.appointment.interface';
     import { UPDATE_USER_ROLE } from '@/graphql/user.mutation';
 import type { CustomUser } from '@/interfaces/custom.user.interface';
+import type { CustomVacation } from '@/interfaces/custom.vacation.interface';
+import type { Ref } from 'vue';
     
     const hasFetchedData = ref(false);
 
@@ -88,9 +90,9 @@ import type { CustomUser } from '@/interfaces/custom.user.interface';
     }
 })
 
-    const vacationList = ref([])
+    const vacationList: Ref<CustomVacation[]> = ref([])
     
-    const handleDates = (date) =>{
+    const handleDates = (date:string) =>{
         const dateObject = new Date(date)
         const year = dateObject.getFullYear();
         const month = dateObject.toLocaleString('default', { month: 'long' });
@@ -115,7 +117,7 @@ import type { CustomUser } from '@/interfaces/custom.user.interface';
     loading: approveVacationLoading,
 } = useMutation<CustomAppointment>(APPROVE_VACATION)
 
-    const handleApproveVacation = (vacationid:number) => {
+    const handleApproveVacation = (vacationid:string) => {
         console.log('approving vacation')
         console.log(vacationid)
         approveVacation({
@@ -129,7 +131,7 @@ import type { CustomUser } from '@/interfaces/custom.user.interface';
     loading: removeVacationLoading,
 } = useMutation<CustomAppointment>(REMOVE_VACATION)
 
-    const handleRemoveVacation = (vacationid:number) => {
+    const handleRemoveVacation = (vacationid:string) => {
         console.log('removing vacation')
         console.log(vacationid)
         removeVacation({
