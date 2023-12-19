@@ -1,7 +1,9 @@
 import { InputType, Int, Field, Float } from '@nestjs/graphql';
+import { IsBoolean, IsDate } from 'class-validator';
 
 @InputType()
 export class CreateAppointmentInput {
+  @IsDate()
   @Field(() => Date, { description: 'Date' })
   date: Date;
   
@@ -14,6 +16,7 @@ export class CreateAppointmentInput {
   @Field(() => String, { description: 'Extra’s' })
   extraId: string;
 
+  @IsBoolean()
   @Field(() => Boolean, { description: 'isPointsUsed' })
   isPointsUsed: boolean;
 }

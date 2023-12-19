@@ -22,6 +22,7 @@ import { Appointment } from 'src/appointments/entities/appointment.entity';
 import { Role, User } from 'src/users/entities/user.entity';
 import { ExtrasService } from 'src/extras/extras.service';
 import { Extra } from 'src/extras/entities/extra.entity';
+import { start } from 'repl';
 
 @Injectable()
 export class SeedService {
@@ -94,15 +95,17 @@ export class SeedService {
     async addVacationsFromJson(): Promise<Vacation[]> {
         const vacationsArray:Vacation[] = [];
         const h:Hairdresser[] = await this.hairdressersService.findAll();
-
-        for(const vacation of vacations) {
+        let i = 0;
+        for(const hairdresser of h) {
             const v = new Vacation();
 
-            v.hairdresserId = new ObjectId(h[0].id);
-            v.startDate = new Date(vacation.startDate);
-            v.endDate = new Date(vacation.endDate);
+            v.hairdresserId = new ObjectId(hairdresser.id);
+            v.startDate = new Date();
+            v.endDate = new Date(v.startDate.setDate(v.startDate.getDate() + i));
+            v.isApproved = true;
 
             vacationsArray.push(v);
+            i++;
         }
         return this.vacationsService.saveAll(vacationsArray);
     }
@@ -154,6 +157,7 @@ export class SeedService {
         for(const user of users){
             const u = new User();
             u.uid = user.uid;
+            u.userName = user.userName;
             u.locale = user.locale;
             u.role = user.role as Role;
 
