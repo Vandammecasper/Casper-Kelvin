@@ -2,20 +2,32 @@
 
 ## Environment variables
 
-### .env backend
+### .env / .env.production.local backend
+
+Use firebase > Project settings > Service Accounts > Generate new private key
 
 ```env
 GOOGLE_APPLICATION_CREDENTIALS="/path/to/GOOGLE_APPLICATION_CREDENTIALS.json" #only in dev, production
-URL_FRONTEND="http://localhost:5173/"
-DB_HOST="localhost"
-DB_PORT="27031"
-DB_NAME="api-thebarber"
+URL_FRONTEND=""
+DB_HOST=""
+DB_PORT=""
+DB_NAME=""
 
-NODE_ENV="development"
+NODE_ENV=""
 
 ```
 
+### .env / .env.production.local frontend
+
+```env
+VITE_apiKey=
+VITE_authDomain=
+VITE_projectId=
+```
+
 ## Seeding
+
+(seeding is based on existing uid's from firebase, if you start with a new firebase authentication you can't use the hairdresser seeding, user seeding and point seeding)
 
 ### Step 1
 
