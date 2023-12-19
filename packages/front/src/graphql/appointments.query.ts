@@ -1,4 +1,5 @@
-import gql from 'graphql-tag'
+import type { CustomAppointment } from '@/interfaces/custom.appointment.interface'
+import { gql, type TypedDocumentNode } from '@apollo/client/core'
 
 export const GET_ALL_APPOINTMENTS_BY_UID =  gql`
 query($isOpen: Boolean!) {
@@ -68,6 +69,24 @@ export const COMPLETE_APPOINTMENT =  gql`
   mutation($id: String!) {
     completeAppointment(id: $id) {
       id
+    }
+  }
+`
+
+export const GET_ALL_APPOINTMENTS: TypedDocumentNode<{appoinments: CustomAppointment[]}> = gql`
+  query {
+    appointments {
+      id
+      date
+      userName
+      hairdresser {
+        id
+      }
+      services {
+        id
+        name
+      }
+      price
     }
   }
 `
