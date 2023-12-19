@@ -120,7 +120,7 @@ export default {
 
                 // add vacations from specific hairdresser to disabledDates
                 for (let i = 0; i < this.vacationsResult?.vacations.length; i++) {
-                    if(this.vacationsResult?.vacations[i].hairdresser.id == barberId){
+                    if(this.vacationsResult?.vacations[i].hairdresser.id == barberId && this.vacationsResult?.vacations[i].isApproved == true){
                         this.disabledDates.push({
                             // @ts-ignore
                             start: new Date(this.vacationsResult?.vacations[i].startDate),

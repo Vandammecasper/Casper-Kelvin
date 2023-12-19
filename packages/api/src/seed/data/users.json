@@ -1,26 +1,31 @@
 [
     {
     "uid": "Zd0t7ecAlZWTVGIcFx3xBI5r33x2", 
+    "userName": "Jef",
     "locale": "nl",
     "role": "ADMIN"
     },
     {
     "uid": "DcrXhY203jaSdAHiXxLuZWCqloJ3",
+    "userName": "Sofie",
     "locale": "nl",
     "role": "ADMIN"
     },
     {
     "uid": "cQCC4OIADbOsDfn47ihVhD1B7nT2",
+    "userName": "Samuel",
     "locale": "nl",
     "role": "ADMIN"
     },
     {
     "uid": "0g51xgqpOCOaA5KLPe0tIQqJcKD3",
+    "userName": "Casper",
     "locale": "nl",
     "role": "USER"
     },
     {
     "uid": "dKAvmADcN2Q2UInpy10jpl9wAjD2",
+    "userName": "Kelvin",
     "locale": "nl",
     "role": "USER"
     }
