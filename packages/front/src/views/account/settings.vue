@@ -1,5 +1,5 @@
 <template>
-    <div class="grid justify-items-center h-full w-screen">
+    <!-- <div class="grid justify-items-center h-full w-screen">
         <h1 class="mt-32 text-4xl">BARBER SETTINGS</h1>
         <div class="flex w-screen mt-8 px-8 gap-8">
             <div class="w-1/2 grid justify-items-center border-2 border-white">
@@ -45,6 +45,9 @@
                     </div>
                 </div>
         </div>
+    </div> -->
+    <div class="flex h-full w-full mt-80 justify-center">
+        <h1 class="text-2xl">We're diligently crafting this page to match the precision of our barbers' artistry</h1>
     </div>
 </template>
 
