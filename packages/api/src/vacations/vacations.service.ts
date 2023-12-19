@@ -92,8 +92,8 @@ export class VacationsService {
     }
   }
 
-  approveVacation(id: string): Promise<Vacation> {
-    return this.vacationRepository.save({ _id: new ObjectId(id), isApproved: true });
+  approveVacation(id: string) {
+    return this.vacationRepository.update(new ObjectId(id), { isApproved: true });
   }
 
   update(id: number, updateVacationInput: UpdateVacationInput) {

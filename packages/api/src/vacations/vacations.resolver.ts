@@ -55,7 +55,7 @@ export class VacationsResolver {
 
   @UseGuards(FirebaseGuard)
   @Mutation(() => Vacation)
-  approveVacation(@Args('id', { type: () => String }) id: string): Promise<Vacation> {
+  approveVacation(@Args('id', { type: () => String }) id: string) {
     return this.vacationsService.approveVacation(id);
   }
 
