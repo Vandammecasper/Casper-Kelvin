@@ -6,7 +6,9 @@
             "aboutUs":"About Us",
             "ourService":"Our Services",
             "crew": "The Crew",
-            "hallOfFame": "Hall Of Fame"
+            "hallOfFame": "Hall Of Fame",
+            "barberSettings": "BARBER SETTINGS",
+            "barberAnalytics": "BARBER ANALYTICS"
         },
         "home": {
             "about": {
@@ -41,7 +43,7 @@
             "monFri": "Mon - Fri",
             "satSun": "Sat - Sun",
             "holiday": "Holiday",
-            "monFriTime": "9:00 AM -58:00 PM",
+            "monFriTime": "9:00 AM - 5:00 PM",
             "satSunTime": "9:00 AM - 1:00 PM",
             "holidayTime": "9:00 AM - 12:00 AM"
         },
@@ -66,8 +68,52 @@
                 "cancel": "CANCEL",
                 "edit": "EDIT"
             },
+            "myAppointmentsAdmin": {
+                "openAppointments": "Open Appointments",
+                "allAppointments": "All Appointments",
+                "applyFilter": "Apply Filter",
+                "services": "Services",
+                "date": "Date",
+                "completed": "Completed",
+                "customer": "Customer",
+                "suppliesNeeded": "Supplies Needed",
+                "extras": "Extra's",
+                "completeAppointment": "Complete Appointment",
+                "alreadyCompleted": "Already Completed",
+                "totalPrice": "Total Price",
+                "pointsUsed": "Points Used"
+            },
             "vacation": {
-                "navigation": "VACATION"
+                "navigation": "VACATION",
+                "availableVacationDays": "Available Vacation Days",
+                "dayOff": "Day Off",
+                "monday": "Monday",
+                "tuesday": "Tuesday",
+                "wednesday": "Wednesday",
+                "thursday": "Thursday",
+                "friday": "Friday",
+                "saturday": "Saturday",
+                "sunday": "Sunday",
+                "save": "SAVE",
+                "vacation": "Vacation",
+                "startDate": "Start Date",
+                "endDate": "End Date",
+                "request": "REQUEST",
+                "plannedVacations": "Planned Vacations",
+                "approved": "Approved"
+            },
+            "dashboard": {
+                "barberRevenue": "Barber Revenue",
+                "serviceRevenue": "Service Revenue",
+                "totalRevenue": "Total Revenue",
+                "totalCustomers": "Total Customers",
+                "totalAppointments": "Total Appointments",
+                "barberSettings": "BARBER SETTINGS",
+                "barbers": "BARBERS",
+                "barber": "Barber",
+                "holidays": "HOLIDAYS",
+                "accept": "ACCEPT",
+                "decline": "DECLINE"
             }
         },
         "auth": {
@@ -85,6 +131,33 @@
             "alreadyHaveAccount": "Already have an account?",
             "resetPassword": "RESET PASSWORD",
             "rememberedPassword": "Remembered your password?"
-        }    
+        },
+        "appointment": {
+            "service": {
+                "services": "SERVICES",
+                "continue": "CONTINUE",
+                "selectExtras": "SELECT EXTRA'S",
+                "infoSelectExtras": "Choose from our selection of premium extras to take your grooming experience to the next level.",
+                "next": "NEXT"
+            },
+            "barbertime": {
+                "planning": "PLANNING",
+                "selectBarber": "SELECT A BARBER",
+                "agenda": "AGENDA",
+                "next": "NEXT"
+            },
+            "summary": {
+                "summary": "SUMMARY",
+                "services": "SERVICES",
+                "extras": "EXTRA'S",
+                "usePoints": "USE POINTS",
+                "discount": "Use 5 points to get a 50% discount",
+                "barber": "BARBER",
+                "calendar": "CALENDAR",
+                "date": "DATE",
+                "hour": "HOUR",
+                "total": "TOTAL: €"
+            }
+        }
     }
 }

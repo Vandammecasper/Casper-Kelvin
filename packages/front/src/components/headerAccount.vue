@@ -7,10 +7,10 @@
         </div>
         <div class="flex gap-16 items-center">
             <RouterLink v-if="customUser?.role == 'SUPER_ADMIN'" to="/account/settings">
-                <h1>BARBER SETTINGS</h1>
+                <h1>{{ $t('navigation.barberSettings') }}</h1>
             </RouterLink>
             <RouterLink v-if="customUser?.role == 'SUPER_ADMIN'" to="/account/dashboard">
-                <h1>BARBER ANALYTICS</h1>
+                <h1>{{ $t('navigation.barberAnalytics') }}</h1>
             </RouterLink>
             <RouterLink to="/account/myaccount">
                 <div class="h-16 w-16 bg-yellow-600 rounded-full flex items-center justify-center">

@@ -1,7 +1,7 @@
 <template>
     <Line v-if="countRevenue()" :data="chartData" :options="chartOptions" />
     <div class="flex justify-between">
-        <p>Total revenue</p>
+        <p>{{ $t('account.dashboard.totalRevenue') }}</p>
         <h3>€ {{totalRevenue}}</h3>
     </div>
 </template>

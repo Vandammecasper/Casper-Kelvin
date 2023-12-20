@@ -1,14 +1,14 @@
 <template>
     <div class="grid w-full h-screen content-center justify-items-center">
-        <h1 class="Raleway-bold text-5xl md:text-6xl mt-76 sm:mt-16 lg:mt-24">SUMMARY</h1>
+        <h1 class="Raleway-bold text-5xl md:text-6xl mt-76 sm:mt-16 lg:mt-24">{{ $t('appointment.summary.summary') }}</h1>
         <div class="mt-6 sm:mt-8 sm:grid sm:grid-cols-2 sm:gap-12 md:gap-24 lg:gap-40 xl:gap-80 px-8 md:px-12 xl:px-16">
             <div>
-                <h2 class="Raleway-bold text-3xl md:text-5xl mb-2">SERVICES</h2>
+                <h2 class="Raleway-bold text-3xl md:text-5xl mb-2">{{ $t('appointment.summary.services') }}</h2>
                 <div v-for="service of filteredServices" class="flex justify-between mt-2">
                     <p class="Raleway text-xl md:text-2xl">{{ service.name }}</p>
                     <p class="Raleway text-xl md:text-2xl">€ {{ service.price }}</p>
                 </div>
-                <h2 class="Raleway-bold text-3xl md:text-5xl mt-4">EXTRA'S</h2>
+                <h2 class="Raleway-bold text-3xl md:text-5xl mt-4">{{ $t('appointment.summary.extras') }}</h2>
                 <div class="flex justify-between mt-2">
                     <p class="Raleway text-xl md:text-2xl">{{ getExtraResult?.extra.name }}</p>
                     <p class="Raleway text-xl md:text-2xl">€ {{ getExtraResult?.extra.price }}.00</p>
@@ -19,21 +19,21 @@
                         <button @click="usePoints" class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center">
                             <img v-if="isPointsUsed" src="/icons/cross.svg" alt="">
                         </button>
-                        <h2 class="Raleway text-3xl">USE POINTS</h2>
+                        <h2 class="Raleway text-3xl">{{ $t('appointment.summary.usePoints') }}</h2>
                     </div>
                     <h2 class="Raleway text-3xl">5/{{ getPointByUidResult?.pointByUid.usablePoints }}</h2>
                 </div>
                 <div v-else class="flex mt-4 justify-between opacity-30">
                         <div class="flex gap-2">
                             <div class="mt-1 w-6 h-6 bg-transparent border-2 border-white grid place-content-center"></div>
-                            <h2 class="Raleway text-2xl md:text-3xl">USE POINTS</h2>
+                            <h2 class="Raleway text-2xl md:text-3xl">{{ $t('appointment.summary.usePoints') }}</h2>
                         </div>
                         <h2 class="Raleway text-2xl md:text-3xl">5/{{ getPointByUidResult?.pointByUid.usablePoints }}</h2>
                     </div>
-                <p class="w-3/4 mt-2 text-neutral-600 Raleway">Use 5 points to get a 50% discount</p>
+                <p class="w-3/4 mt-2 text-neutral-600 Raleway">{{ $t('appointment.summary.discount') }}</p>
             </div>
             <div>
-                <h2 class="Raleway-bold text-3xl md:text-5xl max-sm:mt-4">BARBER</h2>
+                <h2 class="Raleway-bold text-3xl md:text-5xl max-sm:mt-4">{{ $t('appointment.summary.barber') }}</h2>
                 <div class="border-2 border-yellow-600 hover:border-yellow-600 max-md:mt-2">
                     <div class="h-24 relative grid content-center">
                         <!-- lukt niet om variabele foto te gebruiken -->
@@ -41,20 +41,20 @@
                         <h3 class="text-2xl lg:text-3xl z-20 bg-black justify-self-end text-center w-32 lg:w-40 py-4 lg:py-5">{{ hairdressersResult?.hairdresser?.name }}</h3>
                     </div>
                 </div>
-                <h2 class="Raleway-bold text-3xl md:text-5xl mt-4 sm:mt-12">CALENDAR</h2>
+                <h2 class="Raleway-bold text-3xl md:text-5xl mt-4 sm:mt-12">{{ $t('appointment.summary.calendar') }}</h2>
                 <div class="flex gap-12 md:gap-24 mt-2 md:mt-4">
                     <div>
-                        <h3 class="Raleway text-2xl md:text-3xl">DATE</h3>
+                        <h3 class="Raleway text-2xl md:text-3xl">{{ $t('appointment.summary.date') }}</h3>
                         <p class="Raleway text-xl">{{ date }}</p>
                     </div>
                     <div>
-                        <h3 class="Raleway text-2xl md:text-3xl">HOUR</h3>
+                        <h3 class="Raleway text-2xl md:text-3xl">{{ $t('appointment.summary.hour') }}</h3>
                         <p class="Raleway text-xl">{{ uur }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <button @click="handleAppointment" class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">TOTAL: € {{ calculateTotalCost }}</button>
+        <button @click="handleAppointment" class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">{{ $t('appointment.summary.total') }} {{ calculateTotalCost }}</button>
     </div>
 </template>
 
@@ -147,7 +147,6 @@
                 return this.datum;
             },
             filteredServices() { 
-                if (this.selectedServices == null) return [{name: 'Loading...', price: 0}]
                 
                 // @ts-ignore
                 this.serviceIds = this.services

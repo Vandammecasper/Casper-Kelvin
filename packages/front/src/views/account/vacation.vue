@@ -3,46 +3,46 @@
         <NavigationAccount />
         <div class="h-screen w-full p-4 px-6 sm:pt-40 sm:pl-20 sm:pr-10">
             <div class="flex">
-                <h1 class="text-5xl Raleway-bold mb-4">HELLO, {{ firebaseUser?.displayName }}</h1>
-                <p class="mt-5 ml-4">Available vacation days {{ getHairdresserResult?.hairdresserByUid?.vacationDays }}</p>
+                <h1 class="text-5xl Raleway-bold mb-4">{{ $t('account.myAccount.hello') }} {{ firebaseUser?.displayName }}</h1>
+                <p class="mt-5 ml-4">{{ $t('account.vacation.availableVacationDays') }} {{ getHairdresserResult?.hairdresserByUid?.vacationDays }}</p>
             </div>
             <div class="h-[60vh] overflow-scroll overflow-x-hidden pr-1">
                 <div class="w-full">
-                    <h3 class="text-2xl mb-2">Day off</h3>
+                    <h3 class="text-2xl mb-2">{{ $t('account.vacation.dayOff') }}</h3>
                     <select class="bg-neutral-900 border-white border-1 h-10 w-full" v-model="dayOff">
-                        <option :value="1">Monday</option>
-                        <option :value="2">Tuesday</option>
-                        <option :value="3">Wednesday</option>
-                        <option :value="4">Thursday</option>
-                        <option :value="5">Friday</option>
-                        <option :value="6">Saturday</option>
-                        <option :value="0">Sunday</option>
+                        <option :value="1">{{ $t('account.vacation.monday') }}</option>
+                        <option :value="2">{{ $t('account.vacation.tuesday') }}</option>
+                        <option :value="3">{{ $t('account.vacation.wednesday') }}</option>
+                        <option :value="4">{{ $t('account.vacation.thursday') }}</option>
+                        <option :value="5">{{ $t('account.vacation.friday') }}</option>
+                        <option :value="6">{{ $t('account.vacation.saterday') }}</option>
+                        <option :value="0">{{ $t('account.vacation.sunday') }}</option>
                     </select>
-                    <button @click="handleDayOff" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">SAVE</button>
+                    <button @click="handleDayOff" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">{{ $t('account.vacation.save') }}</button>
                 </div>
                 <hr class="my-4">
                 <div>
-                    <h3 class="text-2xl mb-2">Vacation</h3>
+                    <h3 class="text-2xl mb-2">{{ $t('account.vacation.vacation') }}</h3>
                     <div class="flex gap-2">
                         <div>
-                            <label for="start-picker">Start date</label>
+                            <label for="start-picker">{{ $t('account.vacation.startDate') }}</label>
                             <input id="start-picker" type="text" placeholder="Select a date range" class="w-full h-10 bg-neutral-900 border-2 mr-2 p-1 border-white">
                         </div>
                         <div>
-                            <label for="end-picker">End date</label>
+                            <label for="end-picker">{{ $t('account.vacation.endDate') }}</label>
                             <input id="end-picker" type="text" placeholder="Select a date range" class="w-full h-10 bg-neutral-900 border-2 mr-2 p-1 border-white">
                         </div>
                     </div>
                     <p v-if="error != ''" class="text-red-700">{{ error }}</p>
-                    <button @click="handleHolidays" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">REQUEST</button>
+                    <button @click="handleHolidays" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">{{ $t('account.vacation.request') }}</button>
                 </div>
                 <hr class="my-4">
                 <div>
-                    <h3 class="text-2xl mb-2">Planed Vacations</h3>
+                    <h3 class="text-2xl mb-2">{{ $t('account.vacation.plannedVacations') }}</h3>
                     <div class="flex justify-between p-2">
-                        <p>Start Date</p>
-                        <p>End Date</p>
-                        <p>Approved</p>
+                        <p>{{ $t('account.vacation.startDate') }}</p>
+                        <p>{{ $t('account.vacation.endDate') }}</p>
+                        <p>{{ $t('account.vacation.approved') }}</p>
                     </div>
                     <div v-for="vacation of getVacationsResult?.vacationsByUid">
                         <div class="border-white border-1 p-2 flex justify-between">
