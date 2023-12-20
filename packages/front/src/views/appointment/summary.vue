@@ -80,7 +80,9 @@
     import { GET_POINT_BY_UID } from '@/graphql/points.query'
     import { GET_EXTRA_BY_ID } from '@/graphql/extras.query';
     import { ref } from 'vue';
-    
+    import { formatDate as formatDateFunction } from '@/utils/formatDate.js';
+    import { useI18n } from 'vue-i18n';
+        
     export default {
         data(){
             return{
@@ -129,15 +131,17 @@
                 const inputDate = new Date(this.$route.params.date);
 
                 // Extracting date information
-                const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-                const day = dayOfWeek[inputDate.getDay()];
-                this.datum = `${day} ${inputDate.getDate()}/${inputDate.getMonth() + 1}/${inputDate.getFullYear()}`;
+                // const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                // const day = dayOfWeek[inputDate.getDay()];
+                // this.datum = `${day} ${inputDate.getDate()}/${inputDate.getMonth() + 1}/${inputDate.getFullYear()}`;
+                this.datum = formatDateFunction(inputDate, 'dddd DD/MM/yyyy');
 
                 // Extracting time information
-                const hours = inputDate.getHours();
-                const minutes = inputDate.getMinutes();
-                const period = hours < 12 ? 'AM' : 'PM';
-                this.uur = `${hours % 12 || 12}.${minutes < 10 ? '0' : ''}${minutes} ${period}`;
+                // const hours = inputDate.getHours();
+                // const minutes = inputDate.getMinutes();
+                // const period = hours < 12 ? 'AM' : 'PM';
+                // this.uur = `${hours % 12 || 12}.${minutes < 10 ? '0' : ''}${minutes} ${period}`;
+                this.uur = formatDateFunction(inputDate, 'HH:mm');
 
                 console.log("Route Date:", this.$route.params.date)
                 console.log("Input Date:", inputDate)
@@ -180,6 +184,7 @@
         },
         setup(){
             const {currentRoute} = useRouter()
+            const { locale } = useI18n()
             const barberid = currentRoute.value.params.barber
             const serviceid = (currentRoute.value.params.service as string).split(',').map((services:string) => decodeURIComponent(services));
             const extraId = currentRoute.value.params.extra
@@ -201,18 +206,18 @@
 
             const date = () => {
                 //@ts-ignore
-            const datum = new Date(currentRoute.value.params.date)
-            const year = datum.getFullYear();
-            const month = String(datum.getMonth() + 1).padStart(2, '0');
-            const day = String(datum.getDate()).padStart(2, '0');
-            const hours = String(datum.getHours()).padStart(2, '0');
-            const minutes = String(datum.getMinutes()).padStart(2, '0');
-            const seconds = String(datum.getSeconds()).padStart(2, '0');
+                const datum = new Date(currentRoute.value.params.date)
+                const year = datum.getFullYear();
+                const month = String(datum.getMonth() + 1).padStart(2, '0');
+                const day = String(datum.getDate()).padStart(2, '0');
+                const hours = String(datum.getHours()).padStart(2, '0');
+                const minutes = String(datum.getMinutes()).padStart(2, '0');
+                const seconds = String(datum.getSeconds()).padStart(2, '0');
 
 
-            const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-            return formattedDate
-        }
+                const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+                return formattedDate
+            }
 
             const { result: getPointByUidResult } = useQuery(GET_POINT_BY_UID)
             
@@ -261,6 +266,11 @@
                     router.push('/')
                 })
             }
+
+            const formatDate = (date: Date, dateFormat: string) => {
+                console.log(locale.value);
+                return formatDateFunction(date, dateFormat, locale.value);
+            };
         return {
             hairdressersResult: getHairdresserByIdResult,
             servicesResult: getServicesResult,

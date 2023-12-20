@@ -26,8 +26,11 @@
                 <li v-for="appointment in visualAppointments" class="p-2 border-y-slate-700 border-b-2">
                     <div class="flex justify-between cursor-pointer" @click="toggleShowOverlay(), selectAppointment(appointment)">
                         <p>{{ appointment?.services[0].name }}</p>
-                        <p>{{ date(appointment.date) }}</p>
-                        <p>{{ appointment.isCompleted }}</p>
+                        <p>{{ formatDate(appointment.date) }}</p>
+                        
+                        <div v-if="appointment.isCompleted" class="rounded-full bg-green-600 w-7 h-7"></div>
+                        <div v-else class="rounded-full bg-red-600 w-7 h-7"></div>
+
                     </div>
                 </li>
             </ul>
@@ -41,7 +44,7 @@
             </button>
             <div class="grid columns-2 gap-4">
                 <div class="col-span-2 text-center">
-                    <p>{{ date(selectedAppointment?.date) }}</p>
+                    <p>{{ formatDate(selectedAppointment?.date) }}</p>
                 </div>
                 <div>
                     <h1 class="text-4xl">{{ $t('account.myAppointmentsAdmin.customer') }}</h1>
@@ -101,8 +104,12 @@ import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.css';
 import 'flatpickr/dist/themes/dark.css';
 import { onMounted } from 'vue';
+import { formatDate as formatDateFunction } from '@/utils/formatDate.js';
+import { useI18n } from 'vue-i18n';
 
 const { firebaseUser } = useFirebase()
+
+const { locale } = useI18n()
 
 const showOverlay = ref(false);
 const isOpen = ref(true) as Ref<boolean>;
@@ -247,6 +254,12 @@ const getWantedAppointments = () => {
         error = "";
     }
 };
+
+
+const formatDate = (date: Date) => {
+    console.log(locale.value);
+    return formatDateFunction(date, "dddd DD/MM/yyyy HH:mm", locale.value);
+}
     
 const finishAppointment = () => {
     console.log(selectedAppointment.value);
@@ -272,4 +285,4 @@ onResultAppointment((appointment)=>{
 })
 
 
-</script>
+</script>../../utils/formatDate.js

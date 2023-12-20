@@ -46,8 +46,8 @@
                     </div>
                     <div v-for="vacation of getVacationsResult?.vacationsByUid">
                         <div class="border-white border-1 p-2 flex justify-between">
-                            <p>{{ vacation.startDate }}</p>
-                            <p>{{ vacation.endDate }}</p>
+                            <p>{{ formatDate(vacation.startDate) }}</p>
+                            <p>{{ formatDate(vacation.endDate) }}</p>
                             <div v-if="vacation.isApproved" class="rounded-full bg-green-600 w-8 h-8"></div>
                             <div v-else class="rounded-full bg-red-600 w-8 h-8"></div>
                         </div>
@@ -76,11 +76,16 @@ import { useMutation, useQuery } from '@vue/apollo-composable';
 import { ADD_VACATION } from '@/graphql/vacation.mutation';
 import { CHANGE_DAYS_OFF } from '@/graphql/hairdresser.mutation';
 import { GET_HAIRDRESSER_BY_UID } from '@/graphql/hairdressers.query';
+import { formatDate as formatDateFunction } from '@/utils/formatDate.js';
+import { useI18n } from 'vue-i18n';
 
 const startDate = ref(new Date());
 const endDate = ref(new Date());
 
 const { firebaseUser } = useFirebase()
+
+const { locale } = useI18n()
+
 const dayOff = ref(1) as Ref<number>;
 
 const error = ref('');
@@ -190,5 +195,11 @@ const handleDayOff = () => {
     }).catch((err) => {
         console.log(err);
     });
+    
+}
+
+const formatDate = (date: Date) => {
+    console.log(locale.value);
+    return formatDateFunction(date, "dddd DD/MM/yyyy HH:mm", locale.value);
 }
 </script>
