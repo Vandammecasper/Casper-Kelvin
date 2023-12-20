@@ -47,3 +47,34 @@ test('make an appointment', async ({ page }) => {
   await page.getByRole('link', { name: 'MY APPOINTMENTS' }).click();
   await page.locator('.relative > div').first().click();
 });
+
+test('request & decline vacation', async ({ page }) => {
+  //go to the website
+  await page.goto('http://localhost:5173/');
+
+  //login with boss account
+  await page.getByRole('link', { name: 'profile icon' }).click();
+  await page.getByPlaceholder('Your email').click();
+  await page.getByPlaceholder('Your email').fill('sofie@hairdresser.be');
+  await page.getByPlaceholder('Your email').press('Tab');
+  await page.getByPlaceholder('Your password').fill('P@ssw0rd');
+  await page.getByPlaceholder('Your password').press('Enter');
+
+  //request vacation
+  await page.getByRole('link', { name: 'profile icon' }).click();
+  await page.getByRole('link', { name: 'VACATION' }).click();
+  await page.locator('div').filter({ hasText: /^Start date$/ }).getByRole('textbox').click();
+  await page.getByLabel('December 30,').first().click();
+  await page.locator('div').filter({ hasText: /^End date$/ }).getByRole('textbox').click();
+  await page.getByLabel('December 31,').nth(1).click();
+  await page.getByRole('button', { name: 'REQUEST' }).click();
+
+  //decline vacation
+  await page.getByRole('link', { name: 'BARBER SETTINGS' }).click();
+  await page.getByRole('button', { name: 'decline' }).nth(1).click();
+
+  //check if vacation is declined
+  await page.getByRole('link', { name: 'profile icon' }).click();
+  await page.getByRole('link', { name: 'VACATION' }).click();
+  await page.getByText('Start DateEnd DateApproved').click();
+});
