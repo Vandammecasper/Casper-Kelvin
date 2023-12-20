@@ -15,6 +15,7 @@ import { AppointmentsModule } from './appointments/appointments.module';
 import { UsersModule } from './users/users.module';
 import { ExtrasModule } from './extras/extras.module';
 import { CommandModule } from 'nestjs-command';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
 require('dotenv').config();
 console.log(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
@@ -25,15 +26,39 @@ console.log(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.e
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`,
-      database: process.env.DB_NAME ?? 'api-thebarber-production', // database hier toevogen
-      entities: [__dirname + '/**/*.entity.{js,ts}'],
-      synchronize: process.env.NODE_ENV == 'production' ? false : true, // Careful with this in production
-      useNewUrlParser: true,
-      useUnifiedTopology: true, // Disable deprecated warnings
-      directConnection: true, // blijkbaar helpt dit
+    TypeOrmModule.forRootAsync({
+      useFactory: async () => {
+        if (process.env.FIREBASE_AUTH_EMULATOR_HOST) {
+          const mongo = await MongoMemoryServer.create({
+            instance: {
+              dbName: process.env.DB_NAME,
+            },
+          });
+
+          const mongoUri = mongo.getUri();
+          console.log('🍃 mongoUri', mongoUri);
+
+          return {
+            type: 'mongodb',
+            url: `${mongoUri}${process.env.DB_NAME}`,
+            entities: [__dirname + '/**/*.entity.{js,ts}'],
+            synchronize: process.env.NODE_ENV == 'production' ? false : true, // Careful with this in production
+            useNewUrlParser: true,
+            useUnifiedTopology: true, // Disable deprecated warnings
+          }
+        } else {
+          return {
+            type: 'mongodb',
+            url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`,
+            database: process.env.DB_NAME ?? 'api-thebarber-production', // database hier toevogen
+            entities: [__dirname + '/**/*.entity.{js,ts}'],
+            synchronize: process.env.NODE_ENV == 'production' ? false : true, // Careful with this in production
+            useNewUrlParser: true,
+            useUnifiedTopology: true, // Disable deprecated warnings
+            directConnection: true, // blijkbaar helpt dit
+          }
+        }
+      },
     }),
     ConfigModule.forRoot(),
 

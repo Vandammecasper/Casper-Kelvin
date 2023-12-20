@@ -123,7 +123,7 @@ import type { Ref } from 'vue';
         approveVacation({
             id: vacationid
         })
-        window.location.reload();
+        location.reload();
     }
 
     const {
@@ -137,7 +137,7 @@ import type { Ref } from 'vue';
         removeVacation({
             id: vacationid
         })
-        window.location.reload();
+        location.reload();
     }
 
     const {
@@ -151,7 +151,7 @@ import type { Ref } from 'vue';
             id: userid,
             role: role
         })
-        window.location.reload();
+        location.reload();
     }
 
 </script>
