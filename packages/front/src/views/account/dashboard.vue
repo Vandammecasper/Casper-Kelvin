@@ -13,11 +13,11 @@
         </div>
         <div class="flex p-8 h-105 w-screen justify-center">
             <div class="w-1/2 grid justify-items-center">
-                <h1 class="text-2xl mb-4">Barber revenue</h1>
+                <h1 class="text-2xl mb-4">{{ $t('account.dashboard.barberRevenue') }}</h1>
                 <BarChart :componentData="data"/>
             </div>
             <div class="w-1/2 grid justify-items-center">
-                <h1 class="text-2xl mb-4">Service revenue</h1>
+                <h1 class="text-2xl mb-4">{{ $t('account.dashboard.serviceRevenue') }}</h1>
                 <DoughnutChart :componentData="data"/>
             </div>
             

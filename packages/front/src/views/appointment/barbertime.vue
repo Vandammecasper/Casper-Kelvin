@@ -1,9 +1,9 @@
 <template>
     <div class="grid w-full h-screen content-center justify-items-center">
-        <h1 class="Raleway-bold text-4xl sm:text-5xl md:text-6xl mt-124 sm:mt-24">PLANNING</h1>
+        <h1 class="Raleway-bold text-4xl sm:text-5xl md:text-6xl mt-124 sm:mt-24">{{ $t('appointment.barbertime.planning') }}</h1>
         <div class="sm:flex sm:gap-8 md:gap-32 items-center justify-center w-full h-full px-4 md:px-8 lg:px-12 xl:px-24 mt-4">
             <div class="sm:w-1/2 max-sm:mt-4">
-                <h2 class="text-3xl lg:text-4xl">SELECT A BARBER</h2>
+                <h2 class="text-3xl lg:text-4xl">{{ $t('appointment.barbertime.selectBarber') }}</h2>
                 <div class="mt-6">
                     <div v-for="hairdresser of hairdressersResult?.hairdressers" :key="hairdresser.id" 
                     @click="toggleSelection(hairdresser.id)"
@@ -19,14 +19,14 @@
                 </div>
             </div>
             <div class="sm:w-1/2 max-sm:mt-4">
-                <h2 class="text-3xl lg:text-4xl">AGENDA</h2>
+                <h2 class="text-3xl lg:text-4xl">{{ $t('appointment.barbertime.agenda') }}</h2>
                 <DatePicker class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" :disabled-dates="disabledDates" :time-accuracy="1" :locale="locale" :rules="rules"/>
             </div>
         </div>
         <RouterLink v-if="cont" :to="{ name: 'summary', params: { service: selectedServices.join(','),extra: selectedExtra, barber: selectedBarber, date: selectedDate } }">
-            <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">NEXT</button>
+            <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">{{ $t('appointment.barbertime.next') }}</button>
         </RouterLink>
-        <button v-else class="mt-8 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8">NEXT</button>
+        <button v-else class="mt-8 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8">{{ $t('appointment.barbertime.next') }}</button>
     </div>
     
 </template>

@@ -1,7 +1,7 @@
 <template>
     <Line v-if="countAppointments()" :data="chartData" />
     <div class="flex justify-between">
-        <p>Total appointments</p>
+        <p>{{ $t('account.dashboard.totalAppointments') }}</p>
         <h3>{{ appointmentsNumber }}</h3>
     </div>
 </template>

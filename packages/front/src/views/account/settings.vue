@@ -1,9 +1,9 @@
 <template>
     <div class="grid justify-items-center h-full w-screen">
-        <h1 class="mt-32 text-4xl">BARBER SETTINGS</h1>
+        <h1 class="mt-32 text-4xl">{{ $t('account.dashboard.barberSettings') }}</h1>
         <div class="flex w-screen mt-8 px-8 gap-8">
             <div class="w-1/2 grid justify-items-center border-2 border-white">
-                <h2 class="text-2xl">BARBERS</h2>
+                <h2 class="text-2xl">{{ $t('account.dashboard.barbers') }}</h2>
                 <div class="w-full px-8 py-4">
                     <div v-for="user of getUsersResult?.users " :key="user.id" class="my-2">
                         <div class="w-full h-0.5 bg-white"></div>
@@ -11,7 +11,7 @@
                             <p>{{user.userName}}</p>
                             <p>{{ user.uid }}</p>
                             <div class="flex gap-2">
-                                <p>Barber</p>
+                                <p>{{ $t('account.dashboard.barber') }}</p>
                                 <input @click="handleRoleChange(user.id, 'USER')" v-if="user.role == 'ADMIN' || user.role == 'SUPER_ADMIN'" class="mt-1" type="checkbox" checked>
                                 <input @click="handleRoleChange(user.id, 'ADMIN')" v-else class="mt-1" type="checkbox">
                             </div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="w-1/2 grid justify-items-center border-2 border-white">
-                    <h2 class="text-2xl">HOLIDAYS</h2>
+                    <h2 class="text-2xl">{{ $t('account.dashboard.holidays') }}</h2>
                     <div class="w-full px-8 py-4">
                         <div v-for="vacation of vacationList" :key="vacation.id" class="my-2">
                             <div class="w-full h-0.5 bg-white"></div>
@@ -29,7 +29,7 @@
                                 <p>{{ handleDates(vacation.startDate) }} - {{ handleDates(vacation.endDate) }}</p>
                                 <div class="flex gap-2">
                                     <button @click="handleApproveVacation(vacation.id)" class="px-2 py-1 Raleway-bold border-2 border-green-600 bg-green-600  hover:bg-green-700 focus:outline-none focus-visible:border-green-600 focus-visible:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-300">
-                                        <p>accept</p>
+                                        <p>{{ $t('account.dashboard.accept') }}</p>
                                     </button>
                                     <button @click="handleRemoveVacation(vacation.id)" class="px-2 py-1 Raleway-bold border-2 border-red-600 bg-red-600  hover:bg-red-700 focus:outline-none focus-visible:border-red-600 focus-visible:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300">
                                         <p>decline</p>
