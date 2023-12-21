@@ -7,7 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { HairdressersService } from 'src/hairdressers/hairdressers.service';
 import { ServicesService } from 'src/services/services.service';
 import { ObjectId } from 'mongodb';
-import dayjs from 'dayjs';
+import * as dayjs from 'dayjs';
 import { PointsService } from 'src/points/points.service';
 import { ExtrasService } from 'src/extras/extras.service';
 import { VacationsService } from 'src/vacations/vacations.service';

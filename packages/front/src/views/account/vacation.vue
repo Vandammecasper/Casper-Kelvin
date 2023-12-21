@@ -26,11 +26,11 @@
                     <div class="flex gap-2">
                         <div>
                             <label for="start-picker Raleway-bold">{{ $t('account.vacation.startDate') }}</label>
-                            <input id="start-picker Raleway" type="text" placeholder="Select a date range" class="w-full h-10 bg-neutral-900 border-2 mr-2 p-1 border-white">
+                            <input id="start-picker" type="text" placeholder="Select a date range" class="w-full h-10 bg-neutral-900 border-2 mr-2 p-1 border-white">
                         </div>
                         <div>
                             <label for="end-picker Raleway-bold">{{ $t('account.vacation.endDate') }}</label>
-                            <input id="end-picker Raleway" type="text" placeholder="Select a date range" class="w-full h-10 bg-neutral-900 border-2 mr-2 p-1 border-white">
+                            <input id="end-picker" type="text" placeholder="Select a date range" class="w-full h-10 bg-neutral-900 border-2 mr-2 p-1 border-white">
                         </div>
                     </div>
                     <p v-if="error != ''" class="text-red-700 Raleway-bold">{{ error }}</p>
