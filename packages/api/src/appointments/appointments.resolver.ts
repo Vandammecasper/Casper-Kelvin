@@ -41,14 +41,14 @@ export class AppointmentsResolver {
     return this.appointmentsService.findByUid(user.uid, isOpen);
   }
   
-  @AllowedRoles(Role.ADMIN)
+  @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
   @UseGuards(FirebaseGuard, RolesGuard)
   @Query(() => [Appointment], { name: 'appointmentsByHairdresserUid' })
   findByHairdresserId(@FirebaseUser() user: UserRecord) {
     return this.appointmentsService.findByHairdresserUid(user.uid);
   }
 
-  @AllowedRoles(Role.ADMIN)
+  @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
   @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Appointment, { name: 'completeAppointment' })
   completeAppointment(@Args('id', { type: () => String }) id: string) {

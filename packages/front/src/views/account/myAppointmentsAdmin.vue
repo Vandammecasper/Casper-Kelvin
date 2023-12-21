@@ -221,7 +221,7 @@ const getWantedAppointments = () => {
         error = "No appointments found";
         console.log(error);
     };
-
+    console.log(getAppointmentsResult?.value?.appointmentsByHairdresserUid)
     visualAppointments.value = getAppointmentsResult?.value.appointmentsByHairdresserUid
         .map((appointment: any) => {
 
@@ -273,13 +273,13 @@ const finishAppointment = () => {
 }
 
 //TODO: get the hairdresser id
-const {result: getAppointmentsResult, loading, onResult: onResultAppointment } = useQuery(GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID)
+const {result: getAppointmentsResult, loading, onResult } = useQuery(GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID)
 
 const { mutate: completeAppointment } = useMutation(COMPLETE_APPOINTMENT);
 
 
-onResultAppointment((appointment)=>{
-    if(appointment.loading === false){
+onResult((appointment)=>{
+    if(!appointment.loading){
         getWantedAppointments();
     }
 })
