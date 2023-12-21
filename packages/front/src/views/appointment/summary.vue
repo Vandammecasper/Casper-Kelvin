@@ -36,8 +36,7 @@
                 <h2 class="Raleway-bold text-3xl md:text-5xl max-sm:mt-4">{{ $t('appointment.summary.barber') }}</h2>
                 <div class="border-2 border-yellow-600 hover:border-yellow-600 max-md:mt-2">
                     <div class="h-24 relative grid content-center">
-                        <!-- lukt niet om variabele foto te gebruiken -->
-                        <img src="/barbers/Samuel.jpg" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
+                        <img :src="'/barbers/' + hairdressersResult?.hairdresser?.name + '.jpg'" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
                         <h3 class="text-2xl lg:text-3xl z-20 bg-black justify-self-end text-center w-32 lg:w-40 py-4 lg:py-5">{{ hairdressersResult?.hairdresser?.name }}</h3>
                     </div>
                 </div>
