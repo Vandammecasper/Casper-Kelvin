@@ -16,6 +16,7 @@ import { UsersModule } from './users/users.module';
 import { ExtrasModule } from './extras/extras.module';
 import { CommandModule } from 'nestjs-command';
 import { MongoMemoryServer } from 'mongodb-memory-server';
+import { NotificationsModule } from './notifications/notifications.module';
 
 require('dotenv').config();
 console.log(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
@@ -25,6 +26,10 @@ console.log(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.e
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
+      subscriptions: {
+        'graphql-ws': true,
+        'subscriptions-transport-ws': true,
+     },
     }),
     TypeOrmModule.forRootAsync({
       useFactory: async () => {
@@ -81,6 +86,8 @@ console.log(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.e
     UsersModule,
     
     ExtrasModule,
+    
+    NotificationsModule,
 
   ],
   controllers: [AppController],
