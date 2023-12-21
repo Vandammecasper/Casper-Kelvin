@@ -137,8 +137,7 @@ import { HelpCircleIcon } from 'lucide-vue-next'
 import Tooltip from '../../components/tooltip.vue';
 
 export default {
-  setup() { // <-- was script
-    // Composables
+  setup() { 
     const { register } = useFirebase()
     const { customUser } = useCustomUser()
     const isPublic = ref(false)
@@ -163,10 +162,9 @@ export default {
     } = useMutation<CustomUser>(ADD_USER)
 
     const handleRegister = () => {
+      console.log(newUser.value.name)
       register(newUser.value.name, newUser.value.email, newUser.value.password)
       .then(() => { 
-        // console.log('Registered!')
-        // router.push('/')
         addUser({
             createUserInput: {
               userName: newUser.value.name,
@@ -191,7 +189,6 @@ export default {
     const setLanguage = (event: Event) => {
       const target = event.target as HTMLSelectElement
       newUser.value.locale = target.value
-      // setLocale(target.value)
     }
 
     return {

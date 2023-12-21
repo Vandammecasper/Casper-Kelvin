@@ -1,7 +1,4 @@
-// tailwind.config.js
-
 module.exports = {
-  // Other Tailwind CSS configurations go here
 
   theme: {
     extend: {
@@ -10,6 +7,4 @@ module.exports = {
       },
     },
   },
-
-  // Add any other custom configurations or plugins here
 }

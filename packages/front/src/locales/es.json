@@ -66,7 +66,7 @@
               "navigation": "MIS CITAS",
               "hello": "HOLA, ",
               "cancel": "CANCELAR",
-              "edit": "EDITAR"
+              "noappointments": "Aún no tienes citas"
           },
           "myAppointmentsAdmin": {
               "openAppointments": "Citas abiertas",
@@ -144,7 +144,8 @@
               "planning": "PLANIFICACIÓN",
               "selectBarber": "SELECCIONAR UN BARBERO",
               "agenda": "AGENDA",
-              "next": "SIGUIENTE"
+              "next": "SIGUIENTE",
+              "pleaseselect": "Seleccione un peluquero y elija una fecha y hora."
           },
           "summary": {
               "summary": "RESUMEN",

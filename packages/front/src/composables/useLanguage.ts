@@ -1,9 +1,8 @@
-//TODO: add composable
 import { SUPPORTED_LOCALES } from "@/bootstrap/i18n"
 import { useI18n } from "vue-i18n"
 
 export default () => {
-    const { locale, t, setLocaleMessage } = useI18n()
+    const { locale, setLocaleMessage } = useI18n()
 
     const loadMessages = async (locale: string) => {
         if (locale in SUPPORTED_LOCALES) {

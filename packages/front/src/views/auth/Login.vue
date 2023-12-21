@@ -86,11 +86,9 @@ import router from '@/bootstrap/router'
 import useCustomUser from '@/composables/useCustomUser'
 export default {
   setup() {
-    // Composables
     const { login, firebaseUser } = useFirebase()
     const { restoreCustomUser }= useCustomUser()
 
-    // Logic
     const loginCredentials = ref({
       email: '',
       password: '',

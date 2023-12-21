@@ -148,11 +148,9 @@ const getUniqueUtilities = (utilities: any) => {
 const date = (givendate: any) => {
     const inputDate = new Date(givendate);
 
-    // Extracting date information
     const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const day = dayOfWeek[inputDate.getDay()];
     
-    // Extracting time information
     const hours = inputDate.getHours();
     const minutes = inputDate.getMinutes();
     const period = hours < 12 ? 'AM' : 'PM';
@@ -162,25 +160,18 @@ const date = (givendate: any) => {
 };
 
 
-
-/*
- * Flatpickr
-*/
- // Calculate the default start date (Monday of the current week)
  const currentDate = new Date();
 const currentDay = currentDate.getDay();
-const daysUntilMonday = currentDay === 0 ? 6 : currentDay - 1; // Sunday is 0, so we adjust to Monday being 1
+const daysUntilMonday = currentDay === 0 ? 6 : currentDay - 1;
 const defaultStartDate = new Date(currentDate);
 defaultStartDate.setDate(currentDate.getDate() - daysUntilMonday);
 
-// Calculate the default end date (Sunday of the current week)
 const defaultEndDate = new Date(defaultStartDate);
 defaultEndDate.setDate(defaultStartDate.getDate() + 6);
 
 const startDate = ref(new Date(defaultStartDate));
 const endDate = ref(new Date(defaultEndDate));
 
-//TODO: add validation to the date pickers
 onMounted(() => {
     const startPicker = flatpickr('#start-picker', {
         altInput: true,
@@ -207,14 +198,7 @@ onMounted(() => {
     });
 });
 
-/*
- * End Flatpickr
-*/
-
 const getWantedAppointments = () => {
-    // visualAppointments.value = [];
-
-    //TODO: error with errors
     error = "";
 
     if (getAppointmentsResult?.value?.appointmentsByHairdresserUid <= 0) {
@@ -245,7 +229,7 @@ const getWantedAppointments = () => {
                 isPointsUsed: appointment.isPointsUsed
             };
         })
-        .filter((appointment: any) => appointment !== null); // Remove the filtered null values
+        .filter((appointment: any) => appointment !== null);
         
     if(visualAppointments.value.length == 0){ 
         if (error == "")
@@ -272,7 +256,6 @@ const finishAppointment = () => {
     })
 }
 
-//TODO: get the hairdresser id
 const {result: getAppointmentsResult, loading, onResult } = useQuery(GET_ALL_APPOINTMENTS_BY_HAIRDRESSER_UID)
 
 const { mutate: completeAppointment } = useMutation(COMPLETE_APPOINTMENT);
@@ -285,4 +268,4 @@ onResult((appointment)=>{
 })
 
 
-</script>../../utils/formatDate.js
+</script>

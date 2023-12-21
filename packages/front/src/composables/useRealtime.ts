@@ -24,10 +24,8 @@ const on = (event: string, callback: (data: any) => void) => {
 
 export default () => {
   return {
-    // Socket instance
     socket,
 
-    // Generic functions
     emit,
     on,
   }

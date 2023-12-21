@@ -24,7 +24,7 @@ import {
   
   const apolloClient = new ApolloClient({
     link: authLink.concat(httpLink),
-    cache: new InMemoryCache(), // <- this is where the cache is created
+    cache: new InMemoryCache(),
   })
   
   export default () => {

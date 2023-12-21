@@ -58,7 +58,6 @@ export default {
     components: { X },
 
     setup() {
-        // Composables
         const { resetPassword } = useFirebase()
         const email = ref<string>('')
         const error = ref<AuthError | null>(null)
@@ -66,7 +65,6 @@ export default {
 
         const handleResetPassword = () => {
             resetPassword(email.value).then(() => {
-                // TODO: show notification
                 sendEmail.value = true
             }).then(() => {
                 router.push('/auth/login')

@@ -42,7 +42,6 @@ export default {
 
         onResult((result) => {
             if (!result.loading) {
-                // console.log(result)
                 data.value = getServicesResult
                 countRevenueByService()
             }
@@ -67,29 +66,21 @@ export default {
                     if (counter.value == 6) {
                         counter.value = 0
                     }
-                    // console.log(serviceName)
-                    // console.log(serviceId)
                     //@ts-ignore
                     for (let i = 0; i < props.componentData.value.appointments?.length; i++) {
-                        // console.log(props.componentData.value.appointments[i].services)
-                        // console.log(serviceId)
                         let serviceIdList = []
                         //@ts-ignore
                         for(let j = 0; j < props.componentData.value.appointments[i].services.length; j++){
                             //@ts-ignore
                             serviceIdList.push(props.componentData.value.appointments[i].services[j].id)
                         }
-                        // console.log(serviceIdList)
                         if(serviceIdList.includes(serviceId)){
-                            // console.log('service found')
                             serviceRevenue += servicePrice
                         }
                     }
                     revenueList.value.push(serviceRevenue)
                     serviceNameList.value.push(serviceName)
                 }
-                // console.log(revenueList.value)
-                // console.log(serviceNameList.value)
                 chartData.value = {
                     labels: serviceNameList.value,
                     datasets: [

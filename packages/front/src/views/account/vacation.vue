@@ -91,8 +91,6 @@ const dayOff = ref(1) as Ref<number>;
 const error = ref('');
 
 onMounted(() => {
-
-    //TODO: date doesnt get saved
     const startPicker = flatpickr('#start-picker', {
         altInput: true,
         altFormat: 'F j, Y',
@@ -152,10 +150,8 @@ const handleHolidays = () => {
     let startDateObj = new Date(startDate.value);
     let endDateObj = new Date(endDate.value);
 
-    // Calculate the duration in milliseconds
     let durationInMilliseconds = endDateObj.getTime() - startDateObj.getTime();
 
-    // Convert milliseconds to days
     let durationInDays = durationInMilliseconds / (1000 * 60 * 60 * 24);
 
     if (durationInDays > getHairdresserResult.value.hairdresserByUid.vacationDays) {
@@ -179,9 +175,7 @@ const handleHolidays = () => {
 }
 
 const handleDayOff = () => {
-    //TODO: get user value
-    //TODO: the days get updated at all the hairdressers, this can only be the one of the id
-    const daysOff =  []//[dayOff.value];
+    const daysOff =  []
     const selectedDayOff = +dayOff.value;
     daysOff.push( selectedDayOff);
 

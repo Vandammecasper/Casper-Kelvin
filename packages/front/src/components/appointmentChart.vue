@@ -70,7 +70,7 @@ export default {
 
                         if (appointmentDate > firstDayOfMonth && appointmentDate < lastDayOfMonth) {
                             monthAppointments[monthIndex]++;
-                            break; // Break out of the loop once the month is found
+                            break;
                         }
                     }
                 }

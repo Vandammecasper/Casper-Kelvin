@@ -98,17 +98,6 @@
             }
         },
         methods: {
-            // usePoints() {
-            //     if (this.usingPoints == false) {
-            //         this.usingPoints = true
-            //         console.log(this.usingPoints)
-            //     }
-            //     else {
-            //         this.usingPoints = false
-            //         console.log(this.usingPoints)
-            //     }
-            //     return this.usingPoints
-            // },
             checkAvailablePoints() {
                 if (this.getPointByUidResult?.pointByUid.usablePoints >= 5) {
                     return true
@@ -129,17 +118,8 @@
                 //@ts-ignore
                 const inputDate = new Date(this.$route.params.date);
 
-                // Extracting date information
-                // const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-                // const day = dayOfWeek[inputDate.getDay()];
-                // this.datum = `${day} ${inputDate.getDate()}/${inputDate.getMonth() + 1}/${inputDate.getFullYear()}`;
                 this.datum = formatDateFunction(inputDate, 'dddd DD/MM/yyyy');
 
-                // Extracting time information
-                // const hours = inputDate.getHours();
-                // const minutes = inputDate.getMinutes();
-                // const period = hours < 12 ? 'AM' : 'PM';
-                // this.uur = `${hours % 12 || 12}.${minutes < 10 ? '0' : ''}${minutes} ${period}`;
                 this.uur = formatDateFunction(inputDate, 'HH:mm');
 
                 console.log("Route Date:", this.$route.params.date)
@@ -187,13 +167,10 @@
             const barberid = currentRoute.value.params.barber
             const serviceid = (currentRoute.value.params.service as string).split(',').map((services:string) => decodeURIComponent(services));
             const extraId = currentRoute.value.params.extra
-            // const serviceid = currentRoute.value.params.service
             const isPointsUsed = ref(false)
             const usePoints = () => {
                 isPointsUsed.value = !isPointsUsed.value
             }
-            
-            //!!needs to be checked!!
             const checkPoints = () => {
                 if(getPointByUidResult.value?.pointByUid.usablePoints >= 5){
                     return true
@@ -239,8 +216,6 @@
                 id: extraId
             })
 
-            // er stond geen $ bij > CreateAppointmentInput: $CreateAppointmentInput < hierdoor de error 
-            // serviceid was een string en moest een array zijn
             const {
                 mutate: CreateAppointment,
                 loading: createAppointmentLoading,
@@ -258,7 +233,7 @@
                         hairdresserId: barberid,
                         servicesId: serviceid,
                         extraId: extraId,
-                        isPointsUsed: isPointsUsed.value, //TODO: needs to change to user input
+                        isPointsUsed: isPointsUsed.value,
                     },
                 }).then(result => {
                     if (!result?.data) throw new Error('Appointment creation failed.')

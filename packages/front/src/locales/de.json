@@ -66,7 +66,7 @@
               "navigation": "MEINE TERMINE",
               "hello": "HALLO, ",
               "cancel": "STORNIEREN",
-              "edit": "BEARBEITEN"
+              "noappointments": "Sie haben noch keine Termine"
           },
           "myAppointmentsAdmin": {
               "openAppointments": "Offene Termine",
@@ -144,7 +144,8 @@
               "planning": "PLANUNG",
               "selectBarber": "FRISÖR AUSWÄHLEN",
               "agenda": "AGENDA",
-              "next": "NÄCHSTE"
+              "next": "NÄCHSTE",
+              "pleaseselect": "Bitte wählen Sie einen Friseur und ein Datum und eine Uhrzeit aus"
           },
           "summary": {
               "summary": "ZUSAMMENFASSUNG",

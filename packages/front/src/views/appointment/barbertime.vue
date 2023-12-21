@@ -9,7 +9,7 @@
                     @click="toggleSelection(hairdresser.id)"
                     :class="{
                         'border-2 border-yellow-600 hover:border-yellow-600': isSelected(hairdresser.id),
-                        'p-1 border-2 border-transparent hover:border-neutral-600': true // Add other classes as needed
+                        'p-1 border-2 border-transparent hover:border-neutral-600': true
                     }">
                         <div class="h-24 relative grid content-center">
                             <img :src="'/barbers/'+hairdresser.name+'.jpg'" alt="" class="h-23 w-full object-cover absolute" style="object-position: center 40%;">
@@ -23,7 +23,7 @@
                 <DatePicker @input="checkContinue()" class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" :disabled-dates="disabledDates" :time-accuracy="1" :locale="locale" :rules="rules"/>
             </div>
         </div>
-        <p v-if="error" class="text-red-600 mt-2">Please select a barber and pick a date and time</p>
+        <p v-if="error" class="text-red-600 mt-2">{{ $t('appointment.barbertime.pleaseselect') }}</p>
         <RouterLink v-if="cont" :to="{ name: 'summary', params: { service: selectedServices.join(','),extra: selectedExtra, barber: selectedBarber, date: selectedDate } }">
             <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">{{ $t('appointment.barbertime.next') }}</button>
         </RouterLink>
@@ -67,9 +67,7 @@ export default {
         return {
             rules: ref({
                 hours: (hour: number, { weekday }: any) => {
-                    // 8AM - 12PM on the weekends
                     if ([1, 7].includes(weekday)) return hour >= 9 && hour < 14;
-                    // Any hour otherwise
                     return hour >= 9 && hour < 18;
                 },
             }),
@@ -91,10 +89,7 @@ export default {
         },
         toggleSelection(barberId: string) {
             if (this.isSelected(barberId)) {
-                // barber is already selected, so remove it
                 this.selectedBarber = '';
-
-                // remove vacations from disabledDates
                 this.disabledDates = [
                     {
                         repeat:{
@@ -105,10 +100,8 @@ export default {
 
                 this.checkContinue();
             } else {
-                // Barber is not selected, so add it
                 this.selectedBarber = barberId;
                 
-                //TODO: get vacations from barber and add them to disabledDates
                 console.log(this.vacationsResult)
 
                 const daysOffSelectedBarber = this.hairdressersResult?.hairdressers.find((hairdresser: { id: string; }) => hairdresser.id == barberId)?.daysOff.map((day: number) => day + 1);
@@ -119,8 +112,6 @@ export default {
                         }
                     }
                 ]
-
-                // add vacations from specific hairdresser to disabledDates
                 for (let i = 0; i < this.vacationsResult?.vacations.length; i++) {
                     if(this.vacationsResult?.vacations[i].hairdresser.id == barberId && this.vacationsResult?.vacations[i].isApproved == true){
                         this.disabledDates.push({
@@ -130,12 +121,6 @@ export default {
                         })
                     }
                 }
-
-                // this.disabledDates.push({
-                //     start: new Date(2023, 11, 6),
-                //     end: new Date(2023, 11, 10),
-                // })
-                // console.log(this.daysOffSelectedBarber);
                 this.checkContinue();
             }
         },
@@ -166,7 +151,6 @@ export default {
 
         console.log(getVacationsResult);
 
-        //get active barber from data 
         const disabledDates = ref([
             {
                 repeat:{

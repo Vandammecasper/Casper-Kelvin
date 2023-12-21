@@ -18,9 +18,6 @@ const { restoreUser, firebaseUser } = useFirebase()
 const { restoreCustomUser} = useCustomUser()
 
 app.use(setupCalendar, {})
-// app.use(router)
-
-// app.mount('#app')
 app.use(i18n)
 ;(async () => {
     await restoreUser()
