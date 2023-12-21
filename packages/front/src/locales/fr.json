@@ -66,7 +66,7 @@
               "navigation": "MES RENDEZ-VOUS",
               "hello": "BONJOUR,",
               "cancel": "ANNULER",
-              "edit": "MODIFIER"
+              "noappointments": "Vous n'avez pas encore de rendez-vous"
           },
           "myAppointmentsAdmin": {
               "openAppointments": "Rendez-vous ouverts",
@@ -144,7 +144,8 @@
               "planning": "PLANIFICATION",
               "selectBarber": "SÉLECTIONNER UN BARBIER",
               "agenda": "AGENDA",
-              "next": "SUIVANT"
+              "next": "SUIVANT",
+              "pleaseselect": "Veuillez sélectionner un coiffeur et choisir une date et une heure"
           },
           "summary": {
               "summary": "RÉSUMÉ",

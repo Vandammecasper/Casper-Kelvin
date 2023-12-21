@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div v-if="getAllAppointmentsByUid?.appointmentsByUid.length == 0" class="flex justify-center mt-48 mb-64 w-full">
-                    <h1 class="text-2xl sm:text-xl lg:text-2xl justify-self-center text-center">You don't have any appointments yet</h1>
+                    <h1 class="text-2xl sm:text-xl lg:text-2xl justify-self-center text-center">{{ $t('account.myAppointments.noappointments') }}</h1>
                 </div>
             </div>
         </div>

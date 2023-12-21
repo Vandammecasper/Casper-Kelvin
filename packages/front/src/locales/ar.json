@@ -66,7 +66,7 @@
               "navigation": "مواعيدي",
               "hello": "مرحبًا،",
               "cancel": "إلغاء",
-              "edit": "تعديل"
+              "noappointments": "ليس لديك أي مواعيد بعد"
           },
           "myAppointmentsAdmin": {
               "openAppointments": "مواعيد متاحة",
@@ -144,7 +144,8 @@
               "planning": "التخطيط",
               "selectBarber": "اختر حلاق",
               "agenda": "جدول",
-              "next": "التالي"
+              "next": "التالي",
+              "pleaseselect": "الرجاء اختيار الحلاق واختيار التاريخ والوقت"
           },
           "summary": {
               "summary": "الملخص",

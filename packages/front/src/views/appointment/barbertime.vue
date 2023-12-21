@@ -23,7 +23,7 @@
                 <DatePicker @input="checkContinue()" class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" :disabled-dates="disabledDates" :time-accuracy="1" :locale="locale" :rules="rules"/>
             </div>
         </div>
-        <p v-if="error" class="text-red-600 mt-2">Please select a barber and pick a date and time</p>
+        <p v-if="error" class="text-red-600 mt-2">{{ $t('appointment.barbertime.pleaseselect') }}</p>
         <RouterLink v-if="cont" :to="{ name: 'summary', params: { service: selectedServices.join(','),extra: selectedExtra, barber: selectedBarber, date: selectedDate } }">
             <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">{{ $t('appointment.barbertime.next') }}</button>
         </RouterLink>

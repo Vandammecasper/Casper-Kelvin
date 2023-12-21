@@ -163,6 +163,7 @@ export default {
     } = useMutation<CustomUser>(ADD_USER)
 
     const handleRegister = () => {
+      console.log(newUser.value.name)
       register(newUser.value.name, newUser.value.email, newUser.value.password)
       .then(() => { 
         // console.log('Registered!')
