@@ -1,0 +1,46 @@
+{
+  "name": "casper-kelvin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "todo",
+    "dev:emulate": "npx lerna run --scope={pwa,api} dev:emulate --stream"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vandammecasper/Casper-Kelvin.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Vandammecasper/Casper-Kelvin/issues"
+  },
+  "homepage": "https://github.com/Vandammecasper/Casper-Kelvin#readme",
+  "workspaces": [
+    "packages/*"
+  ],
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "proseWrap": "preserve",
+    "htmlWhitespaceSensitivity": "css",
+    "endOfLine": "lf"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10",
+    "firebase": "^10.4.0",
+    "mongodb-memory-server": "^9.1.3",
+    "vue-bootstrap-datetimepicker": "^5.0.1",
+    "vue-tailwind": "^2.5.1",
+    "vuejs-datepicker": "^1.6.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.5"
+  }
+}

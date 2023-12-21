@@ -1,0 +1,98 @@
+[
+    {
+      "uid": "cQCC4OIADbOsDfn47ihVhD1B7nT2",
+      "name": "Samuel",
+      "services": [
+        {
+          "name": "Simple Haircut",
+          "description": "We believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.",
+          "price": 19.99,
+          "duration": 15,
+          "utilities": [
+            "schaar",
+            "borstel",
+            "scheermes"
+          ]
+        },
+        {
+          "name": "Razor Shave",
+          "description": "Indulge in the luxury of a razor shave. Our expert barbers deliver precision and perfection, leaving your skin irresistibly smooth.",
+          "price": 24.95,
+          "duration": 15,
+          "utilities": [
+            "scheermes",
+            "scheerschuim"
+          ]
+        }
+      ],
+      "vacationDays": 35,
+      "daysOff": [
+        1
+      ]
+    },
+    {
+      "uid": "DcrXhY203jaSdAHiXxLuZWCqloJ3",
+      "name": "Sofie",
+      "services": [
+        {
+          "name": "Beard Sculpt",
+          "description": "Experience the art of a clean shave. Our barbers provide a classic, smooth finish that never goes out of style.",
+          "price": 15.95,
+          "duration": 15,
+          "utilities": [
+            "scheermes",
+            "scheerschuim"
+          ]
+        },
+        {
+          "name": "Hair Colering",
+          "description": "Revitalize your look with our expert hair coloring services. From subtle enhancements to bold transformations, we bring your desired shades to life.",
+          "price": 35.99,
+          "duration": 30,
+          "utilities": [
+            "Wide-tooth comb",
+            "Hair clips",
+            "Applicator brush",
+            "Hair color",
+            "Bowl",
+            "Gloves"
+          ]
+        },
+        {
+          "name": "Neck Clean-up",
+          "description": "Elevate your look with a crisp neck clean-up. Our attention to detail ensures your style is sharp and refined.",
+          "price": 17.95,
+          "duration": 10,
+          "utilities": [
+            "scheermes",
+            "scheermachine"
+          ]
+        }
+      ],
+      "vacationDays": 35,
+      "daysOff": [
+        2
+      ]
+    },
+    {
+      "uid": "Zd0t7ecAlZWTVGIcFx3xBI5r33x2",
+      "name": "Jef",
+      "services": [
+        {
+          "name": "Simple Haircut",
+          "description": "We believe in the power of a simple haircut done right. Experience the beauty of effortless style with us.",
+          "price": 19.99,
+          "duration": 15,
+          "utilities": [
+            "schaar",
+            "borstel",
+            "scheermes"
+          ]
+        }
+      ],
+      "vacationDays": 35,
+      "daysOff": [
+        3
+      ]
+    }
+  ]

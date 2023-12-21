@@ -1,0 +1,163 @@
+{
+  "de": {
+      "Key": "de",
+      "navigation": {
+          "makeAppointment": "Termin vereinbaren",
+          "aboutUs": "Über uns",
+          "ourService": "Unsere Dienstleistungen",
+          "crew": "Das Team",
+          "hallOfFame": "Ruhmeshalle",
+          "barberSettings": "BARBER-EINSTELLUNGEN",
+          "barberAnalytics": "BARBER-ANALYTIK"
+      },
+      "home": {
+          "about": {
+              "about": "ÜBER",
+              "title": "MEHR ALS NUR EIN FRISÖR",
+              "titleSM": "BESTE AUSRÜSTUNG",
+              "p": "Die richtige Ausrüstung zu investieren ist entscheidend für einen erfolgreichen Friseursalon. Unsere sorgfältig zusammengestellte Auswahl an erstklassigen Werkzeugen und Ausrüstungen garantiert das beste Pflegeerlebnis für unsere Kunden.",
+              "professionalBarbershop": "PROFESSIONELLER FRISÖRSALON",
+              "professionalBarbershop_p": "Unsere erfahrenen Friseure bieten makellose Schnitte, klassische Rasierungen und eine Prise Eleganz, damit Sie sich bestens fühlen und aussehen. Erleben Sie die Spitze der Pflegeexzellenz bei uns.",
+              "comfortablePlace": "EIN GEMÜTLICHER ORT",
+              "comfortablePlace_p": "Im Barber ist Ihr Komfort unsere Priorität. Genießen Sie eine ruhige Atmosphäre, während unsere erfahrenen Friseure ihre Magie wirken lassen. Lehnen Sie sich zurück, entspannen Sie sich und gehen Sie erfrischt wieder raus."
+          },
+          "services": {
+              "services": "DIENSTLEISTUNGEN",
+              "title": "BEKOMMEN SIE EINE TOLLE HAARSCHNITT BEI DEM BARBER",
+              "p": "Besuchen Sie uns im Barber für einen Haarschnitt, der Ihren Stil definiert. Unsere erfahrenen Friseure sorgen dafür, dass jeder Besuch Sie in bestem Licht zeigt."
+          },
+          "crew": {
+              "crew": "DAS TEAM",
+              "title": "LERNE UNSER FANTASTISCHES TEAM KENNEN",
+              "p": "Entdecken Sie das Talent hinter der Magie. Unser engagiertes Friseurteam steht bereit, Ihre Pflegevision in die Realität umzusetzen."
+          },
+          "hallOfFame": {
+              "hallOfFame": "RUHMESHALLE",
+              "title": "WERDEN SIE EINER UNSERER GEHRTEN KUNDEN",
+              "p": "Werden Sie Teil unserer ruhmreichen Kunden. Entdecken Sie den außergewöhnlichen Service und das Pflegefachwissen, das unsere Kunden immer wieder zurückbringt."
+          }
+      },
+      "footer": {
+          "information": "Information",
+          "openingHours": "Öffnungszeiten",
+          "monFri": "Mo - Fr",
+          "satSun": "Sa - So",
+          "holiday": "Feiertag",
+          "monFriTime": "9:00 - 17:00",
+          "satSunTime": "9:00 - 13:00",
+          "holidayTime": "9:00 - 12:00"
+      },
+      "account": {
+          "myAccount": {
+              "navigation": "MEIN KONTO",
+              "hello": "HALLO,",
+              "points": "Punkte",
+              "place": "Platz",
+              "name": "Name",
+              "emailAddress": "E-Mail-Adresse",
+              "password": "Passwort",
+              "confirmPassword": "Passwort bestätigen",
+              "language": "Sprache",
+              "publicShowOfPoints": "Öffentliche Anzeige von Punkten",
+              "logout": "AUSLOGGEN",
+              "save": "SPEICHERN"
+          },
+          "myAppointments": {
+              "navigation": "MEINE TERMINE",
+              "hello": "HALLO, ",
+              "cancel": "STORNIEREN",
+              "edit": "BEARBEITEN"
+          },
+          "myAppointmentsAdmin": {
+              "openAppointments": "Offene Termine",
+              "allAppointments": "Alle Termine",
+              "applyFilter": "Filter anwenden",
+              "services": "Dienstleistungen",
+              "date": "Datum",
+              "completed": "Abgeschlossen",
+              "customer": "Kunde",
+              "suppliesNeeded": "Benötigte Materialien",
+              "extras": "Zusätze",
+              "completeAppointment": "Termin abschließen",
+              "alreadyCompleted": "Bereits abgeschlossen",
+              "totalPrice": "Gesamtpreis",
+              "pointsUsed": "Verwendete Punkte"
+          },
+          "vacation": {
+              "navigation": "URLAUB",
+              "availableVacationDays": "Verfügbare Urlaubstage",
+              "dayOff": "Freier Tag",
+              "monday": "Montag",
+              "tuesday": "Dienstag",
+              "wednesday": "Mittwoch",
+              "thursday": "Donnerstag",
+              "friday": "Freitag",
+              "saturday": "Samstag",
+              "sunday": "Sonntag",
+              "save": "SPEICHERN",
+              "vacation": "Urlaub",
+              "startDate": "Startdatum",
+              "endDate": "Enddatum",
+              "request": "ANFRAGE",
+              "plannedVacations": "Geplante Urlaube",
+              "approved": "Genehmigt"
+          },
+          "dashboard": {
+              "barberRevenue": "Friseureinnahmen",
+              "serviceRevenue": "Dienstleistungseinnahmen",
+              "totalRevenue": "Gesamteinnahmen",
+              "totalCustomers": "Gesamtkunden",
+              "totalAppointments": "Gesamte Termine",
+              "barberSettings": "BARBER-EINSTELLUNGEN",
+              "barbers": "FRISÖRE",
+              "barber": "Friseur",
+              "holidays": "FEIERTAGE",
+              "accept": "AKZEPTIEREN",
+              "decline": "ABLEHNEN"
+          }
+      },
+      "auth": {
+          "login": "ANMELDEN",
+          "emailAddress": "E-Mail-Adresse",
+          "emailAddress_placeholder": "ihreme-mail@example.com",
+          "password": "Passwort",
+          "password_placeholder": "Ihr Passwort",
+          "forgotPassword": "Passwort vergessen?",
+          "dontHaveAccount": "Haben Sie kein Konto?",
+          "register": "REGISTRIEREN",
+          "name": "Name",
+          "name_placeholder": "Ihr Name",
+          "selectLanguage": "Sprache auswählen",
+          "alreadyHaveAccount": "Haben Sie bereits ein Konto?",
+          "resetPassword": "PASSWORT ZURÜCKSETZEN",
+          "rememberedPassword": "Passwort wiedererkannt?"
+      },
+      "appointment": {
+          "service": {
+              "services": "DIENSTLEISTUNGEN",
+              "continue": "WEITER",
+              "selectExtras": "ZUSÄTZE AUSWÄHLEN",
+              "infoSelectExtras": "Wählen Sie aus unserer Auswahl an Premium-Zusätzen, um Ihr Pflegeerlebnis auf die nächste Stufe zu heben.",
+              "next": "NÄCHSTE"
+          },
+          "barbertime": {
+              "planning": "PLANUNG",
+              "selectBarber": "FRISÖR AUSWÄHLEN",
+              "agenda": "AGENDA",
+              "next": "NÄCHSTE"
+          },
+          "summary": {
+              "summary": "ZUSAMMENFASSUNG",
+              "services": "DIENSTLEISTUNGEN",
+              "extras": "ZUSÄTZE",
+              "usePoints": "PUNKTE VERWENDEN",
+              "discount": "Verwenden Sie 5 Punkte, um 50% Rabatt zu erhalten",
+              "barber": "FRISÖR",
+              "calendar": "KALENDER",
+              "date": "DATUM",
+              "hour": "STUNDE",
+              "total": "GESAMT: €"
+          }
+      }
+  }
+}

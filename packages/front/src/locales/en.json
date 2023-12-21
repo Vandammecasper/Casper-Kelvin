@@ -1,0 +1,163 @@
+{
+    "en":{
+        "Key":"en",
+        "navigation":{
+            "makeAppointment":"Make An Appointment",
+            "aboutUs":"About Us",
+            "ourService":"Our Services",
+            "crew": "The Crew",
+            "hallOfFame": "Hall Of Fame",
+            "barberSettings": "BARBER SETTINGS",
+            "barberAnalytics": "BARBER ANALYTICS"
+        },
+        "home": {
+            "about": {
+                "about": "ABOUT",
+                "title": "MORE THAN JUST A BARBERSHOP",
+                "titleSM": "BEST EQUIPMENT",
+                "p": "Investing in the right equipment is essential for running a successful barbershop. Our carefully curated selection of top-notch tools and gear ensures that we can provide the best grooming experience for our clients.",
+                "professionalBarbershop": "PROFESSIONAL BARBERSHOP",
+                "professionalBarbershop_p": "Our expert barbers deliver impeccable cuts, classic shaves, and a touch of elegance, ensuring you leave looking and feeling your best. Experience the pinnacle of grooming excellence with us.",
+                "comfortablePlace": "A COMFORTABLE PLACE",
+                "comfortablePlace_p": "At The Barber, your comfort is our priority. Enjoy a tranquil atmosphere while our skilled barbers work their magic. Sit back, unwind, and leave feeling rejuvenated."       
+            },
+            "services": {
+                "services": "SERVICES",
+                "title": "GET A GREAT HAIRCUT AT THE BARBER",
+                "p": "Visit us at The Barber for a haircut that defines your style. Our skilled barbers ensure every visit leaves you looking your absolute best."        
+            },
+            "crew": {
+                "crew": "THE CREW",
+                "title": "MEET OUR AMAZING TEAM",
+                "p": "Discover the talent behind the magic. Our dedicated barber crew is here to turn your grooming vision into reality."        
+            },
+            "hallOfFame": {
+                "hallOfFame": "HALL OF FAME",
+                "title": "BECOME ONE OF OUR HONORED CUSTOMERS",
+                "p": "Join our ranks as an honored customer. Discover the exceptional service and grooming expertise that keeps our clients coming back."
+            }
+        },
+        "footer": {
+            "information": "Information",
+            "openingHours": "Opening Hours",
+            "monFri": "Mon - Fri",
+            "satSun": "Sat - Sun",
+            "holiday": "Holiday",
+            "monFriTime": "9:00 AM - 5:00 PM",
+            "satSunTime": "9:00 AM - 1:00 PM",
+            "holidayTime": "9:00 AM - 12:00 AM"
+        },
+        "account": {
+            "myAccount": {
+                "navigation": "MY ACCOUNT",
+                "hello": "HELLO,",
+                "points": "points",
+                "place": "place",
+                "name": "Name",
+                "emailAddress": "Email Address",
+                "password": "Password",
+                "confirmPassword": "Confirm Password",
+                "language": "Language",
+                "publicShowOfPoints": "Public Show Of Points",
+                "logout": "LOG OUT",
+                "save": "SAVE"
+            },
+            "myAppointments": {
+                "navigation": "MY APPOINTMENTS",
+                "hello": "HELLO, ",
+                "cancel": "CANCEL",
+                "edit": "EDIT"
+            },
+            "myAppointmentsAdmin": {
+                "openAppointments": "Open Appointments",
+                "allAppointments": "All Appointments",
+                "applyFilter": "Apply Filter",
+                "services": "Services",
+                "date": "Date",
+                "completed": "Completed",
+                "customer": "Customer",
+                "suppliesNeeded": "Supplies Needed",
+                "extras": "Extra's",
+                "completeAppointment": "Complete Appointment",
+                "alreadyCompleted": "Already Completed",
+                "totalPrice": "Total Price",
+                "pointsUsed": "Points Used"
+            },
+            "vacation": {
+                "navigation": "VACATION",
+                "availableVacationDays": "Available Vacation Days",
+                "dayOff": "Day Off",
+                "monday": "Monday",
+                "tuesday": "Tuesday",
+                "wednesday": "Wednesday",
+                "thursday": "Thursday",
+                "friday": "Friday",
+                "saturday": "Saturday",
+                "sunday": "Sunday",
+                "save": "SAVE",
+                "vacation": "Vacation",
+                "startDate": "Start Date",
+                "endDate": "End Date",
+                "request": "REQUEST",
+                "plannedVacations": "Planned Vacations",
+                "approved": "Approved"
+            },
+            "dashboard": {
+                "barberRevenue": "Barber Revenue",
+                "serviceRevenue": "Service Revenue",
+                "totalRevenue": "Total Revenue",
+                "totalCustomers": "Total Customers",
+                "totalAppointments": "Total Appointments",
+                "barberSettings": "BARBER SETTINGS",
+                "barbers": "BARBERS",
+                "barber": "Barber",
+                "holidays": "HOLIDAYS",
+                "accept": "ACCEPT",
+                "decline": "DECLINE"
+            }
+        },
+        "auth": {
+            "login": "LOGIN",
+            "emailAddress": "Email Address",
+            "emailAddress_placeholder": "youremail@example.com",
+            "password": "Password",
+            "password_placeholder": "Your Password",
+            "forgotPassword": "Forgot Password?",
+            "dontHaveAccount": "Don't have an account?",
+            "register": "REGISTER",
+            "name": "Name",
+            "name_placeholder": "Your Name",
+            "selectLanguage": "Select Language",
+            "alreadyHaveAccount": "Already have an account?",
+            "resetPassword": "RESET PASSWORD",
+            "rememberedPassword": "Remembered your password?"
+        },
+        "appointment": {
+            "service": {
+                "services": "SERVICES",
+                "continue": "CONTINUE",
+                "selectExtras": "SELECT EXTRA'S",
+                "infoSelectExtras": "Choose from our selection of premium extras to take your grooming experience to the next level.",
+                "next": "NEXT"
+            },
+            "barbertime": {
+                "planning": "PLANNING",
+                "selectBarber": "SELECT A BARBER",
+                "agenda": "AGENDA",
+                "next": "NEXT"
+            },
+            "summary": {
+                "summary": "SUMMARY",
+                "services": "SERVICES",
+                "extras": "EXTRA'S",
+                "usePoints": "USE POINTS",
+                "discount": "Use 5 points to get a 50% discount",
+                "barber": "BARBER",
+                "calendar": "CALENDAR",
+                "date": "DATE",
+                "hour": "HOUR",
+                "total": "TOTAL: €"
+            }
+        }
+    }
+}
