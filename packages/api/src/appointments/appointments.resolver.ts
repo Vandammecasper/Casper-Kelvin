@@ -16,13 +16,17 @@ import { Extra } from 'src/extras/entities/extra.entity';
 import { RolesGuard } from 'src/users/guards/roles.guard';
 import { AllowedRoles } from 'src/users/decorators/role.decorator';
 import { Role } from 'src/users/entities/user.entity';
+import { NotificationsGateway } from 'src/notifications/notifications.gateway';
 
 @Resolver(() => Appointment)
 export class AppointmentsResolver {
-  constructor(private readonly appointmentsService: AppointmentsService,
+  constructor(
+    private readonly appointmentsService: AppointmentsService,
     private readonly servicesService: ServicesService,
     private readonly hairdressersService: HairdressersService,
-    private readonly extrasService: ExtrasService) {}
+    private readonly extrasService: ExtrasService,
+    private readonly gateway: NotificationsGateway,
+  ) {}
 
   
   @AllowedRoles(Role.SUPER_ADMIN)
@@ -63,12 +67,16 @@ export class AppointmentsResolver {
   
   @UseGuards(FirebaseGuard)
   @Mutation(() => Appointment)
-  createAppointment(
+  async createAppointment(
     @Args('CreateAppointmentInput') CreateAppointmentInput: CreateAppointmentInput,
     @FirebaseUser() user: UserRecord
   ): Promise<Appointment> {
     console.log(user.uid);
-    return this.appointmentsService.create(user.uid, user.displayName, CreateAppointmentInput);
+    const createdAppointment = await this.appointmentsService.create(user.uid, user.displayName, CreateAppointmentInput);
+
+    this.gateway.sendNewAppointment('room', createdAppointment);
+    
+    return createdAppointment;
   }
 
   @Mutation(() => Appointment)

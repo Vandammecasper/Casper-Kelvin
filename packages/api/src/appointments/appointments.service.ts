@@ -80,7 +80,7 @@ export class AppointmentsService {
 
       // if the UID is found and isComplete is false, throw an error
       const testAppointment = await this.appointmentRepository.find({where: {uid: uid}})
-      console.log(testAppointment);
+      
       if(testAppointment)
       {
         testAppointment.forEach(appointment => {
