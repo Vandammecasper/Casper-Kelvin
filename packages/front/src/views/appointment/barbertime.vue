@@ -140,6 +140,7 @@ export default {
             }
         },
         checkContinue() {
+            console.log('checking to continue...')
             if (this.selectedBarber != '' && this.selectedDate != '') {
                 this.cont = true;
                 this.error = false;
