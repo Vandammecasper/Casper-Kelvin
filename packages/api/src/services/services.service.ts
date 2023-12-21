@@ -55,6 +55,7 @@ export class ServicesService {
   }
 
   // functions for seeding
+  
   saveAll(services: Service[]): Promise<Service[]> {
     return this.serviceRepository.save(services);
   }

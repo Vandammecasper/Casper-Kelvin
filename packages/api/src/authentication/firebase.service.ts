@@ -4,7 +4,7 @@ import { Auth } from 'firebase-admin/lib/auth/auth'
 import { getAuth } from 'firebase-admin/auth'
 
 
-//testing
+// testing
 @Injectable()
 export class FirebaseService {
   private firebaseApp: App

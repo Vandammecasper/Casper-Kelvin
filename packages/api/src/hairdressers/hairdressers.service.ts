@@ -58,7 +58,6 @@ export class HairdressersService {
   }
 
   changeDaysOff(id: string, daysOff: number[]) {
-    console.log(daysOff);
     //@ts-ignore
     return this.hairdresserRepository.update({ id: new ObjectId(id) }, { daysOff: daysOff });
   }
@@ -69,7 +68,6 @@ export class HairdressersService {
       throw new Error('Hairdresser not found');
     }
     const newVacationDays = hairdresser.vacationDays - days;
-    console.log(newVacationDays);
     //@ts-ignore
     return this.hairdresserRepository.update({ id: new ObjectId(id) }, { vacationDays: newVacationDays });
   }
@@ -79,7 +77,6 @@ export class HairdressersService {
   }
 
   remove(id: string) {
-    //TODO: set user rights to user 
     //@ts-ignore
     return this.hairdresserRepository.delete({ _id: new ObjectId(id) });
   }

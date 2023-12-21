@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAppointmentInput } from './dto/create-appointment.input';
 import { UpdateAppointmentInput } from './dto/update-appointment.input';
-import { Between, Repository, MongoRepository } from 'typeorm';
+import { MongoRepository } from 'typeorm';
 import { Appointment } from './entities/appointment.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { HairdressersService } from 'src/hairdressers/hairdressers.service';
 import { ServicesService } from 'src/services/services.service';
 import { ObjectId } from 'mongodb';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { PointsService } from 'src/points/points.service';
 import { ExtrasService } from 'src/extras/extras.service';
 import { VacationsService } from 'src/vacations/vacations.service';
@@ -38,15 +38,14 @@ export class AppointmentsService {
 
   async findByHairdresserUid(uid: string) {
     let hairdresserId;
-   await this.hairdresserService.findOneByUid(uid).then((hairdresser) => {
+    await this.hairdresserService.findOneByUid(uid).then((hairdresser) => {
       if (!hairdresser) {
         throw new Error('Hairdresser not found');
       }
-      console.log(hairdresser.id);
       hairdresserId = hairdresser.id;
     });
-    const test = this.appointmentRepository.find({where: {hairdresserId: new ObjectId(hairdresserId)}, order: {date: 'ASC'}});
-    return test
+    const appointments = this.appointmentRepository.find({where: {hairdresserId: new ObjectId(hairdresserId)}, order: {date: 'ASC'}});
+    return appointments
   }
 
   async completeAppointment(id: string) {
@@ -55,7 +54,6 @@ export class AppointmentsService {
     if (updateResult.matchedCount > 0) {
       // @ts-ignore
       const updatedAppointment = await this.appointmentRepository.findOne({ _id: new ObjectId(id) });
-      console.log(updatedAppointment.addedPoints);
       await this.pointsService.addPoints(updatedAppointment?.uid, updatedAppointment?.addedPoints);
       return updatedAppointment;
     }
@@ -150,7 +148,7 @@ export class AppointmentsService {
         }
       });
 
-      //subtract points if isPointsUsed is true
+      // subtract points if isPointsUsed is true
       if(CreateAppointmentInput.isPointsUsed){
         const points = await this.pointsService.subtractPoints(uid, 5);
         totalPrice /= 2;
@@ -175,23 +173,6 @@ export class AppointmentsService {
       console.log(error);
     }
   }
-
-  // if isCompleted is true, then update the points of the user
-  // async updateIsCompleted(id: string): Promise<Appointment> {
-  //   // @ts-ignore
-  //   const appointment = await this.appointmentRepository.findOne({ _id: new ObjectId(id) });
-  //   if (!appointment) {
-  //     throw new Error(`Appointment with id ${id} not found`);
-  //   }
-  //   if (appointment.isCompleted) {
-  //     throw new Error(`Appointment with id ${id} is already completed`);
-  //   }
-  //   appointment.isCompleted = true;
-
-  //   // TODO: update the points of the user
-
-  //   return this.appointmentRepository.save(appointment);
-  // }
 
   update(id: number, updateAppointmentInput: UpdateAppointmentInput) {
     return `This action updates a #${id} appointment`;

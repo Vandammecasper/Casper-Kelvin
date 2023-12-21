@@ -7,7 +7,6 @@ import { UseGuards } from '@nestjs/common';
 import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
 import { Role } from 'src/users/entities/user.entity';
 import { RolesGuard } from 'src/users/guards/roles.guard';
-import { Allow } from 'class-validator';
 import { AllowedRoles } from 'src/users/decorators/role.decorator';
 
 @Resolver(() => Service)

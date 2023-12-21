@@ -2,14 +2,10 @@ import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { PointsService } from './points.service';
 import { Point } from './entities/point.entity';
 import { CreatePointInput } from './dto/create-point.input';
-import { UpdatePointInput } from './dto/update-point.input';
 import { UseGuards } from '@nestjs/common';
 import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
 import { FirebaseUser } from 'src/authentication/user.decorator';
 import { UserRecord } from 'firebase-admin/auth';
-import { RolesGuard } from 'src/users/guards/roles.guard';
-import { AllowedRoles } from 'src/users/decorators/role.decorator';
-import { Role } from 'src/users/entities/user.entity';
 
 @Resolver(() => Point)
 export class PointsResolver {
@@ -51,11 +47,6 @@ export class PointsResolver {
   ): Promise<Point> {
     return this.pointsService.create(user.uid, user.displayName, createPointInput);
   }
-
-  // @Mutation(() => Point)
-  // updatePoint(@Args('updatePointInput') updatePointInput: UpdatePointInput) {
-  //   return this.pointsService.update(updatePointInput.id, updatePointInput);
-  // }
 
   @Mutation(() => Point)
   removePoint(@Args('id', { type: () => Int }) id: number) {
