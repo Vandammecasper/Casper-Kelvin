@@ -1,90 +1,163 @@
 {
   "es": {
-    "Key": "es",
-    "navigation": {
-      "makeAppointment": "Hacer una Cita",
-      "aboutUs": "Sobre Nosotros",
-      "ourService": "Nuestros Servicios",
-      "crew": "El Equipo",
-      "hallOfFame": "Salón de la Fama"
-    },
-    "home": {
-      "about": {
-        "about": "ACERCA DE",
-        "title": "MÁS QUE UNA SIMPLE PELUQUERÍA",
-        "titleSM": "MEJOR EQUIPO",
-        "p": "Invertir en el equipo adecuado es esencial para dirigir una peluquería exitosa. Nuestra selección cuidadosamente curada de herramientas y equipo de primera calidad garantiza que podemos ofrecer la mejor experiencia de cuidado personal para nuestros clientes.",
-        "professionalBarbershop": "PELUQUERÍA PROFESIONAL",
-        "professionalBarbershop_p": "Nuestros expertos barberos ofrecen cortes impecables, afeitados clásicos y un toque de elegancia, asegurando que te vayas luciendo y sintiéndote en tu mejor estado. Experimenta la cima de la excelencia en cuidado personal con nosotros.",
-        "comfortablePlace": "UN LUGAR CÓMODO",
-        "comfortablePlace_p": "En The Barber, tu comodidad es nuestra prioridad. Disfruta de una atmósfera tranquila mientras nuestros hábiles barberos hacen su magia. Siéntate, relájate y sal con una sensación de rejuvenecimiento."
+      "Key": "es",
+      "navigation": {
+          "makeAppointment": "Hacer una cita",
+          "aboutUs": "Sobre nosotros",
+          "ourService": "Nuestros servicios",
+          "crew": "El equipo",
+          "hallOfFame": "Salón de la fama",
+          "barberSettings": "CONFIGURACIÓN DE BARBERO",
+          "barberAnalytics": "ANÁLISIS DE BARBERO"
       },
-      "services": {
-        "services": "SERVICIOS",
-        "title": "OBTÉN UN CORTE DE PELO EXCEPCIONAL EN EL BARBERO",
-        "p": "Visítanos en The Barber para un corte de pelo que define tu estilo. Nuestros hábiles barberos aseguran que cada visita te deje luciendo en tu mejor forma absoluta."
+      "home": {
+          "about": {
+              "about": "ACERCA DE",
+              "title": "MÁS QUE SOLO UNA BARBERÍA",
+              "titleSM": "MEJOR EQUIPO",
+              "p": "Invertir en el equipo adecuado es esencial para dirigir una barbería exitosa. Nuestra selección cuidadosamente seleccionada de herramientas y equipos de primera calidad garantiza que podamos proporcionar la mejor experiencia de aseo para nuestros clientes.",
+              "professionalBarbershop": "BARBERÍA PROFESIONAL",
+              "professionalBarbershop_p": "Nuestros barberos expertos ofrecen cortes impecables, afeitados clásicos y un toque de elegancia, asegurando que te vayas luciendo y sintiéndote lo mejor posible. Experimenta el pináculo de la excelencia en el aseo con nosotros.",
+              "comfortablePlace": "UN LUGAR CÓMODO",
+              "comfortablePlace_p": "En The Barber, tu comodidad es nuestra prioridad. Disfruta de una atmósfera tranquila mientras nuestros hábiles barberos hacen su magia. Siéntate, relájate y sal sintiéndote rejuvenecido."
+          },
+          "services": {
+              "services": "SERVICIOS",
+              "title": "OBTÉN UN GRAN CORTE DE CABELLO EN LA BARBERÍA",
+              "p": "Visítanos en The Barber para un corte de cabello que defina tu estilo. Nuestros hábiles barberos garantizan que cada visita te deje luciendo lo mejor posible."
+          },
+          "crew": {
+              "crew": "EL EQUIPO",
+              "title": "CONOCE A NUESTRO INCREÍBLE EQUIPO",
+              "p": "Descubre el talento detrás de la magia. Nuestro dedicado equipo de barberos está aquí para convertir tu visión de aseo en realidad."
+          },
+          "hallOfFame": {
+              "hallOfFame": "SALÓN DE LA FAMA",
+              "title": "CONVIERTE EN UNO DE NUESTROS CLIENTES HONORADOS",
+              "p": "Únete a nuestras filas como un cliente honorado. Descubre el servicio excepcional y la experiencia en aseo que hace que nuestros clientes regresen una y otra vez."
+          }
       },
-      "crew": {
-        "crew": "EL EQUIPO",
-        "title": "CONOCE A NUESTRO ASOMBROSO EQUIPO",
-        "p": "Descubre el talento detrás de la magia. Nuestro dedicado equipo de barberos está aquí para convertir tu visión de cuidado personal en realidad."
+      "footer": {
+          "information": "Información",
+          "openingHours": "Horario de apertura",
+          "monFri": "Lun - Vie",
+          "satSun": "Sáb - Dom",
+          "holiday": "Festivo",
+          "monFriTime": "9:00 AM - 5:00 PM",
+          "satSunTime": "9:00 AM - 1:00 PM",
+          "holidayTime": "9:00 AM - 12:00 AM"
       },
-      "hallOfFame": {
-        "hallOfFame": "SALÓN DE LA FAMA",
-        "title": "CONVIERTE EN UNO DE NUESTROS CLIENTES HONORADOS",
-        "p": "Únete a nuestras filas como un cliente honorado. Descubre el excepcional servicio y la experiencia en cuidado personal que hace que nuestros clientes vuelvan una y otra vez."
+      "account": {
+          "myAccount": {
+              "navigation": "MI CUENTA",
+              "hello": "HOLA,",
+              "points": "puntos",
+              "place": "lugar",
+              "name": "Nombre",
+              "emailAddress": "Dirección de correo electrónico",
+              "password": "Contraseña",
+              "confirmPassword": "Confirmar contraseña",
+              "language": "Idioma",
+              "publicShowOfPoints": "Mostrar puntos públicamente",
+              "logout": "CERRAR SESIÓN",
+              "save": "GUARDAR"
+          },
+          "myAppointments": {
+              "navigation": "MIS CITAS",
+              "hello": "HOLA, ",
+              "cancel": "CANCELAR",
+              "edit": "EDITAR"
+          },
+          "myAppointmentsAdmin": {
+              "openAppointments": "Citas abiertas",
+              "allAppointments": "Todas las citas",
+              "applyFilter": "Aplicar filtro",
+              "services": "Servicios",
+              "date": "Fecha",
+              "completed": "Completado",
+              "customer": "Cliente",
+              "suppliesNeeded": "Suministros necesarios",
+              "extras": "Extras",
+              "completeAppointment": "Completar cita",
+              "alreadyCompleted": "Ya completado",
+              "totalPrice": "Precio total",
+              "pointsUsed": "Puntos utilizados"
+          },
+          "vacation": {
+              "navigation": "VACACIONES",
+              "availableVacationDays": "Días de vacaciones disponibles",
+              "dayOff": "Día libre",
+              "monday": "Lunes",
+              "tuesday": "Martes",
+              "wednesday": "Miércoles",
+              "thursday": "Jueves",
+              "friday": "Viernes",
+              "saturday": "Sábado",
+              "sunday": "Domingo",
+              "save": "GUARDAR",
+              "vacation": "Vacaciones",
+              "startDate": "Fecha de inicio",
+              "endDate": "Fecha de fin",
+              "request": "SOLICITUD",
+              "plannedVacations": "Vacaciones planificadas",
+              "approved": "Aprobado"
+          },
+          "dashboard": {
+              "barberRevenue": "Ingresos del barbero",
+              "serviceRevenue": "Ingresos del servicio",
+              "totalRevenue": "Ingresos totales",
+              "totalCustomers": "Clientes totales",
+              "totalAppointments": "Citas totales",
+              "barberSettings": "CONFIGURACIÓN DE BARBERO",
+              "barbers": "BARBEROS",
+              "barber": "Barbero",
+              "holidays": "VACACIONES",
+              "accept": "ACEPTAR",
+              "decline": "DECLINAR"
+          }
+      },
+      "auth": {
+          "login": "INICIAR SESIÓN",
+          "emailAddress": "Dirección de correo electrónico",
+          "emailAddress_placeholder": "tucorreo@example.com",
+          "password": "Contraseña",
+          "password_placeholder": "Tu Contraseña",
+          "forgotPassword": "¿Olvidaste tu contraseña?",
+          "dontHaveAccount": "¿No tienes una cuenta?",
+          "register": "REGISTRARSE",
+          "name": "Nombre",
+          "name_placeholder": "Tu Nombre",
+          "selectLanguage": "Seleccionar idioma",
+          "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+          "resetPassword": "RESTABLECER CONTRASEÑA",
+          "rememberedPassword": "¿Recordaste tu contraseña?"
+      },
+      "appointment": {
+          "service": {
+              "services": "SERVICIOS",
+              "continue": "CONTINUAR",
+              "selectExtras": "SELECCIONAR EXTRAS",
+              "infoSelectExtras": "Elige entre nuestra selección de extras premium para llevar tu experiencia de aseo al siguiente nivel.",
+              "next": "SIGUIENTE"
+          },
+          "barbertime": {
+              "planning": "PLANIFICACIÓN",
+              "selectBarber": "SELECCIONAR UN BARBERO",
+              "agenda": "AGENDA",
+              "next": "SIGUIENTE"
+          },
+          "summary": {
+              "summary": "RESUMEN",
+              "services": "SERVICIOS",
+              "extras": "EXTRAS",
+              "usePoints": "USAR PUNTOS",
+              "discount": "Usa 5 puntos para obtener un 50% de descuento",
+              "barber": "BARBERO",
+              "calendar": "CALENDARIO",
+              "date": "FECHA",
+              "hour": "HORA",
+              "total": "TOTAL: €"
+          }
       }
-    },
-    "footer": {
-      "information": "Información",
-      "openingHours": "Horario de Apertura",
-      "monFri": "Lun - Vie",
-      "satSun": "Sáb - Dom",
-      "holiday": "Día Festivo",
-      "monFriTime": "9:00 AM - 18:00 PM",
-      "satSunTime": "9:00 AM - 13:00 PM",
-      "holidayTime": "9:00 AM - 12:00 AM"
-    },
-    "account": {
-      "myAccount": {
-        "navigation": "MI CUENTA",
-        "hello": "HOLA,",
-        "points": "puntos",
-        "place": "lugar",
-        "name": "Nombre",
-        "emailAddress": "Dirección de Correo Electrónico",
-        "password": "Contraseña",
-        "confirmPassword": "Confirmar Contraseña",
-        "language": "Idioma",
-        "publicShowOfPoints": "Mostrar Puntos Públicamente",
-        "logout": "CERRAR SESIÓN",
-        "save": "GUARDAR"
-      },
-      "myAppointments": {
-        "navigation": "MIS CITAS",
-        "hello": "HOLA, ",
-        "cancel": "CANCELAR",
-        "edit": "EDITAR"
-      },
-      "vacation": {
-        "navigation": "VACACIONES"
-      }    
-    },
-    "auth": {
-      "login": "INICIAR SESIÓN",
-      "emailAddress": "Dirección de Correo Electrónico",
-      "emailAddress_placeholder": "tucorreo@example.com",
-      "password": "Contraseña",
-      "password_placeholder": "Tu Contraseña",
-      "forgotPassword": "¿Olvidaste la Contraseña?",
-      "dontHaveAccount": "¿No tienes una cuenta?",
-      "register": "REGISTRARSE",
-      "name": "Nombre",
-      "name_placeholder": "Tu Nombre",
-      "selectLanguage": "Seleccionar Idioma",
-      "alreadyHaveAccount": "¿Ya tienes una cuenta?",
-      "resetPassword": "RESTABLECER CONTRASEÑA",
-      "rememberedPassword": "¿Recordaste tu contraseña?"
-    }
   }
 }
