@@ -22,6 +22,7 @@ services:
       - GOOGLE_APPLICATION_CREDENTIALS=/run/secrets/my-google-secret
     ports:
       - 3000:3000 # External:What Is Set In Main.ts
+      - 3004:3004 # External:What Is Set In notifications.gatway.ts
     secrets:
       - my-google-secret 
 
