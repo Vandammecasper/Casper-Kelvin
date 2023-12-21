@@ -77,7 +77,6 @@ export class VacationsService {
         throw new Error('Not enough vacation days');
       }
 
-      //TODO: add substract vacation days from hairdresser
       const test = await this.hairdressersService.subtractVacationDays(hairdresser.id.toString(), totalVacationDays);
 
       const newVacation = new Vacation();
@@ -104,7 +103,6 @@ export class VacationsService {
     return this.vacationRepository.delete(new ObjectId(id));
   }
 
-  // for seeding
 
   async saveAll(vacations: Vacation[]): Promise<Vacation[]> {
     return this.vacationRepository.save(vacations);

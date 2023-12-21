@@ -1,7 +1,7 @@
 import { ObjectType, Field, Int, ID, Float } from '@nestjs/graphql';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
-@Entity() // Database link - Typeorm
+@Entity()
 @ObjectType()
 export class Service {
   @ObjectIdColumn()

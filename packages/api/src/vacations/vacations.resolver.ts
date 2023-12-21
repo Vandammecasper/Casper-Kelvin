@@ -59,7 +59,6 @@ export class VacationsResolver {
     return this.vacationsService.approveVacation(id);
   }
 
-  // @UseGuards(FirebaseGuard)
   @AllowedRoles(Role.ADMIN, Role.SUPER_ADMIN)
   @UseGuards(FirebaseGuard, RolesGuard)
   @Mutation(() => Vacation)
@@ -74,7 +73,6 @@ export class VacationsResolver {
     return this.vacationsService.remove(id);
   }
 
-  // Resolver for the hairdresser field of the Vacation type
   @ResolveField()
   hairdresser(@Parent() vacation: Vacation): Promise<Hairdresser> {
     return this.hairdressersService.findOne(vacation.hairdresserId.toString());

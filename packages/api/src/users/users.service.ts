@@ -31,8 +31,6 @@ export class UsersService {
   
   async create(uid: string, userName: string,  createUserInput: CreateUserInput) {
 
-    // TODO: Check if user already exists
-
     const user = new User();
     user.userName = userName;
     user.uid = uid;
@@ -41,7 +39,6 @@ export class UsersService {
 
     const createdUser = await this.usersRepository.save(user);
 
-    // Create points for user with uid
     if(!createdUser)
       throw new Error('User not created');
     
@@ -81,8 +78,6 @@ export class UsersService {
   remove(id: number) {
     return `This action removes a #${id} user`;
   }
-
-  // functions for seeding
 
   async saveAll(users: User[]): Promise<User[]> {
     return this.usersRepository.save(users);

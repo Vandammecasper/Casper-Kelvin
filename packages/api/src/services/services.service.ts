@@ -54,7 +54,6 @@ export class ServicesService {
     return this.serviceRepository.delete(id);
   }
 
-  // functions for seeding
   saveAll(services: Service[]): Promise<Service[]> {
     return this.serviceRepository.save(services);
   }

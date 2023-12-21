@@ -5,26 +5,24 @@ import { CreateHairdresserInput } from './dto/create-hairdresser.input';
 import { UpdateHairdresserInput } from './dto/update-hairdresser.input';
 import { ServicesService } from 'src/services/services.service';
 import { Service } from 'src/services/entities/service.entity';
-import { All, UseGuards } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common';
 import { FirebaseGuard } from 'src/authentication/guards/firebase.guard';
 import { RolesGuard } from 'src/users/guards/roles.guard';
 import { AllowedRoles } from 'src/users/decorators/role.decorator';
 import { Role } from 'src/users/entities/user.entity';
 import { FirebaseUser } from 'src/authentication/user.decorator';
-import { UserInfo, UserRecord } from 'firebase-admin/auth';
+import { UserRecord } from 'firebase-admin/auth';
 
 @Resolver(() => Hairdresser)
 export class HairdressersResolver {
   constructor(private readonly hairdressersService: HairdressersService,
     private readonly servicesService: ServicesService) {}
 
-  // @UseGuards(FirebaseGuard)
   @Query(() => [Hairdresser], { name: 'hairdressers' })
   findAll() {
     return this.hairdressersService.findAll();
   }
 
-  // @UseGuards(FirebaseGuard)
   @Query(() => Hairdresser, { name: 'hairdresser' })
   findOne(@Args('id', { type: () => String }) id: string) {
     return this.hairdressersService.findOne(id);
@@ -70,7 +68,6 @@ export class HairdressersResolver {
     return this.hairdressersService.remove(id);
   }
 
-  // Resolver for the services field of the Hairdresser type
   @ResolveField()
   services(@Parent() hairdresser: Hairdresser): Promise<Service[]> {
     return this.servicesService.findByIds(hairdresser.servicesId);

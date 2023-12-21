@@ -79,12 +79,10 @@ export class HairdressersService {
   }
 
   remove(id: string) {
-    //TODO: set user rights to user 
     //@ts-ignore
     return this.hairdresserRepository.delete({ _id: new ObjectId(id) });
   }
 
-  // functions for seeding
   saveAll(hairdressers: Hairdresser[]): Promise<Hairdresser[]> {
     return this.hairdresserRepository.save(hairdressers);
   }

@@ -36,8 +36,6 @@ export class ExtrasService {
     return `This action removes a #${id} extra`;
   }
 
-  // 
-
   saveAll(extras: Extra[]) {
     return this.extraRepository.save(extras);
   }

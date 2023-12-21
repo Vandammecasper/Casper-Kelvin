@@ -1,14 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePointInput } from './dto/create-point.input';
-import { UpdatePointInput } from './dto/update-point.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Point } from './entities/point.entity';
 import { Repository } from 'typeorm';
 import { ObjectId } from 'mongodb';
-import { FirebaseUser } from 'src/authentication/user.decorator';
-import { UserRecord } from 'firebase-admin/auth';
-import { Console } from 'console';
-import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class PointsService {
@@ -101,8 +96,6 @@ export class PointsService {
   remove(id: number) {
     return `This action removes a #${id} point`;
   }
-
-  // for seeding
 
   async saveAll(points: Point[]): Promise<Point[]> {
     return this.pointsRepository.save(points);

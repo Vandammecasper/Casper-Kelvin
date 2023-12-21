@@ -1,6 +1,5 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
-import { ObjectId } from 'typeorm';
+import { InputType, Field } from '@nestjs/graphql';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 @InputType()
 export class CreateHairdresserInput {

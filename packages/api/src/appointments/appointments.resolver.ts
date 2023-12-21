@@ -81,19 +81,16 @@ export class AppointmentsResolver {
     return this.appointmentsService.remove(id);
   }
 
-  //Resolver for the hairdresser field of the Appointment type
   @ResolveField()
   hairdresser(@Parent() appointment: Appointment): Promise<Hairdresser> {
     return this.hairdressersService.findOne(appointment.hairdresserId.toString());
   }
 
-  //Resolver for the services field of the Appointment type
   @ResolveField()
   services(@Parent() appointment: Appointment): Promise<Service[]> {
     return this.servicesService.findByIds(appointment.servicesId);
   }
 
-  //Resolver for the extra field of the Appointment type
   @ResolveField()
   extra(@Parent() appointment: Appointment): Promise<Extra> {
     return this.extrasService.findOne(appointment.extraId.toString());

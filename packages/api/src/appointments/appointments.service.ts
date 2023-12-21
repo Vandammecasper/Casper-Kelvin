@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAppointmentInput } from './dto/create-appointment.input';
 import { UpdateAppointmentInput } from './dto/update-appointment.input';
-import { Between, Repository, MongoRepository } from 'typeorm';
+import { MongoRepository } from 'typeorm';
 import { Appointment } from './entities/appointment.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { HairdressersService } from 'src/hairdressers/hairdressers.service';
@@ -78,7 +78,6 @@ export class AppointmentsService {
       let addedPoints = 0;
       let totalTime = 0;
 
-      // if the UID is found and isComplete is false, throw an error
       const testAppointment = await this.appointmentRepository.find({where: {uid: uid}})
       console.log(testAppointment);
       if(testAppointment)
@@ -91,7 +90,6 @@ export class AppointmentsService {
         });
       }
 
-      // if the hairdresserId is not found, throw an error and if dayOff is the same as the date, throw an error
       const hairdresser = await this.hairdresserService.findOne(CreateAppointmentInput.hairdresserId);
 
       if (!hairdresser) {
@@ -102,7 +100,6 @@ export class AppointmentsService {
         throw new Error('Hairdresser is on day off');
       }
 
-      // if the extraId is not found, throw an error
       const extra = await this.extrasService.findOne(CreateAppointmentInput.extraId);
       
       if (!extra) {
@@ -111,7 +108,6 @@ export class AppointmentsService {
 
       totalPrice += extra.price;
      
-      // if the serviceId is not found, throw an error
       for (const serviceId of CreateAppointmentInput.servicesId) {
         const service = await this.serviceService.findOne(serviceId);
         if (!service) {
@@ -123,8 +119,7 @@ export class AppointmentsService {
         servicesObjectId.push(new ObjectId(serviceId));
       }
       
-      // if there is an appointment between appointment.date and appointment.date + totalTime, throw an error
-      const endDate = dayjs(CreateAppointmentInput.date).add(totalTime, 'minute').toDate() // manipulate
+      const endDate = dayjs(CreateAppointmentInput.date).add(totalTime, 'minute').toDate()
 
       const appointments = await this.appointmentRepository.find({
         where: {
@@ -132,7 +127,7 @@ export class AppointmentsService {
             $gte: CreateAppointmentInput.date,
             $lt: endDate,
           },
-          isCompleted: false, // Optional: Only consider incomplete appointments
+          isCompleted: false,
           hairdresserId: new ObjectId(CreateAppointmentInput.hairdresserId),
         },
       });
@@ -141,7 +136,6 @@ export class AppointmentsService {
         throw new Error('There is already an appointment on that date');
       }
 
-      // if the date is not in a hairdresser vacation, throw an error
       const vacations = await this.vacationsService.findByHairdresserId(hairdresser.id);
 
       vacations.forEach(vacation => {
@@ -150,7 +144,6 @@ export class AppointmentsService {
         }
       });
 
-      //subtract points if isPointsUsed is true
       if(CreateAppointmentInput.isPointsUsed){
         const points = await this.pointsService.subtractPoints(uid, 5);
         totalPrice /= 2;
@@ -176,23 +169,6 @@ export class AppointmentsService {
     }
   }
 
-  // if isCompleted is true, then update the points of the user
-  // async updateIsCompleted(id: string): Promise<Appointment> {
-  //   // @ts-ignore
-  //   const appointment = await this.appointmentRepository.findOne({ _id: new ObjectId(id) });
-  //   if (!appointment) {
-  //     throw new Error(`Appointment with id ${id} not found`);
-  //   }
-  //   if (appointment.isCompleted) {
-  //     throw new Error(`Appointment with id ${id} is already completed`);
-  //   }
-  //   appointment.isCompleted = true;
-
-  //   // TODO: update the points of the user
-
-  //   return this.appointmentRepository.save(appointment);
-  // }
-
   update(id: number, updateAppointmentInput: UpdateAppointmentInput) {
     return `This action updates a #${id} appointment`;
   }
@@ -200,8 +176,6 @@ export class AppointmentsService {
   remove(id: string) {
     return this.appointmentRepository.deleteOne({ _id: new ObjectId(id) });
   }
-
-  // functions for seeding
 
   saveAll(appointments: Appointment[]): Promise<Appointment[]> {
     return this.appointmentRepository.save(appointments);

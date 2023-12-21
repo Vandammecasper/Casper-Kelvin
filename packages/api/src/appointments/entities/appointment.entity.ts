@@ -71,14 +71,3 @@ export class Appointment {
   @UpdateDateColumn({ type: 'timestamp', nullable: true })
   updatedAt?: Date
 }
-
-
-// •	datum
-// •	UID (klantID)
-// •	Naam
-// •	kapperID
-// •	ServiceID [ ]
-// •	Extra’s
-// •	Price
-// •	addedPoints
-// •	isCompleted (when true, points are added to the user’s points)
