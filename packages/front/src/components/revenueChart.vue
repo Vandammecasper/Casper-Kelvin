@@ -1,10 +1,20 @@
 <template>
     <Line v-if="countRevenue()" :data="chartData" :options="chartOptions" />
     <div class="flex justify-between">
-        <p>{{ $t('account.dashboard.totalRevenue') }}</p>
-        <h3>€ {{totalRevenue}}</h3>
+        <p class="Raleway-bold">{{ $t('account.dashboard.totalRevenue') }}</p>
+        <h3 class="Raleway-bold">€ {{totalRevenue}}</h3>
     </div>
 </template>
+
+<style>
+.Raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.Raleway-bold {
+    font-family: 'Raleway-Bold', sans-serif;
+}
+</style>
 
 <script lang="ts">
 import {

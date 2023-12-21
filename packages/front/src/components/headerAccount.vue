@@ -7,9 +7,9 @@
         </div>
         <div class="flex gap-4 md:gap-16 items-center">
             <RouterLink v-if="customUser?.role == 'SUPER_ADMIN'" to="/account/settings">
-                <h1 class="max-sm:text-sm text-center">{{ $t('navigation.barberSettings') }}</h1>
+                <h1 class="max-sm:text-sm text-center Raleway-bold">{{ $t('navigation.barberSettings') }}</h1>
             </RouterLink>
-            <RouterLink v-if="customUser?.role == 'SUPER_ADMIN'" to="/account/dashboard" class="max-lg:hidden">
+            <RouterLink v-if="customUser?.role == 'SUPER_ADMIN'" to="/account/dashboard" class="max-lg:hidden Raleway-bold">
                 <h1 class="text-center">{{ $t('navigation.barberAnalytics') }}</h1>
             </RouterLink>
             <RouterLink v-if="customUser?.role == 'SUPER_ADMIN'" to="/account/myaccount">

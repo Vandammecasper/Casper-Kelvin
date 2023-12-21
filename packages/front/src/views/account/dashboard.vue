@@ -13,17 +13,27 @@
         </div>
         <div class="flex p-8 h-105 w-screen justify-center">
             <div class="w-1/2 grid justify-items-center">
-                <h1 class="text-2xl mb-4">{{ $t('account.dashboard.barberRevenue') }}</h1>
+                <h1 class="text-2xl mb-4 Raleway-bold">{{ $t('account.dashboard.barberRevenue') }}</h1>
                 <BarChart :componentData="data"/>
             </div>
             <div class="w-1/2 grid justify-items-center">
-                <h1 class="text-2xl mb-4">{{ $t('account.dashboard.serviceRevenue') }}</h1>
+                <h1 class="text-2xl mb-4 Raleway-bold">{{ $t('account.dashboard.serviceRevenue') }}</h1>
                 <DoughnutChart :componentData="data"/>
             </div>
             
         </div>
     </div>
 </template>
+
+<style>
+.Raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.Raleway-bold {
+    font-family: 'Raleway-Bold', sans-serif;
+}
+</style>
 
 <script setup lang="ts">
 import BarChart from '@/components/barChart.vue'
@@ -33,7 +43,7 @@ import AppointmentChart from '@/components/appointmentChart.vue'
 import DoughnutChart from '@/components/doughnutChart.vue'
 import { GET_ALL_APPOINTMENTS } from '@/graphql/appointments.query'
 import { useQuery } from '@vue/apollo-composable'
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 
 const {
     result: getAppointmentsResult,
