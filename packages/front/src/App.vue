@@ -52,7 +52,7 @@ export default {
 <template>
   <div class="bg-neutral-900 text-white font-bold">
     <RouterView />
-    <a href="/account/myappointmentsadmin" class="fixed bottom-4 right-4 z-10">
+    <a v-if="customUser?.role == 'ADMIN'" href="/account/myappointmentsadmin" class="fixed bottom-4 right-4 z-10">
       <div class="w-16 h-16 bg-neutral-950 rounded-full flex items-center justify-center">
           <img src="/icons/bell.svg" alt="Notification Bell Icon">
       </div>
