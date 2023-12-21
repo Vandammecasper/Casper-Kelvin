@@ -47,20 +47,20 @@ console.log(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.e
             type: 'mongodb',
             url: `${mongoUri}${process.env.DB_NAME}`,
             entities: [__dirname + '/**/*.entity.{js,ts}'],
-            synchronize: process.env.NODE_ENV == 'production' ? false : true, // Careful with this in production
+            synchronize: process.env.NODE_ENV == 'production' ? false : true,
             useNewUrlParser: true,
-            useUnifiedTopology: true, // Disable deprecated warnings
+            useUnifiedTopology: true,
           }
         } else {
           return {
             type: 'mongodb',
             url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`,
-            database: process.env.DB_NAME ?? 'api-thebarber-production', // database hier toevogen
+            database: process.env.DB_NAME ?? 'api-thebarber-production',
             entities: [__dirname + '/**/*.entity.{js,ts}'],
-            synchronize: process.env.NODE_ENV == 'production' ? false : true, // Careful with this in production
+            synchronize: process.env.NODE_ENV == 'production' ? false : true,
             useNewUrlParser: true,
-            useUnifiedTopology: true, // Disable deprecated warnings
-            directConnection: true, // blijkbaar helpt dit
+            useUnifiedTopology: true,
+            directConnection: true,
           }
         }
       },

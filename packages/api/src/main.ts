@@ -6,8 +6,6 @@ async function bootstrap() {
 
   require('dotenv').config();
 
-  console.log('cors', process.env.URL_FRONTEND)
-
   app.enableCors({
     origin: [
       'http://localhost:5173',

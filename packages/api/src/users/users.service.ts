@@ -30,9 +30,6 @@ export class UsersService {
   }
   
   async create(uid: string, userName: string,  createUserInput: CreateUserInput) {
-
-    // TODO: Check if user already exists
-
     const user = new User();
     user.userName = userName;
     user.uid = uid;

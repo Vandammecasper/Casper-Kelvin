@@ -1,10 +1,10 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { Service } from 'src/services/entities/service.entity';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
 import {ObjectId} from 'mongodb';
 
 @Entity() // Database link - Typeorm
-@ObjectType() //graphql
+@ObjectType() // graphql
 export class Hairdresser {
 
   @ObjectIdColumn()
@@ -32,5 +32,4 @@ export class Hairdresser {
   @Column({nullable: true})
   @Field(() => [Number], { description: 'days off in the week', nullable: true })
   daysOff: number[]
-
 }

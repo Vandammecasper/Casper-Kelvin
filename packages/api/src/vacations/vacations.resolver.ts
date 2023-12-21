@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { VacationsService } from './vacations.service';
 import { Vacation } from './entities/vacation.entity';
 import { CreateVacationInput } from './dto/create-vacation.input';
