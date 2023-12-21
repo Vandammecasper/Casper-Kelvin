@@ -15,7 +15,6 @@ import {
 import firebase from 'firebase/compat/app'
 import { ref } from 'vue'
 
-// Shared state
 const app = initializeApp({
   apiKey: import.meta.env.VITE_apiKey,
   authDomain: import.meta.env.VITE_authDomain,
@@ -24,21 +23,13 @@ const app = initializeApp({
   messagingSenderId: import.meta.env.VITE_messagingSenderId,
   appId: import.meta.env.VITE_appId,
 })
-// const app = initializeApp({
-//     apiKey: "AIzaSyD3UgXX3nSYJNuiWVFPXXkzOmi4nS4F93Q",
-//     authDomain: "thebarber-f8bd6.firebaseapp.com",
-//     projectId: "thebarber-f8bd6",
-//     storageBucket: import.meta.env.VITE_storageBucket,
-//     messagingSenderId: import.meta.env.VITE_messagingSenderId,
-//     appId: import.meta.env.VITE_appId,
-//   })
 
 const auth = getAuth(app)
 if (import.meta.env.VITE_EMULATION){
   connectAuthEmulator(auth, 'http://127.0.0.1:9099')
   console.log('Connecting to auth emulator')
 }
-setPersistence(auth, browserLocalPersistence) // Keep track of logged in user in the browser
+setPersistence(auth, browserLocalPersistence)
 
 const firebaseUser = ref<User | null>(auth.currentUser)
 
@@ -113,7 +104,6 @@ const logout = async (): Promise<void> => {
 }
 
 export default () => {
-  // State for each composable
   return {
     firebaseUser,
 

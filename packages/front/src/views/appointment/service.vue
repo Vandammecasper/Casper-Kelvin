@@ -90,7 +90,7 @@ export default {
     data() {
         return {
             selectedServices: [] as string[],
-            selectedExtra: "0", // this was 0, I now get an error when pressing on continue
+            selectedExtra: "0",
             cont: false,
             next: false,
             shampoo: false,
@@ -105,14 +105,12 @@ export default {
         toggleSelection(serviceId:string) {
             if (this.isSelected(serviceId)) {
                 console.log(this.selectedServices)
-                // Service is already selected, so remove it
                 //@ts-ignore
                 const index = this.selectedServices.indexOf(serviceId);
                 this.selectedServices.splice(index, 1);
                 this.checkContinue();
             } else {
                 console.log(this.selectedServices)
-                // Service is not selected, so add it
                 //@ts-ignore
                 this.selectedServices.push(serviceId);
                 this.checkContinue();

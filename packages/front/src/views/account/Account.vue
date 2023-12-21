@@ -142,7 +142,6 @@ import NavigationAccount from '@/components/navigationAccount.vue'
 import { ref } from 'vue'
 
 const { firebaseUser, logout } = useFirebase()
-// const { customUser } = useCustomUser()
 const { replace } = useRouter()
 
 const logoutUser = () => {
@@ -159,7 +158,6 @@ const { result: getPointByUidResult } = useQuery(GET_POINT_BY_UID);
 
 const { result: getRangResult } = useQuery(GET_RANK)
 
-//TODO: set to getPointsByUidResult?.value.pointByUid.isPublic
 const isPublic = ref(false)
 
 const { setLocale } = useLanguage()
@@ -167,9 +165,6 @@ const { locale } = useI18n()
 
 const setLanguage = (event: Event) => {
     const target = event.target as HTMLSelectElement
-    //update user profile
     setLocale(target.value)
 }
-
-
 </script>

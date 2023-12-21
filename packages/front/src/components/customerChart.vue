@@ -20,7 +20,7 @@ import {
 import { Line } from 'vue-chartjs'
 import { GET_ALL_USERS } from '@/graphql/user.query'
 import { useQuery } from '@vue/apollo-composable'
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 
 ChartJS.register(
     CategoryScale,
@@ -48,8 +48,6 @@ export default {
     setup(){
         const {
             result: getUsersResult,
-            refetch,
-            loading,
             onResult
         } = useQuery(GET_ALL_USERS)
 
@@ -70,12 +68,9 @@ export default {
             const monthUsers = Array(12).fill(0);
             if (data.value) {
                 for (let i = 0; i < getUsersResult.value.users?.length; i++) {
-                    // console.log(getUsersResult.value.users)
                     if (getUsersResult.value.users[i].role === 'USER') {
-                        // console.log('user')
                         const user = getUsersResult.value.users[i];
                         const creationDate = new Date(user.createdAt);
-                        // console.log(creationDate)
 
                         for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
                             const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
@@ -83,7 +78,7 @@ export default {
 
                             if (creationDate > firstDayOfMonth && creationDate < lastDayOfMonth) {
                                 monthUsers[monthIndex] += 1;
-                                break; // Break out of the loop once the month is found
+                                break;
                             }
                         }
                     }

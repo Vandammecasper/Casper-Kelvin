@@ -58,8 +58,6 @@ export default {
 
         const {
             result: getHairdressersResult,
-            refetch,
-            loading,
             onResult,
         } = useQuery(GET_ALL_HAIRDRESSERS)
 
@@ -89,26 +87,20 @@ export default {
                     if (counter.value==3){
                         counter.value = 0
                     }
-                    // console.log(barberName)
-                    // console.log(barberId)
-                    // console.log(props.componentData.value.appointments)
                     //@ts-ignore
                     for (let i = 0; i < props.componentData.value.appointments?.length; i++) {
                         //@ts-ignore
                         if(props.componentData.value.appointments[i].hairdresser.id == barberId){
-                            // console.log(barberId)
-                            // console.log(props.componentData.value.appointments[i])
                             //@ts-ignore
                             const appointment = props.componentData.value.appointments[i];
                             const appointmentDate = new Date(appointment.date);
-                            // console.log(appointmentDate)
                             for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
                                 const firstDayOfMonth = new Date(new Date().getFullYear(), monthIndex, 1);
                                 const lastDayOfMonth = new Date(new Date().getFullYear(), monthIndex + 1, 1);
 
                                 if (appointmentDate > firstDayOfMonth && appointmentDate < lastDayOfMonth) {
                                     barberRevenue[monthIndex] += appointment.price;
-                                    break; // Break out of the loop once the month is found
+                                    break;
                                 }
                             }
                         }
@@ -122,8 +114,6 @@ export default {
                         }
                     )
                 }
-                // console.log(revenueLists.value)
-                //remove the first element of the revenueLists array
                 revenueLists.value.shift()
                 chartData.value = {
                     labels: [
@@ -142,7 +132,6 @@ export default {
                     ],
                     datasets: revenueLists.value
                 }
-                // console.log(chartData.value)
             }
             done.value = true
             return done.value

@@ -2,7 +2,6 @@ import { type Socket, io } from 'socket.io-client'
 import useFirebase from './useFirebase'
 
 const { firebaseUser } = useFirebase()
-// import.meta.env.VITE_REALTIME_URL
 const socket: Socket = io('http://localhost:3004', {
   extraHeaders: {
     Authorization: `Bearer ${await firebaseUser.value?.getIdToken()}`,
@@ -19,10 +18,8 @@ const on = (event: string, callback: (data: any) => void) => {
 
 export default () => {
   return {
-    // Socket instance
     socket,
 
-    // Generic functions
     emit,
     on,
   }

@@ -41,7 +41,6 @@ import useCustomUser from '@/composables/useCustomUser'
 
 export default {
     setup() {
-        // Composables
         const { logout, firebaseUser } = useFirebase()
 
         const { customUser } = useCustomUser()

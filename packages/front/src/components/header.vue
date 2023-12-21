@@ -52,11 +52,7 @@ import useFirebase from '@/composables/useFirebase'
 
 export default {
     setup() {
-        // Composables
         const { logout, firebaseUser } = useFirebase()
-
-
-
         return {
             firebaseUser,
             logout,

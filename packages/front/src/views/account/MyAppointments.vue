@@ -80,11 +80,9 @@ const handleDeleteAppointment = async (id: string) => {
 const date = (givendate:string) => {
     const inputDate = new Date(givendate);
 
-    // Extracting date information
     const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const day = dayOfWeek[inputDate.getDay()];
 
-    // Extracting time information
     const hours = inputDate.getHours();
     const minutes = inputDate.getMinutes();
     const period = hours < 12 ? 'AM' : 'PM';

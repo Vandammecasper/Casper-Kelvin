@@ -68,7 +68,7 @@ export default {
 
                         if (appointmentDate > firstDayOfMonth && appointmentDate < lastDayOfMonth) {
                             monthAppointments[monthIndex]+= appointment.price;
-                            break; // Break out of the loop once the month is found
+                            break;
                         }
                     }
                 }

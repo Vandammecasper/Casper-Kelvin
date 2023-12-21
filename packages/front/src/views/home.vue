@@ -45,9 +45,6 @@
     <div class="h-20"></div>
     <div id="service" class=""></div>
     <div class="grid justify-items-center w-full mt-20 sm:mt-40">
-      <!--
-        services
-      -->
       <h1 class="text-neutral-800 text-6xl sm:text-7xl md:text-8xl lg:text-9xl absolute Raleway-bold">{{ $t('home.services.services') }}</h1>
       <div class="relative z-10 w-4/5 sm:w-3/5 lg:w-3/4 xl:w-1/2 text-center">
         <h2 class="text-xl sm:text-2xl md:text-4xl mt-7.5 sm:mt-9 md:mt-12.5 lg:mt-19 mb-4 Raleway-bold">{{ $t('home.services.title') }}</h2>
@@ -78,9 +75,6 @@
           <p class="sm:text-lg md:text-2xl text-neutral-700 relative Raleway">{{ $t('home.crew.p') }}</p>
         </div>
         <div class="grid grid-cols-3 mt-16 justify-self-center">
-          <!-- 
-            hairdressers
-          -->
           <div v-for="hairdresser of hairdressersResult?.hairdressers" :key="hairdresser.id">
             <div class="grid justify-items-center">
               <div class="relative w-5/6 border-4 border-b-0 border-yellow-600">
@@ -198,20 +192,16 @@
 </style>
 
 <script lang="ts">
-import { ref } from 'vue'
-import { type AuthError } from 'firebase/auth'
 
 import useFirebase from '@/composables/useFirebase'
 import useCustomUser from '@/composables/useCustomUser'
 import { useQuery } from '@vue/apollo-composable'
 import { GET_ALL_SERVICES } from '@/graphql/services.query'
-import type { CustomService } from '@/interfaces/custom.service.interface'  
 import { GET_ALL_HAIRDRESSERS } from '@/graphql/hairdressers.query'
 import { GET_PUBLIC_POINTS } from '@/graphql/points.public.query'
 
 export default {
   setup() {
-    // Composables
     const { logout, firebaseUser } = useFirebase()
     const { customUser } = useCustomUser()
 
@@ -237,7 +227,7 @@ export default {
       result: getScoreBoardResult,
       loading: getScoreBoardLoading,
     } = useQuery(GET_PUBLIC_POINTS, {
-        sort: true, // Pass your "sort" parameter here
+        sort: true,
     });
 
     return {
