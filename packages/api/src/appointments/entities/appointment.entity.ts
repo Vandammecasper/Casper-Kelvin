@@ -1,7 +1,7 @@
 import { ObjectType, Field, Int, ID, Float } from '@nestjs/graphql';
 import { Hairdresser } from 'src/hairdressers/entities/hairdresser.entity';
 import { Column, CreateDateColumn, Entity, ObjectIdColumn, UpdateDateColumn } from 'typeorm';
-import {ObjectId} from 'mongodb';
+import { ObjectId } from 'mongodb';
 import { Service } from 'src/services/entities/service.entity';
 import { Extra } from 'src/extras/entities/extra.entity';
 
@@ -71,14 +71,3 @@ export class Appointment {
   @UpdateDateColumn({ type: 'timestamp', nullable: true })
   updatedAt?: Date
 }
-
-
-// •	datum
-// •	UID (klantID)
-// •	Naam
-// •	kapperID
-// •	ServiceID [ ]
-// •	Extra’s
-// •	Price
-// •	addedPoints
-// •	isCompleted (when true, points are added to the user’s points)

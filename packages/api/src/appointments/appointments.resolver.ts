@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { AppointmentsService } from './appointments.service';
 import { Appointment } from './entities/appointment.entity';
 import { CreateAppointmentInput } from './dto/create-appointment.input';
@@ -71,7 +71,6 @@ export class AppointmentsResolver {
     @Args('CreateAppointmentInput') CreateAppointmentInput: CreateAppointmentInput,
     @FirebaseUser() user: UserRecord
   ): Promise<Appointment> {
-    console.log(user.uid);
     const createdAppointment = await this.appointmentsService.create(user.uid, user.displayName, CreateAppointmentInput);
 
     this.gateway.sendNewAppointment('room', createdAppointment);
@@ -89,19 +88,19 @@ export class AppointmentsResolver {
     return this.appointmentsService.remove(id);
   }
 
-  //Resolver for the hairdresser field of the Appointment type
+  // Resolver for the hairdresser field of the Appointment type
   @ResolveField()
   hairdresser(@Parent() appointment: Appointment): Promise<Hairdresser> {
     return this.hairdressersService.findOne(appointment.hairdresserId.toString());
   }
 
-  //Resolver for the services field of the Appointment type
+  // Resolver for the services field of the Appointment type
   @ResolveField()
   services(@Parent() appointment: Appointment): Promise<Service[]> {
     return this.servicesService.findByIds(appointment.servicesId);
   }
 
-  //Resolver for the extra field of the Appointment type
+  // Resolver for the extra field of the Appointment type
   @ResolveField()
   extra(@Parent() appointment: Appointment): Promise<Extra> {
     return this.extrasService.findOne(appointment.extraId.toString());

@@ -1,14 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePointInput } from './dto/create-point.input';
-import { UpdatePointInput } from './dto/update-point.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Point } from './entities/point.entity';
 import { Repository } from 'typeorm';
 import { ObjectId } from 'mongodb';
-import { FirebaseUser } from 'src/authentication/user.decorator';
-import { UserRecord } from 'firebase-admin/auth';
-import { Console } from 'console';
-import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class PointsService {
@@ -36,9 +31,7 @@ export class PointsService {
   }
 
   async getRank(uid: string) {
-    console.log(uid);
     const myPoint = await this.pointsRepository.findOne({ where: { uid } });
-    console.log(myPoint);
     if(!myPoint) return 0;
 
     const allPoints = await this.pointsRepository.find({ order: { totalPoints: "DESC" } });
@@ -70,8 +63,6 @@ export class PointsService {
 
   async addPoints(uid: string, points: number) {
     //@ts-ignore
-    console.log(uid);
-
     const existingPoints = await this.pointsRepository.findOne({where:{uid}});
 
     if (!existingPoints) {
@@ -83,8 +74,6 @@ export class PointsService {
 
   async subtractPoints(uid: string, points: number) {
     //@ts-ignore
-    console.log(uid);
-
     const existingPoints = await this.pointsRepository.findOne({where:{uid}});
 
     if (!existingPoints) {

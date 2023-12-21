@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int, ID, Float } from '@nestjs/graphql';
+import { ObjectType, Field, ID, Float } from '@nestjs/graphql';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 @Entity()
@@ -23,5 +23,4 @@ export class Extra {
   @Column()
   @Field(() => [String], { description: 'service utilities give in string[]' })
   utilities: string[];
-
 }

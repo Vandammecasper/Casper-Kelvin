@@ -1,5 +1,5 @@
 import { InputType, Int, Field, Float } from '@nestjs/graphql';
-import { ArrayMaxSize, ArrayNotEmpty, IsInt, IsNumber, IsOptional, IsString } from 'class-validator';
+import { ArrayMaxSize, ArrayNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 @InputType()
 export class CreateServiceInput {

@@ -23,7 +23,6 @@ export class ExtrasService {
   }
 
   findOne(id: string) {
-    console.log(id, "extaraa");
     //@ts-ignore
     return this.extraRepository.findOne({ _id: new ObjectId(id) });
   }
@@ -36,7 +35,7 @@ export class ExtrasService {
     return `This action removes a #${id} extra`;
   }
 
-  // 
+  // for seeding
 
   saveAll(extras: Extra[]) {
     return this.extraRepository.save(extras);

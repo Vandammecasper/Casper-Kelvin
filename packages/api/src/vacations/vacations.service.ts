@@ -77,8 +77,7 @@ export class VacationsService {
         throw new Error('Not enough vacation days');
       }
 
-      //TODO: add substract vacation days from hairdresser
-      const test = await this.hairdressersService.subtractVacationDays(hairdresser.id.toString(), totalVacationDays);
+      const v = await this.hairdressersService.subtractVacationDays(hairdresser.id.toString(), totalVacationDays);
 
       const newVacation = new Vacation();
       newVacation.hairdresserId = new ObjectId(hairdresser.id);

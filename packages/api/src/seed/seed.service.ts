@@ -3,7 +3,6 @@ import { ServicesService } from 'src/services/services.service';
 
 import * as services from './data/services.json';
 import * as hairdressers from './data/hairdressers.json';
-import * as vacations from './data/vacations.json';
 import * as points from './data/points.json';
 import * as users from './data/users.json';
 import * as extras from './data/extras.json';
@@ -22,7 +21,6 @@ import { Appointment } from 'src/appointments/entities/appointment.entity';
 import { Role, User } from 'src/users/entities/user.entity';
 import { ExtrasService } from 'src/extras/extras.service';
 import { Extra } from 'src/extras/entities/extra.entity';
-import { start } from 'repl';
 
 @Injectable()
 export class SeedService {
@@ -58,15 +56,13 @@ export class SeedService {
         return this.servicesService.truncate();
     }
 
-    //hairdressers
+    // hairdressers
 
     async addHairdressersFromJson(): Promise<Hairdresser[]> {
         const hairdressersArray:Hairdresser[] = [];
-        // const services = await this.servicesService.findAll();
 
         for (const hairdresser of hairdressers) {
             const h = new Hairdresser();
-            // const service = await this.servicesService.findOneByName(hairdresser.name);
             let newServicesId = [];
             for (const service of hairdresser.services) {
                 const s = await this.servicesService.findOneByName(service.name);
@@ -137,7 +133,6 @@ export class SeedService {
 
     // appointments
 
-    //TODO: add appointments from json
     async addAppointmentsFromJson(): Promise<Appointment[]> {
         const appointmentsArray:Appointment[] = [];
 
@@ -150,7 +145,6 @@ export class SeedService {
 
     // users
 
-    //TODO: add users from json
     async addUsersFromJson(): Promise<User[]> {
         const usersArray:User[] = [];
         
@@ -171,7 +165,7 @@ export class SeedService {
         return this.usersService.truncate();
     }
 
-    //extras
+    // extras
 
     async addExtrasFromJson(): Promise<Extra[]> {
         const extrasArray:Extra[] = [];

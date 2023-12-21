@@ -1,6 +1,5 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Field } from '@nestjs/graphql';
 import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
-import { ObjectId } from 'typeorm';
 
 @InputType()
 export class CreateHairdresserInput {
@@ -25,5 +24,4 @@ export class CreateHairdresserInput {
   @IsNotEmpty()
   @Field(() => [Number])
   daysOff: number[];
-
 }

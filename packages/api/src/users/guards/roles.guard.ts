@@ -23,7 +23,7 @@ export class RolesGuard implements CanActivate {
     if (!requiredRoles) throw new Error('No roles defined')
 
     const ctx = GqlExecutionContext.create(context)
-    const { user } = ctx.getContext().req // WAAROM WERKT DIT? OMDAT WE ZELF AL GUARD HIERVOOR HEBBEN.
+    const { user } = ctx.getContext().req
     const { role } = await this.usersService.findOneByUid(user.uid)
 
     return requiredRoles.includes(role)
