@@ -15,7 +15,7 @@
                         <option :value="3">{{ $t('account.vacation.wednesday') }}</option>
                         <option :value="4">{{ $t('account.vacation.thursday') }}</option>
                         <option :value="5">{{ $t('account.vacation.friday') }}</option>
-                        <option :value="6">{{ $t('account.vacation.saterday') }}</option>
+                        <option :value="6">{{ $t('account.vacation.saturday') }}</option>
                         <option :value="0">{{ $t('account.vacation.sunday') }}</option>
                     </select>
                     <button @click="handleDayOff" class="mt-4 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8 font-semibold  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">{{ $t('account.vacation.save') }}</button>
