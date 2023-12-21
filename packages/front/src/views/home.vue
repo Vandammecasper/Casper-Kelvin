@@ -70,7 +70,7 @@
         </div>
       </RouterLink>
     </div>
-    <div class=""></div>
+    <div id="crew" class=""></div>
     <div class="grid justify-items-center w-full mt-20 sm:mt-40">
         <h1 class="text-neutral-800 text-6xl sm:text-7xl md:text-8xl lg:text-9xl absolute Raleway-bold">{{ $t('home.crew.crew') }}</h1>
         <div class="relative z-10 w-4/5 sm:w-3/5 lg:w-3/4 xl:w-1/2 text-center">
