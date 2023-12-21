@@ -20,13 +20,14 @@
             </div>
             <div class="sm:w-1/2 max-sm:mt-4">
                 <h2 class="text-3xl lg:text-4xl">{{ $t('appointment.barbertime.agenda') }}</h2>
-                <DatePicker class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" :disabled-dates="disabledDates" :time-accuracy="1" :locale="locale" :rules="rules"/>
+                <DatePicker @input="checkContinue()" class="mt-4" borderless :is-dark="true" expanded color="yellow" v-model="selectedDate" mode="dateTime" is24hr hide-time-header :min-date="new Date()" :disabled-dates="disabledDates" :time-accuracy="1" :locale="locale" :rules="rules"/>
             </div>
         </div>
+        <p v-if="error" class="text-red-600 mt-2">Please select a barber and pick a date and time</p>
         <RouterLink v-if="cont" :to="{ name: 'summary', params: { service: selectedServices.join(','),extra: selectedExtra, barber: selectedBarber, date: selectedDate } }">
             <button class="mt-8 Raleway-bold border-2 border-yellow-600 bg-yellow-600 py-2 px-8  hover:bg-yellow-700 focus:outline-none focus-visible:border-yellow-600 focus-visible:bg-yellow-700 focus-visible:ring-2 focus-visible:ring-yellow-300">{{ $t('appointment.barbertime.next') }}</button>
         </RouterLink>
-        <button v-else class="mt-8 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8">{{ $t('appointment.barbertime.next') }}</button>
+        <button @click="error=true" v-else class="mt-4 Raleway-bold border-2 border-neutral-600 bg-neutral-600 py-2 px-8">{{ $t('appointment.barbertime.next') }}</button>
     </div>
     
 </template>
@@ -76,6 +77,7 @@ export default {
             selectedBarber: '',
             selectedDate: '',
             cont: false,
+            error: false,
         }
     },
     methods: {
@@ -140,6 +142,7 @@ export default {
         checkContinue() {
             if (this.selectedBarber != '' && this.selectedDate != '') {
                 this.cont = true;
+                this.error = false;
             }
             else {
                 this.cont = false;
