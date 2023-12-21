@@ -2,9 +2,9 @@
     <div class="sm:flex w-full h-screen items-center">
         <NavigationAccount />
         <div class="h-screen w-full p-4 px-6 sm:pt-40 sm:pl-20 sm:pr-10">
-            <div class="flex">
-                <h1 class="text-5xl Raleway-bold mb-4">{{ $t('account.myAccount.hello') }} {{ firebaseUser?.displayName }}</h1>
-                <p class="mt-5 ml-4">{{ $t('account.vacation.availableVacationDays') }} {{ getHairdresserResult?.hairdresserByUid?.vacationDays }}</p>
+            <div class="lg:flex">
+                <h1 class="text-5xl Raleway-bold lg:mb-4">{{ $t('account.myAccount.hello') }} {{ firebaseUser?.displayName }}</h1>
+                <p class="mt-2 lg:mt-5 lg:ml-4 max-lg:mb-4">{{ $t('account.vacation.availableVacationDays') }} {{ getHairdresserResult?.hairdresserByUid?.vacationDays }}</p>
             </div>
             <div class="h-[60vh] overflow-scroll overflow-x-hidden pr-1">
                 <div class="w-full">

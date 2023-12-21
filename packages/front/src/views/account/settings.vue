@@ -1,15 +1,15 @@
 <template>
     <div class="grid justify-items-center h-full w-screen">
         <h1 class="mt-32 text-4xl">{{ $t('account.dashboard.barberSettings') }}</h1>
-        <div class="flex w-screen mt-8 px-8 gap-8">
-            <div class="w-1/2 grid justify-items-center border-2 border-white">
-                <h2 class="text-2xl">{{ $t('account.dashboard.barbers') }}</h2>
-                <div class="w-full px-8 py-4">
+        <div class="lg:flex w-screen mt-8 px-4 sm:px-8 gap-8">
+            <div class="lg:w-1/2 grid justify-items-center border-2 border-white py-2">
+                <h2 class="text-2xl mb-2">{{ $t('account.dashboard.barbers') }}</h2>
+                <div class="w-full px-4 sm:px-8 py-4 pt-0 max-h-32 sm:max-h-40 lg:max-h-72 overflow-scroll overflow-x-hidden">
                     <div v-for="user of getUsersResult?.users " :key="user.id" class="my-2">
                         <div class="w-full h-0.5 bg-white"></div>
                         <div class="flex justify-between mt-1">
-                            <p>{{user.userName}}</p>
-                            <p>{{ user.uid }}</p>
+                            <p class="max-sm:text-sm">{{user.userName}}</p>
+                            <p class="max-sm:text-sm max-sm:hidden">{{ user.uid }}</p>
                             <div class="flex gap-2">
                                 <p>{{ $t('account.dashboard.barber') }}</p>
                                 <input @click="handleRoleChange(user.id, 'USER')" v-if="user.role == 'ADMIN' || user.role == 'SUPER_ADMIN'" class="mt-1" type="checkbox" checked>
@@ -19,20 +19,20 @@
                     </div>
                 </div>
             </div>
-            <div class="w-1/2 grid justify-items-center border-2 border-white">
+            <div class="lg:w-1/2 grid justify-items-center border-2 border-white max-lg:mt-8">
                     <h2 class="text-2xl">{{ $t('account.dashboard.holidays') }}</h2>
-                    <div class="w-full px-8 py-4">
+                    <div class="w-full px-4 sm:px-8 max-h-32 sm:max-h-40 lg:max-h-72 overflow-scroll overflow-x-hidden">
                         <div v-for="vacation of vacationList" :key="vacation.id" class="my-2">
                             <div class="w-full h-0.5 bg-white"></div>
                             <div class="flex justify-between mt-1">
-                                <p>{{vacation.hairdresser.name}}</p>
-                                <p>{{ handleDates(vacation.startDate) }} - {{ handleDates(vacation.endDate) }}</p>
+                                <p class="max-sm:text-xs">{{vacation.hairdresser.name}}</p>
+                                <p class="max-sm:text-xs text-center">{{ handleDates(vacation.startDate) }} - {{ handleDates(vacation.endDate) }}</p>
                                 <div class="flex gap-2">
-                                    <button @click="handleApproveVacation(vacation.id)" class="px-2 py-1 Raleway-bold border-2 border-green-600 bg-green-600  hover:bg-green-700 focus:outline-none focus-visible:border-green-600 focus-visible:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-300">
-                                        <p>{{ $t('account.dashboard.accept') }}</p>
+                                    <button @click="handleApproveVacation(vacation.id)" class="px-1 sm:px-2 py-1 Raleway-bold border-2 border-green-600 bg-green-600  hover:bg-green-700 focus:outline-none focus-visible:border-green-600 focus-visible:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-300">
+                                        <p class="text-xs sm:text-sm">{{ $t('account.dashboard.accept') }}</p>
                                     </button>
-                                    <button @click="handleRemoveVacation(vacation.id)" class="px-2 py-1 Raleway-bold border-2 border-red-600 bg-red-600  hover:bg-red-700 focus:outline-none focus-visible:border-red-600 focus-visible:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300">
-                                        <p>decline</p>
+                                    <button @click="handleRemoveVacation(vacation.id)" class="px-1 sm:px-2 py-1 Raleway-bold border-2 border-red-600 bg-red-600  hover:bg-red-700 focus:outline-none focus-visible:border-red-600 focus-visible:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300">
+                                        <p class="text-xs sm:text-sm">{{ $t('account.dashboard.decline') }}</p>
                                     </button>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="max-sm:grid sm:hidden">
+    <div class="max-sm:grid sm:hidden max-sm:justify-items-center">
         <div class="max-sm:justify-self-center w-full max-sm:flex max-sm:gap-2 sm:w-3/5 md:w-2/5 max-sm:border-b-2 sm:border-r-2 border-neutral-600 content-center max-w-xs grid justify-items-center sm:h-80 mt-24 sm:mt-32">
             <RouterLink to="/account/myaccount">
                 <h2 :class="{'text-sm sm:text-xl lg:text-3xl mt-6 Raleway-bold': isOnRoute('/account/myaccount'), 'text-xs sm:text-lg lg:text-2xl mt-6 text-neutral-700 Raleway-bold': !isOnRoute('/account/myaccount')}">{{ $t('account.myAccount.navigation') }}</h2>
