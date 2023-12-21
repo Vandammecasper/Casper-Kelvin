@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import {
   browserLocalPersistence,
+  connectAuthEmulator,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
@@ -33,6 +34,10 @@ const app = initializeApp({
 //   })
 
 const auth = getAuth(app)
+if (import.meta.env.VITE_EMULATION){
+  connectAuthEmulator(auth, 'http://127.0.0.1:9099')
+  console.log('Connecting to auth emulator')
+}
 setPersistence(auth, browserLocalPersistence) // Keep track of logged in user in the browser
 
 const firebaseUser = ref<User | null>(auth.currentUser)
